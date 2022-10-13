@@ -1,1 +1,1 @@
-Benjamin Walker's exercises for the LS 95 Ruby Intro book
+Benjamin Walker's exercises for Launch School
