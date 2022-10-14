@@ -3,22 +3,23 @@ def prompt(message)
 end
 
 def valid_number?(num)
-  num.to_i != 0
+  num.to_s.to_i == num
 end
 
 def operation_to_message(op)
-  case op
-  when '1'
-    'Adding'
-  when '2'
-    'Subtracting'
-  when '3'
-    'Mulitiplying'
-  when '4'
-    'Dividing'
-  end
+  operation_word =  case op
+                    when '1'
+                      'Adding'
+                    when '2'
+                      'Subtracting'
+                    when '3'
+                      'Mulitiplying'
+                    when '4'
+                      'Dividing'
+                    end
+  # there could be code here
+  operation_word # this forces the return to be the word that we want
 end
-
 operator = ''
 name = ''
 
