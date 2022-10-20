@@ -92,9 +92,17 @@ end
 
 # 5 Reverse it (Part 1)
 def reverse_sentence(string)
-  string.split(' ').reverse
-  new_string = string.each { |x| "#{x} " }
-  new_string
+  string.split(' ').reverse.join(' ') # I didn't method hunt; I started this 
+  # yesterday and left it and in an assignment I came across #join
+  # I had known about #split and #reverse already
 end
 
-puts reverse_sentence('Reverse these words')
+puts reverse_sentence('Hello World') == 'World Hello'
+puts reverse_sentence('Reverse these words') == 'words these Reverse'
+puts reverse_sentence('') == ''
+puts reverse_sentence('    ') == '' # Any number of spaces results in ''
+
+# 6 Reverse It (Part 2)
+def reverse_words(string)
+  string
+end
