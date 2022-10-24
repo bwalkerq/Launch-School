@@ -4,33 +4,30 @@ def prompt(message)
   puts "==> #{message}"
 end
 
-=begin # very logical but too long and not elegant
-def win?(first, second)
-  (first == 'rock' && second == 'scissors') ||
-  (first == 'rock' && second == 'lizard') ||
-  (first == 'paper' && second == 'rock') ||
-  (first == 'paper' && second == 'spock') ||
-  (first == 'scissors' && second == 'paper') ||
-  (first == 'scissors' && second == 'lizard') ||
-  (first == 'lizard' && second == 'spock') ||
-  (first == 'lizard' && second == 'paper') ||
-  (first == 'spock' && second == 'rock') ||
-  (first == 'spock' && second == 'scissors')
-end
-=end
+def get_user_choice
+  loop do
+    prompt("Choose one: #{VALID_CHOICES.join(', ')}")
+    choice = gets.chomp.strip
 
-def win?(first, second)
-  choice_wins_against = {
+    if VALID_CHOICES.include?(choice)
+      return choice
+    else
+      prompt("That choice is whack. Try again.")
+    end
+  end
+end
+
+def win?(first_choice, second_choice)
+  first_choice_wins_against = {
     rock: ['scissors', 'lizard'],
     paper: ['rock', 'spock'],
     scissors: ['paper', 'lizard'],
     lizard: ['spock', 'paper'],
     spock: ['rock', 'scissors']
   }
-  choice_wins_against[first.to_sym].include?(second.to_s) # I am very
-  # proud that I figured out these methods to return true on the first try
+  first_choice_wins_against[first_choice.to_sym].include?(second_choice.to_s)
 end
-# much more beautiful method to determine a win
+# much more beautiful method to determine a win than I originally created
 
 def display_results(player, computer)
   if win?(player, computer)
@@ -43,19 +40,8 @@ def display_results(player, computer)
 end
 
 loop do # main execution loop
-  choice = ''
-
-  loop do
-    prompt("Choose one: #{VALID_CHOICES.join(', ')}")
-    choice = gets.chomp
-
-    if VALID_CHOICES.include?(choice)
-      break
-    else
-      prompt("That choice is whack. Try again.")
-    end
-  end
-
+  choice = get_user_choice
+  
   computer_choice = VALID_CHOICES.sample
 
   prompt("You chose: #{choice}; the computer chose: #{computer_choice}.")
