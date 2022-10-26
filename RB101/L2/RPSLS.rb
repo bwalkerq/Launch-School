@@ -26,7 +26,7 @@ def get_user_choice
 end
 
 def win?(first_choice, second_choice)
-  first_choice_key = first_choice_wins_against[first_choice.to_sym]
+  first_choice_key = FIRST_CHOICE_WINS_AGAINST[first_choice.to_sym]
   first_choice_key.include?(second_choice.to_s) # if the second choice is one
   # of the two moves that the first choice wins against, returns true for a win
 end
