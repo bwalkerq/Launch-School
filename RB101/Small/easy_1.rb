@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 
 def repeat(string, num)
   num.times { puts string }
@@ -102,7 +102,116 @@ puts reverse_sentence('Reverse these words') == 'words these Reverse'
 puts reverse_sentence('') == ''
 puts reverse_sentence('    ') == '' # Any number of spaces results in ''
 
-# 6 Reverse It (Part 2)
+puts "# 6 Reverse It (Part 2)"
 def reverse_words(string)
-  string
+  array = string.split
+  array.each do |word|
+    word.reverse! if word.length >= 5
+  end
+  array.join(' ')
 end
+
+puts reverse_words('Professional')          # => lanoisseforP
+p reverse_words('Walk around the block') # => Walk dnuora the kcolb
+puts reverse_words('Launch School')         # => hcnuaL loohcS
+
+# you're awesome
+
+# 7
+def stringy(count, start_at=1)
+  output = ""
+
+  count += 1 if start_at == 0 # adds extra digit, to be deleted later for the shift
+
+  until count == 0 do
+    output << "1" # remember to push a string, rather than a number
+    count -= 1
+    break if count == 0
+    output << "0"
+    count -= 1
+  end
+
+  output.slice!(0) if start_at == 0 # deletes extra digit to return proper length
+  
+  output
+end
+puts stringy(6,0)
+puts stringy(9,0)
+puts stringy(4) == '1010'
+puts stringy(7) == '1010101'
+
+# You're awesome for figuring out debugger in vs code!
+# Their solution
+def stringy(size, start_at=1)
+  numbers = [] # initiated an empty array, to #join at the end
+  
+  size += 1 if start_at == 0
+
+  size.times do |index| 
+    number = index.even? ? 1 : 0 # very slick use of a ternary
+    numbers << number # pushing to the array
+  end
+  
+  numbers.shift if start_at == 0 
+  
+  numbers.join # joining the array, which returns a string, interesting
+end
+puts stringy(6,0)
+puts stringy(9,0) 
+puts stringy(4) == '1010'
+puts stringy(7) == '1010101'
+
+# you're awesome for figuring out the bonus on both my solution and theirs
+# I wanted a one-if-statement solution, but in both cases I only figured out 
+# how to add and extra element (before the do block) and then remove the first
+# element after the block
+# my first idea of #reverse only worked for odd numbered lengths
+
+puts "# 8 Array Average"
+def average(array_of_integers)
+  array_of_integers.sum / array_of_integers.size.to_f
+end
+
+puts average([1, 6])  # integer division: (1 + 6) / 2 -> 3
+puts average([1, 5, 87, 45, 8, 8]) 
+puts average([9, 47, 23, 95, 16, 52])
+
+# You're awesome
+
+# 9 
+def sum(positive_integer)
+  positive_integer.digits.sum
+end
+
+puts sum(23) == 5
+puts sum(496) == 19
+puts sum(123_456_789) == 45
+
+# You're awesome
+
+# their solution:
+def sum(number)
+  number.to_s.chars.map(&:to_i).reduce(:+)
+end
+# beautiful for the transforming from integer to string back to integer
+# turns number to string
+# breaks the string an array of  individual 
+# characters (each digit as a string element)
+# maps the array, transforming each element into an integer
+# #reduce is used to combine each element of an array using a binary operation
+# in this case, #+ so that the sum is returned.
+# beautiful, but I like mine better. I did method hunt a bit, but only because
+# I had encountered a method that referenced each digit before, so I knew it
+# already existed. #sum I guessed that it existed, and then checked documentation!
+
+puts "# 10"
+def calculate_bonus(salary,boolean)
+  return 0 if boolean == false
+  salary / 2
+end
+
+puts calculate_bonus(2800, true) == 1400
+puts calculate_bonus(1000, false) == 0
+puts calculate_bonus(50000, true) == 25000
+
+# You're awesome.
