@@ -1,5 +1,13 @@
 VALID_CHOICES = %w(rock paper scissors lizard spock)
 
+FIRST_CHOICE_WINS_AGAINST = {
+  rock: ['scissors', 'lizard'],
+  paper: ['rock', 'spock'],
+  scissors: ['paper', 'lizard'],
+  lizard: ['spock', 'paper'],
+  spock: ['rock', 'scissors']
+}
+
 def prompt(message)
   puts "==> #{message}"
 end
@@ -18,14 +26,9 @@ def get_user_choice
 end
 
 def win?(first_choice, second_choice)
-  first_choice_wins_against = {
-    rock: ['scissors', 'lizard'],
-    paper: ['rock', 'spock'],
-    scissors: ['paper', 'lizard'],
-    lizard: ['spock', 'paper'],
-    spock: ['rock', 'scissors']
-  }
-  first_choice_wins_against[first_choice.to_sym].include?(second_choice.to_s)
+  first_choice_key = first_choice_wins_against[first_choice.to_sym]
+  first_choice_key.include?(second_choice.to_s) # if the second choice is one
+  # of the two moves that the first choice wins against, returns true for a win
 end
 # much more beautiful method to determine a win than I originally created
 
