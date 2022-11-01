@@ -149,6 +149,12 @@ Rules:
 [something great about what they did: built several lines as testers that should output true once the method is built correctly. Wrote those test lines first before starting to code the methods at all. 
 e.g. row number : 2 --> sum of integers in row: 10
 p sum_even_number_row(2) == 10 # true]
+[they also chain #last twice to get the last entry of the current last row as they build up each of the arrays within the larger array. smooth]
+
+## Final Thoughts
+- Not a completely linear process; Move back and forth between 
+- Switch from implementation mode to abstract problem solving mode [this is a very unclear idea, but I can do this already, so who cares]
+- Don't try to problem solve at the code level
 
 Given a string, produce a new string with every other word removed
 
