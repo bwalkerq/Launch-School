@@ -29,7 +29,7 @@ Summary:
 - chaining methods after a block is doable
 - A for loop returns original object
 - #select and #map on hash caller returns an array
-- # select and #map return a new array, and even if the original and new arrays are identical, the new array is NOT a reference to the original
+- #select and #map return a new array, even if the original and new arrays are identical, the new array is NOT a reference to the original
 
 =end
 
