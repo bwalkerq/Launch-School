@@ -80,7 +80,7 @@ p a, b
 p arr
 # the value 2 in arr[0] is independent of the variable a. a continues to point to 2, while arr[0] gets
 # incremented to 4. In effect we are assigning a new object at that index of the array so that instead
-# of arr[0] containing a it now contains 4. We never reference a, so a remains unchanged.
+# of arr[0] containing the variable 'a' it now contains 4. We never reference a, so a remains unchanged.
 # arr[1][0] gets incremented down from 5 to 3, since a still points to 2, but the array object [5,8] is modified
 # so both the variable b and the array arr get modified.
 # there was a very similar example from the previous assignment that made it into my notes, but the difference is that
