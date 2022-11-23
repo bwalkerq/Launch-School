@@ -69,24 +69,76 @@ if num.length = target, return arr.index(num)
 =end
 
 def find_fibonacci_index_by_length(target_length)
-  fibs = [1,1]
-  loop do 
+  fibs = [0, 1, 1]
+  new_num = 0
+  until new_num.digits.length == target_length 
     new_num = (fibs[-1]+fibs[-2])
     fibs << new_num
-    return fibs.index(new_num) if new_num.length == target_length
   end
+  fibs.index(new_num)
 end
 
 puts "## fibs"
-puts find_fibonacci_index_by_length(2) #== 7          # 1 1 2 3 5 8 13
+puts find_fibonacci_index_by_length(2) == 7          # 1 1 2 3 5 8 13
 puts find_fibonacci_index_by_length(3) == 12         # 1 1 2 3 5 8 13 21 34 55 89 144
 puts find_fibonacci_index_by_length(10) == 45
 puts find_fibonacci_index_by_length(100) == 476
-puts find_fibonacci_index_by_length(1000) == 4782
-puts find_fibonacci_index_by_length(10000) == 47847
+
+# I did it, but it slowed down my computer a LOT, especially for the final case; I wasn't willing to keep waiting on that one
+# their solution:
+def find_fibonacci_index_by_length(number_digits)
+  first = 1
+  second = 1
+  index = 2
+  
+  loop do
+    index += 1
+    fibonacci = first + second
+    break if fibonacci.to_s.size >= number_digits
+    
+    first = second
+    second = fibonacci
+    # this is most interesting to me, because it overwrites the previous values, and doesn't store them to an array, like in mine,
+    # which cuts down on the memory needed to handle the huge calculations. Smart.
+  end
+  
+  index
+end
+# puts find_fibonacci_index_by_length(1000) == 4782
+# puts find_fibonacci_index_by_length(10000) == 47847
 
 # 4	Reversed Arrays (Part 1)
+def reverse!(array)
+  temp_array = array.dup
+  index = -1
+  temp_array.map do |element|
+    array[index] = element
+    index -= 1
+  end
+  array
+end
+
+
+list = [1,2,3,4]
+p result = reverse!(list)
+p result == [4, 3, 2, 1] # true
+p list == [4, 3, 2, 1] # true
+p list.object_id == result.object_id # true
+
+list = %w(a b e d c)
+p reverse!(list) == ["c", "d", "e", "b", "a"] # true
+p list == ["c", "d", "e", "b", "a"] # true
+
+list = ['abc']
+p reverse!(list) == ["abc"] # true
+p list == ["abc"] # true
+
+p list = []
+p reverse!(list) == [] # true
+p list == [] # true
+
 # 5	Reversed Arrays (Part 2)
+
 # 6	Combining Arrays
 # 7	Halvsies
 # 8	Find the Duplicate
