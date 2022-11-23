@@ -137,9 +137,50 @@ p list = []
 p reverse!(list) == [] # true
 p list == [] # true
 
-# 5	Reversed Arrays (Part 2)
+# Their solution
+def reverse!(array)
+  left_index = 0
+  right_index = -1
+
+  while left_index < array.size / 2 # by reading this line only, I already understand that they're swapping the places of the first and last, then the 2nd and 2nd to last
+    # to me, that just seems unnecessarily complicated, rather than just pushing them all in starting from the front
+    # actually, as I wrote "pushing them all in from the front" I realized that I could have used prepend in the same way that I did with indices
+    array[left_index], array[right_index] = array[right_index], array[left_index] # ok, this is admittedly not that complicated
+    left_index += 1
+    right_index -= 1
+  end
+
+  array
+end
+
+# 5	Reversed Arrays (Part 2) (non-mutating)
+def reverse(array)
+  reversed_array = []
+  array.each do |element|
+    reversed_array.prepend(element)
+  end
+  reversed_array
+end
+
+p "5"
+p reverse([1,2,3,4]) == [4,3,2,1]          # => true
+p reverse(%w(a b e d c)) == %w(c d e b a)  # => true
+p reverse(['abc']) == ['abc']              # => true
+p reverse([]) == []                        # => true
+
+p list = [1, 3, 2]                      # => [1, 3, 2]
+p new_list = reverse(list)              # => [2, 3, 1]
+p list.object_id != new_list.object_id  # => true
+p list == [1, 3, 2]                     # => true
+p new_list == [2, 3, 1]                 # => true
 
 # 6	Combining Arrays
+def merge(array1, array2)
+  (array1 + array2).uniq
+end
+p "merge"
+p merge([1, 3, 5], [3, 6, 9]) == [1, 3, 5, 6, 9]
+
 # 7	Halvsies
 # 8	Find the Duplicate
 # 9	Does My List Include This?
