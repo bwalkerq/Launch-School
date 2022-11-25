@@ -225,12 +225,16 @@ end
 def find_dup(array)
   temp_array = []
   array.each do |x|
-    temp_array.include?(x) ? return x : temp_array << x
+    if temp_array.include?(x) 
+      return x
+    else
+      temp_array << x
+    end
   end
 end
 
 p "duplicate"
-p find_dup([1, 5, 3, 1]) == 1
+p find_dup([1, 5, 3, 1, 7, 8]) == 1
 p find_dup([18,  9, 36, 96, 31, 19, 54, 75, 42, 15,
           38, 25, 97, 92, 46, 69, 91, 59, 53, 27,
           14, 61, 90, 81,  8, 63, 95, 99, 30, 65,
@@ -241,6 +245,36 @@ p find_dup([18,  9, 36, 96, 31, 19, 54, 75, 42, 15,
           85, 87, 51, 17, 66, 20, 28, 26,  2, 22,
           40, 23, 71, 62, 73, 32, 43, 24,  4, 56,
           7,  34, 57, 74, 45, 11, 88, 67,  5, 58]) == 73
+# their solution:
+def find_dup(array)
+  array.find { |element| array.count(element) == 2 }
+end
+# wow, I definitely thought of using #count, but hadn't figured out how to utlize it; I see that utilizing in tandem #find
+# is an awesome way to do this. 
+#   find an element in this array such that the count of the element in the array is equal to 2, return that element
 
 # 9	Does My List Include This?
-# # 10	Right Triangles
+def include?(array, target)
+  !!array.find_index(target) # I originally used array.find { |element| element == target} ? true : false, which worked for all cases except
+  # the one with nil as the only element of the array -- I don't understand why that doesn't work
+end
+p "find"
+p include?([1,2,3,4,5], 3) == true
+p include?([1,2,3,4,5], 6) == false
+p include?([], 3) == false
+p include?([nil], nil) == true
+p include?([], nil) == false
+
+# 10	Right Triangles
+def triangle(n)
+  star = "*"
+  n.times do |i|
+    puts star.rjust(n)
+    star += "*"
+  end
+  ""
+end
+
+
+print triangle(5)
+puts triangle(9)
