@@ -37,7 +37,7 @@ def joiner(array, delimiter=', ', last_word="or")
     array[0].to_s
   when 2
     array.join(" #{last_word} ")
-  when 3
+  else
     array[0..-2].join(delimiter) + "#{delimiter}#{last_word} " + array[-1].to_s
   end
 end
