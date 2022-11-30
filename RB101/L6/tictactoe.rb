@@ -86,22 +86,25 @@ def player_places_piece!(brd)
   brd[square] = PLAYER_MARKER
 end
 
-def find_at_risk_square(brd) # defensive AI, had to use flatten after selection
+def find_opportunity_square(brd, marker) # defensive AI, had to use flatten after selection
   line_to_defend = WINNING_LINES.select do|line|
     player_spots_in_line = 0
     line.each do |position|
-      player_spots_in_line += 1 if brd[position] == PLAYER_MARKER
+      player_spots_in_line += 1 if brd[position] == marker
     end
     player_spots_in_line == 2 # returns true to #select to pick out that array
   end
   line_to_defend.flatten.each do |position|
     return position if brd[position] == ' '
   end
+  nil
 end
 
 def computer_places_piece!(brd)
-  square = find_at_risk_square(brd)
-  square = empty_squares(brd).sample if square == []
+  square = find_opportunity_square(brd, COMPUTER_MARKER)
+  square = find_opportunity_square(brd, PLAYER_MARKER) if square == nil
+  square = 5 if brd[5] == INITIAL_MARKER
+  square = empty_squares(brd).sample if square == nil
   # the method for finding at-risk square returns an empty array
   # if there are non found
   brd[square] = COMPUTER_MARKER
