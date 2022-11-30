@@ -86,7 +86,21 @@ def player_places_piece!(brd)
   brd[square] = PLAYER_MARKER
 end
 
-def computer_places_piece!(brd)
+def computer_places_piece!(brd) # defensive AI, had to use flatten after selection
+  square = nil
+  line_to_defend = WINNING_LINES.select do|line|
+    player_spots_in_line = 0
+    line.each do |position|
+      player_spots_in_line += 1 if brd[position] == PLAYER_MARKER
+    end
+    player_spots_in_line == 2
+  end
+  line_to_defend.flatten.each do |position|
+    if brd[position] == ' '
+      square = position
+      return brd[square] = COMPUTER_MARKER
+    end
+  end
   square = empty_squares(brd).sample
   brd[square] = COMPUTER_MARKER
 end
