@@ -1,4 +1,4 @@
-require 'pry'
+# require 'pry'
 =begin
 1. Display the initial empty 3x3 board.
   Probably keep the values of the board in a 9-element array,
@@ -86,8 +86,8 @@ def player_places_piece!(brd)
   brd[square] = PLAYER_MARKER
 end
 
-def find_opportunity_square(brd, marker) # defensive AI, had to use flatten after selection
-  line_to_defend = WINNING_LINES.select do|line|
+def find_opportunity_square(brd, marker) # had to use flatten after selection
+  line_to_defend = WINNING_LINES.select do |line|
     player_spots_in_line = 0
     line.each do |position|
       player_spots_in_line += 1 if brd[position] == marker
@@ -102,9 +102,9 @@ end
 
 def computer_places_piece!(brd)
   square = find_opportunity_square(brd, COMPUTER_MARKER)
-  square = find_opportunity_square(brd, PLAYER_MARKER) if square == nil
+  square = find_opportunity_square(brd, PLAYER_MARKER) if square.nil?
   square = 5 if brd[5] == INITIAL_MARKER
-  square = empty_squares(brd).sample if square == nil
+  square = empty_squares(brd).sample if square.nil?
   # the method for finding at-risk square returns an empty array
   # if there are non found
   brd[square] = COMPUTER_MARKER
@@ -156,17 +156,19 @@ loop do
 
   display_board(board)
 
-  if detect_winner(board) == 'Player'
+  case detect_winner(board)
+  when 'Player'
     wins += 1
     prompt "#{detect_winner(board)} won!"
-  elsif detect_winner(board) == 'Computer'
+  when 'Computer'
     comp_wins += 1
     prompt "#{detect_winner(board)} won!"
   else
     prompt "It's a tie."
   end
 
-  prompt "The score is: You = #{wins} and Computer = #{comp_wins}. Play again? (Y/n)"
+  prompt "The score is: You = #{wins}
+          and Computer = #{comp_wins}. Play again? (Y/n)"
   response = gets.chomp.downcase
   break unless response.start_with?('y')
 end
