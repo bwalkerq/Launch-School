@@ -133,9 +133,19 @@ def detect_winner(brd)
   nil
 end
 
+def computer_goes_first?(brd)
+  prompt "Choose who will take the first move. (Player or Computer)"
+  response = gets.chomp.downcase
+  if response.start_with?('c')
+    display_board(brd)
+    computer_places_piece!(brd)
+  end
+end
+
 # Gameplay!
 loop do
   board = initialize_board
+  computer_goes_first?(board)
   loop do
     display_board(board)
     player_places_piece!(board)
