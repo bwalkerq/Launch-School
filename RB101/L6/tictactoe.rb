@@ -1,22 +1,4 @@
 # require 'pry'
-=begin
-1. Display the initial empty 3x3 board.
-  Probably keep the values of the board in a 9-element array,
-  in "read-order" 123 top, 456 middle, 789 bottom.
-  Could display them in 3x3 (2-D) format
-2. Ask the user to mark a square.
-  Could list the places as numbers until they're marked with X or O
-3. Computer marks a square.
-4. Display the updated board state.
-5. If winner, display winner.
-  - winning combinations, how many?
-    - 3 across, 3 down, 2 diagonals (wow, WAY fewer than I thought, ha)
-6. If board is full, display tie.
-7. If neither winner nor board is full, go to #2
-8. Play again?
-9. If yes, go to #1
-10. Good bye!
-=end
 WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # rows
                 [[1, 4, 7], [2, 5, 8], [3, 6, 9]] + # columns
                 [[1, 5, 9], [3, 5, 7]] # diagonals
@@ -100,13 +82,27 @@ def find_opportunity_square(brd, marker) # had to use flatten after selection
   nil
 end
 
+def take_corner_position(brd)
+  case brd[1]
+  when PLAYER_MARKER then 9 if brd[9] == INITIAL_MARKER
+  when INITIAL_MARKER then 1
+  else nil # my rubocop complains if I don't include this else clause, and also
+    #  complains that it's redundant when I do include it.
+  end
+end
+
+def force_tie(brd)
+  3 if empty_squares(brd).include?(3) && (brd[9] == PLAYER_MARKER &&
+    brd[1] == COMPUTER_MARKER)
+end
+
 def computer_places_piece!(brd)
   square = find_opportunity_square(brd, COMPUTER_MARKER)
   square = find_opportunity_square(brd, PLAYER_MARKER) if square.nil?
   square = 5 if brd[5] == INITIAL_MARKER
+  square = take_corner_position(brd) if square.nil?
+  square = force_tie(brd) if square.nil?
   square = empty_squares(brd).sample if square.nil?
-  # the method for finding at-risk square returns an empty array
-  # if there are non found
   brd[square] = COMPUTER_MARKER
 end
 
