@@ -128,17 +128,24 @@ def detect_winner(brd)
 end
 
 def computer_goes_first?(brd)
-  prompt "Choose who will take the first move. (Player or Computer)"
-  response = gets.chomp.downcase
-  if response.start_with?('c')
-    display_board(brd)
-    computer_places_piece!(brd)
+  loop do
+    prompt "Choose who will take the first move. (Player or Computer)"
+    response = gets.chomp.downcase
+    if response.start_with?('c')
+      display_board(brd)
+      computer_places_piece!(brd)
+      break
+    elsif response.start_with?('p')
+      return false
+    else
+      prompt "Invalid entry; Please type P or C"
+    end
   end
 end
 
 def play_again?
-  Loop do
-    prompt "Would you like to Play again? (Y/n)"
+  loop do
+    prompt "Would you like to Play again? (Y/N)"
     response = gets.chomp.downcase
     if response.start_with?('n')
       return false
