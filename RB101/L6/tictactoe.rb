@@ -86,8 +86,6 @@ def take_corner_position(brd)
   case brd[1]
   when PLAYER_MARKER then 9 if brd[9] == INITIAL_MARKER
   when INITIAL_MARKER then 1
-  else nil # my rubocop complains if I don't include this else clause, and also
-    #  complains that it's redundant when I do include it.
   end
 end
 
@@ -138,6 +136,20 @@ def computer_goes_first?(brd)
   end
 end
 
+def play_again?
+  Loop do
+    prompt "Would you like to Play again? (Y/n)"
+    response = gets.chomp.downcase
+    if response.start_with?('n')
+      return false
+    elsif response.start_with?('y')
+      return true
+    else
+      prompt "Invalid entry, please type Y or N"
+    end
+  end
+end
+
 # Gameplay!
 loop do
   board = initialize_board
@@ -164,8 +176,7 @@ loop do
   end
 
   prompt "The score is: You = #{wins}
-          and Computer = #{comp_wins}. Play again? (Y/n)"
-  response = gets.chomp.downcase
-  break unless response.start_with?('y')
+          and Computer = #{comp_wins}."
+  play_again? ? next : break
 end
 prompt "Thanks for playing. Peace."
