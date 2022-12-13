@@ -138,9 +138,9 @@ end
 # Gameplay
 prompt "Welcome to the 21 game!"
 prompt "I'll be your friendly dealer, Don Chu Luffloosen."
+deck = initialize_deck
 
 loop do
-  deck = initialize_deck
   player_hand = initial_deal(deck)
   dealer_hand = initial_deal(deck)
   player_turn(deck, player_hand, dealer_hand)
