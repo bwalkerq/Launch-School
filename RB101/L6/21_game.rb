@@ -150,7 +150,7 @@ loop do
   end
   # 5. Dealer turn: hit or stay
   # - repeat until total >= 17
-  dealer_turn(deck, player_hand, dealer_hand) if !busted?(player_hand)
+  dealer_turn(deck, player_hand, dealer_hand) unless busted?(player_hand)
   # 6. If dealer bust, player wins.
   if busted?(dealer_hand)
     prompt "Drat, I have indeed busted. Well done."
