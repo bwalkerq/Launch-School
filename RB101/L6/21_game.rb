@@ -76,12 +76,22 @@ def player_turn(dck, hand, dlr_hand)
     show_current_state(hand, dlr_hand)
     break if busted?(hand)
     puts ""
-    prompt "Would you like to Hit or Stay?"
-    answer = gets.chomp.downcase
+    prompt "Would you like to Hit or Stay? (h or s)"
+    answer = nil
+    loop do
+      answer = gets.chomp.downcase
+      if answer.start_with?('s')
+        break
+      elsif answer.start_with?('h')
+        deal_a_card(dck, hand)
+        break
+      else
+        prompt "invalid; h for Hit or s for Stay"
+      end
+    end
     break if answer.start_with?('s')
-    deal_a_card(dck, hand)
   end
-  # show_current_state(hand, dlr_hand)
+  show_current_state(hand, dlr_hand)
 end
 
 def dealer_turn(dck, hand, dlr_hand)
