@@ -44,13 +44,8 @@ end
 def change_ace_to_one(hand, score)
   if score > 21 && hand.include?(:ace)
     # replace the :ace with :ace_as_one
-    hand.map do |card|
-      if card == :ace
-        hand[hand.index(:ace)] = :ace_as_one
-      else
-        card
-      end
-    end
+    ace_to_change = hand.find_index(:ace)
+    hand[ace_to_change] = :ace_as_one
   end
 end
 
