@@ -58,7 +58,8 @@ end
 
 def show_current_state(hand, dlr_hand)
   calculate_score(hand) # this is here to catch
-  prompt "Your hand is currently: #{hand.join(', ')}"
+  display_hand = hand.map{ |card| card == :ace_as_one ? "ace" : card}
+  prompt "Your hand is currently: #{display_hand.join(', ')}"
   prompt "Your SCORE is ** #{calculate_score(hand)} **"
   puts ""
   prompt "My hand is currently: #{dlr_hand.join(', ')}"
