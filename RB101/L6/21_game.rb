@@ -31,12 +31,12 @@ end
 def calculate_score(hand)
   score = 0
   loop do
+    change_ace_to_one(hand, score)
     score = 0
     hand.each do |card|
       score += CARD_VALUES[card]
     end
-    change_ace_to_one(hand, score)
-    break if !hand.include?(:ace) || score < 21
+    break if !hand.include?(:ace) || score <= 21
   end
   score
 end
