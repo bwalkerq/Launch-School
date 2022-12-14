@@ -67,25 +67,29 @@ def show_current_state(hand, dlr_hand)
   prompt "My SCORE is ** #{calculate_score(dlr_hand)} **"
 end
 
+def determine_hit_or_stay(dck, hand)
+  puts ""
+  prompt "Would you like to Hit or Stay? (h or s)"
+  loop do
+    answer = gets.chomp.downcase
+    if answer.start_with?('s')
+      return answer
+    elsif answer.start_with?('h')
+      deal_a_card(dck, hand)
+      return answer
+      break
+    else
+      prompt "invalid; h for Hit or s for Stay"
+    end
+  end
+end
+
 def player_turn(dck, hand, dlr_hand)
   loop do
     system 'clear'
     show_current_state(hand, dlr_hand)
     break if busted?(hand)
-    puts ""
-    prompt "Would you like to Hit or Stay? (h or s)"
-    answer = nil
-    loop do
-      answer = gets.chomp.downcase
-      if answer.start_with?('s')
-        break
-      elsif answer.start_with?('h')
-        deal_a_card(dck, hand)
-        break
-      else
-        prompt "invalid; h for Hit or s for Stay"
-      end
-    end
+    answer = determine_hit_or_stay(dck, hand)
     break if answer.start_with?('s')
   end
   show_current_state(hand, dlr_hand)
