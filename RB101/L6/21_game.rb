@@ -59,7 +59,7 @@ end
 
 def show_current_state(hand, dlr_hand)
   calculate_score(hand) # this is here to catch
-  display_hand = hand.map{ |card| card == :ace_as_one ? "ace" : card}
+  display_hand = hand.map { |card| card == :ace_as_one ? "ace" : card }
   prompt "Your hand is currently: #{display_hand.join(', ')}"
   prompt "Your SCORE is ** #{calculate_score(hand)} **"
   puts ""
@@ -115,6 +115,8 @@ def declare_winner(winner)
     message = "you, the mighty player"
   when "dealer"
     message = "me, the famous Don Chu"
+  else
+    puts "Error with the value you're passing into the declare_winner method"
   end
   prompt "Aha! The winner of this game is #{message}"
 end
