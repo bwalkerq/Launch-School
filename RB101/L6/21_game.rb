@@ -18,6 +18,7 @@ def initialize_deck
 end
 
 def initial_deal(dck)
+  initialize_deck if dck.count < 4
   first_two_cards = dck.sample(2)
   dck.delete_at(dck.index(first_two_cards[0]))
   dck.delete_at(dck.index(first_two_cards[1]))
