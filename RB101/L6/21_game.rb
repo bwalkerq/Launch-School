@@ -148,8 +148,18 @@ end
 def play_again_prompt(plyr_score, dlr_score)
   prompt "Number of times you have won: #{plyr_score}"
   prompt "Number of times I, the great Don Chu Luffloosen, have won: #{dlr_score}."
-  prompt "Would you like to try your luck again? (Y to play again)"
-  answer = gets.chomp.downcase
+  answer = nil
+  loop do
+    prompt "Would you like to try your luck again? (Y/n)"
+    answer = gets.chomp.downcase
+    if answer.start_with?('y')
+      return answer
+    elsif answer.start_with?('n')
+      return answer
+    else
+      prompt "invalid; enter Y or N"
+    end
+  end
   answer.start_with?('y')
 end
 
