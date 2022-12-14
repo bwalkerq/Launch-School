@@ -50,6 +50,7 @@ def change_ace_to_one(hand, score)
 end
 
 def deal_a_card(dck, hand)
+  initialize_deck if dck == []
   new_card = dck.sample
   dck.delete_at(dck.index(new_card))
   prompt "A #{new_card} was drawn"
