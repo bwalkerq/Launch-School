@@ -126,14 +126,24 @@ def declare_winner(winner)
   prompt "Aha! The winner of this game is #{message}"
 end
 
-# def adjust_score(plyr_hand, dlr_hand, plyr_score, dlr_score)
-#   case determine_winner(plyr_hand, dlr_hand)
-#   when "player"
-#     plyr_score += 1
-#   when "dealer"
-#     dlr_score += 1
-#   end
-# end
+def adjust_score(winner, plyr_score, dlr_score)
+  case winner
+  when "player"
+    plyr_score += 1
+  when "dealer"
+    dlr_score += 1
+  end
+  return plyr_score, dlr_score # very proud of this implementation!
+end
+# I understand that when I pass in player_score the variable into
+# the parameter plyr_score in this method, that only the value of
+# the variable is being passed into the method, and not the actual
+# variable (pass by value, right? Since numbers are immutable)
+# so if I can't pass in the actual variable to update it, then what?
+# I know that I can reassign the variable to the return of the method
+# so if I pass in the previous value of the score, increment it up,
+# and then reassign the variable outside the method, that could work,
+# but it would be
 
 def play_again_prompt(plyr_score, dlr_score)
   prompt "Number of times you have won: #{plyr_score}"
