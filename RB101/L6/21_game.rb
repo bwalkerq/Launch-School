@@ -78,7 +78,6 @@ def determine_hit_or_stay(dck, hand)
     elsif answer.start_with?('h')
       deal_a_card(dck, hand)
       return answer
-      break
     else
       prompt "invalid; h for Hit or s for Stay"
     end
@@ -122,6 +121,7 @@ def declare_winner(winner)
     message = "me, the famous Don Chu"
   else
     puts "Error with the value you're passing into the declare_winner method"
+    return nil
   end
   prompt "Aha! The winner of this game is #{message}"
 end
@@ -132,6 +132,8 @@ def adjust_score(winner, plyr_score, dlr_score)
     plyr_score += 1
   when "dealer"
     dlr_score += 1
+  else
+    puts "You have an error in the arguments being passed to adjust_score"
   end
   return plyr_score, dlr_score # very proud of this implementation!
 end
@@ -147,8 +149,8 @@ end
 
 def play_again_prompt(plyr_score, dlr_score)
   prompt "Number of times you have won: #{plyr_score}"
-  prompt "Number of times I, the great Don Chu Luffloosen, have won: #{dlr_score}."
-  answer = nil
+  prompt "Number of times I, the great D.C. Luffloosen, have won: #{dlr_score}."
+  answer = ""
   loop do
     prompt "Would you like to try your luck again? (Y/n)"
     answer = gets.chomp.downcase
@@ -188,7 +190,9 @@ loop do
   # 7. Compare cards and declare winner.
   if !busted?(dealer_hand) && !busted?(player_hand)
     declare_winner(determine_winner(player_hand, dealer_hand))
-    player_score, dealer_score = adjust_score(determine_winner(player_hand, dealer_hand), player_score, dealer_score)
+    player_score, dealer_score =
+      adjust_score(determine_winner(player_hand, dealer_hand),
+                   player_score, dealer_score)
   end
   break unless play_again_prompt(player_score, dealer_score)
   prompt "Very well, let's have another round!"
