@@ -188,13 +188,7 @@ loop do
   # 7. Compare cards and declare winner.
   if !busted?(dealer_hand) && !busted?(player_hand)
     declare_winner(determine_winner(player_hand, dealer_hand))
-    # adjust_score(player_hand, dealer_hand, player_score, dealer_score)
-    case determine_winner(player_hand, dealer_hand)
-    when "player"
-      player_score += 1
-    when "dealer"
-      dealer_score += 1
-    end
+    player_score, dealer_score = adjust_score(determine_winner(player_hand, dealer_hand), player_score, dealer_score)
   end
   break unless play_again_prompt(player_score, dealer_score)
   prompt "Very well, let's have another round!"
