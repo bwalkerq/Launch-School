@@ -19,8 +19,8 @@ end
 
 def initial_deal(dck)
   first_two_cards = dck.sample(2)
-  dck.delete(first_two_cards[0])
-  dck.delete(first_two_cards[1])
+  dck.delete_at(dck.index(first_two_cards[0]))
+  dck.delete_at(dck.index(first_two_cards[1]))
   first_two_cards
 end
 
