@@ -26,3 +26,33 @@ p letter_case_count('abCdef 123') == { lowercase: 5, uppercase: 1, neither: 4 }
 p letter_case_count('AbCd +Ef') == { lowercase: 3, uppercase: 3, neither: 2 }
 p letter_case_count('123') == { lowercase: 0, uppercase: 0, neither: 3 }
 p letter_case_count('') == { lowercase: 0, uppercase: 0, neither: 0 }
+
+def word_cap(string)
+  array = string.split.map do |word|
+    word.capitalize
+    # word.chars.delete("\"") if word.chars.include?("\"")
+  end
+  array.join(' ')
+end
+# Wow, I am super annoyed because I solved this 30 minutes ago, but I think my ruby version keeps the \" escaped quotes in there
+# so their solution is identical to mine, but mine doesn't work for the last example
+# FUCK what a waste of time
+
+p word_cap('four score and seven') #== 'Four Score And Seven'
+p word_cap('the javaScript language') #== 'The Javascript Language'
+p word_cap('this is a "quoted" word') #== 'This Is A "quoted" Word'
+
+def swapcase(string)
+  new_string = string.chars.map do |character|
+    if character == character.upcase
+      character.downcase!
+    elsif character == character.downcase
+      character.upcase!
+    else
+      character
+    end
+  end
+  new_string.join(' ')
+end
+p swapcase('CamelCase') #== 'cAMELcASE'
+p swapcase('Tonight on XYZ-TV') #== 'tONIGHT ON xyz-tv'
