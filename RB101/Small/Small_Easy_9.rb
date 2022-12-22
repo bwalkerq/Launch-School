@@ -89,7 +89,7 @@ end
 
 p swap_name('Joe Roberts') == 'Roberts, Joe'
 
-def sequence(count, incrementer)
+def sequence_2(count, incrementer)
   result = []
   count.times do |index|
     result << incrementer * (index+1)
@@ -98,20 +98,72 @@ def sequence(count, incrementer)
 end
 
 p "tests"
-p sequence(5, 1) == [1, 2, 3, 4, 5]
-p sequence(4, -7) == [-7, -14, -21, -28]
-p sequence(3, 0) == [0, 0, 0]
-p sequence(0, 1000000) == []
+p sequence_2(5, 1) == [1, 2, 3, 4, 5]
+p sequence_2(4, -7) == [-7, -14, -21, -28]
+p sequence_2(3, 0) == [0, 0, 0]
+p sequence_2(0, 1000000) == []
 
+def get_grade(x,y,z)
+  average = (x + y + z) / 3
+  case
+  when average > 90
+  "A"
+  when average > 80
+  "B"
+  when average > 70
+  "C"
+  when average > 60
+  "D"
+  when average < 60
+  "F"
+  end
+end
 
+p "grades"
+p get_grade(95, 90, 93) == "A"
+p get_grade(50, 50, 95) == "D"
 
+# def buy_fruit(array)
+#   bag = []
+#   array.each do |sub_array|
+#     sub_array[1].times do
+#       bag << sub_array[0]
+#     end
+#   end
+#   bag
+# end
 
+def buy_fruit(array)
+  array.map { |fruit, count| [fruit] * count }.flatten # wow!
+end
 
+p "fruit"
+p buy_fruit([["apples", 3], ["orange", 1], ["bananas", 2]]) #==
+  ["apples", "apples", "apples", "orange", "bananas","bananas"]
 
+words =  ['demo', 'none', 'tied', 'evil', 'dome', 'mode', 'live',
+          'fowl', 'veil', 'wolf', 'diet', 'vile', 'edit', 'tide',
+          'flow', 'neon']
 
+# iterate through each word
+# break it into characters, then sort the characters (alphabetize) and compare
+# equality to other #chars#sort words. those words get << into the same array group
+# next word, check if it's included in previous arrays (I don't know how to keep track of these arrays)
+# if so, move on, if not, same process, new array of matches
 
+def anagrams(array)
+  result_hash = {}
+  array.each do |word|
+    next if result_hash.values.flatten.include?(word)
+    result_hash[word.to_sym] = []
+    array.each do |word_2|
+      result_hash[word.to_sym] << word_2 if word.chars.sort == word_2.chars.sort
+    end
+  end
+  result_hash.values
+end
 
-
+p anagrams(words)
 
 
 
