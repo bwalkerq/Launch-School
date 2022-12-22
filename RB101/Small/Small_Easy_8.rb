@@ -108,29 +108,50 @@ p repeater("Good job!") == "GGoooodd  jjoobb!!"
 p repeater('') == ''
 
 def double_consonants (string)
-  new_string = []
-  string.chars.each do |letter|
-    if letter =~ /[^a-zA-Z&&aeiou]/
-      new_string << letter << letter
+  new_string = string.chars.map do |letter|
+    if letter =~ /[a-zA-Z&&[^aeiou]]/
+      letter + letter
     else
-      new_string << letter
+      letter
     end
   end
   new_string.join
 end
 
-p double_consonants('String') #== "SSttrrinngg"
-p double_consonants("Hello-World!") #== "HHellllo-WWorrlldd!"
+p double_consonants('String') == "SSttrrinngg"
+p double_consonants("Hello-World!") == "HHellllo-WWorrlldd!"
 p double_consonants("July 4th") == "JJullyy 4tthh"
 p double_consonants('') == ""
 
+def reversed_number (integer)
+  integer.to_s.reverse.to_i
+end
+# I spent a lot of time looking for a method that stripped leading zeros from a number; I realized (once
+# there was no such method in the Integer class) that an integer is never printed with leading zeros anyway.
+# so all I did was make sure that whatever number I had at the end was translated back to an integer.
 
+p reversed_number(12345) == 54321
+p reversed_number(12213) == 31221
+p reversed_number(456) == 654
+p reversed_number(12000) == 21 # No leading zeros in return value!
+p reversed_number(12003) == 30021
+p reversed_number(1) == 1
 
-
-
-
-
-
+def center_of(string)
+  case string.length.odd?
+  when true
+    string[string.length/2]
+  when false
+    string[(string.length/2)-1, 2] # big thing to remember is that the second argument is the LENGTH
+    # and not the ending location. I think I've made this mistake before!
+  end
+end
+puts "center_of tests"
+p center_of('I love ruby') == 'e'
+p center_of('Launch School') == ' '
+p center_of('Launch') == 'un'
+p center_of('Launchschool') == 'hs'
+p center_of('x') == 'x'
 
 
 
