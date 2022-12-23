@@ -137,7 +137,7 @@ def adjust_score(winner, plyr_score, dlr_score)
   end
   return plyr_score, dlr_score # very proud of this implementation!
 end
-# I understand that when I pass in player_score the variable into
+# I understand that when I pass in the variable player_score into
 # the parameter plyr_score in this method, that only the value of
 # the variable is being passed into the method, and not the actual
 # variable (pass by value, right? Since numbers are immutable)
@@ -145,7 +145,9 @@ end
 # I know that I can reassign the variable to the return of the method
 # so if I pass in the previous value of the score, increment it up,
 # and then reassign the variable outside the method, that could work,
-# but it would be
+# and it did work. I had use `return` followed by the two variables separated
+# by commas, and rubocop complains that the use of `return` is unnecessary, but
+# it is wrong, and the method doesn't work without `return`. Very proud that I got it working!
 
 def play_again_prompt(plyr_score, dlr_score)
   prompt "Number of times you have won: #{plyr_score}"
