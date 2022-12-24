@@ -121,26 +121,87 @@ p max_rotation(8_703_529_146) == 7_321_609_845
 
 #8 min
 
-def switch_pass(passes)
+def switch_pass(num_of_lights)
   lights_hash = {}
-  (1..passes).each do | n |
-    lights_hash[n] = -1
+  (1..num_of_lights).each do | n |
+    lights_hash[n] = false
   end
-  passes.times do | n |
-    lights_hash.each do | k, v |
-      lights_hash[k] = v * (-1) if k % (n + 1) == 0
+  num_of_lights.times do | index |
+    lights_hash.each do | position, state |
+      lights_hash[k] = !state if position % (index + 1) == 0
     end
   end
-  lights_on = lights_hash.select do | k, v |
-    v == 1
-  end
+  lights_on = lights_hash.select { | _position, state | state }
   lights_on.keys
 end
 
-p switch_pass(10)
-# 10.times do |n|
-#   p switch_pass(n+1)
-# end
+# 28 min
+# about 10 minutes spent on line 131 only, debugging my erroneous has value reassignment
+# I seemed to think that `v` represented the actual value in the key value pair, so I tried reassigning without
+# actually using an `=` in any way (this sounds insane now, classic), but just by simply operating on the `v`
+# So I'm taking away that reassignment of a value in a hash must be done with Hash[k] = `new value` (which I knew? oy)
+# I also had to remember that with #times the |n| starts with 0 rather than 1 (because it's an index, not the `time`)
+# The good news is that everything else didn't need any modification! that's 11/12 lines of code with no errors!
+
+# 6 min writing on my own
+
+# their solution involves 3 helper methods plus the main method.
+# - initialize the lights
+# - toggle the nth light
+# - capture the on lights for the return
+# I guess my method could be extracted that way, but it's already fairly short, and I don't see how extracting these
+# helper methods will make it easier to debug. I guess it would make it easier to read for other engineers.
+# I also learned:
+# "Using an underscore at the beginning of a parameter name is a common convention to show that a parameter isn't used."
+# and then I went through at the end and gave descriptive names (index, position, state) where I had previously had
+# placeholder variables (n, k, v).
+
+# Also! I figured out why this problem actually works, after years and years, and even Jeff's master's thesis
+# or whatever it was! LOL. it's just about parity of factors. Which is totally beautiful. It took me about 30 seconds
+# of writing out the factors of 1..10, and I figured it out.
+
+10.times do |n|
+  p switch_pass(n+1)
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
