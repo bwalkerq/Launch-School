@@ -128,7 +128,7 @@ def switch_pass(passes)
   end
   passes.times do | n |
     lights_hash.each do | k, v |
-      v*(-1) if k % (n + 1) == 0
+      lights_hash[k] = v * (-1) if k % (n + 1) == 0
     end
   end
   lights_on = lights_hash.select do | k, v |
