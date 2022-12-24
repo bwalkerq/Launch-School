@@ -86,8 +86,8 @@ end
 # immutable objects (numbers), so I had to update the value referenced by those variables and then
 # reassign the variables outside of the method by returning *both* of the updated values at the
 # end of the method.
-# Similarly, in this problem I am reassigning the variable/parameter `integer` within the method, and
-# then returning that value (which could, if I wanted, be reassigned to, say, an original variable, like the
+# Similarly, in this problem I am reassigning the variable/parameter `integer` multiple times within the method, and
+# then returning that value (which I could, if I wanted, reassign to, say, an original variable outside the method, like the
 # 21-game)
 
 
@@ -100,9 +100,47 @@ p max_rotation(35) == 53
 p max_rotation(105) == 15 # the leading zero gets dropped
 p max_rotation(8_703_529_146) == 7_321_609_845
 
+# 1000 lights
 
+# input: n, representing the length of the array (the number of switches), which is also the number
+# of passes
+# output: an array that represents the lights that are on at the end of n passes.
 
+# data structures: an array could hold the numbers, a hash could hold the numbers as keys and the values
+# could be true (on) and false (off)
+# [I don't know a way to toggle booleans...actually! maybe just the ! operator]
 
+# algorithm
+# create a hash with n entries, the numbers 1 - n as keys, and all values as false
+# iterate through the numbers 1 - n for each pass, where the keys that are multiples of n
+# (i.e. 0 mod n) get their values switched (or negated)
+# [I could also do values of 1 and -1 and just multiply by -1 each time...]
+# after all the passes, iterate through (#select?) the keys/values and any value that is true
+# store that key in an array.
+# return the array
+
+#8 min
+
+def switch_pass(passes)
+  lights_hash = {}
+  (1..passes).each do | n |
+    lights_hash[n] = -1
+  end
+  passes.times do | n |
+    lights_hash.each do | k, v |
+      v*(-1) if k % (n + 1) == 0
+    end
+  end
+  lights_on = lights_hash.select do | k, v |
+    v == 1
+  end
+  lights_on.keys
+end
+
+p switch_pass(10)
+# 10.times do |n|
+#   p switch_pass(n+1)
+# end
 
 
 
