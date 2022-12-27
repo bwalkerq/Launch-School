@@ -262,6 +262,36 @@ end
 # constant
 # jesus fucking christ FUCK
 # What the fuck did I learn?
+# without looking at the solution, I already learned that #to_i on ANY string returns an integer;
+# if the string isn't [0-9] it just returns 0. holy fuck.
+# order matters for operations; the words into the operations I reversed the order a bunch and didn't catch till the end
+# I didn't understand the fucking problem; I thought that push took the next entry, I did all this fucking work
+# to try to take the next entry after push
+# FML
+
+# Holy fuck I can't believe their solution
+def minilang2(program)
+  stack = []
+  register = 0
+  program.split.each do |token|
+    case token
+    when 'ADD'   then register += stack.pop
+    when 'DIV'   then register /= stack.pop
+    when 'MULT'  then register *= stack.pop
+    when 'MOD'   then register %= stack.pop
+    when 'SUB'   then register -= stack.pop
+    when 'PUSH'  then stack.push(register)
+    when 'POP'   then register = stack.pop
+    when 'PRINT' then puts register
+    else              register = token.to_i # I spent so much time working around this; it's an afterthought for them
+    end
+  end
+end
+# The reason I spent all that time with regex and dealing with the numbers first: I wasn't taking full
+# advantage of the assumptions. Namely, that it won't contain unknown tokens, so I didn't have to validate values
+# from the program
+# Also, I should have noted that their use of the word "token" could lend me insight to how to structure the program
+# They also used incrementing operations, which would have gotten rid of my reverse order problem
 
 
 minilang('PRINT')
@@ -296,11 +326,26 @@ minilang('-3 PUSH 5 SUB PRINT')
 minilang('6 PUSH')
 # (nothing printed; no PRINT commands)
 
+DIGIT_HASH = { zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9}
+
+def word_to_digit(string)
+  array = string.split.map! do |word|
+    DIGIT_HASH.keys.include?(word.to_sym) ? DIGIT_HASH[word.to_sym] : word
+  end
+  array.join(' ')
+  # string.gsub!(DIGITS.keys, DIGITS[key])
+end
+
+p word_to_digit('Please call me at five five five one two three four. Thanks.') #== 'Please call me at 5 5 5 1 2 3 4. Thanks.'
 
 
-
-
-
+# 15 minutes for the partial solution, which I knew I would have from the very beginning, with that fucking period after four
+# 8 more minutes to understand their solution with regex
+# Believe it or not, this was the right choice for me to look at their solution, because i never would have figured out
+# \b as a character to constrain to complete words and not substrings, and I probably would have spent forever one that
+# I'm actually really annoyed that they have problems where you essentially NEED regex and then it's not in the curriculum
+# until later
+# Today was worthless
 
 
 
