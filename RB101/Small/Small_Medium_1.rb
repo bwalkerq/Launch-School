@@ -246,6 +246,12 @@ def minilang(string_command)
       register = stack.pop.to_i - register
     when "MULT"
       register = stack.pop.to_i * register
+    when "DIV"
+      register = stack.pop.to_i / register
+    when "MOD"
+      register = stack.pop.to_i % register
+    when "POP"
+      register = stack.pop.to_i
     when "PRINT"
       puts register
     end
@@ -265,7 +271,6 @@ minilang('5 PRINT PUSH 3 PRINT ADD PRINT')
 # 3
 # 8
 
-=begin
 minilang('5 PUSH POP PRINT')
 # 5
 
@@ -274,6 +279,7 @@ minilang('3 PUSH 4 PUSH 5 PUSH PRINT ADD PRINT POP PRINT ADD PRINT')
 # 10
 # 4
 # 7
+=begin
 
 minilang('3 PUSH PUSH 7 DIV MULT PRINT ')
 # 6
