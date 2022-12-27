@@ -233,7 +233,7 @@ def minilang(string_command)
   register = 0
   stack = []
   command_array = string_command.split
-  register = command_array.shift.to_i if command_array[0].is_a? Integer # this would throw false if the first entry is "print"
+  register = command_array.shift.to_i if command_array[0].to_i.is_a? Integer # this would throw false if the first entry is "print"
   command_array.each do |entry|
     case entry
     when entry.to_i.is_a?(Integer)
@@ -244,6 +244,8 @@ def minilang(string_command)
       register = stack.pop.to_i + register
     when "SUB"
       register = stack.pop.to_i - register
+    when "MULT"
+      register = stack.pop.to_i * register
     when "PRINT"
       puts register
     end
@@ -252,7 +254,7 @@ end
 
 
 
-minilang('PRINT')
+#minilang('PRINT')
 # 0
 
 minilang('5 PUSH 3 MULT PRINT')
