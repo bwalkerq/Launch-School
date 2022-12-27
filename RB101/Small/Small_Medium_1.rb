@@ -232,34 +232,39 @@ a variable holds the register
 def minilang(string_command)
   register = 0
   stack = []
-  command_array = string_command.split
+  command_array = string_command.split.map { | x | x =~ /[0-9]/ ? x.to_i : x }
   command_array.each do |entry|
-    case entry
-    when entry.to_i.is_a?(Integer)
-      register = entry.to_i
-    when "PUSH"
+    case
+    when entry.is_a?(Integer)
+      register = entry
+    when entry == "PUSH"
       stack << register
-    when "ADD"
-      register = stack.pop.to_i + register
-    when "SUB"
-      register = stack.pop.to_i - register
-    when "MULT"
-      register = stack.pop.to_i * register
-    when "DIV"
-      register = stack.pop.to_i / register
-    when "MOD"
-      register = stack.pop.to_i % register
-    when "POP"
+    when entry == "ADD"
+      register = register + stack.pop
+    when entry == "SUB"
+      register = register - stack.pop
+    when entry == "MULT"
+      register = register * stack.pop
+    when entry == "DIV"
+      register = register / stack.pop
+    when entry == "MOD"
+      register = register % stack.pop
+    when entry == "POP"
       register = stack.pop.to_i
-    when "PRINT"
+    when entry == "PRINT"
       puts register
     end
   end
 end
 
+# literally over 100 minutes. Fucking demoralizing as FUCK
+# understood the problem incorrectly, thanks to constant fucking distractions
+# constant
+# jesus fucking christ FUCK
+# What the fuck did I learn?
 
 
-#minilang('PRINT')
+minilang('PRINT')
 # 0
 
 minilang('5 PUSH 3 MULT PRINT')
@@ -278,9 +283,8 @@ minilang('3 PUSH 4 PUSH 5 PUSH PRINT ADD PRINT POP PRINT ADD PRINT')
 # 10
 # 4
 # 7
-=begin
 
-minilang('3 PUSH PUSH 7 DIV MULT PRINT ')
+minilang('3 PUSH PUSH 7 DIV MULT PRINT')
 # 6
 
 minilang('4 PUSH PUSH 7 MOD MULT PRINT ')
@@ -292,8 +296,6 @@ minilang('-3 PUSH 5 SUB PRINT')
 minilang('6 PUSH')
 # (nothing printed; no PRINT commands)
 
-
-=end
 
 
 
