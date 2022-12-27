@@ -128,7 +128,7 @@ def switch_pass(num_of_lights)
   end
   num_of_lights.times do | index |
     lights_hash.each do | position, state |
-      lights_hash[k] = !state if position % (index + 1) == 0
+      lights_hash[position] = !state if position % (index + 1) == 0
     end
   end
   lights_on = lights_hash.select { | _position, state | state }
@@ -164,12 +164,129 @@ end
   p switch_pass(n+1)
 end
 
+# diamonds
+=begin
+input: odd integer that represents how many total rows the diamond will be
+also represents the number of stars in the middle (longest) row
+
+output: a diamond put to the console with stars in rows 1,3,5,...n,..5,3,1)
+
+successive rows have odd numbers of stars 1 up to n, then back down to 1
+
+could do range from 1 to n, #upto, print on successive rows if x is odd
+then from n-2 downto 1, print the same
+=end
+
+def make_stars(integer, n)
+  output = "*" * n
+  puts output.center(integer)
+end
+
+def diamond(integer)
+  1.upto(integer) { | n | make_stars(integer, n) if n.odd? }
+  (integer - 2).downto(1) { | k | make_stars(integer, k) if k.odd? }
+end
+
+diamond(5)
+diamond(9)
+
+# 16 min
+# 10 min reading others' answers and refactoring mine from 17 lines to 8 lines
+
+
+# minilang register method
+
+=begin
+input: LOTS! a string passed in as an argument
+
+    n Place a value n in the "register". Do not modify the stack.
+    PUSH Push the register value on to the stack. Leave the value in the register.
+    ADD Pops a value from the stack and adds it to the register value, storing the result in the register.
+    SUB Pops a value from the stack and subtracts it from the register value, storing the result in the register.
+    MULT Pops a value from the stack and multiplies it by the register value, storing the result in the register.
+    DIV Pops a value from the stack and divides it into the register value, storing the integer result in the register.
+    MOD Pops a value from the stack and divides it into the register value, storing the integer remainder of the division in the register.
+    POP Remove the topmost item from the stack and place in register
+output:
+    PRINT Print the register value
+
+
+psuedo code
+take the string argument, split to an array or hash
+a series of if statements evaluate the collection, for each included command, do the work
+might need to remove the hash element from the original...so that each is evaluated
+
+if array, each
+if number skip
+if n reassign register
+if push take next entry and << stack
+case statement for the operations
+if pop take next entry
+
+an array holds the stack
+a variable holds the register
+
+
+=end
+
+def minilang(string_command)
+  register = 0
+  stack = []
+  command_array = string_command.split
+  register = command_array.shift.to_i if command_array[0].to_i # this would throw false if the first entry is "print"
+  command_array.each do |entry|
+    case entry
+    when entry.to_i
+      next
+    when "PUSH"
+      stack << command_array[command_array.index(entry) + 1].to_i
+    when "ADD"
+      register = stack.pop.to_i + register
+    when "SUB"
+      register = stack.pop.to_i - register
+    when "PRINT"
+      puts register
+    end
+  end
+end
 
 
 
+minilang('PRINT')
+# 0
+
+minilang('5 PUSH 3 MULT PRINT')
+# 15
+
+minilang('5 PRINT PUSH 3 PRINT ADD PRINT')
+# 5
+# 3
+# 8
+
+=begin
+minilang('5 PUSH POP PRINT')
+# 5
+
+minilang('3 PUSH 4 PUSH 5 PUSH PRINT ADD PRINT POP PRINT ADD PRINT')
+# 5
+# 10
+# 4
+# 7
+
+minilang('3 PUSH PUSH 7 DIV MULT PRINT ')
+# 6
+
+minilang('4 PUSH PUSH 7 MOD MULT PRINT ')
+# 12
+
+minilang('-3 PUSH 5 SUB PRINT')
+# 8
+
+minilang('6 PUSH')
+# (nothing printed; no PRINT commands)
 
 
-
+=end
 
 
 
