@@ -326,7 +326,8 @@ minilang('-3 PUSH 5 SUB PRINT')
 minilang('6 PUSH')
 # (nothing printed; no PRINT commands)
 
-DIGIT_HASH = { zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9}
+DIGIT_HASH = { zero: 0, one: 1, two: 2, three: 3,
+               four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9} # next time do this with #zip of two arrays
 
 def word_to_digit(string)
   array = string.split.map! do |word|
@@ -347,12 +348,123 @@ p word_to_digit('Please call me at five five five one two three four. Thanks.') 
 # until later
 # Today was worthless
 
+# Start of a new day.
+
+def word_to_digit2(string)
+  DIGIT_HASH.keys.each do |symbol|
+    string.gsub!(/\b#{symbol.to_s}\b/, DIGIT_HASH[symbol].to_s)
+  end
+  string
+end
+p word_to_digit2('Please call me at five five five one two three four. Thanks.') #== 'Please call me at 5 5 5 1 2 3 4. Thanks.'
+# fully complete solution, with #gsub!
+# Some people's solutions created a hash super smoothly
+words = %w(zero, one, two, three, four, five, six, seven, eight, nine)
+digits = [0,1,2,3,4,5,6,7,8,9]
+hash = words.zip(digits).to_h
+p hash
+# damn son
+# however, some didn't even make a hash, and avoided it by using #each_with_index, which is smooth since the hash just
+# contains index values in this case
+
+
+def sum(n)
+  return 1 if n == 1
+  n + sum(n - 1)
+end
+
+p sum(4)
+
+def fibonacci_old(n)
+  return 1 if n <= 2
+  fibonacci_old(n - 1) + fibonacci_old(n - 2)
+end
+
+# 10 min
+# needed a return for two initial terms instead of one initial term --> actually it turns out we don't need
+# two terms, just a condition on the term that n <=2 it returns 1
+# I wrote out a T-chart for the below examples, showing their function arithmetic (e.g. f(12) = f(11) - f(10))
+# The FE was about 'tail recursion' which I think I understand to just store values in the tail method from
+# previous calculations so that the processor doesn't give up as quickly.
 
 
 
+# now make explicit (procedural) this recursive formula. haaaa
 
+# array that get populated with the numbers that will be summed, then #inject(&+)
+# 5 times start with 1, 1, add them, << the sum, go on, increment up the index?
 
+def fibonacci(nth)
+  return 1 if nth <=2
+  # stack = [1,1]
+  # (nth-2).times do |index|
+  #   stack << (stack[index] + stack[index + 1])
+  # end
+  # stack[-1]
+  previous = 1
+  twice_previous = 1
+  current = 0
+  (nth-2).times do |index|
+    current = previous + twice_previous
+    twice_previous = previous
+    previous = current
+  end
+  current
+end
 
+# 17 minutes - about 4 minutes spent on deciphering that I had put >= instead of <=
+# went around and around on how to do this, and for a while I thought I had to sum everything, but it turns out
+# I was already calculating the nth term, so I just had to call the last term. So I should rewrite this since I'm already
+# calculating the term that I'm returning
+# WOW that took probably 15 min, I didn't think it would be that hard. Just a lot of reassignment, so actually I
+# think that the array which I utilized is better than this variable stuff that I did
+
+p fibonacci(1) == 1
+p fibonacci(2) == 1
+p fibonacci(3) == 2
+p fibonacci(4) == 3
+p fibonacci(5) == 5
+p fibonacci(12) == 144
+p fibonacci(20) == 6765
+p fibonacci(20) == 6765
+p fibonacci(100) == 354224848179261915075
+#p fibonacci(100_001) # => 4202692702.....8285979669707537501
+
+# Looking at their solution, it's the combo of the two that I wrote;
+# it combines the fact that you're only ever keeping track of a handful of values (two instead of my three)
+# and you're storing them in an array, I guess for easy of access/reassignment
+
+def fib_again(nth)
+  first, last = [1, 1]
+  (nth-2).times do # they did 3.upto(nth) which is equivalent and a bit more clear, since it's implied that you've already
+    # done steps 1 and 2 with the initial assignment
+    first, last = [last, first + last]
+  end
+  last
+end
+
+p fib_again(12)
+
+def fibonacci_last(nth)
+  num = fib_again(nth)
+  # num.to_s[-1].to_i
+  num % 10
+end
+
+p fibonacci_last(15)        # -> 0  (the 15th Fibonacci number is 610)
+p fibonacci_last(20)        # -> 5 (the 20th Fibonacci number is 6765)
+p fibonacci_last(100)       # -> 5 (the 100th Fibonacci number is 354224848179261915075)
+p fibonacci_last(100_001)   # -> 1 (this is a 20899 digit number)
+p fibonacci_last(1_000_007) # -> 3 (this is a 208989 digit number)
+p fibonacci_last(123456789) # -> 4
+
+# 2:30 - fast because I relied on the previous solution, but what a weird problem to be included here.
+# I think perhaps it's interested in doing something that I'm not, because the last example is taking forever.
+# I think maybe this problem is about more than calling the last character from a string representation of the number
+# I could do some mod thing that returns the 1's digit. That didn't make it any faster...
+# Yeah, so there's some nice math here, where the only info needed to calculate the last digit is the intermediary
+# last digits, so they wrote a method to chop the last digits as they go
+#
 
 
 
