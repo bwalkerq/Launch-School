@@ -64,15 +64,17 @@ def block_word?(string)
   blocks = BLOCKS_HASH.clone
   keys = BLOCKS_HASH.keys.map{|x| x.to_s}
   values = BLOCKS_HASH.values
-  letters = string.chars
+  letters = string.upcase.chars
   letters.each do |letter|
     case
-    when keys.include?(letter.upcase)
+    when keys.include?(letter)
       puts letter + "k"
-      blocks.delete(letter.upcase.to_sym)
-    when values.include?(letter.upcase)
+      keys.delete(letter)
+      blocks.delete(letter.to_sym)
+    when values.include?(letter)
       puts letter
-      blocks.delete(blocks.key(letter.upcase))
+      values.delete(letter)
+      blocks.delete(blocks.key(letter))
     else
       puts letter
       return false
