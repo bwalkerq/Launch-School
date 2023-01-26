@@ -50,7 +50,7 @@ def substrings(string)
   string.length.times do |index|
     initial_substrings << string.slice(index, string.length)
   end
-  initial_substrings.each {|substring| result_array += leading_substrings(substring)}
+  initial_substrings.each { |substring| result_array += leading_substrings(substring) }
   result_array
 end
 
