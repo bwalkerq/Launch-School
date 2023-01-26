@@ -1,3 +1,19 @@
+# each, select, map
+#each is a method, called with a block, that iterates through a collection and passes the value of each element of
+the collection as an argument to the block. The truthiness of the block is not considered. 
+The method returns the original collection.
+
+The #select method returns a new collection whose size is less than or equal to the length of the original collection.
+#select is called with a block, iterates through a collection and passes the value of each element as an
+argument to the block. If block returns a truthy value, that element is appended to the new collection. If the block
+evaluates as falsy, the element is not appended to the new collection.
+
+The #map method returns a new collection that is the same size as the original collection. It's called with a block,
+and iterates through the collection passing the value of each element as an argument to the block. The truthiness of
+the block is not considered. The return value of the block is appended to the new collection in place of it's 
+corresponding element from the original collection.
+
+
 # Templates
 We’ve initialized the variable `var_name` and assigned to it the `Integer_String_etc_object_value`.
 
