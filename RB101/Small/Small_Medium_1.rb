@@ -257,13 +257,11 @@ def minilang(string_command)
   end
 end
 
-# literally over 100 minutes. Fucking demoralizing as FUCK
-# understood the problem incorrectly, thanks to constant fucking distractions
-# constant
-# jesus fucking christ FUCK
+# literally over 100 minutes.
+# understood the problem incorrectly,
 # What the fuck did I learn?
 # without looking at the solution, I already learned that #to_i on ANY string returns an integer;
-# if the string isn't [0-9] it just returns 0. holy fuck.
+# if the string isn't [0-9] it just returns 0.
 # order matters for operations; the words into the operations I reversed the order a bunch and didn't catch till the end
 # I didn't understand the fucking problem; I thought that push took the next entry, I did all this fucking work
 # to try to take the next entry after push

@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literal: true # not sure why this is necessary
 
 def longest_sentence(string)
   longest = ''
@@ -112,9 +112,9 @@ p letter_percentages('123') == { lowercase: 0.0, uppercase: 0.0, neither: 100.0 
 p letter_percentages 'abcdefGHI'
 
 # 31 minutes
-# distracted as fuck throughout solving this problem, working in a coffee shop next
+# distracted as heck throughout solving this problem, working in a coffee shop next
 # to Katie doesn't work, because then I get interrupted.
-# The use of regex was fucked here
+# The use of regex was jacked up here
 # I tried to use
 # string.count(/[a-z]/) but the regex wasn't implicitly a string, so it didn't
 # count anything
@@ -122,7 +122,7 @@ p letter_percentages 'abcdefGHI'
 # forgot that percentages are numbers less than 0, so I didn't understand why the integer
 # returned was always zero
 
-# FUCK apparently I can indeed use count with regex, but I need to pass a block to it for each
+# Well, apparently I can indeed use count with regex, but I need to pass a block to it for each
 # character
 #
 
