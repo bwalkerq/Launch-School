@@ -424,6 +424,66 @@ p "panagram? tests"
 p panagram?("The quick brown fox jumps over the lazy dog.") == true
 p panagram?("This is not a pangram.") == false
 
+=begin
+13. kebabs
+6 kyu
+Modify the kebabize function so that it converts a camel case string into a
+kebab case.
+  kebabize('camelsHaveThreeHumps') // camels-have-three-humps
+kebabize('camelsHave3Humps') // camels-have-humps
+Notes:
+  the returned string should only contain lowercase letters
+
+PROBLEM
+
+input: camelcase string
+output:kebab case string
+
+explicit rules: returned strings have only lowercase letters
+implicit rules: rather than spaces separating
+
+Questions:
+
+Mental Model:
+for each letter, if it's upcase, insert a dash before
+downcase the whole string
+
+EXAMPLES
+
+DATA / ALGORITHM
+arrays
+init new string
+for each character in the string
+  if the char is upcase
+    insert a dash before that character,
+    then add the charcter
+  else
+    add the character
+  end
+return the downcased string
+
+CODE
+=end
+
+def kebabize(string)
+  kebab = ""
+  string = string.chars.delete_if{ |l| l =~ /[^a-zA-Z]/}.join
+  string.chars.each_with_index do |letter, i|
+    if letter == letter.upcase
+      kebab << "-"
+      kebab << letter
+    elsif letter == letter.downcase
+      kebab << letter
+    else
+      next
+    end
+  end
+  kebab.downcase!
+end
+p "kebabs, boys"
+p kebabize('myCamelCasedString') == 'my-camel-cased-string'
+p kebabize('myCamelHas3Humps') == 'my-camel-has-humps'
+
 
 =begin
 6 kyu
@@ -431,6 +491,25 @@ p panagram?("This is not a pangram.") == false
 Given: an array containing hashes of names
 Return: a string formatted as a list of names separated by commas except for
 the last two names, which should be separated by an ampersand.
+
+=begin
+PROBLEM
+
+input:
+output:
+
+explicit rules:
+implicit rules:
+
+Questions:
+
+Mental Model:
+
+EXAMPLES
+
+DATA / ALGORITHM
+
+CODE
 
   Example:
   list([ {name: 'Bart'}, {name: 'Lisa'}, {name: 'Maggie'} ])
@@ -447,4 +526,23 @@ list([])
 
 Note: all the hashes are pre-validated and will only contain A-Z, a-z, '-' and '.'.
 
+=end
+=begin
+PROBLEM
+
+input:
+output:
+
+explicit rules:
+implicit rules:
+
+Questions:
+
+Mental Model:
+
+EXAMPLES
+
+DATA / ALGORITHM
+
+CODE
 =end
