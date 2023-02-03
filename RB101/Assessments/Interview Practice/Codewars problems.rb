@@ -196,7 +196,6 @@ def scramble_words(string)
   else
     scramble_singular(string)
   end
-
 end
 
 p "scramble_words"
@@ -210,13 +209,6 @@ p scramble_words("shan't") == "sahn't"
 p scramble_words('-dcba') == '-dbca'
 p scramble_words('dcba.') == 'dbca.'
 p scramble_words('greetings, what are the needs, love?')
-out = scramble_words("you've gotta dance like there's nobody watching, love like you'll never be hurt, sing like there's
-  nobody listening, and live like it's heaven on earth.")
-solution = "you've gotta dacne like teehr's nbdooy wachintg, love like ylo'ul
- neevr be hrut, sing like teehr's nbdooy leiinnstg, and live like it's haeevn
- on earth."
-p out
-p solution
 
 =begin
 
@@ -389,10 +381,12 @@ def spiral(array)
   array.each_with_index do |n, i|
     if i < max_index && n < array[i+1]
       next
-    elsif i > max_index && n > array[i+1]
+    elsif n == max
       next
     elsif i == (array.size - 1)
       return true
+    elsif i > max_index && n > array[i+1]
+      next
     else
       return false
     end
@@ -400,7 +394,7 @@ def spiral(array)
 end
 
 p "-------sprial tests"
-p spiral([1,2,3,2,1]) #== true
+p spiral([1,2,3,2,1]) == true
 p spiral([1,2,4,6,4,2,1]) == true
 p spiral([0,3,5,4,3,2,1]) == true
 p spiral([0,3,5,5,4,3,2,1]) == false
