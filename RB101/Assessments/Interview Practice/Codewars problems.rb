@@ -1,3 +1,22 @@
+=begin
+PROBLEM
+
+input:
+output:
+
+explicit rules:
+implicit rules:
+
+Questions:
+
+Mental Model:
+
+EXAMPLES
+
+DATA / ALGORITHM
+
+CODE
+=end
 
 # from https://docs.google.com/document/u/1/d/1usQUJQFr6PGVo3ZWgMi3nVtDRdeUuOUNRtZPtSKkYuE/mobilebasic#h.x956pbnpkojz
 
@@ -70,6 +89,7 @@ p delete_nth([2,4,4,4,5,4,5,4,6,4,6,3,4,3,4], 2) #== [2,4,4,5,5,6,6,3,3]
 
 ######################live coding with Will 2/2
 =begin
+9.Typoglycemia Generator
 Requirement
 return a string where:
 1) the first and last characters remain in original place for each word
@@ -128,22 +148,55 @@ middle letters
   CODE
 =end
 
-def scramble_singular(str)
+def punctuation_hash(str)
   hash = {}
   str.chars.each_with_index do |c,i|
     if c =~ /[^\w]/
       hash[i] = c
     end
   end
-  puts hash
+  hash
 end
-scramble_singular("-hey-that's")
+p punctuation_hash("-hey-that's")
+
+def letters(str)
+  letters = str.chars.delete_if { |c| c =~ /[^\w]/ }
+  first = letters.shift
+  last = letters.pop
+  letters.sort!
+  letters.unshift(first).append(last)
+  letters
+end
+
+letters("ajjkjkjkdlflq")
+
+def scramble_singular(str)
+  hash = punctuation_hash(str)
+  letters = letters(str)
+  output_array = []
+  str.chars.each_with_index do |character, i|
+    if hash.key?(i)
+      output_array << hash[i]
+    else
+      output_array << letters.shift
+    end
+  end
+  output_array.join
+end
+
+p scramble_singular("-hey-that's")
 
 def scramble_words(string)
-  words = string.split
-  words.each do |word|
-
+  if string.chars.include?(' ')
+    words = string.split
+    words.map! do |word|
+      scramble_singular(word)
+    end
+    return words.join(' ')
+  else
+    scramble_singular(string)
   end
+
 end
 
 p "scramble_words"
@@ -156,10 +209,14 @@ p scramble_words('card-carrying') == 'caac-dinrrryg'
 p scramble_words("shan't") == "sahn't"
 p scramble_words('-dcba') == '-dbca'
 p scramble_words('dcba.') == 'dbca.'
-p scramble_words("you've gotta dance like there's nobody watching, love like you'll never be hurt, sing like there's
-  nobody listening, and live like it's heaven on earth.") == "you've gotta dacne like teehr's nbdooy wachintg, love like ylo'ul
-  neevr be hrut, sing like teehr's nbdooy leiinnstg, and live like it's haeevn on earth."
-
+p scramble_words('greetings, what are the needs, love?')
+out = scramble_words("you've gotta dance like there's nobody watching, love like you'll never be hurt, sing like there's
+  nobody listening, and live like it's heaven on earth.")
+solution = "you've gotta dacne like teehr's nbdooy wachintg, love like ylo'ul
+ neevr be hrut, sing like teehr's nbdooy leiinnstg, and live like it's haeevn
+ on earth."
+p out
+p solution
 
 =begin
 
@@ -200,6 +257,7 @@ Alternate capitalization
 def solve(array)
 
 end
+p "solve tests"
 p solve(["abode","ABc","xyzD"]) == [4,3,1]
 
 p solve(["abide","ABc","xyz"]) == [4,3,0]
