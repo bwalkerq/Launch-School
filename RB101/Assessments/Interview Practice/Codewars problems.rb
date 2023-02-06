@@ -569,9 +569,8 @@ p song_decoder("AWUBWUBWUBBWUBWUBWUBC") == "A B C"
 p song_decoder("WUBAWUBBWUBCWUB") == "A B C"
 
 # 48 min damn
-#
-
-
+# I put == instead of >= or > for the two until loop conditions
+# I don't really like using until loops, but I couldn't see another way
 
 =begin
 6 kyu
@@ -583,38 +582,105 @@ the last two names, which should be separated by an ampersand.
 =begin
 PROBLEM
 
-input:
-output:
+input: array of hashes with :name as key and value as different names
+output: string with a list as you might read
 
-explicit rules:
-implicit rules:
+explicit rules: for multiple names, the & always goes before the last name,
+and commas between the other names
+single names no punctuation
+implicit rules: the hash key is always :name
 
 Questions:
 
 Mental Model:
+pull the name values into an array
+if one, return the name
+if two, return name & name
+if three +, return name plus comma and space, with & after second to last name
 
-EXAMPLES
+EXAMPLES - ok
 
 DATA / ALGORITHM
-
+arrays
+keys
+if three+
+  if index == -1
+    << name
+  elsif index == -2
+    << name + " & "
+  else
+    string holds name + ", "
+return string
 CODE
+=end
 
-  Example:
-  list([ {name: 'Bart'}, {name: 'Lisa'}, {name: 'Maggie'} ])
-# returns 'Bart, Lisa & Maggie'
+def list(array)
+  return "" if array.empty?
+  names = []
+  array.each do |hash|
+    names << hash[:name]
+  end
 
-list([ {name: 'Bart'}, {name: 'Lisa'} ])
+  case names.size
+  when 1
+    return names[0]
+  when 2
+    return "#{names[0]} & #{names[1]}"
+  else
+    string = ""
+    names.each_with_index do |name, i|
+      if i <= (names.size - 3)
+        string += name
+        string += ", "
+      end
+    end
+    string <<  "#{names[-2]} & #{names[-1]}"
+  end
+  string
+end
+
+p list([ {name: 'Bart'}, {name: 'Lisa'}, {name: 'Maggie'}, {name: "Olie"}])
+#== 'Bart, Lisa & Maggie'
+
+p list([ {name: 'Bart'}, {name: 'Lisa'} ])
 # returns 'Bart & Lisa'
 
-list([ {name: 'Bart'} ])
+p list([ {name: 'Bart'} ])
 # returns 'Bart'
 
-list([])
+p list([])
 # returns ''
+# 25 min, surprisingly hard
+# I feel very confident that there's a better way to do what I did
+# putting the last two conditions first, then the comma thing, build from front
+# it works, though.
 
-Note: all the hashes are pre-validated and will only contain A-Z, a-z, '-' and '.'.
+=begin
+15. Take a Ten Minute Walk
+(https://www.codewars.com/kata/54da539698b8a2ad76000228/train/ruby)
+
+6 kyu
+
+You live in the city of Cartesia where all roads are laid out in a perfect grid. You arrived ten minutes too early to an appointment, so you decided to take the opportunity to go for a short walk. The city provides its citizens with a Walk Generating App on their phones -- everytime you press the button it sends you an array of one-letter strings representing directions to walk (eg. ['n', 's', 'w', 'e']). You always walk only a single block in a direction and you know it takes you one minute to traverse one city block, so create a function that will return true if the walk the app gives you will take you exactly ten minutes (you don't want to be early or late!) and will, of course, return you to your starting point. Return false otherwise.
+
+
+Note: you will always receive a valid array containing a random assortment of direction letters ('n', 's', 'e', or 'w' only). It will never give you an empty array (that's not a walk, that's standing still!).
 
 =end
+
+# p is_valid_walk(['n','s','n','s','n','s','n','s','n','s']) == true
+#
+# p is_valid_walk(['w','e','w','e','w','e','w','e','w','e','w','e']) == false
+#
+# p is_valid_walk(['w']) == false
+#
+# p is_valid_walk(['n','n','n','s','n','s','n','s','n','s']) == false
+
+
+
+=begin
+
+
 =begin
 PROBLEM
 
