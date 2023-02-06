@@ -484,6 +484,94 @@ p "kebabs, boys"
 p kebabize('myCamelCasedString') == 'my-camel-cased-string'
 p kebabize('myCamelHas3Humps') == 'my-camel-has-humps'
 
+=begin
+Input
+
+The input consists of a single non-empty string, consisting only of uppercase English letters, the string's length doesn't exceed 200 characters
+
+
+Output
+
+Return the words of the initial song that Polycarpus used to make a dubsteb remix. Separate the words with a space.
+
+
+  Examples
+
+song_decoder("WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB")  =>  WE ARE THE CHAMPIONS MY FRIEND
+PROBLEM
+
+input: string with lots of "WUB"s
+output: the words that are sneeked in between the WUBs
+
+explicit rules: potential wubs before first word, after last word
+always at least one wub between words
+implicit rules: infinite wubs possible
+
+Questions: ok
+
+Mental Model:
+delete WUB until nonWUB exists, put in a space
+maybe an until loop
+check if next three letters is WUB, if not, shovel letter, repeat
+
+EXAMPLES
+
+DATA / ALGORITHM
+helper method for "check next three letters?"
+input string
+are the first three letters WUB?
+return boolean
+
+until index checks the last letter, start index at 0, check 3,
+if true, add three to index
+if false,
+  string holder = ""
+  until check 3 true,
+    shovel letter to string holder
+    increment index 1
+  shovel string to words
+
+if the last three is WUB, skip to join
+if the last
+join words with ' ' at the end
+=end
+
+def wub?(string, index)
+  string[index,3] == "WUB"
+end
+
+def song_decoder(string)
+  index = 0
+  words = []
+  until index > (string.size - 1)
+    if wub?(string, index)
+      index += 3
+    else
+      string_holder = ""
+      until wub?(string, index) || (index > string.size - 1)
+        # can't figure out how to deal with the last characters of the string
+        # if they're
+        string_holder << string[index]
+        index += 1
+      end
+      words << string_holder
+    end
+  end
+  words.join(' ')
+end
+
+
+p "song decoder"
+p song_decoder("AWUBBWUBCASDF") == "A B CASDF"
+
+p song_decoder("AWUBWUBWUBBWUBWUBWUBC") == "A B C"
+
+p song_decoder("WUBAWUBBWUBCWUB") == "A B C"
+
+# 48 min damn
+#
+
+
 
 =begin
 6 kyu
