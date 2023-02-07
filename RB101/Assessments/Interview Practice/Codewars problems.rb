@@ -83,9 +83,9 @@ end
 # this was sick because I satisfied the test cases, but I knew that I was not
 # meeting the requirements, so I revamped my algorithm
 
-p (delete_nth([20,37,20,21], 1))  #== [20,37,21]
-p (delete_nth([1,7, 2, 1,3,3,7,2,2,2,2], 3))  #== [1, 1, 3, 3, 7, 2, 2, 2]
-p delete_nth([2,4,4,4,5,4,5,4,6,4,6,3,4,3,4], 2) #== [2,4,4,5,5,6,6,3,3]
+# p (delete_nth([20,37,20,21], 1))  #== [20,37,21]
+# p (delete_nth([1,7, 2, 1,3,3,7,2,2,2,2], 3))  #== [1, 1, 3, 3, 7, 2, 2, 2]
+# p delete_nth([2,4,4,4,5,4,5,4,6,4,6,3,4,3,4], 2) #== [2,4,4,5,5,6,6,3,3]
 
 ######################live coding with Will 2/2
 =begin
@@ -157,7 +157,7 @@ def punctuation_hash(str)
   end
   hash
 end
-p punctuation_hash("-hey-that's")
+# p punctuation_hash("-hey-that's")
 
 def letters(str)
   letters = str.chars.delete_if { |c| c =~ /[^\w]/ }
@@ -168,7 +168,7 @@ def letters(str)
   letters
 end
 
-letters("ajjkjkjkdlflq")
+# letters("ajjkjkjkdlflq")
 
 def scramble_singular(str)
   hash = punctuation_hash(str)
@@ -184,7 +184,7 @@ def scramble_singular(str)
   output_array.join
 end
 
-p scramble_singular("-hey-that's")
+# p scramble_singular("-hey-that's")
 
 def scramble_words(string)
   if string.chars.include?(' ')
@@ -198,17 +198,17 @@ def scramble_words(string)
   end
 end
 
-p "scramble_words"
-p scramble_words('professionals') == 'paefilnoorsss'
-p scramble_words('i') == 'i'
-p scramble_words('') == ''
-p scramble_words('me') == 'me'
-p scramble_words('you') == 'you'
-p scramble_words('card-carrying') == 'caac-dinrrryg'
-p scramble_words("shan't") == "sahn't"
-p scramble_words('-dcba') == '-dbca'
-p scramble_words('dcba.') == 'dbca.'
-p scramble_words('greetings, what are the needs, love?')
+# p "scramble_words"
+# p scramble_words('professionals') == 'paefilnoorsss'
+# p scramble_words('i') == 'i'
+# p scramble_words('') == ''
+# p scramble_words('me') == 'me'
+# p scramble_words('you') == 'you'
+# p scramble_words('card-carrying') == 'caac-dinrrryg'
+# p scramble_words("shan't") == "sahn't"
+# p scramble_words('-dcba') == '-dbca'
+# p scramble_words('dcba.') == 'dbca.'
+# p scramble_words('greetings, what are the needs, love?')
 
 =begin
 
@@ -325,11 +325,11 @@ end
 # try the algorithm style of starting each explanation of an iteration with the phrase "for each ___ in ____" and then indent to describe what happens on each iteration.
 
 
-p mineLocation( [ [1, 0, 0], [0, 0, 0], [0, 0, 0] ] ) == [0, 0]
-p mineLocation( [ [0, 0, 0], [0, 1, 0], [0, 0, 0] ] ) == [1, 1]
-p mineLocation( [ [0, 0, 0], [0, 0, 0], [0, 1, 0] ] ) == [2, 1]
-p mineLocation([ [1, 0], [0, 0] ]) == [0, 0]
-p mineLocation([ [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0] ]) == [2, 2]
+# p mineLocation( [ [1, 0, 0], [0, 0, 0], [0, 0, 0] ] ) == [0, 0]
+# p mineLocation( [ [0, 0, 0], [0, 1, 0], [0, 0, 0] ] ) == [1, 1]
+# p mineLocation( [ [0, 0, 0], [0, 0, 0], [0, 1, 0] ] ) == [2, 1]
+# p mineLocation([ [1, 0], [0, 0] ]) == [0, 0]
+# p mineLocation([ [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0] ]) == [2, 2]
 
 # From Chris Shieh 1/31/2023
 # if I finish this, can I write a version that checks for down then up
@@ -393,12 +393,12 @@ def spiral(array)
   end
 end
 
-p "-------sprial tests"
-p spiral([1,2,3,2,1]) == true
-p spiral([1,2,4,6,4,2,1]) == true
-p spiral([0,3,5,4,3,2,1]) == true
-p spiral([0,3,5,5,4,3,2,1]) == false
-p spiral([1,2,4,6,4,2,4]) == false
+# p "-------sprial tests"
+# p spiral([1,2,3,2,1]) == true
+# p spiral([1,2,4,6,4,2,1]) == true
+# p spiral([0,3,5,4,3,2,1]) == true
+# p spiral([0,3,5,5,4,3,2,1]) == false
+# p spiral([1,2,4,6,4,2,4]) == false
 # verbalize expectation of a test before running the test
 
 =begin
@@ -420,9 +420,9 @@ def panagram?(string)
   true
 end
 
-p "panagram? tests"
-p panagram?("The quick brown fox jumps over the lazy dog.") == true
-p panagram?("This is not a pangram.") == false
+# p "panagram? tests"
+# p panagram?("The quick brown fox jumps over the lazy dog.") == true
+# p panagram?("This is not a pangram.") == false
 
 =begin
 13. kebabs
@@ -480,9 +480,9 @@ def kebabize(string)
   end
   kebab.downcase!
 end
-p "kebabs, boys"
-p kebabize('myCamelCasedString') == 'my-camel-cased-string'
-p kebabize('myCamelHas3Humps') == 'my-camel-has-humps'
+# p "kebabs, boys"
+# p kebabize('myCamelCasedString') == 'my-camel-cased-string'
+# p kebabize('myCamelHas3Humps') == 'my-camel-has-humps'
 
 =begin
 Input
@@ -540,7 +540,7 @@ def wub?(string, index)
   string[index,3] == "WUB"
 end
 
-def song_decoder(string)
+def song_decoder_a(string)
   index = 0
   words = []
   until index > (string.size - 1)
@@ -549,8 +549,6 @@ def song_decoder(string)
     else
       string_holder = ""
       until wub?(string, index) || (index > string.size - 1)
-        # can't figure out how to deal with the last characters of the string
-        # if they're
         string_holder << string[index]
         index += 1
       end
@@ -560,13 +558,48 @@ def song_decoder(string)
   words.join(' ')
 end
 
+=begin
+start with index set to the third to last index value (positive)
+for (i=word.len-3, i--, i>=0)
+  check for wub?
+    if so, replace it with a space
+    and decrement index by 2 extra
+for (i=word.len-1, i--, i>=0)
+  check for "  "
+    if so, replace it with a space
+=end
+def song_decoder(string)
+  string.gsub(/(WUB)+/, ' ').strip
+end
+
+
+def song_decoderb(string)
+  string.gsub!("WUB", " ")
+  while string.length != string.gsub("  ", " ").length
+    string.gsub!("  ", " ")
+  end
+  string.strip
+end
+
+
+# implement with a separate while loop
+# index = (string.length - 2)
+# while index >= 0
+#   if string[index, 2] == "  " #double space
+#     string[index, 2] = " " #single space
+#   elsif string[index, 2] == "\t\t"
+#     string[index, 2] = "\t"
+#   end
+#   index -= 1 #invariant
+# end
 
 p "song decoder"
-p song_decoder("AWUBBWUBCASDF") == "A B CASDF"
+p song_decoder("AWUBBWUBCASDF") #== "A B CASDF"
 
-p song_decoder("AWUBWUBWUBBWUBWUBWUBC") == "A B C"
+p song_decoder("AWUBWUBWUBBWUBWUBWUBCWUBWUBWUB") #== "A B C"
 
-p song_decoder("WUBAWUBBWUBCWUB") == "A B C"
+p song_decoder("WUBAWUBBWUBCWUB") #== "A B C"
+p song_decoder("WUBHOWWUBUBIQUITINWUB") #== 'HOW UBIQUITIN'
 
 # 48 min damn
 # I put == instead of >= or > for the two until loop conditions
@@ -639,16 +672,16 @@ def list(array)
   string
 end
 
-p list([ {name: 'Bart'}, {name: 'Lisa'}, {name: 'Maggie'}, {name: "Olie"}])
-#== 'Bart, Lisa & Maggie'
-
-p list([ {name: 'Bart'}, {name: 'Lisa'} ])
-# returns 'Bart & Lisa'
-
-p list([ {name: 'Bart'} ])
-# returns 'Bart'
-
-p list([])
+# p list([ {name: 'Bart'}, {name: 'Lisa'}, {name: 'Maggie'}, {name: "Olie"}])
+# #== 'Bart, Lisa & Maggie'
+#
+# p list([ {name: 'Bart'}, {name: 'Lisa'} ])
+# # returns 'Bart & Lisa'
+#
+# p list([ {name: 'Bart'} ])
+# # returns 'Bart'
+#
+# p list([])
 # returns ''
 # 25 min, surprisingly hard
 # I feel very confident that there's a better way to do what I did
