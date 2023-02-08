@@ -98,6 +98,27 @@ max_rotation(8_703_529_146) == 7_321_609_845
 
 
 
+def delete_nth(array, n)
+  output_array = []
+  u_array = array.uniq
+  u_array.each do |unique_value|
+    counter = 0
+    array.each do |num|
+      if counter < 2 && unique_value == num
+        output_array << num
+        counter += 1
+      elsif counter == 2
+        break
+      else
+        next
+      end
+    end
+  end
+  output_array
+end
+
+p (delete_nth([20,37,20,21], 1)) # == [20,37,21]
+p (delete_nth([1,1,3,3,7,2,2,2,2], 3)) # == [1, 1, 3, 3, 7, 2, 2, 2]
 
 
 
