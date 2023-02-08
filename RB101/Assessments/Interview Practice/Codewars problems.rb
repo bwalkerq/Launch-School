@@ -709,7 +709,69 @@ Note: you will always receive a valid array containing a random assortment of di
 #
 # p is_valid_walk(['n','n','n','s','n','s','n','s','n','s']) == false
 
+=begin
+In this simple Kata your task is to create a function that turns a string into a Mexican Wave. You will be passed a string and you must return that string in an array where an uppercase letter is a person standing up.
+Rules
+1. The input string will always be lower case but may be empty.
+2. If the character in the string is whitespace then pass over it as if it was an empty seat.
+PROBLEM
 
+input: string
+output: an array of strings
+
+explicit rules:
+string input is all lowercase or empty
+each individual letter must be capitalized in each occurance of the string within the Array, start at the left and move right
+implicit rules: array size = string length
+
+Questions: ok
+
+Mental Model:
+upcase version of the String
+check character, if space, skip, otherwise replace
+
+EXAMPLES
+
+DATA / ALGORITHM
+strings, arrays
+
+initialize an output array
+# array for the characters of the string
+# for each_with_index character in the array,
+#   if the character is a space,
+#     skip it
+  else (if the character is a letter)
+    (upcase the letter within the original string)
+    LV = clone the string
+    LV = string with the indexed character replaced by the upcased letter
+    append the entire modified string as an entry into the output array
+  end
+end
+
+CODE
+=end
+def wave(string)
+  # output = []
+  string.chars.map.with_index do |letter, index|
+    if letter == " "
+      next
+    else
+      string[0...index] + string[index].upcase + string[(index + 1)..-1]
+      # wave_word = string.clone
+      # wave_word[index] = letter.upcase
+      # output << wave_word
+    end
+  end.compact
+  # output
+end
+
+# 22 min
+
+p wave("hello") == ["Hello", "hEllo", "heLlo", "helLo", "hellO"]
+p wave("codewars") == ["Codewars", "cOdewars", "coDewars", "codEwars", "codeWars", "codewArs", "codewaRs", "codewarS"]
+p wave("") == []
+p wave("two words") == ["Two words", "tWo words", "twO words", "two Words", "two wOrds", "two woRds", "two worDs", "two wordS"]
+p wave(" gap ") == [" Gap ", " gAp ", " gaP "]
 
 =begin
 
