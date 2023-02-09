@@ -767,13 +767,147 @@ end
 
 # 22 min
 
-p wave("hello") == ["Hello", "hEllo", "heLlo", "helLo", "hellO"]
-p wave("codewars") == ["Codewars", "cOdewars", "coDewars", "codEwars", "codeWars", "codewArs", "codewaRs", "codewarS"]
-p wave("") == []
-p wave("two words") == ["Two words", "tWo words", "twO words", "two Words", "two wOrds", "two woRds", "two worDs", "two wordS"]
-p wave(" gap ") == [" Gap ", " gAp ", " gaP "]
+# p wave("hello") == ["Hello", "hEllo", "heLlo", "helLo", "hellO"]
+# p wave("codewars") == ["Codewars", "cOdewars", "coDewars", "codEwars", "codeWars", "codewArs", "codewaRs", "codewarS"]
+# p wave("") == []
+# p wave("two words") == ["Two words", "tWo words", "twO words", "two Words", "two wOrds", "two woRds", "two worDs", "two wordS"]
+# p wave(" gap ") == [" Gap ", " gAp ", " gaP "]
+
+def letter_count(string)
+  string.chars.tally
+end
+
+p letter_count('codewars') #== {:a=>1, :c=>1, :d=>1, :e=>1, :o=>1, :r=>1,
+# :s=>1, :w=>1}
+p letter_count('activity') #== {:a=>1, :c=>1, :i=>2, :t=>2, :v=>1, :y=>1}
+p letter_count('arithmetics') == {:a=>1, :c=>1, :e=>1, :h=>1, :i=>2, :m=>1, :r=>1, :s=>1, :t=>2}
 
 =begin
+Legend:
+  -Uppercase letters stands for mothers, lowercase stand for their children, i.e. "A" mother's children are "aaaa".
+-Function input: String contains only letters, uppercase letters are unique.
+Task:
+Place all people in alphabetical order where Mothers are followed by their children, i.e. "aAbaBb" => "AaaBbb".
+
+PROBLEM
+
+input: string (mixed up)
+output: string in alpha order
+
+explicit rules: mother follwed by children AaaaDdddGgggggggg in return String
+only one parent (unique upcase)
+
+implicit rules: ok
+
+Questions: ok
+
+Mental Model:
+sort would give upcase first then lowercase
+figure out a way to have the first of a letter upcased
+
+
+EXAMPLES
+
+DATA / ALGORITHM
+array
+
+init an array of the unique letters
+down case the String and sort it
+#each iterate through the unique letters, and for each character,
+  use #sub to upcase the first occurance of each unique letter
+return modified string
+CODE
+=end
+
+def find_children(string)
+  uniqs = string.downcase.chars.uniq
+  new_string = string.downcase.chars.sort.join
+  uniqs.each do |letter|
+    new_string.sub!(letter, letter.upcase)
+  end
+  new_string
+end
+# 12 min
+
+# p find_children("abBA") == "AaBb"
+# p find_children("AaaaaZazzz") == "AaaaaaZzzz"
+# p find_children("CbcBcbaA") == "AaBbbCcc"
+# p find_children("xXfuUuuF") == "FfUuuuXx"
+# p find_children("") == ""
+
+=begin
+Write a method that takes a string as an argument and groups the number of times each character appears in the string as a hash sorted by the highest number of occurrences.
+
+The characters should be sorted alphabetically e.g:
+
+get_char_count("cba") => {1=>["a", "b", "c"]}
+You should ignore spaces, special characters and count uppercase letters as lowercase ones.
+PROBLEM
+
+input: string
+output: hash,
+
+explicit rules: keys are # of occurances, values are corresponding letters in alpha order
+ignore upcase, special, space
+implicit rules: numbers included
+
+Questions: ok
+
+Mental Model:
+sort the string first
+use #tally to get the (inverse) hash
+for each value in the hash, populate the array of values in the return hash
+
+
+EXAMPLES
+
+DATA / ALGORITHM
+hash from tally, new hash, and Array of values?
+
+old algo
+# downcase and Sort the string
+# use #tally to get the (inverse) hash
+# get the values array, uniq and sort and reverse it
+store all the letters that occur the same # of times
+For each value in the values Array (highest numbers first)
+  if the character is a word character and if the value from the tally_hash is equal to the value of the values Array
+    store that key from the tally_hash as the value of the new hash
+
+NEW algo
+downcase and Sort the string
+
+(store all the letters that occur the same # of times)
+For each char in the String
+  if the char is a letter, store the count of the letter as the key, and append the letter to the value array for that key
+
+CODE
+=end
+
+def get_char_count(string)
+  array = string.downcase.chars.sort
+  count_hash = Hash.new([])
+  array.uniq.each do |char|
+    if char =~ /[a-zA-Z0-9]/
+      count_hash[array.count(char)] += [char]
+    end
+  end
+  count_hash
+end
+
+# 44 min.
+# f***ed around with #tally for a while, because it has a similar structure.
+# after 27 min bailed on tally, and just went directly for building the hash
+# from the ground up.
+# Using Hash.new with an default value of [] really helped. Took a LONG time
+# to remember that I needed to use += ["string"] to add a value to an array.
+# oy vey.
+
+# p "GCC"
+# p get_char_count("Mississippi") == {4=>["i", "s"], 2=>["p"], 1=>["m"]}
+# p get_char_count("Hello. Hello? HELLO!!") == {6=>["l"], 3=>["e", "h", "o"]}
+# p get_char_count("aaa...bb...c!") == {3=>["a"], 2=>["b"], 1=>["c"]}
+# p get_char_count("aaabbbccc") == {3=>["a", "b", "c"]}
+# p get_char_count("abc123") == {1=>["1", "2", "3", "a", "b", "c"]}
 
 
 =begin
