@@ -593,13 +593,13 @@ end
 #   index -= 1 #invariant
 # end
 
-p "song decoder"
-p song_decoder("AWUBBWUBCASDF") #== "A B CASDF"
-
-p song_decoder("AWUBWUBWUBBWUBWUBWUBCWUBWUBWUB") #== "A B C"
-
-p song_decoder("WUBAWUBBWUBCWUB") #== "A B C"
-p song_decoder("WUBHOWWUBUBIQUITINWUB") #== 'HOW UBIQUITIN'
+# p "song decoder"
+# p song_decoder("AWUBBWUBCASDF") #== "A B CASDF"
+#
+# p song_decoder("AWUBWUBWUBBWUBWUBWUBCWUBWUBWUB") #== "A B C"
+#
+# p song_decoder("WUBAWUBBWUBCWUB") #== "A B C"
+# p song_decoder("WUBHOWWUBUBIQUITINWUB") #== 'HOW UBIQUITIN'
 
 # 48 min damn
 # I put == instead of >= or > for the two until loop conditions
@@ -774,13 +774,17 @@ end
 # p wave(" gap ") == [" Gap ", " gAp ", " gaP "]
 
 def letter_count(string)
-  string.chars.tally
+  hash = string.chars.tally
+  new_hash = {}
+  hash.each do |k, v|
+    new_hash[k.to_sym] = v
+  end
+  new_hash
 end
 
-p letter_count('codewars') #== {:a=>1, :c=>1, :d=>1, :e=>1, :o=>1, :r=>1,
-# :s=>1, :w=>1}
-p letter_count('activity') #== {:a=>1, :c=>1, :i=>2, :t=>2, :v=>1, :y=>1}
-p letter_count('arithmetics') == {:a=>1, :c=>1, :e=>1, :h=>1, :i=>2, :m=>1, :r=>1, :s=>1, :t=>2}
+# p letter_count('codewars') == {:a=>1, :c=>1, :d=>1, :e=>1, :o=>1, :r=>1, :s=>1, :w=>1}
+# p letter_count('activity') == {:a=>1, :c=>1, :i=>2, :t=>2, :v=>1, :y=>1}
+# p letter_count('arithmetics') == {:a=>1, :c=>1, :e=>1, :h=>1, :i=>2, :m=>1, :r=>1, :s=>1, :t=>2}
 
 =begin
 Legend:
@@ -909,6 +913,326 @@ end
 # p get_char_count("aaabbbccc") == {3=>["a", "b", "c"]}
 # p get_char_count("abc123") == {1=>["1", "2", "3", "a", "b", "c"]}
 
+=begin
+For a given nonempty string s find a minimum substring t and the maximum
+number k, such that the entire string s is equal to t repeated k times. The
+input string consists of lowercase latin letters. Your function should
+return a tuple (in Python) (t, k) or an array (in Ruby and JavaScript) [t, k]
+
+PROBLEM
+
+input: string of lowercase letters
+output: 2-element array [t,k]
+
+explicit rules: t is the smallest string that is repeated k times in the
+string in order to reproduce the entire string
+lowercase only
+
+implicit rules:
+
+Questions:
+
+Mental Model:
+only sublengths that are factors of the length need be checked
+hidden math here; don't need to count occurances, it will always occur
+length/sublength times WOW
+
+init sublength to 1
+gsub the substring of sublength, replace with '', if the string is empty,
+return the [sub, the length/sublength]
+
+
+grab a substring, (using each_cons?)
+start at end and slice a substring, check if the substring is included elsewhere
+if so, start subbing out the substring, adding to a counter, the string has
+to be completely empty at the end, return the array with substring and counter
+
+
+EXAMPLES
+
+DATA / ALGORITHM
+strings and arrays
+
+sublength = 1
+gsub the substring of sublength, replace with '', if the string is empty,
+return the [sub, the length/sublength]
+if not empty, increment sublength
+
+
+CODE
+=end
+def f(string)
+  sublength = 1
+  while sublength < string.length
+    subbed = string.gsub(string[0, sublength], '')
+    return [string[0, sublength], string.length/sublength] if subbed.empty?
+    sublength += 1
+  end
+  [string, 1]
+end
+
+# p f("ababab") #== ["ab", 3]
+# p f("abcde") #== ["abcde", 1]
+# p f("")
+
+=begin
+Write a function that takes in a string of one or more words, and returns the same string, but with all five or more letter words reversed (Just like the name of this Kata).
+Strings passed in will consist of only letters and spaces.
+Spaces will be included only when more than one word is present.
+Examples: spinWords( "Hey fellow warriors" ) => returns "Hey wollef sroirraw"
+
+PROBLEM
+
+input: string
+output: mutated same string
+
+explicit rules: words with 5+ characters are reversed in the mutated string
+only letters and spaces
+implicit rules: ok
+
+Questions: mutate? doesn't matter
+should capital letters be preserved or should the first letter of a sentance always be capped?
+
+Mental Model:
+split the string into an Array
+map the array, if a string is 5+, reverse it
+join the array
+
+EXAMPLES
+
+DATA / ALGORITHM
+arrays
+
+# split the string into an array of words
+map the array to a new array, for each word in the Array
+  if the length of the word is 5+
+    reverse the word
+  else
+    word
+
+join the array witha space
+
+CODE
+=end
+def spinWords(string)
+  array = string.split
+  array.map! do |word|
+    if word.length >= 5
+      word.reverse
+    else
+      word
+    end
+  end
+  array.join(' ')
+end
+
+# p spinWords("Hey fellow warriors") == "Hey wollef sroirraw"
+# p spinWords("This is a test") == "This is a test"
+# p spinWords("This is another test") == "This is rehtona test"
+
+=begin
+Your local bank has decided to upgrade its ATM machines by incorporating motion sensor technology. The machines now interpret a series of consecutive dance moves in place of a PIN number.
+
+Create a function that converts a customer's PIN number to its dance equivalent. There is one dance move per digit in the PIN number. An array of dance moves is given in the code.
+
+Examples
+dance_convert("0000") ➞ ["Shimmy", "Shake", "Pirouette", "Slide"]
+
+dance_convert("3856") ➞ [ "Slide", "Arabesque", "Pop", "Arabesque" ]
+
+dance_convert("9999") ➞ [ "Arabesque", "Shimmy", "Shake", "Pirouette" ]
+
+dance_convert("32a1") ➞ "Invalid input."
+
+Notes
+Each dance move will be selected from an array by index based on the current digit's value plus that digit's index value. If this value is greater than the last index value of the dance array, it should cycle to the beginning of the array.
+Valid input will always be a string of four digits. Output will be an array of strings.
+If the input is not four valid integers, return the string, "Invalid input."
+
+PROBLEM
+
+input: a string of 4 digits
+output: an array of four dance moves
+
+explicit rules: dance move index is equal to the value of the digit plus its index in the string array
+overflow with mod based 10
+implicit rules: can have repeated dance moves (since the dance moves is a constant)
+
+Questions: ok
+
+Mental Model:
+get the digitis as integers
+do some arithmetic with the value and the index
+shovel the corresponding dance move into the return array
+
+EXAMPLES ok
+
+DATA / ALGORITHM
+
+return "invalid" if not valid (==)
+# init new_pin
+# digit array from the string, transform to integers
+for each integer with its index in the digit array
+  # corr_index = add the integer value with its index value
+  new_pin << the correspong dance move mod 10 of corr_index
+new_pin
+
+CODE
+=end
+
+def dance_convert(string)
+  return "Invalid input." if string.chars.map{ |x| x.to_i}.join != string
+  # use #all? with a block, pass it check for integer
+  pin = string.chars.map {|x| x.to_i}
+  new_pin = []
+  pin.each_with_index do |digit, index|
+    corr_index = digit + index
+    new_pin << MOVES[corr_index % 10]
+  end
+  new_pin
+end
+
+MOVES = ["Shimmy", "Shake", "Pirouette", "Slide", "Box Step", "Headspin", "Dosado", "Pop", "Lock", "Arabesque"]
+
+# p dance_convert("0000") == ["Shimmy", "Shake", "Pirouette", "Slide"]
+# p dance_convert("3856") == [ "Slide", "Arabesque", "Pop", "Arabesque" ]
+# p dance_convert("9999") == [ "Arabesque", "Shimmy", "Shake", "Pirouette" ]
+# p dance_convert("32a1") == "Invalid input."
+
+=begin
+// //
+// 14. Longest Common Prefix
+
+// Write a function to find the longest common prefix string amongst an array of strings.
+
+  // If there is no common prefix, return an empty string "".
+
+  // //
+
+/*
+problem takewsw an array of strings as an argument, and returns a single string. the return value is the longest shared leading substring that is common to every string in the input array.
+if there is no shared leading substring, return an empty string.
+
+data structure
+inpuit array output string. iteration
+algo ===>
+1) declare a result variable init to the [];
+2) declare a first variable and init to the value of first element of input array
+--------- iterate over the first variable
+-------------declare a sub variable and initiliZe to the value of a slice of the substring. starting from 0 index, incrementing the ending index by one each iteration.
+--------------------check if every word in the input array starts with this sub , if so it will go into the result variable
+3) sort the result variable in descending order.
+4)  return the first element from the result variablle
+*/
+function f (arr) {
+  let result = [];
+  let first = arr[0];
+  for (let i = 0; i <= first.length; i++) {
+    let prefix = first.slice(0, i);
+  if (arr.every(word => word.startsWith(prefix))) {
+    result.push(prefix);
+  }
+  }
+  result.sort((a, b)=> b.length - a.length);
+  return result[0]
+  }
+  console.log(f(["flower","flow","flight"]))//"fl"
+console.log(f(["flower","flow","light"]))//""
+  console.log(f(["flower","flow","fight"]))//"f"
+console.log(f(["dog","racecar","car"]))// ""
+=end
+
+=begin
+# my algo
+# if all the values don't sum >= target, #   return 0
+
+# init mins array
+# for each value with index in the array
+#   slice the array from index to the end, and from this sliced array
+#   sum = first element
+  increment sum with the next value
+    check the sum,
+      if the sum >= target
+        put the index in the mins array
+        move to next iteration
+      if the sum isn't bigger,
+                       keep going (add next value)
+return mins.min
+
+algo for helper method:
+given an array and the target, return the min length starting from the
+beginning that sums to target
+init sum
+for each with index value in the array
+  inrement sum
+  if sum >= target
+    return (index + 1)
+=end
+
+def min_length_sum(array, target)
+  sum = 0
+  array.each_with_index do |value, index|
+    sum += value
+    return (index + 1) if sum >= target
+  end
+  nil
+end
+
+def minSubLength(array, target)
+  return 0 if array.sum < target
+
+  mins_array = []
+  array.each_with_index do |value, index|
+    work = array[index..-1]
+    minimum = min_length_sum(work, target)
+    mins_array += [minimum] if minimum != nil
+  end
+  mins_array.min
+end
+#
+# [2, 3, 1, 2, 4, 3].each_cons(n) do |value|
+#   p value
+# end
+# p "minSubLength"
+# p minSubLength([4, 3, 1, 2, 2, 1], 7) == 2
+# p minSubLength([1, 10, 5, 2, 7], 9) == 1
+# p minSubLength([1, 11, 100, 1, 0, 200, 3, 2, 1, 250], 280) == 4
+# p minSubLength([1, 2, 4], 8) == 0
+
+=begin
+Common Mistakes
+- Not enough time spent parsing the problem
+- Fuzzy algorithm
+- Lack of flexibility
+- Lack of syntax fluency
+=end
+
+=begin (that one guy's solution )
+# Algorithm:
+define `minSubLength` method with two paramter `array` and `target`
+return `0` if `array`` sum is less than `target`
+  initialize `subarrays` array to contain valid subarrays
+  create all subarrays
+    return subarray to `subarrays` if subarray sum is greater than or equal to `target`
+  sort subarrays by size of sub array # step isn't needed if returning min
+  return size of min subarray
+  end
+
+# Code:
+
+def minSubLength(array, target)
+  return 0 if array.sum < target
+  subarrays = []
+  (0...array.length).each do |index|
+    (1..(array.length - index)).each do |length|
+      subarrays << array[index, length] unless array[index, length].sum < target
+    end
+  end
+
+  subarrays.min_by {|arr| arr.size}.size
+
+end
+=end
 
 =begin
 PROBLEM
