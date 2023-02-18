@@ -514,6 +514,257 @@ end
 # p scramble('scriptingjava','javascript') == true
 
 =begin
+A string is considered to be in title case if each word in the string is either (a) capitalised (that is, only the first letter of the word is in upper case) or (b) considered to be an exception and put entirely into lower case unless it is the first word, which is always capitalised.
+
+Write a function that will convert a string into title case, given an optional list of exceptions (minor words). The list of minor words will be given as a string with each word separated by a space. Your function should ignore the case of the minor words string -- it should behave in the same way even if the case of the minor word string is changed.
+
+PROBLEM
+given a string title and a string of execptions, return the string in title case
+
+input: the string to be title cased, a string of exceptions separated by spaces
+output: the title cased string
+
+explicit rules: first word is always capitalized
+exception words are lowercased (regardless of input of exceptions)
+every other word is capitalized
+implicit rules: if no exceptions, each word is captialized
+
+Questions: ok
+
+Mental Model:
+
+
+EXAMPLES
+
+DATA / ALGORITHM
+# default the Exception parameter to an empty string
+# downcase both strings
+# array for both strings
+
+# map with index the title array, for each word in the title string
+  # if index is 0
+  #   cap the word
+  if the word is included in the Exception array
+    word
+  else,
+    word capitalised
+
+CODE
+=end
+
+def title_case(title, exceptions = "")
+  title_array = title.downcase.split
+  except_array = exceptions.downcase.split
+
+  title_array.map.with_index do |word, index|
+    if index == 0
+      word.capitalize
+    elsif except_array.include?(word)
+      word
+    else
+      word.capitalize
+    end
+  end.join(' ')
+end
+
+# p title_case('a clash of KINGS', 'a an the Of') == 'A Clash of Kings'
+# p title_case('THE WIND IN THE WILLOWS', 'The In') == 'The Wind in the Willows'
+# p title_case('the quick brown fox') == 'The Quick Brown Fox'
+
+=begin
+The marketing team is spending way too much time typing in hashtags.
+Let's help them with our own Hashtag Generator!
+
+Here's the deal:
+
+It must start with a hashtag (#).
+All words must have their first letter capitalized.
+If the final result is longer than 140 chars it must return false.
+If the input or the result is an empty string it must return false.
+Examples
+" Hello there thanks for trying my Kata"  =>  "#HelloThereThanksForTryingMyKata"
+"    Hello     World   "                  =>  "#HelloWorld"
+""                                        =>  false
+
+PROBLEM
+
+input: string
+output: hashtag string
+
+explicit rules: if the string > 140 characters, false
+every word capitalized
+starts with "#"
+implicit rules: ok
+
+Questions: ok
+
+Mental Model:
+get the array of the words, cap each one, joine without a space, put # at the front
+
+EXAMPLES
+
+DATA / ALGORITHM
+# given String
+# if string > 139 return false
+# return false if string == ""
+# array of words, map! each capitalize
+join
+prepend #
+
+CODE
+=end
+
+def generateHashtag(string)
+  return false if string.split.join.size > 139
+  return false if string.split.join == ""
+
+  array = string.split.map { | word | word.capitalize}
+  array.join.prepend("#")
+end
+
+# p "hashtag sexy ghost"
+# p generateHashtag("") == false
+# p generateHashtag(" " * 200) == false
+# p generateHashtag("Do We have A Hashtag") == "#DoWeHaveAHashtag"
+# p generateHashtag("Codewars") == "#Codewars"
+# p generateHashtag("Codewars Is Nice") ==  "#CodewarsIsNice"
+# p generateHashtag("Codewars is nice") == "#CodewarsIsNice"
+# p generateHashtag("code" + " " * 140 + "wars") == "#CodeWars"
+# p generateHashtag("Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong Cat") == false
+# p generateHashtag("a" * 139) == "#A" + "a" * 138
+# p generateHashtag("a" * 140) == false
+
+=begin
+An anagram is the result of rearranging the letters of a word to produce a new word (see wikipedia).
+
+Note: anagrams are case insensitive
+
+Complete the function to return true if the two arguments given are anagrams of each other; return false otherwise.
+
+Examples
+"foefet" is an anagram of "toffee"
+
+"Buckethead" is an anagram of "DeathCubeK"
+=end
+
+=begin
+PROBLEM - return a boolean for whether or not two words are anagrams
+
+  input: two strings
+  output: boolean
+
+  explicit rules: if the letters of the two match exactly, return true, else false
+  case insensitive
+
+  implicit rules: ok
+
+  Questions: ok
+
+  Mental Model:
+  take both st
+
+  EXAMPLES
+
+  DATA / ALGORITHM
+  downcase and sort the arrays of both strings
+  compare with equality, return value
+
+  CODE
+=end
+
+def is_anagram(s1, s2)
+  s1 = s1.downcase.chars.sort
+  s2 = s2.downcase.chars.sort
+  s1 == s2
+end
+
+p is_anagram('Creative', 'Reactive') == true
+p is_anagram("foefet", "toffee") == true
+p is_anagram("Buckethead", "DeathCubeK") == true
+p is_anagram("Twoo", "WooT") == true
+p is_anagram("dumble", "bumble") == false
+p is_anagram("ound", "round") == false
+p is_anagram("apple", "pale") == false
+
+=begin
+Given a string of words, you need to find the highest scoring word.
+
+Each letter of a word scores points according to its position in the alphabet: a = 1, b = 2, c = 3 etc.
+
+You need to return the highest scoring word as a string.
+
+If two words score the same, return the word that appears earliest in the original string.
+
+All letters will be lowercase and all inputs will be valid.
+=end
+
+=begin
+PROBLEM - return the first word with the highest score in a string, where score is the sum of the positions in the alphabet
+
+input: string of words
+output: a string word
+
+explicit rules: each letter is worth its place value in the alphabet
+  highest score is returned, tie returns the first such word
+implicit rules: ok
+
+Questions: ok
+
+Mental Model:
+hash with key value pairs as letters and their scores
+iterate through each word, calculate sum with the hash
+compare the scores with current best score, replace if better
+
+EXAMPLES
+
+DATA / ALGORITHM
+get the alphabet array, create the hash with the scores by adding one to the index
+keys are letters, scores are values
+
+score Method (word)
+score = 0
+for each char in the word
+incremenet the score for each value that matches the key
+
+assign first word to current best
+for each word in the string array
+  replace if score of word > current best score
+
+  best word
+
+CODE
+=end
+
+ALPHA_HASH = {}
+("a".."z").to_a.each_with_index do |letter, index|
+  ALPHA_HASH[letter] = (index + 1)
+end
+
+# could also: ALPHA_HASH = ("a".."z").to_a.zip(1..26).to_h
+# wow!
+
+def score(word)
+  score = 0
+  word.chars.each do |letter|
+    score += ALPHA_HASH[letter]
+  end
+  score
+end
+
+def high(string)
+  current_best = string.split.first
+  string.split.each do |word|
+    current_best = word if score(word) > score(current_best)
+  end
+  current_best
+end
+
+# p high('man i need a taxi up to ubud') == 'taxi'
+# p high('what time are we climbing up the volcano') == 'volcano'
+# p high('take me to semynak') == 'semynak'
+# p high('aaa b') == 'aaa'
+# p high('aa b') == 'aa'
+=begin
 PROBLEM
 
 input:
