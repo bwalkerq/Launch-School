@@ -805,3 +805,65 @@ DATA / ALGORITHM
 CODE
 =end
 
+# to do with devin:
+
+# # Write a function that connects each previous word to the next word by the shared letters. Return the resulting string (removing duplicate characters in the overlap) and the minimum number of shared letters across all pairs of strings.
+
+=begin
+PROBLEM given some strings, remove the adjacent letters in common, and squish them together
+also return the min number of shared letters between any two adj words
+
+input: an array of string words
+output: 2-element array, [the funny-joined string, min num of shared letters]
+
+explicit rules: any letters that are shared in common between adj words get written once in the joined string (instead of twice)
+min num of shared letters gets returned
+implicit rules: different word pairs can share different numbers of letters in common
+
+Questions: ok
+
+Mental Model:
+some time of last compared to first
+slicing from the back of the first, from the front of the second word, length incrementing,
+when the substrings match, concat from the incremented length to the end of the next word onto frank
+
+
+EXAMPLES
+
+DATA / ALGORITHM
+# init frank to first word of the Array
+# lengths array = []
+
+# for each with index word in the array
+  # skip the first word
+  # length = 1
+  # for 1 up to legnth of the current word
+    # if the frank[-length, length] == word[0, length]
+      # concat the end of the word to frank
+      # shovel the current length into the lengths_array
+    end
+  end
+  [frank, and the min of the lengths array]
+
+CODE
+=end
+
+def join(array)
+  frank = array[0]
+  lengths_array = []
+
+  array.each_with_index do |word, index|
+    next if index == 0
+    1.upto(word.length) do |length|
+      if frank[-length, length] == word[0, length]
+        frank << word[(length)..]
+        lengths_array << length
+      end
+    end
+  end
+  [frank, lengths_array.min]
+end
+puts "--------------------join frank"
+p join(["oven", "envier", "erase", "serious"])  == ["ovenvieraserious", 2]
+p join(["move", "over", "very"]) == ["movery", 3]
+p join(["to", "ops", "psy", "syllable"])  == ["topsyllable", 1]
