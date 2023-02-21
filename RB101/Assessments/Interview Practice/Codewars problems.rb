@@ -337,6 +337,10 @@ end
 # then down, or down then up is true a spiral array is an array that goes up
 # in value and down, write a method that tests an array to see if it is a spiral
 
+# An array of integers is a SPIRAL if the integers increase to a max value,
+# and then decrease down from there. Write a method that returns true if an
+# array is a spiral, else return false.
+
 =begin
 PROBLEM
 input: array of integers
@@ -379,26 +383,21 @@ def spiral(array)
   return false if array.count(max) > 1
   max_index = array.index(max)
   array.each_with_index do |n, i|
-    if i < max_index && n < array[i+1]
-      next
-    elsif n == max
-      next
-    elsif i == (array.size - 1)
-      return true
-    elsif i > max_index && n > array[i+1]
-      next
-    else
-      return false
-    end
+    next if i < max_index && n < array[i+1]
+    next if n == max
+    return true if i == (array.size - 1)
+    next if i > max_index && n > array[i+1]
+    return false
   end
 end
 
-# p "-------sprial tests"
-# p spiral([1,2,3,2,1]) == true
-# p spiral([1,2,4,6,4,2,1]) == true
-# p spiral([0,3,5,4,3,2,1]) == true
-# p spiral([0,3,5,5,4,3,2,1]) == false
-# p spiral([1,2,4,6,4,2,4]) == false
+p "-------sprial tests"
+p spiral([1,2,3,2,1]) == true
+p spiral([1,2,4,6,4,2,1]) == true
+p spiral([0,3,5,4,3,2,1]) == true
+p spiral([0,3,5,5,4,3,2,1]) == false
+p spiral([1,2,4,6,4,2,4]) == false
+p spiral([1,5,4,6,4,2,4]) == false
 # verbalize expectation of a test before running the test
 
 =begin
