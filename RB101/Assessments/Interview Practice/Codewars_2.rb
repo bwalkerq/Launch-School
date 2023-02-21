@@ -678,13 +678,13 @@ def is_anagram(s1, s2)
   s1 == s2
 end
 
-p is_anagram('Creative', 'Reactive') == true
-p is_anagram("foefet", "toffee") == true
-p is_anagram("Buckethead", "DeathCubeK") == true
-p is_anagram("Twoo", "WooT") == true
-p is_anagram("dumble", "bumble") == false
-p is_anagram("ound", "round") == false
-p is_anagram("apple", "pale") == false
+# p is_anagram('Creative', 'Reactive') == true
+# p is_anagram("foefet", "toffee") == true
+# p is_anagram("Buckethead", "DeathCubeK") == true
+# p is_anagram("Twoo", "WooT") == true
+# p is_anagram("dumble", "bumble") == false
+# p is_anagram("ound", "round") == false
+# p is_anagram("apple", "pale") == false
 
 =begin
 Given a string of words, you need to find the highest scoring word.
@@ -764,48 +764,57 @@ end
 # p high('take me to semynak') == 'semynak'
 # p high('aaa b') == 'aaa'
 # p high('aa b') == 'aa'
+
 =begin
-PROBLEM
+You are given an array (which will have a length of at least 3, but could be
+ very large) containing integers. The array is either entirely comprised of
+odd integers or entirely comprised of even integers except for a single
+integer N. Write a method that takes the array as an argument and returns
+this "outlier" N.
 
-input:
-output:
+Examples
+[2, 4, 0, 100, 4, 11, 2602, 36]
+Should return: 11 (the only odd number)
 
-explicit rules:
-implicit rules:
+[160, 3, 1719, 19, 11, 13, -21]
+Should return: 160 (the only even number)
 
-Questions:
+PROBLEM return the lone odd or even integer in a group of mostly odds or evens
+
+input: array of integers
+output: the lone ran(inte)ger
+
+explicit rules: all but one number is even/odd, with a single odd/even
+implicit rules: ok
+
+Questions: ok
 
 Mental Model:
+need to deal with two cases
+count the evens, if 1, then return, if not return the one value that is odd
 
 EXAMPLES
 
 DATA / ALGORITHM
+given an array
+case: count the number of nums that are 0 mod 2
+  if 1, select the one that is 0 mod 2
+  else, select the num that is 1 mod 2
 
 CODE
 =end
+def lone_ranger(array)
+  case array.count { |n| n % 2 == 0}
+  when 1
+    array.select { |n| n % 2 == 0}[0]
+  else
+    array.select { |n| n % 2 == 1}[0]
+  end
+end
+# p "lone ranger"
+# p lone_ranger([2, 4, 0, 100, 4, 11, 2602, 36]) == 11
+# p lone_ranger([160, 3, 1719, 19, 11, 13, -21]) == 160
 
-
-=begin
-PROBLEM
-
-input:
-output:
-
-explicit rules:
-implicit rules:
-
-Questions:
-
-Mental Model:
-
-EXAMPLES
-
-DATA / ALGORITHM
-
-CODE
-=end
-
-# to do with devin:
 
 # # Write a function that connects each previous word to the next word by the shared letters. Return the resulting string (removing duplicate characters in the overlap) and the minimum number of shared letters across all pairs of strings.
 
@@ -863,7 +872,382 @@ def join(array)
   end
   [frank, lengths_array.min]
 end
-puts "--------------------join frank"
-p join(["oven", "envier", "erase", "serious"])  == ["ovenvieraserious", 2]
-p join(["move", "over", "very"]) == ["movery", 3]
-p join(["to", "ops", "psy", "syllable"])  == ["topsyllable", 1]
+# puts "--------------------join frank"
+# p join(["oven", "envier", "erase", "serious"])  == ["ovenvieraserious", 2]
+# p join(["move", "over", "very"]) == ["movery", 3]
+# p join(["to", "ops", "psy", "syllable"])  == ["topsyllable", 1]
+
+=begin
+Pete likes to bake some cakes. He has some recipes and ingredients. Unfortunately he is not good in maths. Can you help him to find out, how many cakes he could bake considering his recipes?
+
+Write a function cakes(), which takes the recipe (object) and the available ingredients (also an object) and returns the maximum number of cakes Pete can bake (integer). For simplicity there are no units for the amounts (e.g. 1 lb of flour or 200 g of sugar are simply 1 or 200). Ingredients that are not present in the objects, can be considered as 0.
+
+Examples:
+
+// must return 2
+cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200});
+// must return 0
+cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000});
+
+PROBLEM
+Given a recipe and available ingredients, return the max number of cakes that can be made
+
+input: hash of recipe, hash of available ingredients
+output: integer
+
+explicit rules:
+if a cake can be made, it needs to be counted
+  max number of cakes that can be made is returned
+  if an ingedient isn't listed, there's 0
+implicit rules:
+
+Questions: ok
+
+Mental Model:
+if any ingredient is needed but not avail, return 0
+for each ingredient needed, divide the avail by needed, store that value, and return the min of those values
+
+EXAMPLES
+
+DATA / ALGORITHM
+# for each key in the recipe, if the key doesn't exist in available hash, return 0
+
+# init mins Array
+for each key in the recipe,
+  corresponding key value avail/ value needed, store in an array
+
+  return the min
+
+CODE
+=end
+
+def cakes(recipe, avail)
+  recipe.each_key do |ingred|
+    case avail.key?(ingred)
+    when true then next
+    when false then return 0
+    end
+  end
+
+  mins = []
+  recipe.each do |ingred, value|
+    mins << avail[ingred] / value
+  end
+  mins.min
+end
+
+# p cakes({"flour"=>500, "sugar"=>200, "eggs"=>1},{"flour"=>1200, "sugar"=>1200, "eggs"=>5, "milk"=>200}) == 2
+# p cakes({"cream"=>200, "flour"=>300, "sugar"=>150, "milk"=>100, "oil"=>100},{"sugar"=>1700, "flour"=>20000, "milk"=>20000, "oil"=>30000, "cream"=>5000}) == 11
+# p cakes({"apples"=>3, "flour"=>300, "sugar"=>150, "milk"=>100, "oil"=>100},{"sugar"=>500, "flour"=>2000, "milk"=>2000}) == 0
+# p cakes({"apples"=>3, "flour"=>300, "sugar"=>150, "milk"=>100, "oil"=>100},{"sugar"=>500, "flour"=>2000, "milk"=>2000, "apples"=>15, "oil"=>20}) == 0
+# p cakes({"eggs"=>4, "flour"=>400},{}) == 0
+# p cakes({"cream"=>1, "flour"=>3, "sugar"=>1, "milk"=>1, "oil"=>1, "eggs"=>1},{"sugar"=>1, "eggs"=>1, "flour"=>3, "cream"=>1, "oil"=>1, "milk"=>1}) == 1
+
+=begin
+Your task is to sort a given string. Each word in the string will contain a single number. This number is the position the word should have in the result.
+
+Note: Numbers can be from 1 to 9. So 1 will be the first word (not 0).
+
+If the input string is empty, return an empty string. The words in the input String will only contain valid consecutive numbers.
+Examples
+
+"is2 Thi1s T4est 3a"  -->  "Thi1s is2 3a T4est"
+"4of Fo1r pe6ople g3ood th5e the2"  -->  "Fo1r the2 g3ood 4of th5e pe6ople"
+""  -->  ""
+
+PROBLEM
+given a mixed up string, put the string in order by the number that each word has embedded inside of it.
+
+input: mixed up string
+output: ordered string
+
+explicit rules: empty string --> empty String
+always consecutive numbers
+output string is ordered by number
+
+implicit rules: numbers are 1 through length
+number can be anywhere inside of the word
+
+Questions: ok
+
+Mental Model:
+array of the string split
+from 1 to string length
+  if the word includes the number
+    shovel the word to the ordered Array
+join the array with a space
+
+EXAMPLES
+
+DATA / ALGORITHM
+array of the string split
+from 1 to string length
+  if the word includes the number
+    shovel the word to the ordered Array
+join the array with a space
+
+CODE
+=end
+
+def order(string)
+  array = string.split
+  ordered = []
+  1.upto(array.length) do |n|
+    array.each do |word|
+      if word.include?(n.to_s)
+        ordered << word
+      end
+    end
+  end
+  ordered.join(' ')
+end
+
+# p order("is2 Thi1s T4est 3a") == "Thi1s is2 3a T4est"
+# p order("4of Fo1r pe6ople g3ood th5e the2") == "Fo1r the2 g3ood 4of th5e pe6ople"
+# p order("") == ""
+
+=begin
+You are going to be given an array of integers. Your job is to take that array and find an index N where the sum of the integers to the left of N is equal to the sum of the integers to the right of N. If there is no index that would make this happen, return -1.
+
+For example:
+
+Let's say you are given the array {1,2,3,4,3,2,1}:
+Your function will return the index 3, because at the 3rd position of the array, the sum of left side of the index ({1,2,3}) and the sum of the right side of the index ({3,2,1}) both equal 6.
+
+=begin
+PROBLEM - return the index where numbers on left sum to n's on right
+
+input: array of integers
+output: integer rep the index of the balance point
+
+explicit rules: sums be equal on either side
+return the index of the balance point
+
+implicit rules: the num at the balance point isn't counted in either sum
+
+Questions: ok
+
+Mental Model:
+sum could have different nums comprising the sum
+ each with index compare the R and L sums, when equal return the index,
+ if never equal, return -1
+
+EXAMPLES
+
+DATA / ALGORITHM
+for each with index n in the Array
+  array
+
+CODE
+=end
+
+def find_even_index(array)
+  array.each_with_index do |n, index|
+    if array[0...index].sum == array[(index+1)..].sum
+      return index
+    end
+  end
+  -1
+end
+#very exciting 8-min or so buzzer beater, the second of two problems within a
+# 25 min timespan. Very psyched.
+
+# p find_even_index([1,2,3,4,3,2,1]) == 3
+# p find_even_index([1,100,50,-51,1,1]) == 1
+# p find_even_index([1,2,3,4,5,6]) == -1
+# p find_even_index([20,10,30,10,10,15,35]) == 3
+# p find_even_index([20,10,-80,10,10,15,35]) == 0
+# p find_even_index([10,-80,10,10,15,35,20]) == 6
+
+=begin
+Problem to do with Devin? or Cruz?
+Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sum to target.
+
+  Each number in candidates may only be used once in the combination.
+
+  Note: The solution set must not contain duplicate combinations.
+
+Input: candidates = [10,1,2,7,6,1,5], target = 8
+Output:
+  [
+    [1,1,6],
+    [1,2,5],
+    [1,7],
+    [2,6]
+  ]
+Example 2:
+
+  Input: candidates = [2,5,2,1,2], target = 5
+Output:
+  [
+    [1,2,2],
+    [5]
+  ]
+=end
+
+=begin
+Write a function that, given a string of text (possibly with punctuation and
+ line-breaks), returns an array of the top-3 most occurring words, in
+descending order of the number of occurrences.
+
+Assumptions:
+A word is a string of letters (A to Z) optionally containing one or more
+apostrophes (') in ASCII. (No need to handle fancy punctuation.)
+Matches should be case-insensitive, and the words in the result should be
+lowercased.
+Ties may be broken arbitrarily.
+If a text contains fewer than three unique words, then either the top-2 or
+top-1 words should be returned, or an empty array if a text contains no words.
+
+Examples:
+top_3_words("In a village of La Mancha, the name of which I have no desire to call to
+mind, there lived not long since one of those gentlemen that keep a lance
+in the lance-rack, an old buckler, a lean hack, and a greyhound for
+coursing. An olla of rather more beef than mutton, a salad on most
+nights, scraps on Saturdays, lentils on Fridays, and a pigeon or so extra
+on Sundays, made away with three-quarters of his income.")
+# => ["a", "of", "on"]
+
+top_3_words("e e e e DDD ddd DdD: ddd ddd aa aA Aa, bb cc cC e e e")
+# => ["e", "ddd", "aa"]
+
+top_3_words("  //wont won't won't")
+# => ["won't", "wont"]
+Bonus points (not really, but just for fun):
+Avoid creating an array whose memory footprint is roughly as big as the input text.
+Avoid sorting the entire array of unique words.
+PROBLEM
+given a string of a bunch of words, return an array of the three most freq
+used words
+
+input: string of words
+output: array in dec order of top 3
+
+explicit rules: anything of letters is a word, may include "'"
+ties broken aribitrarily
+descending order for the return
+
+implicit rules: ignore other punctuation
+
+Questions: ok
+
+Mental Model:
+for each of the uniq words in the string
+create a hash with word key, count value
+find largest 3 values
+return those words
+
+EXAMPLES
+
+DATA / ALGORITHM
+# downcase the string
+# delete anything that's not a letter or an '
+# init occurance_hash
+# for each uniq word in the string
+#   key word with value occurance
+get the array of the values, sort and reverse
+populate the return array with the keys that match the top three [0, 1, 2]
+indeces from the keys array+
+
+CODE
+=end
+def top_3_words(string)
+  occurance_hash = string.downcase.scan(/([a-z]['a-z]*)/).flatten.tally
+  array = occurance_hash.to_a.sort_by { |subarray| -subarray[1]}
+  array.map{ |sub| sub[0] }[0,3] # if there's fewer than 3 items, you get
+  # what is there (so that's nice.)
+end
+
+# p "name: joe something else something
+# thing name: bill name: ".scan(/name\: ([a-z]+)/)
+# p "top_3"
+# p top_3_words("a a a  b  c c  d d d d  e e e e e") == ["e", "d", "a"]
+# p top_3_words("' a a a  b  c c  d d d d  e e e e e") == ["e", "d", "a"]
+# p top_3_words("e e e e DDD ddd DdD: ddd ddd aa aA Aa, bb cc cC e e e") ==
+#  ["e", "ddd", "aa"]
+# p top_3_words("  //wont won't won't") == ["won't", "wont"]
+# p top_3_words("  , e   .. ") == ["e"]
+# p top_3_words("  ...  ") == []
+# p top_3_words("  '  ") == []
+# p top_3_words("  '''  ") == []
+# p top_3_words("""In a village of La Mancha, the name of which I have no desire to call to
+# mind, there lived not long since one of those gentlemen that keep a lance
+# in the lance-rack, an old buckler, a lean hack, and a greyhound for
+# coursing. An olla of rather more beef than mutton, a salad on most
+# nights, scraps on Saturdays, lentils on Fridays, and a pigeon or so extra
+# on Sundays, made away with three-quarters of his income.""") == ["a", "of", "on"]
+
+=begin
+6 kyu
+Complete the solution so that it splits the string into pairs of two
+characters. If the string contains an odd number of characters then it
+should replace the missing second character of the final pair with an
+underscore ('_').
+
+PROBLEM given a string chop of pairs of characters as elements of an array
+put a _ at the end if necessary
+
+input: string, no spaces
+output: array of two-char strings
+
+explicit rules:
+if odd number of charachters, the last char is _
+
+implicit rules: no spaces
+
+Questions:
+
+Mental Model:
+use #first 2 repeatedly, mutate the string
+grab even numbered indices, for length 2 slices
+
+EXAMPLES
+
+DATA / ALGORITHM
+if string length is odd, << a _
+
+while index < length - 1
+  if index is even
+    shovel a 2-lnegth slice to the array
+  if index odd
+    next
+end
+array
+
+CODE
+=end
+def solution(string)
+  string << "_" if string.length.odd?
+  array = []
+
+  0.upto(string.length-1) do |n|
+    n.even? ? array << string[n,2] : next
+  end
+  array
+end
+
+# p solution('abc') == ['ab', 'c_']
+# p solution('abcdef') == ['ab', 'cd', 'ef']
+# p solution("abcdef") == ["ab", "cd", "ef"]
+# p solution("abcdefg") == ["ab", "cd", "ef", "g_"]
+# p solution("") == []
+
+=begin
+PROBLEM
+
+input:
+output:
+
+explicit rules:
+implicit rules:
+
+Questions:
+
+Mental Model:
+
+EXAMPLES
+
+DATA / ALGORITHM
+
+CODE
+=end
