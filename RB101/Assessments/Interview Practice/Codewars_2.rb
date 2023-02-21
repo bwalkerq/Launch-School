@@ -72,7 +72,8 @@ end
 Complete the function that takes an array of words.
 
 You must concatenate the nth letter from each word to construct a new word
-which should be returned as a string, where n is the position of the word in the list.
+which should be returned as a string, where n is the position of the word in
+ the list.
 
 For example:
 
@@ -81,10 +82,11 @@ For example:
   n=0     n=1     n=2
 Note: Test cases contain valid input only - i.e. a string array or an empty
 array; and each word will have enough letters.
-PROBLEM
+
+PROBLEM - get all the nth characters to make a word
 
 input: array of strings
-output: the string that joins the nth letter from the nth indexed word
+output: the string made by joining the nth letter from the nth indexed word
 
 explicit rules: nth letter from nth word gets joined
 implicit rules: the length of the word is the lenth of the array
@@ -92,22 +94,33 @@ implicit rules: the length of the word is the lenth of the array
 Questions: none
 
 Mental Model:
-
+crawl through with index, take the slice of length 1 and shovel
 
 EXAMPLES
 
 DATA / ALGORITHM
+init string ""
+
+for each word with index, n, in the given array
+  string shovel in slice the word starting at index of length 1
+
+string
 
 CODE
 =end
 def nth_char(array)
-
+  string = ""
+  array.each_with_index do | word, index |
+    string << word[index,1]
+  end
+  string
 end
-p nth_char(['yoda', 'best', 'has']) == 'yes'
-p nth_char([]) == ''
-p nth_char(['X-ray']) == 'X'
-p nth_char(['No', 'No']) == 'No'
-p nth_char(['Chad', 'Morocco', 'India', 'Algeria', 'Botswana', 'Bahamas', 'Ecuador', 'Micronesia']) ==  'Codewars'
+
+# p nth_char(['yoda', 'best', 'has']) == 'yes'
+# p nth_char([]) == ''
+# p nth_char(['X-ray']) == 'X'
+# p nth_char(['No', 'No']) == 'No'
+# p nth_char(['Chad', 'Morocco', 'India', 'Algeria', 'Botswana', 'Bahamas', 'Ecuador', 'Micronesia']) ==  'Codewars'
 
 
 
