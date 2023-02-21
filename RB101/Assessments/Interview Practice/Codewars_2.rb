@@ -1246,6 +1246,96 @@ end
 # p solution("") == []
 
 =begin
+Complete the method that takes a hash/object/directory/association list of users, and find the nexus: the user whose rank is the closest is equal to his honor. Return the rank of this user. For each user, the key is the rank and the value is the honor.
+
+If nobody has an exact rank/honor match, return the rank of the user who
+comes closest. If there are several users who come closest, return the one
+with the lowest rank (numeric value). The hash will not necessarily contain
+consecutive rank numbers; return the best match from the ranks provided.
+
+Example
+         rank    honor
+users = {  1  =>  93,
+          10  =>  55,
+          15  =>  30,
+          20  =>  19,    <--- nexus
+          23  =>  11,
+          30  =>   2 }
+=end
+def nexus(hash)
+  hash.sort.sort_by { | k, v | (k-v).abs }[0][0]
+end
+
+# p nexus({10 => 9, 1 => 3, 3 => 3, 5 => 1}) #== 3
+# p nexus({11 => 10, 2 => 6, 3 => 4, 5 => 1}) #== 3
+# p nexus({1 => 10, 2 => 3, 3 => 4, 5 => 1}) #== 2
+#whoops hack and slash but I'm glad I did it.
+# I learned that #sort is used for hashes, returns a 2-d array, and that
+# sortby can be used on hashes as well. Also min by returns the min sub array
+# according to the block passed to minby
+
+=begin
+#Find the missing letter
+
+Write a method that takes an array of consecutive (increasing) letters as
+input and that returns the missing letter in the array.
+
+  You will always get an valid array. And it will be always exactly one
+letter be missing. The length of the array will always be at least 2.
+    The array will always contain letters in only one case.
+
+  Example:
+
+  ['a','b','c','d','f'] -> 'e' ['O','Q','R','S'] -> 'P'
+
+["a","b","c","d","f"] -> "e"
+["O","Q","R","S"] -> "P"
+(Use the English alphabet with 26 letters!)
+
+PROBLEM - find the missing letter
+
+input: a valid array of increasing string letters, one missing
+output: the missing letter as a string
+
+explicit rules: one missing, find and return it
+
+implicit rules:
+
+Questions:
+
+Mental Model:
+array of all the letters
+for each letter in the given array
+  if the next letter's index is one more than it, next
+  else return the next letter that should be there
+
+EXAMPLES
+
+DATA / ALGORITHM
+LETTERS range obj to_a
+
+for each letter in the given array
+  if the next letter's index in LETTERS is one more than that letter's index,
+next
+  else return the next letter that should be there
+CODE
+=end
+def missing_letter(array)
+  letters = ('A'..'Z').to_a + ('a'..'z').to_a
+  array.each_with_index do |char, index|
+    next if letters.index(array[index+1]) == letters.index(char)+1
+    return letters[letters.index(char)+1]
+  end
+end
+
+def find_missing_letter(arr) #damn!
+  ((arr.first..arr.last).to_a - arr).first
+end
+# p find_missing_letter(["a","b","c","d","f"]) #== "e"
+# p missing_letter(["O","Q","R","S"]) #== "P"
+
+
+=begin
 PROBLEM
 
 input:
