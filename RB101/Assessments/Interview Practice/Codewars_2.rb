@@ -1338,6 +1338,153 @@ end
 =begin
 PROBLEM
 
+input: two arrays of integers
+output: an intger
+
+explicit rules: the output is an integer that represents the arithmetic average
+ of the squares of the abs. val differences between corresponding values
+implicit rules: ok
+
+Questions: ok
+
+Mental Model:
+zip the two arrays
+do calculations on the pairs with #map
+average
+
+EXAMPLES ok
+
+DATA / ALGORITHM
+zipped
+
+square = for each subarray in zipped #map
+  sub.first - sub.last abval squared
+
+squares.sum / array1.count
+
+CODE
+=end
+
+def mathy(arr1, arr2)
+  zipped = arr1.zip(arr2)
+
+  squares = zipped.map do |sub|
+    (sub.first - sub.last).abs**2
+  end
+
+  squares.sum.to_f / arr1.count
+end
+
+# p mathy([1, 2, 3], [4, 5, 6]) == 9
+# p mathy([10, 20, 10, 2], [10, 25, 5, -2]) == 16.5
+# p mathy([-1, 0], [0, -1]) == 1
+
+def solution(arr1, arr2)
+  res = []
+  arr1.each_with_index { |x, index|
+    res << (x - arr2[index]).abs ** 2
+  }
+  res.sum / res.length.to_f
+end
+
+def solution(arr1, arr2)
+  arr1.zip(arr2).map { |x| (x[0] - x[1]).abs ** 2 }.sum.to_f / arr1.length
+end
+
+=begin
+You are given a secret message you need to decipher. Here are the things you
+need to know to decipher it:
+
+For each word:
+the second and the last letter is switched (e.g. Hello becomes Holle)
+the first letter is replaced by its character code (e.g. H becomes 72)
+
+Note: there are no special characters used, only letters and spaces
+
+PROBLEM decipher some stuff with some rules, output something that makes sense
+
+input: string of encoded words
+output: string of deciphered words
+
+explicit rules: the 2nd and last letter are switched
+the first letter is transformed into its character code
+
+implicit rules: ok
+
+Questions: ok
+
+Mental Model:
+for each word in the encoded string
+  scan and find any number followed by anything else
+  map that scan group (2-day array with 2-elemetn subarrays)
+    on first element, call .chr, concat with
+    second element
+
+for each word in the new array
+  switch the first and last letter
+    last = pop last letter off
+    first = shift first letter out
+    word.prepend(last).concat(first)
+
+return string joined with a space
+
+
+EXAMPLES
+
+DATA / ALGORITHM
+
+CODE
+=end
+def decipher_this(string)
+  pairs = string.split.map do |word|
+    word.scan(/([0-9]+)(.*)/) #scan returns an array of arrays bc there could
+    # be multiple matching sets within a string
+  end
+  pairs.map! do |sub|
+    sub.flatten.first.to_i.chr + sub.flatten.last
+  end
+
+  pairs.map! do |string|
+    if string.size < 3
+      string
+    else
+      last = string[-1]
+      second = string[1]
+      string[1] = last
+      string[-1] = second
+      string
+    end
+  end
+  pairs.join(' ')
+end
+
+
+p decipher_this("65 119esi 111dl 111lw 108dvei 105n 97n 111ka") #== "A wise
+# old owl lived in an oak"
+p decipher_this("84eh 109ero 104e 115wa 116eh 108sse 104e 115eokp") == "The more he saw the less he spoke"
+p decipher_this("84eh 108sse 104e 115eokp 116eh 109ero 104e 104dare") == "The less he spoke the more he heard"
+p decipher_this("87yh 99na 119e 110to 97ll 98e 108eki 116tah 119esi 111dl 98dri") == "Why can we not all be like that wise old bird"
+p decipher_this("84kanh 121uo 80roti 102ro 97ll 121ruo 104ple") #== "Thank
+# you Piotr for all your help"
+
+
+def decode_word(word)
+  chunks = word.match(/^([0-9]+)(.*)/)
+  converted_char = chunks[1].to_i.chr
+  remainder = chunks[2]
+  if remainder.length >= 2
+    return converted_char + remainder[-1] + remainder[1..-2] + remainder[0]
+  end
+  converted_char + remainder
+end
+
+def decipher_this(string)
+  string.split.map {|x| decode_word(x)}.join(' ')
+end
+
+=begin
+PROBLEM
+
 input:
 output:
 
