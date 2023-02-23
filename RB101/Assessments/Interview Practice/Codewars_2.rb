@@ -1459,12 +1459,12 @@ def decipher_this(string)
 end
 
 
-p decipher_this("65 119esi 111dl 111lw 108dvei 105n 97n 111ka") #== "A wise
-# old owl lived in an oak"
-p decipher_this("84eh 109ero 104e 115wa 116eh 108sse 104e 115eokp") == "The more he saw the less he spoke"
-p decipher_this("84eh 108sse 104e 115eokp 116eh 109ero 104e 104dare") == "The less he spoke the more he heard"
-p decipher_this("87yh 99na 119e 110to 97ll 98e 108eki 116tah 119esi 111dl 98dri") == "Why can we not all be like that wise old bird"
-p decipher_this("84kanh 121uo 80roti 102ro 97ll 121ruo 104ple") #== "Thank
+# p decipher_this("65 119esi 111dl 111lw 108dvei 105n 97n 111ka") #== "A wise
+# # old owl lived in an oak"
+# p decipher_this("84eh 109ero 104e 115wa 116eh 108sse 104e 115eokp") == "The more he saw the less he spoke"
+# p decipher_this("84eh 108sse 104e 115eokp 116eh 109ero 104e 104dare") == "The less he spoke the more he heard"
+# p decipher_this("87yh 99na 119e 110to 97ll 98e 108eki 116tah 119esi 111dl 98dri") == "Why can we not all be like that wise old bird"
+# p decipher_this("84kanh 121uo 80roti 102ro 97ll 121ruo 104ple") #== "Thank
 # you Piotr for all your help"
 
 
@@ -1482,6 +1482,523 @@ def decipher_this(string)
   string.split.map {|x| decode_word(x)}.join(' ')
 end
 
+=begin
+You are a god-fearing Christian textbook publisher, but unfortunately the
+god-hating liberal supreme court has ruled that creationism is not science
+and cannot be taught in science class. Fortunately, there is a simple
+solution. Replace all instances of 'creationist' with "intelligent design
+proponent", 'creationists' with 'intelligent design proponents', 'a creator'
+ with 'an intelligent designer' and all instances of "creationism" with
+"intelligent design" in your upcoming textbook. (This isn't your first
+rodeo: https://en.wikipedia.org/wiki/Of_Pandas_and_People#Analysis)
+
+Replace matched strings of any case with lower case strings. (a CREatOR -> a
+ creator) but otherwise preserve the capitalization of the strings.
+
+
+PROBLEM make some anti-science with a bunch of substitutions!
+
+input: string of many words
+output: string of many words with swapped out creationist stuff
+
+explicit rules:
+'creationist' with "intelligent design proponent"
+ 'creationists' with 'intelligent design proponents'
+'a creator' with 'an intelligent designer'
+"creationism" with "intelligent design"
+
+implicit rules: context doesn't have to matter, lol, rock climbing
+
+Questions: ok
+
+Mental Model:
+gsub for each of these cases
+one case can be the same with optional s? or just use the same s from the plural
+
+EXAMPLES ok
+
+DATA / ALGORITHM
+how to deal with capital letter at start of sentence
+gsub for first two cases is the same
+
+
+CODE
+=end
+def pretend_science(string)
+  string.gsub!(/creationist/i, "intelligent design proponent")
+  string.gsub!("creationism", "intelligent design")
+  string.gsub!(/a creator/, "an intelligent designer")
+  string
+end
+
+# p "Pandas and People".gsub!(/a/, "a")
+# p pretend_science('of Pandas and People gives evidence for creationism from
+# origin-of-life studies, biochemistry, genetics, homology, and paleontology.')
+# #== 'of Pandas and People gives evidence for intelligent design from origin-of-life studies, biochemistry, genetics, homology, and paleontology.'
+#
+# p pretend_science('CreaTionists believe ') == 'intelligent design proponents believe that humans being created by an intelligent designer is more probable than humans evolving from monkeys.'
+#
+# p pretend_science('Joe, a prominent creationist scientist, agrees with the other creationists in academia.') == 'Joe, a prominent intelligent design proponent scientist, agrees with the other intelligent design proponents in academia.'
+#
+# p pretend_science("In rock climbing, a 'beta creator' is one who invents beta
+#  for a problem.") == "In rock climbing, a 'betan intelligent designer' is one who invents beta for a problem."
+
+=begin
+Task :
+Given a List [] of n integers , find the minimum number to be inserted in a list, so that the sum of all elements of the list should equal the closest prime number.
+
+Notes
+List size is at least 2 .
+
+List's numbers will only have positives (n > 0) .
+
+Repetition of numbers in the list could occur .
+
+The newer list's sum should equal the closest prime number .
+
+Input >> Output Examples
+1- minimumNumber ({3,1,2}) ==> return (1)
+Explanation:
+Since , the sum of the list's elements equal to (6) , the minimum number to be inserted to transform the sum to prime number is (1) , which will make *the sum of the List** equal the closest prime number (7)* .
+2-  minimumNumber ({2,12,8,4,6}) ==> return (5)
+Explanation:
+Since , the sum of the list's elements equal to (32) , the minimum number to be inserted to transform the sum to prime number is (5) , which will make *the sum of the List** equal the closest prime number (37)* .
+3- minimumNumber ({50,39,49,6,17,28}) ==> return (2)
+Explanation:
+Since , the sum of the list's elements equal to (189) , the minimum number to be inserted to transform the sum to prime number is (2) , which will make *the sum of the List** equal the closest prime number (191)* .
+
+PROBLEM - return the number that gets the sum of the array to the nearest prime
+
+input: an array of integers
+output: an integer
+
+explicit rules:
+all integers in the arrray are positive
+return the smallest number that makes the sum equal a prime
+repeat numbers can happen
+
+implicit rules: if the sum is already prime, return zero
+
+Questions: ok
+
+Mental Model:
+I know that a prime is divisible by only 1 and itself
+increment from the sum, by one
+while loop
+
+EXAMPLES- ok
+
+DATA / ALGORITHM
+# helper for prime?(integer)
+# for each num from 1 up to integer/2
+#   if integer mod num not equal to zero
+#     return False
+#   else true
+
+min_num(array)
+get the sum of the Array
+init counter = 0
+if sum prime, return counter
+
+until prime
+  increment sum by one
+
+return the counter
+
+CODE
+=end
+def prime?(integer)
+  2.upto(Math.sqrt(integer)) do |n|
+    if integer % n == 0
+      return false
+    end
+  end
+  true
+end
+
+def minimum_number(array)
+  sum = array.sum
+  counter = 0
+  until prime?(sum)
+    counter += 1
+    sum += 1
+  end
+  counter
+end
+
+# When I'm testing, drop some p methods for variables/parameters that I'm
+# using to help me debug; twice in the debugging process of this problem I
+# talked out and figured out in my mind some incrementing issues, when I
+# could have just told my program to show me, for Example, where the modulo
+# was getting caught in the prime? helper method (it was one, because I did
+# 1.upto instead of 2.upto)
+
+# p minimum_number([3,1,2]) == 1
+# p minimum_number([5,2]) == 0
+# p minimum_number([1,1,1]) == 0
+# p minimum_number([2,12,8,4,6]) == 5
+# p minimum_number([50,39,49,6,17,28]) == 2
+
+=begin
+Write a function
+
+triple_double(num1, num2)
+which takes numbers num1 and num2 and returns 1 if there is a straight triple of a number at any place in num1 and also a straight double of the same number in num2.
+
+If this isn't the case, return 0
+
+Examples
+triple_double(451999277, 41177722899) == 1
+# num1 has straight triple 999s and  num2 has straight double 99s
+
+triple_double(1222345, 12345) == 0
+# num1 has straight triple 2s but num2 has only a single 2
+
+
+PROBLEM - return 1 if num1 contains 3 consec of a number, n, and num2 contains 2 consec of n, else return 0
+
+input: two integers
+output: 1 or 0
+
+explicit rules: return 1 if num1 contains 3 consec of a number, n, and num2 contains 2 consec of n, else return 0
+implicit rules: n has to be the same for both
+
+Questions: ok
+
+Mental Model:
+for num1 find any digit that occurs at least 3 times in a row
+  check each of those in num2 if there's 2 consec n
+  each_cons
+
+EXAMPLES ok
+
+DATA / ALGORITHM
+# check = []
+# for each cons(3) in num1,
+#   from 0 up 9, if #all? digits are n
+#   check << n
+
+for each cons(2) sub of num2
+  check.each |n|
+    sub.all?(n)
+    return 1
+
+0
+
+CODE
+=end
+
+# def triple_double(num1, num2)
+#   check = []
+#   num1.digits.each_cons(3) do |sub|
+#     0.upto(9) do |n|
+#       check << n if sub.all?(n)
+#     end
+#   end
+
+#   num2.digits.each_cons(2) do |sub|
+#     check.each do |n|
+#       return 1 if sub.all?(n)
+#     end
+#   end
+#   0
+# end
+
+# 66677789.digits.each_cons(3) do |x|
+#   p x
+# end
+
+
+def triple_double(num1, num2)
+  str1 = num1.to_s
+  str2 = num2.to_s
+  str1.chars.each do |c|
+    return 1 if str1.include?(c*3) && str2.include?(c*2)
+  end
+  0
+end
+
+# p triple_double(12345, 12345) == 0
+# p triple_double(66677789, 12345667) == 1
+# p triple_double(66666666789, 12345667) == 1
+# p triple_double(666789, 12345677) == 0
+# p triple_double("asfaaas", "aakjdfgsdfg") == 1
+
+
+# p [10,1,2,7,6,1,5].combination(3) { |n| p n }
+
+=begin
+Input: String containing different "words" separated by spaces
+
+1. More than one word? Reverse each word and combine first with second,
+third with fourth and so on...
+  (odd number of words => last one stays alone, but has to be reversed too)
+2. Start it again until there's only one word without spaces
+3. Return your result…
+
+
+PROBLEM - given a string bunch of words, mix em up in pairs a bunch till
+there's only one long string
+
+input: string of words with spaces
+output:
+
+explicit rules: reverse each word and join it with it's partner, 1-2 3-4, etc.
+odd words the last one gets reversed but not joined
+implicit rules: if one word, return it
+
+Questions: ok
+
+Mental Model:
+helper method
+select with index, even indeces do the join, the last index gets reversed only
+
+keep going until the count of the words is one
+
+EXAMPLES
+
+DATA / ALGORITHM
+helper(string)
+# new array init
+split the string into words, map, for each word with index
+  odd number words and last index
+    reverse
+  even index,
+    reverse it, join it with reversed next (index) word
+  odd index
+    ""
+# return new array joined as string
+
+main method (string)
+while string of split words count is > 1,
+reassign string to return of helper(string)
+
+CODE
+=end
+def reverse_join_helper(string)
+  array = string.split
+  return string if array.count == 1
+
+  new = array.map.with_index do |word, index|
+    if array.count.odd? && index == (array.count - 1)
+      word.reverse
+    elsif index.even?
+      word.reverse + array[index+1].reverse
+    else
+      nil
+    end
+  end
+
+  new.join(' ').strip
+end
+
+def reverse_and_combine_text (string)
+  while string.split.count > 1
+    string = reverse_join_helper(string)
+  end
+  string
+end
+
+def reverse_and_combine_text(words)
+  while words.split.length > 1
+    words = reverse_and_combine_text_helper(words)
+  end
+  words
+end
+
+def reverse_and_combine_text_helper(words)
+  split_rev = words.split.map{|x| x.reverse}
+  result = ""
+  split_rev.each_slice(2) do |x|
+    result += x.join("") + ' '
+  end
+  result.strip
+end
+
+# p reverse_and_combine_text("abc def") == "cbafed"
+# p reverse_and_combine_text("abc def ghi jkl") == "defabcjklghi"
+# p reverse_and_combine_text("dfghrtcbafed") == "dfghrtcbafed"
+# p reverse_and_combine_text("234hh54 53455 sdfqwzrt rtteetrt hjhjh lllll12  44") == "trzwqfdstrteettr45hh4325543544hjhjh21lllll"
+# p reverse_and_combine_text("sdfsdf wee sdffg 342234 ftt") == "gffds432243fdsfdseewttf"
+
+
+# p [4,5,67,2,1,43,54,6].map { |x| x.even? ? 1 : 0}.sum
+# p "abodefg".chars.map.with_index {|x, idx|
+#   idx == ALPHA.index(x) ? 1 : 0}.sum
+#
+# p "abodefg".chars.map.with_index {|x, idx|
+#   x == ALPHA[idx] ? 1 : 0}.sum
+
+def solve(string)
+  string.scan(/[aeiou]+/).map{|x| x.length}.max
+end
+# p solve("codewarriors") == 2
+# p solve("suoidea") == 3
+# p solve("iuuvgheaae") == 4
+# p solve("ultrarevolutionariees") == 3
+# p solve("strengthlessnesses") == 1
+# p solve("cuboideonavicuare") == 2
+# p solve("chrononhotonthuooaos") == 5
+# p solve("iiihoovaeaaaoougjyaw") == 8
+
+=begin
+5 kyu
+What is an anagram? Well, two words are anagrams of each other if they both
+contain the same letters. For example:
+
+'abba' & 'baab' == true
+
+'abba' & 'bbaa' == true
+
+'abba' & 'abbba' == false
+
+'abba' & 'abca' == false
+Write a function that will find all the anagrams of a word from a list. You
+will be given two inputs a word and an array with words. You should return
+an array of all the anagrams or an empty array if there are none. For example:
+
+PROBLEM - return the subset of anagrams from an array
+
+input: string word and an array of word
+output: array of subset of the anagrams
+
+explicit rules: if the letters match exactly, it gets returned in the array
+implicit rules: ok
+
+Questions: ok
+
+Mental Model:
+
+
+EXAMPLES
+
+DATA / ALGORITHM
+helper method, anagram?(target, string)
+  for each uniq character in the target word
+    if the count of letters don't match
+      false
+    if the word's length is not equal
+      false
+    else
+      true
+
+anagram(target, array)
+for each word in the array, select with anagram?
+
+CODE
+=end
+
+def anagram?(target, word)
+  return false if word.length != target.length
+  target.chars.uniq.each do |x|
+    return false if word.count(x) != target.count(x)
+  end
+  true
+end
+
+def anagrams(target, array)
+  array.select do |word|
+    anagram?(target, word)
+  end
+end
+
+def anagrams(word, options)
+  options.select{|x| x.chars.sort.join == word.chars.sort.join}
+end
+
+# p anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada']) == ['aabb',
+# 'bbaa']
+# p anagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'racer']) == ['carer', 'racer']
+# p anagrams('laser', ['lazing', 'lazy',  'lacer']) == []
+#18 min
+
+
+=begin
+6 kyu
+Given two words, how many letters do you have to remove from them to make
+them anagrams?
+Example
+First word : codewars (4 letters removed)
+Second word : hackerank (6 letters removed)
+Result : 10
+Hints
+A word is an anagram of another word if they have the same letters (usually in a different order).
+Do not worry about case. All inputs will be lowercase.
+
+PROBLEM - remove characters from one or both strings until they are anagrams
+
+input: two string words, all lowercase
+output: integer
+
+explicit rules: integer represents the min number of chars that had to be
+removed to make the strings anagrams
+
+implicit rules: min, don't erase words
+
+Questions: ok
+
+Mental Model:
+get the sorted strings,
+how to account for double letters?
+hash of the counts of each letter in each word
+compare the counts; use subtraction ab val and return the sum
+
+EXAMPLES
+
+DATA / ALGORITHM
+# for both strings
+#   create a tally hash
+
+# for each uniq char in the first string, map
+#   if the hash value exists in the second hash, get difference
+#   if not, just return the corresponding value
+
+# for each uniq char in second,
+# if not included in the first, add that value to the sum
+
+another way to do this:
+there are three sets of things:
+letters in A and not B
+  (count)
+letters in B and not A
+  (count)
+letters that occur in both (though maybe not in the same quantities)
+  (count abval difference)
+
+
+CODE
+=end
+
+def anagram_difference (string1, string2)
+  tally1 = string1.chars.tally
+  tally2 = string2.chars.tally
+  sum = string1.chars.uniq.map do |char|
+    if string2.include?(char)
+      (tally1[char] - tally2[char]).abs
+    else
+      tally1[char]
+    end
+  end.sum
+
+  string2.chars.uniq.each do |char|
+    if !(string1.include?(char))
+      sum += tally2[char]
+    end
+  end
+  sum
+end
+#29 min, a struggle!
+
+p anagram_difference('', '') == 0
+p anagram_difference('a', '') == 1
+p anagram_difference('', 'a') == 1
+p anagram_difference('ab', 'a') == 1
+p anagram_difference('ab', 'ba') == 0
+p anagram_difference('ab', 'cd') == 4
+p anagram_difference('aab', 'a') == 2
+p anagram_difference('a', 'aab') == 2
+p anagram_difference('addf', 'abcdde') #== 4
+p anagram_difference('codewars', 'hackerrank') == 10
 =begin
 PROBLEM
 
