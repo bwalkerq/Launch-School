@@ -337,9 +337,9 @@ end
 # then down, or down then up is true a spiral array is an array that goes up
 # in value and down, write a method that tests an array to see if it is a spiral
 
-# An array of integers is a SPIRAL if the integers increase to a max value,
-# and then decrease down from there. Write a method that returns true if an
-# array is a spiral, else return false.
+# An array of integers is a SPIRAL if the integers increase to a single max
+# value, and then decreases down from there. Write a method that returns
+# true if an array is a spiral, else return false.
 
 =begin
 PROBLEM
@@ -392,13 +392,18 @@ def spiral(array)
 end
 
 p "-------sprial tests"
-p spiral([1,2,3,2,1]) == true
+p spiral([1,2,4,3,2,1]) == true
 p spiral([1,2,4,6,4,2,1]) == true
 p spiral([0,3,5,4,3,2,1]) == true
 p spiral([0,3,5,5,4,3,2,1]) == false
 p spiral([1,2,4,6,4,2,4]) == false
 p spiral([1,5,4,6,4,2,4]) == false
 # verbalize expectation of a test before running the test
+
+#Feedback for Rosa 3/10
+# super thorough PEDAC, loading the problem into your brain.
+# Started writing the algorithm around 5.5 minutes
+# masterful testing, IRB first, and testing at each possible/
 
 =begin
 12. Detect Pangram
