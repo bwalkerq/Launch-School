@@ -1,9 +1,19 @@
-# Feedback that i often give:
-# Think of the interview as a presentation of your process; you want to make
-# it transparent what you're thinking and why, and also package it in a way
-# that is easy for them to understand and follow. Speak then type, avoid
-# doing at the same time.
+=begin
+Feedback that i often give:
+- Think of the interview as a presentation of your process; you want to make
+it transparent what you're thinking and why, and also package it in a way
+that is easy for them to understand and follow. While thinking, talk through
+your solution process. Once you've settled on something, state it clearly,
+and then type it out. Bite-sized ideas are great. Say a sentence or two about
+ each line of algorithm or code that you type, before you type. Then type in
+silence to give you and the interviewer a moment of silence to process.
+- When testing as you code, Always communicate what you *expect* the code to do
+*before* running the code. This demonstrates that you are in control of the
+code
+- Test as often as possible for each unique bit of code; err on the side of
+testing too much
 
+=end
 
 PROBLEMS
 # # Write a function that connects each previous word to the next word by the shared letters. Return the resulting string (removing duplicate characters in the overlap) and the minimum number of shared letters across all pairs of strings.
