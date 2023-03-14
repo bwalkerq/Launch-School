@@ -77,15 +77,43 @@ sparky = GoodDog.new('Sparky', '12 inches', '10 lbs')
 sparky.change_info('Spartacus', '24 inches', '45 lbs')
 # puts sparky.info      # => Spartacus weighs 45 lbs and is 24 inches tall.
 
-class MyCar
+class Person
+  attr_accessor :name
+  def initialize(name)
+    @name = name
+  end
+end
+
+bob = Person.new("Steve")
+bob.name = "Bob"
+p bob.name
+
+
+
+
+
+
+module Haulable
+  def haul
+    "I can haul a trailor or a big ass-boat"
+  end
+end
+
+class Vehicle
   attr_accessor :color
   attr_reader :year, :model
+  @@number_of_vehicles = 0
+
+  def self.total_number_of_vehicles
+    @@number_of_vehicles
+  end
 
   def initialize(year, color, model)
     @year = year
     @color = color
     @model = model
     @speed = 0
+    @@number_of_vehicles += 1
   end
 
   def speed_up(number)
@@ -123,30 +151,77 @@ class MyCar
   end
 
   def to_s
-    puts "your car is a #{year}, #{color}, #{model}"
+    puts "your vehicle is a #{year}, #{color}, #{model}"
+  end
+
+  def age_of_car
+    "Your #{self.model} is #{years_old} years old"
+  end
+
+  private
+
+  def years_old
+    Time.new.year - self.year
   end
 end
+
+class MyCar < Vehicle
+  CAR_DOORS = 4
+end
+
+class Truck < Vehicle
+  include Haulable
+
+  TRUCK_DOORS = 2
+
+end
+
 
 subey = MyCar.new(2017, "green", "Outback, booiii")
-# subey.speed_up(100)
-# subey.brake(60)
-# subey.speed
-# subey.shut_off
-# subey.speed
-# p subey.year
-# p subey.color
-# subey.spray_paint("white")
-# p subey.color
-# MyCar.gas_mileage(100,3)
+subey.speed_up(100)
+subey.brake(60)
+subey.speed
+subey.shut_off
+subey.speed
+p subey.year
+p subey.color
+subey.spray_paint("white")
+p subey.color
+MyCar.gas_mileage(100,3)
 puts subey
+other = MyCar.new(123,"s","s")
+otto = Truck.new(2022, "silver", "Silverado")
+p otto
 
-class Person
-  attr_accessor :name
-  def initialize(name)
+puts MyCar.total_number_of_vehicles
+puts Truck.total_number_of_vehicles
+p otto.haul
+
+p MyCar.ancestors
+p Truck.ancestors
+p Vehicle.ancestors
+
+p otto.age_of_car
+
+class Student
+  attr_reader :name
+
+  def initialize(name, grade)
     @name = name
+    @grade = grade
   end
+
+  def better_grade_than?(other_student)
+    grade > other_student.grade
+  end
+
+  protected
+
+  attr_reader :grade
+
 end
 
-bob = Person.new("Steve")
-bob.name = "Bob"
-p bob.name
+abby = Student.new("Abby", 80)
+olie = Student.new("Olie", 100)
+# p abby.grade
+puts "Well done!" if olie.better_grade_than?(abby)
