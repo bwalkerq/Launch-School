@@ -12,6 +12,8 @@ silence to give you and the interviewer a moment of silence to process.
 code
 - Test as often as possible for each unique bit of code; err on the side of
 testing too much
+- The algorithm and the code always have to align; sometimes you have to go
+back and revise your algo (blueprint and building construction, a la Spencer)
 
 =end
 
@@ -33,7 +35,7 @@ p high('aa b') == 'aa'
 
 
 # An array of integers is a SPIRAL if the integers increase to a single max
-# value, and then decreases down from there. Write a method that returns
+# value, and then decrease down from there. Write a method that returns
 # true if an array is a spiral, else return false.
 
 p spiral([1,2,4,3,2,1]) == true
