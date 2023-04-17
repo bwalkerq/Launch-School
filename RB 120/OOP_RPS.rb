@@ -1,5 +1,5 @@
 class Move
-  VALUES = %w(rock paper scissors)
+  VALUES = %w(rock paper scissors lizard spock)
 
   def initialize(value)
     @value = value
@@ -17,16 +17,45 @@ class Move
     @value == 'paper'
   end
 
-  def >(other_move)
-    rock? && other_move.scissors? ||
-      (paper? && other_move.rock?) ||
-      (scissors? && other_move.paper?)
+  def lizard?
+    @value == 'lizard'
   end
 
-  def <(other_move)
-    (rock? && other_move.paper?) ||
-      (paper? && other_move.scissors?) ||
-      (scissors? && other_move.rock?)
+  def spock?
+    @value == 'spock'
+  end
+
+  def rock_win?(other_move)
+    (rock? && other_move.scissors?) ||
+      (rock? && other_move.lizard?)
+  end
+
+  def paper_win?(other_move)
+    (paper? && other_move.rock?) ||
+      (paper? && other_move.spock?)
+  end
+
+  def scissors_win?(other_move)
+    (scissors? && other_move.paper?) ||
+      (scissors? && other_move.lizard?)
+  end
+
+  def lizard_win?(other_move)
+    (lizard? && other_move.spock?) ||
+      (lizard? && other_move.paper?)
+  end
+
+  def spock_win?(other_move)
+    (spock? && other_move.rock?) ||
+      (spock? && other_move.scissors?)
+  end
+
+  def >(other_move) # I had to create each of the #x_win? helpers to reduce ABC
+    rock_win?(other_move) ||
+      paper_win?(other_move) ||
+      scissors_win?(other_move) ||
+      lizard_win?(other_move) ||
+      spock_win?(other_move)
   end
 
   def to_s
@@ -58,7 +87,7 @@ class Human < Player
   def choose
     choice = nil
     loop do
-      puts "Select your sword"
+      puts "\nSelect your move: rock, paper, scissors, lizard, or spock"
       choice = gets.chomp
       break if  Move::VALUES.include? choice
       puts "you can't choose that one."
@@ -111,23 +140,23 @@ class RPSGame
   end
 
   def computer_win?
-    human.move < computer.move
+    computer.move > human.move
   end
 
   def display_winner
     if human_win?
-      puts "#{human.name} won this game. \n"
+      puts "#{human.name} won this game."
       human.score += 1
     elsif computer_win?
-      puts "#{computer.name} won this game. \n"
+      puts "#{computer.name} won this game."
       computer.score += 1
     else
-      puts "It's a tie. \n"
+      puts "It's a tie."
     end
   end
 
   def display_score
-    puts "You are playing to #{first_to_x_games} games."
+    puts "\nYou are playing a match to #{first_to_x_games} games."
     puts "The match score is currently:"
     puts "  #{human.name}: #{human.score} games won"
     puts "  #{computer.name}: #{computer.score} games won"
