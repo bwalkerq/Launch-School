@@ -118,6 +118,9 @@ class RPSGame
 
   def display_welcome_message
     puts "Welcome to the OOP RPS game, #{human.name}."
+  end
+
+  def set_games_per_match
     loop do
       puts "How many games does either player need to reach in order to win?"
       self.first_to_x_games = gets.chomp.to_i
@@ -165,9 +168,11 @@ class RPSGame
   def match_winner?
     if computer.score == first_to_x_games
       puts "#{computer.name} won the match!"
+      human.score, computer.score = 0, 0
       return true
     elsif human.score == first_to_x_games
       puts "#{human.name} won the match!"
+      human.score, computer.score = 0, 0
       return true
     end
     false
@@ -197,10 +202,11 @@ class RPSGame
   def play
     display_welcome_message
     loop do
-      main_game_play
-      break if match_winner?
-    end
-    loop do
+      set_games_per_match
+      loop do
+        main_game_play
+        break if match_winner?
+      end
       break unless play_again?
     end
     display_goodbye_message
