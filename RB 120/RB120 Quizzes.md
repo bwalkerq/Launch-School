@@ -5,10 +5,22 @@ Lesson 1 quiz
 - Modules share behaviors (methods), not attributes
 - "include" is used for mix ins, not for inheritance
 - I chose "Class inheritance lets us subclass from more than one class." 
-  because String inherts from, for example, Object and Kernal and Basic 
+  because String inherits from, for example, Object and Kernel and Basic 
   Object, but the important word here, I think, is "subclass"; this means 
   that a class can only be a direct subclass of exactly one superclass. The 
   chain of inheritance doesn't mean that the class is subclassing from 
   multiple classes.
 - It's easy to overlook a attr_writer for attr_accessor; I did this in a 
-  question. Maybe say it aloud to avoid mixup.
+  question. Maybe say it aloud to avoid mix-up.
+
+Lesson 2 quiz - missed three partial questions
+- in order to instantiate an object with a particular state (multiple instance 
+  variables), each instance variable must be included in the initialize function
+- I overlooked that having an att_reader and att_writer for two instance 
+  variables is the same as having the accessor for both [kinda silly question].
+- I remember questions like these in the notes with the card game; I 
+  overlooked that when, for example, two of three subclasses share a common 
+  behavior, a module is required since the the third subclass doesn't 
+  inherit that behavior. I.e. if not *all* subclasses share a behavior, the 
+  behavior must be mixed in rather than inherited.
+
