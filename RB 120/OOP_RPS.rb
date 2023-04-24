@@ -119,16 +119,17 @@ class RPSGame
     puts "  #{computer.name}: #{computer.score} games won"
   end
 
+  def reset_score
+    human.score = 0
+    computer.score = 0
+  end
+
   def match_winner?
     if computer.score == first_to_x_games
       puts "#{computer.name} won the match!"
-      human.score = 0
-      computer.score = 0
       return true
     elsif human.score == first_to_x_games
       puts "#{human.name} won the match!"
-      human.score = 0
-      computer.score = 0
       return true
     end
     false
@@ -164,6 +165,7 @@ class RPSGame
         main_game_play
         break if match_winner?
       end
+      reset_score
       break unless play_again?
     end
     display_goodbye_message
