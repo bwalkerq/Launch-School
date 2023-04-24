@@ -78,11 +78,12 @@ class RPSGame
 
   def set_games_per_match
     loop do
-      puts "How many games does either player need to reach in order to win?"
+      puts "\nHow many games does either player need to reach in order to win?"
       self.first_to_x_games = gets.chomp.to_i
       break if first_to_x_games > 0
       puts "choose a number of games 1 or greater"
     end
+    puts "\nGreat, we're playing to #{first_to_x_games} games. Here we go."
   end
 
   def display_goodbye_message
@@ -94,7 +95,8 @@ class RPSGame
     puts "#{computer.name} chose #{computer.move}"
   end
 
-  def display_winner
+  def display_game_winner
+    puts = puts "\n-------------------------------------"
     if human.move > computer.move
       puts "#{human.name} won this game."
     elsif computer.move > human.move
@@ -102,6 +104,7 @@ class RPSGame
     else
       puts "It's a tie."
     end
+    puts '-------------------------------------'
   end
 
   def increment_score
@@ -136,7 +139,10 @@ class RPSGame
   end
 
   def display_match_winner
-    puts "#{match_winner.name} won the match!"
+    puts "\n***-------------------------------------***"
+    puts "\n#{match_winner.name} won the match!"
+    puts "\n***-------------------------------------***"
+    puts "\n\n"
   end
 
   def play_again?
@@ -157,7 +163,7 @@ class RPSGame
       human.choose
       computer.choose
       display_moves
-      display_winner
+      display_game_winner
       increment_score
       display_score
       break if match_winner?
