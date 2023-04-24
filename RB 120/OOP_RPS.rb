@@ -44,7 +44,7 @@ class Human < Player
     choice = nil
     loop do
       puts "\nSelect your move: rock, paper, scissors, lizard, or spock"
-      choice = gets.chomp
+      choice = gets.chomp.downcase!
       break if  Move::VALUES.include? choice
       puts "you can't choose that one."
     end
