@@ -64,7 +64,7 @@ end
 
 # Game orchestration Engine
 class RPSGame
-  attr_accessor :human, :computer, :first_to_x_games
+  attr_accessor :human, :computer, :first_to_x_games, :match_winner
 
   def initialize
     @human = Human.new
@@ -119,20 +119,24 @@ class RPSGame
     puts "  #{computer.name}: #{computer.score} games won"
   end
 
+  def match_winner?
+    if computer.score == first_to_x_games
+      self.match_winner = computer
+      return true
+    elsif human.score == first_to_x_games
+      self.match_winner = human
+      return true
+    end
+    false
+  end
+
   def reset_score
     human.score = 0
     computer.score = 0
   end
 
-  def match_winner?
-    if computer.score == first_to_x_games
-      puts "#{computer.name} won the match!"
-      return true
-    elsif human.score == first_to_x_games
-      puts "#{human.name} won the match!"
-      return true
-    end
-    false
+  def display_match_winner
+    puts "#{match_winner.name} won the match!"
   end
 
   def play_again?
@@ -149,22 +153,23 @@ class RPSGame
   end
 
   def main_game_play
-    human.choose
-    computer.choose
-    display_moves
-    display_winner
-    increment_score
-    display_score
+    loop do
+      human.choose
+      computer.choose
+      display_moves
+      display_winner
+      increment_score
+      display_score
+      break if match_winner?
+    end
+    display_match_winner
   end
 
   def play
     display_welcome_message
     loop do
       set_games_per_match
-      loop do
-        main_game_play
-        break if match_winner?
-      end
+      main_game_play
       reset_score
       break unless play_again?
     end
