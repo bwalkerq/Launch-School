@@ -94,23 +94,21 @@ class RPSGame
     puts "#{computer.name} chose #{computer.move}"
   end
 
-  def human_win?
-    human.move > computer.move
-  end
-
-  def computer_win?
-    computer.move > human.move
-  end
-
   def display_winner
-    if human_win?
+    if human.move > computer.move
       puts "#{human.name} won this game."
-      human.score += 1
-    elsif computer_win?
+    elsif computer.move > human.move
       puts "#{computer.name} won this game."
-      computer.score += 1
     else
       puts "It's a tie."
+    end
+  end
+
+  def increment_score
+    if human.move > computer.move
+      human.score += 1
+    elsif computer.move > human.move
+      computer.score += 1
     end
   end
 
@@ -124,11 +122,13 @@ class RPSGame
   def match_winner?
     if computer.score == first_to_x_games
       puts "#{computer.name} won the match!"
-      human.score, computer.score = 0, 0
+      human.score = 0
+      computer.score = 0
       return true
     elsif human.score == first_to_x_games
       puts "#{human.name} won the match!"
-      human.score, computer.score = 0, 0
+      human.score = 0
+      computer.score = 0
       return true
     end
     false
@@ -152,6 +152,7 @@ class RPSGame
     computer.choose
     display_moves
     display_winner
+    increment_score
     display_score
   end
 
