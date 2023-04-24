@@ -34,7 +34,7 @@ class Human < Player
     loop do
       puts "What's your name?"
       n = gets.chomp.capitalize
-      break unless n.empty?
+      break unless n.strip.empty?
       puts "write your name, gotta be something"
     end
     self.name = n
