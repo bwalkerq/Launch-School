@@ -44,7 +44,7 @@ class Human < Player
     choice = nil
     loop do
       puts "\nSelect your move: rock, paper, scissors, lizard, or spock"
-      choice = gets.chomp.downcase!
+      choice = gets.chomp.downcase
       break if  Move::VALUES.include? choice
       puts "you can't choose that one."
     end
@@ -96,7 +96,7 @@ class RPSGame
   end
 
   def display_game_winner
-    puts = puts "\n-------------------------------------"
+    puts "\n-------------------------------------"
     if human.move > computer.move
       puts "#{human.name} won this game."
     elsif computer.move > human.move
@@ -168,6 +168,7 @@ class RPSGame
       display_score
       break if match_winner?
     end
+
     display_match_winner
   end
 
