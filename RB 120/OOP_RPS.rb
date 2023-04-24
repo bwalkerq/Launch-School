@@ -1,61 +1,17 @@
 class Move
+  attr_reader :value
+
   VALUES = %w(rock paper scissors lizard spock)
+  WINNING_MOVES = { 'rock' => %w(scissors lizard), 'paper' => %w(rock spock),
+                    'scissors' => %w(paper lizard), 'lizard' =>
+                      %w(spock paper), 'spock' => %w(rock scissors) }
 
   def initialize(value)
     @value = value
   end
 
-  def scissors?
-    @value == 'scissors'
-  end
-
-  def rock?
-    @value == 'rock'
-  end
-
-  def paper?
-    @value == 'paper'
-  end
-
-  def lizard?
-    @value == 'lizard'
-  end
-
-  def spock?
-    @value == 'spock'
-  end
-
-  def rock_win?(other_move)
-    (rock? && other_move.scissors?) ||
-      (rock? && other_move.lizard?)
-  end
-
-  def paper_win?(other_move)
-    (paper? && other_move.rock?) ||
-      (paper? && other_move.spock?)
-  end
-
-  def scissors_win?(other_move)
-    (scissors? && other_move.paper?) ||
-      (scissors? && other_move.lizard?)
-  end
-
-  def lizard_win?(other_move)
-    (lizard? && other_move.spock?) ||
-      (lizard? && other_move.paper?)
-  end
-
-  def spock_win?(other_move)
-    (spock? && other_move.rock?) ||
-      (spock? && other_move.scissors?)
-  end
-
-  def >(other_move) # I had to create each of the #x_win? helpers to reduce ABC
-    rock_win?(other_move) ||
-      paper_win?(other_move) ||
-      scissors_win?(other_move) ||
-      lizard_win?(other_move) ||
-      spock_win?(other_move)
+  def >(other_move)
+    WINNING_MOVES[@value].include?(other_move.value)
   end
 
   def to_s
