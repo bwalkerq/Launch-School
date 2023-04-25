@@ -122,15 +122,14 @@ class RPSGame
     puts "  #{computer.name}: #{computer.score} games won"
   end
 
+  def determine_match_winner
+    return computer if computer.score == first_to_x_games
+    return human if human.score == first_to_x_games
+    nil
+  end
+
   def match_winner?
-    if computer.score == first_to_x_games
-      self.match_winner = computer
-      return true
-    elsif human.score == first_to_x_games
-      self.match_winner = human
-      return true
-    end
-    false
+    !!determine_match_winner
   end
 
   def reset_score
@@ -160,6 +159,7 @@ class RPSGame
 
   def main_game_play
     loop do
+      @match_winner = nil
       human.choose
       computer.choose
       display_moves
@@ -169,6 +169,7 @@ class RPSGame
       break if match_winner?
     end
 
+    self.match_winner = determine_match_winner
     display_match_winner
   end
 
