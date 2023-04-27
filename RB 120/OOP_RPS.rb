@@ -157,9 +157,8 @@ class RPSGame
     false
   end
 
-  def main_game_play
+  def play_match_to_x_games
     loop do
-      @match_winner = nil
       human.choose
       computer.choose
       display_moves
@@ -170,14 +169,17 @@ class RPSGame
     end
 
     self.match_winner = determine_match_winner
-    display_match_winner
+    display_match_winner if match_winner? # this line should prevent the
+    # "method invocation 'name' may produce 'NoMethodError'" but it doesn't;
+    # I think the interpreter is not that smart?
   end
 
   def play
     display_welcome_message
     loop do
       set_games_per_match
-      main_game_play
+      @match_winner = nil
+      play_match_to_x_games
       reset_score
       break unless play_again?
     end
