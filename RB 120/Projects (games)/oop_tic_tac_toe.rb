@@ -24,20 +24,15 @@ class Board
     !!winning_marker
   end
 
-  def count_human_marker(squares)
-    squares.collect(&:marker).count(TTTGame::HUMAN_MARKER)
-  end
-
-  def count_computer_marker(squares)
-    squares.collect(&:marker).count(TTTGame::COMPUTER_MARKER)
-  end
-
   def winning_marker #return winning marker, or return nil
     WINNING_LINES.each do |line|
-      if count_human_marker(@squares.values_at(*line)) == 3
-        return TTTGame::HUMAN_MARKER
-      elsif count_computer_marker(@squares.values_at(*line)) == 3
-        return TTTGame::COMPUTER_MARKER
+      first_marker = @squares[line[0]].marker
+      next if first_marker == Square::INITIAL_MARKER
+      if first_marker == @squares[line[1]].marker && first_marker ==
+         @squares[line[2]].marker
+        return first_marker
+      else
+        next
       end
     end
     nil
