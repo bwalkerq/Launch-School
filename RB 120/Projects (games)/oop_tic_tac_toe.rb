@@ -8,11 +8,7 @@ class Board
     reset
   end
 
-  def get_square_at(key)
-    @squares[key]
-  end
-
-  def set_square_at(key, marker)
+  def []= (key, marker)
     @squares[key].marker = marker
   end
 
@@ -55,15 +51,15 @@ class Board
     puts %(
       -------------------
       "     |     |     "
-      "  #{get_square_at(1)}  |  #{get_square_at(2)}  |  #{get_square_at(3)}  "
+      "  #{@squares[1]}  |  #{@squares[2]}  |  #{@squares[3]}  "
       "     |     |     "
       "-----+-----+-----"
       "     |     |     "
-      "  #{get_square_at(4)}  |  #{get_square_at(5)}  |  #{get_square_at(6)}  "
+      "  #{@squares[4]}  |  #{@squares[5]}  |  #{@squares[6]}  "
       "     |     |     "
       "-----+-----+-----"
       "     |     |     "
-      "  #{get_square_at(7)}  |  #{get_square_at(8)}  |  #{get_square_at(9)}  "
+      "  #{@squares[7]}  |  #{@squares[8]}  |  #{@squares[9]}  "
       "     |     |     "
       "-----+-----+-----"
       )
@@ -137,11 +133,11 @@ class TTTGame
       puts "Sorry, invalid choice."
     end
 
-    board.set_square_at(square, human.marker)
+    board[square] = human.marker
   end
 
   def computer_moves
-    board.set_square_at(board.unmarked_keys.sample, computer.marker)
+    board[board.unmarked_keys.sample] = computer.marker
   end
 
   def display_result
@@ -153,7 +149,7 @@ class TTTGame
     when computer.marker
       puts "The computer won!"
     else
-      puts "the board is full"
+      puts "The board is full, it's a tie. Snore..."
     end
   end
 
