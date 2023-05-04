@@ -8,7 +8,7 @@ class Board
     reset
   end
 
-  def []= (key, marker)
+  def []=(key, marker)
     @squares[key].marker = marker
   end
 
@@ -24,24 +24,27 @@ class Board
     !!winning_marker
   end
 
-  def winning_marker #return winning marker, or return nil
+  def winning_marker # return winning marker, or return nil
     WINNING_LINES.each do |line|
       first_marker = @squares[line[0]].marker
       next if first_marker == Square::INITIAL_MARKER
       if first_marker == @squares[line[1]].marker && first_marker ==
-         @squares[line[2]].marker
+                                                     @squares[line[2]].marker
         return first_marker
-      else
-        next
       end
     end
     nil
-  end
+  end # this method is not what was suggested by LS in the lesson
+  # walk-through; I wrote it myself and kept it because it seemed clearer and
+  # more concise. However, I see now that the benefit of their method
+  # implementation is that it was a more-scalable method for, say, a 4x4 or
+  # 3x6 grid for Ticktacktoe.
 
   def reset
     (1..9).each { |key| @squares[key] = Square.new }
   end
 
+  # rubocop:disable Metrics/MethodLength
   def draw
     puts %(
       -------------------
@@ -60,6 +63,7 @@ class Board
       )
   end
 end
+# rubocop:enable Metrics/MethodLength
 
 class Square
   INITIAL_MARKER = " "
@@ -104,25 +108,30 @@ class TTTGame
   def play
     clear
     display_welcome_message
+    main_game
+    display_goodbye_message
+  end
 
+  private
+
+  def main_game
     loop do
       display_board
-
-      loop do
-        current_player_moves
-        break if board.someone_won? || board.full?
-        clear_screen_and_display_board if human_turn?
-      end
+      player_move
       display_result
       break unless play_again?
       reset
       display_play_again_message
     end
-
-    display_goodbye_message
   end
 
-  private
+  def player_move
+    loop do
+      current_player_moves
+      break if board.someone_won? || board.full?
+      clear_screen_and_display_board if human_turn?
+    end
+  end
 
   def display_welcome_message
     puts "Well howdee do! Welcome to TicTacToe."
@@ -146,7 +155,7 @@ class TTTGame
 
   def human_moves
     square = nil
-    puts "choose a square (#{board.unmarked_keys.join(", ")}): "
+    puts "choose a square (#{board.unmarked_keys.join(', ')}): "
     loop do
       square = gets.chomp.to_i
       break if board.unmarked_keys.include?(square)
