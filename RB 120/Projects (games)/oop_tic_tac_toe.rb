@@ -153,9 +153,15 @@ class TTTGame
     display_board
   end
 
+  def joiner(array, delimiter = ", ", end_word = "or")
+    return array[0] if array.length == 1
+    array[0, (array.length - 1)]
+      .join(delimiter) + delimiter + end_word + " #{array[-1]}"
+  end
+
   def human_moves
     square = nil
-    puts "choose a square (#{board.unmarked_keys.join(', ')}): "
+    puts "choose a square (#{joiner(board.unmarked_keys)}): "
     loop do
       square = gets.chomp.to_i
       break if board.unmarked_keys.include?(square)
