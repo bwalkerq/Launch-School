@@ -47,19 +47,19 @@ class Board
   # rubocop:disable Metrics/MethodLength
   def draw
     puts %(
-      -------------------
-      "     |     |     "
-      "  #{@squares[1]}  |  #{@squares[2]}  |  #{@squares[3]}  "
-      "     |     |     "
-      "-----+-----+-----"
-      "     |     |     "
-      "  #{@squares[4]}  |  #{@squares[5]}  |  #{@squares[6]}  "
-      "     |     |     "
-      "-----+-----+-----"
-      "     |     |     "
-      "  #{@squares[7]}  |  #{@squares[8]}  |  #{@squares[9]}  "
-      "     |     |     "
-      "-----+-----+-----"
+      -------------------------
+      "       |       |       "
+      "   #{@squares[1]}   |   #{@squares[2]}   |   #{@squares[3]}   "
+      "       |       |       "
+      "-------+-------+-------"
+      "       |       |       "
+      "   #{@squares[4]}   |   #{@squares[5]}   |   #{@squares[6]}   "
+      "       |       |       "
+      "-------+-------+-------"
+      "       |       |       "
+      "   #{@squares[7]}   |   #{@squares[8]}   |   #{@squares[9]}   "
+      "       |       |       "
+      "-----------------------"
       )
   end
 end
@@ -85,9 +85,11 @@ end
 
 class Player
   attr_reader :marker
+  attr_accessor :score
 
   def initialize(marker)
     @marker = marker
+    @score = 0
   end
 end
 
@@ -103,6 +105,7 @@ class TTTGame
     @human = Player.new(HUMAN_MARKER)
     @computer = Player.new(COMPUTER_MARKER)
     @current_marker = FIRST_TO_MOVE
+    @score_needed_to_win = nil
   end
 
   def play
@@ -115,17 +118,25 @@ class TTTGame
   private
 
   def main_game
-    loop do
-      display_board
-      player_move
-      display_result
+    loop do # match loop
+      set_winning_score
+
+      loop do
+        display_board
+        players_move
+        increment_score
+        display_result
+        break if someone_won_match?
+        reset
+      end
+
+      display_match_result
       break unless play_again?
-      reset
       display_play_again_message
     end
   end
 
-  def player_move
+  def players_move
     loop do
       current_player_moves
       break if board.someone_won? || board.full?
@@ -137,11 +148,25 @@ class TTTGame
     puts "Well howdee do! Welcome to TicTacToe."
   end
 
+  def set_winning_score
+    input = nil
+    loop do
+      puts "How many games does either player need to win the match? (1-10)"
+      input = gets.chomp.to_i
+      break if (1..10).include? input
+      puts "not a valid number of games"
+    end
+    @score_needed_to_win = input
+  end
+
   def display_goodbye_message
     puts "Thanks for playing, c'mon back now, ya hear?"
   end
 
   def display_board
+    puts ""
+    puts ""
+    puts "This is the start of a new game"
     puts "You're a #{human.marker}. Computer is a #{computer.marker}."
     puts ""
     board.draw
@@ -180,18 +205,54 @@ class TTTGame
 
     case board.winning_marker
     when human.marker
-      puts "You won!"
+      puts "You won this game!"
     when computer.marker
-      puts "The computer won!"
+      puts "The computer won this game!"
     else
       puts "The board is full, it's a tie. Snore..."
     end
+    puts "The current match score is You: #{human.score} to Computer: #{computer.score}"
+    puts "-----------------------------------------------------------------------------"
+  end
+
+  def match_winner
+    if human.score == @score_needed_to_win
+      return human
+    elsif computer.score == @score_needed_to_win
+      return computer
+    end
+    nil
+  end
+
+  def increment_score
+    case board.winning_marker
+    when human.marker
+      human.score += 1
+    when computer.marker
+      computer.score += 1
+    end
+  end
+
+  def someone_won_match?
+    human.score == @score_needed_to_win || computer.score == @score_needed_to_win
+  end
+
+  def display_match_result
+    puts "\n"
+    puts "*********************************************".center(70)
+    case match_winner
+    when human
+      puts "Congratulations, you have bested the computer in this match to #{@score_needed_to_win} games!"
+    when computer
+      puts "Alas, the computer has won this match to #{@score_needed_to_win} games.".center(70)
+    end
+    puts "*********************************************".center(70)
   end
 
   def play_again?
     answer = nil
     loop do
-      puts "Would you like to play again? (y/n)"
+      puts "\n\nWould you like to play again? (y/n)"
       answer = gets.chomp.downcase
       break if %w(y n).include? answer
       puts "please enter y or n"
@@ -207,7 +268,7 @@ class TTTGame
   def reset
     board.reset
     @current_marker = FIRST_TO_MOVE
-    clear
+    # clear
   end
 
   def display_play_again_message
