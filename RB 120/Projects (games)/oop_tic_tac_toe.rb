@@ -1,4 +1,6 @@
 class Board
+  attr_reader :squares
+
   WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # rows
                   [[1, 4, 7], [2, 5, 8], [3, 6, 9]] + # columns
                   [[1, 5, 9], [3, 5, 7]] # diagonals
@@ -24,21 +26,21 @@ class Board
     !!winning_marker
   end
 
-  def winning_marker # return winning marker, or return nil
-    WINNING_LINES.each do |line|
-      first_marker = @squares[line[0]].marker
-      next if first_marker == Square::INITIAL_MARKER
-      if first_marker == @squares[line[1]].marker && first_marker ==
-                                                     @squares[line[2]].marker
-        return first_marker
+  def winning_marker
+      WINNING_LINES.each do |line|
+        squares = @squares.values_at(*line)
+        if x_number_of_identical_markers?(3, squares)
+          return squares.first.marker
+        end
       end
+      nil
     end
-    nil
-  end # this method is not what was suggested by LS in the lesson
-  # walk-through; I wrote it myself and kept it because it seemed clearer and
-  # more concise. However, I see now that the benefit of their method
-  # implementation is that it was a more-scalable method for, say, a 4x4 or
-  # 3x6 grid for Ticktacktoe.
+
+  def x_number_of_identical_markers?(x, squares)
+      markers = squares.select(&:marked?).collect(&:marker)
+      return false if markers.size != x
+      markers.min == markers.max # jon: this won't work for larger boards
+  end
 
   def reset
     (1..9).each { |key| @squares[key] = Square.new }
@@ -80,6 +82,10 @@ class Square
 
   def unmarked?
     marker == INITIAL_MARKER
+  end
+
+  def marked?
+    marker != INITIAL_MARKER
   end
 end
 
@@ -197,7 +203,20 @@ class TTTGame
   end
 
   def computer_moves
-    board[board.unmarked_keys.sample] = computer.marker
+    if find_threat_square
+      board[find_threat_square] = computer.marker
+    else
+      board[board.unmarked_keys.sample] = computer.marker
+    end
+  end
+
+  def find_threat_square # returns the square to be filled for defensive move
+    threat_lines = Board::WINNING_LINES.select do |line|
+      squares = board.squares.values_at(*line)
+      (!!board.x_number_of_identical_markers?(2, squares) && !!squares.map(&:marker).include?(HUMAN_MARKER))
+    end
+    return nil if threat_lines.empty?
+    threat_lines.first.select { |position| board.squares[position].unmarked?}.first
   end
 
   def display_result
