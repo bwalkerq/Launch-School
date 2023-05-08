@@ -203,20 +203,22 @@ class TTTGame
   end
 
   def computer_moves
-    if find_threat_square
-      board[find_threat_square] = computer.marker
+    if find_empty_square_in_nearly_full_line(COMPUTER_MARKER)
+      board[find_empty_square_in_nearly_full_line(COMPUTER_MARKER)] = computer.marker
+    elsif find_empty_square_in_nearly_full_line(HUMAN_MARKER)
+      board[find_empty_square_in_nearly_full_line(HUMAN_MARKER)] = computer.marker
     else
       board[board.unmarked_keys.sample] = computer.marker
     end
   end
 
-  def find_threat_square # returns the square to be filled for defensive move
-    threat_lines = Board::WINNING_LINES.select do |line|
+  def find_empty_square_in_nearly_full_line(player_marker) # returns the square to be filled for defensive move
+    opportunty_lines = Board::WINNING_LINES.select do |line|
       squares = board.squares.values_at(*line)
-      (!!board.x_number_of_identical_markers?(2, squares) && !!squares.map(&:marker).include?(HUMAN_MARKER))
+      (!!board.x_number_of_identical_markers?(2, squares) && !!squares.map(&:marker).include?(player_marker))
     end
-    return nil if threat_lines.empty?
-    threat_lines.first.select { |position| board.squares[position].unmarked?}.first
+    return nil if opportunty_lines.empty?
+    opportunty_lines.first.select { |position| board.squares[position].unmarked?}.first
   end
 
   def display_result
