@@ -207,6 +207,8 @@ class TTTGame
       board[find_empty_square_in_nearly_full_line(COMPUTER_MARKER)] = computer.marker
     elsif find_empty_square_in_nearly_full_line(HUMAN_MARKER)
       board[find_empty_square_in_nearly_full_line(HUMAN_MARKER)] = computer.marker
+    elsif board.squares[5].unmarked?
+      board[5] = computer.marker
     else
       board[board.unmarked_keys.sample] = computer.marker
     end
