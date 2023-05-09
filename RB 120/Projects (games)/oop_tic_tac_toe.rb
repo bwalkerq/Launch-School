@@ -26,15 +26,18 @@ class Board
     !!winning_marker
   end
 
+  def get_all_winning_line_squares
+    WINNING_LINES.map { |line|  @squares.values_at(*line) }
+  end
+
   def winning_marker
-      WINNING_LINES.each do |line|
-        squares = @squares.values_at(*line)
-        if x_number_of_identical_markers?(3, squares)
-          return squares.first.marker
-        end
+    get_all_winning_line_squares.each do |squares|
+      if x_number_of_identical_markers?(3, squares)
+        return squares.first.marker
       end
-      nil
     end
+    nil
+  end
 
   def x_number_of_identical_markers?(x, squares)
     markers = squares.select(&:marked?).collect(&:marker)
@@ -202,10 +205,12 @@ class TTTGame
   end
 
   def computer_moves
-    if find_empty_square_in_nearly_full_line(COMPUTER_MARKER)
-      board[find_empty_square_in_nearly_full_line(COMPUTER_MARKER)] = computer.marker
-    elsif find_empty_square_in_nearly_full_line(HUMAN_MARKER)
-      board[find_empty_square_in_nearly_full_line(HUMAN_MARKER)] = computer.marker
+    win_opportunity = find_empty_square_in_nearly_full_line(COMPUTER_MARKER)
+    block_human_win = find_empty_square_in_nearly_full_line(HUMAN_MARKER)
+    if win_opportunity
+      win_opportunity.marker = computer.marker
+    elsif block_human_win
+      block_human_win.marker = computer.marker
     elsif board.squares[5].unmarked?
       board[5] = computer.marker
     else
