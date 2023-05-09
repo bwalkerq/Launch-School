@@ -37,9 +37,8 @@ class Board
     end
 
   def x_number_of_identical_markers?(x, squares)
-      markers = squares.select(&:marked?).collect(&:marker)
-      return false if markers.size != x
-      markers.min == markers.max # jon: this won't work for larger boards
+    markers = squares.select(&:marked?).collect(&:marker)
+    markers.length == x && markers.uniq.length == 1
   end
 
   def reset
@@ -214,13 +213,14 @@ class TTTGame
     end
   end
 
-  def find_empty_square_in_nearly_full_line(player_marker) # returns the square to be filled for defensive move
-    opportunty_lines = Board::WINNING_LINES.select do |line|
-      squares = board.squares.values_at(*line)
-      (!!board.x_number_of_identical_markers?(2, squares) && !!squares.map(&:marker).include?(player_marker))
+  def find_empty_square_in_nearly_full_line(player_marker)
+    opportunty_lines = board.get_all_winning_line_squares.select do |squares|
+      mostly_full = board.x_number_of_identical_markers?(2, squares)
+      player_in_row = squares.map(&:marker).include?(player_marker)
+      mostly_full && player_in_row
     end
     return nil if opportunty_lines.empty?
-    opportunty_lines.first.select { |position| board.squares[position].unmarked?}.first
+    opportunty_lines.first.select { |square| square.unmarked?}.first
   end
 
   def display_result
