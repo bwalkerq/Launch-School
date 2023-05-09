@@ -112,7 +112,7 @@ class TTTGame
     @board = Board.new
     @human = Player.new(HUMAN_MARKER)
     @computer = Player.new(COMPUTER_MARKER)
-    @current_marker = FIRST_TO_MOVE
+    @current_marker = nil
     @score_needed_to_win = nil
   end
 
@@ -128,6 +128,7 @@ class TTTGame
   def main_game
     loop do # match loop
       set_winning_score
+      determine_first_turn
 
       loop do
         display_board
@@ -141,6 +142,20 @@ class TTTGame
       display_match_result
       break unless play_again?
       display_play_again_message
+    end
+  end
+
+  def determine_first_turn
+    response = nil
+    loop do
+      puts "Who should go first? Type 1 for you, or 2 for the computer."
+      response = gets.chomp.to_i
+      break if [1,2].include?(response)
+      puts "invalid input"
+    end
+    case response
+    when 1 then @current_marker = HUMAN_MARKER
+    when 2 then @current_marker = COMPUTER_MARKER
     end
   end
 
@@ -295,7 +310,7 @@ class TTTGame
 
   def reset
     board.reset
-    @current_marker = FIRST_TO_MOVE
+    @current_marker = determine_first_turn
     # clear
   end
 
