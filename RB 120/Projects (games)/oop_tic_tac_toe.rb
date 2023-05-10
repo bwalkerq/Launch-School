@@ -26,12 +26,12 @@ class Board
     !!winning_marker
   end
 
-  def get_all_winning_line_squares
+  def all_winning_line_squares
     WINNING_LINES.map { |line|  @squares.values_at(*line) }
   end
 
   def winning_marker
-    get_all_winning_line_squares.each do |squares|
+    all_winning_line_squares.each do |squares|
       if x_number_of_identical_markers?(3, squares)
         return squares.first.marker
       end
@@ -168,6 +168,7 @@ class TTTGame
     case response
     when 1 then @current_marker = HUMAN_MARKER
     when 2 then @current_marker = COMPUTER_MARKER
+    else puts "There is an error with this method" #rubocop complained
     end
   end
 
@@ -246,8 +247,8 @@ class TTTGame
   end
 
   def computer_moves
-    win_opportunity = find_empty_square_in_nearly_full_line(COMPUTER_MARKER)
-    block_human_win = find_empty_square_in_nearly_full_line(HUMAN_MARKER)
+    win_opportunity = empty_square_in_nearly_full_line(COMPUTER_MARKER)
+    block_human_win = empty_square_in_nearly_full_line(HUMAN_MARKER)
     if win_opportunity
       win_opportunity.marker = computer.marker
     elsif block_human_win
@@ -259,8 +260,8 @@ class TTTGame
     end
   end
 
-  def find_empty_square_in_nearly_full_line(player_marker)
-    opportunty_lines = board.get_all_winning_line_squares.select do |squares|
+  def empty_square_in_nearly_full_line(player_marker)
+    opportunty_lines = board.all_winning_line_squares.select do |squares|
       mostly_full = board.x_number_of_identical_markers?(2, squares)
       player_in_row = squares.map(&:marker).include?(player_marker)
       mostly_full && player_in_row
