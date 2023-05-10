@@ -27,7 +27,7 @@ class Board
   end
 
   def all_winning_line_squares
-    WINNING_LINES.map { |line|  @squares.values_at(*line) }
+    WINNING_LINES.map { |line| @squares.values_at(*line) }
   end
 
   def winning_marker
@@ -128,19 +128,12 @@ class TTTGame
   private
 
   def main_game
-    get_human_name
+    human_name
 
     loop do # match loop
       game_setup
 
-      loop do
-        display_board
-        players_move
-        increment_score
-        display_result
-        break if someone_won_match?
-        reset
-      end
+      single_game
 
       display_match_result
       break unless play_again?
@@ -157,23 +150,38 @@ class TTTGame
     determine_first_turn
   end
 
+  def single_game
+    loop do
+      display_board
+      players_move
+      increment_score
+      display_game_result_and_score
+      break if someone_won_match?
+      reset
+    end
+  end
+
   def determine_first_turn
     response = nil
     loop do
       puts "\nWho should go first? Type 1 for you, or 2 for #{computer.name}."
       response = gets.chomp.to_i
-      break if [1,2].include?(response)
+      break if [1, 2].include?(response)
       display_invalid_input
     end
+    current_marker_assignment(response)
+  end
+
+  def current_marker_assignment(response)
     case response
     when 1 then @current_marker = HUMAN_MARKER
     when 2 then @current_marker = COMPUTER_MARKER
-    else puts "There is an error with this method" #rubocop complained
+    else puts "There is an error with this method" # rubocop complained
     end
   end
 
   def display_invalid_input
-      puts "    (Your input was not valid, please try again.)"
+    puts "    (Your input was not valid, please try again.)"
   end
 
   def players_move
@@ -184,17 +192,17 @@ class TTTGame
     end
   end
 
-  def get_human_name
+  def human_name
     response = nil
     loop do
       puts "\nKindly enter your name? (10 or fewer characters)"
       response = gets.chomp.capitalize
-      length = response.length
-      break if length > 0 and length <= 10
+      break if !response.empty? && response.length <= 10
       display_invalid_input
     end
     human.name = response
-    puts "\nWelcome, #{human.name}! Today, you're playing against the computer, #{computer.name}."
+    puts "\nWelcome, #{human.name}!"
+    puts "Today, you're playing against the computer, #{computer.name}."
   end
 
   def set_winning_score
@@ -247,8 +255,12 @@ class TTTGame
   end
 
   def computer_moves
-    win_opportunity = empty_square_in_nearly_full_line(COMPUTER_MARKER)
-    block_human_win = empty_square_in_nearly_full_line(HUMAN_MARKER)
+    win_opportunity = empty_square_of_three(COMPUTER_MARKER)
+    block_human_win = empty_square_of_three(HUMAN_MARKER)
+    computer_move_conditional(block_human_win, win_opportunity)
+  end
+
+  def computer_move_conditional(block_human_win, win_opportunity)
     if win_opportunity
       win_opportunity.marker = computer.marker
     elsif block_human_win
@@ -260,19 +272,25 @@ class TTTGame
     end
   end
 
-  def empty_square_in_nearly_full_line(player_marker)
-    opportunty_lines = board.all_winning_line_squares.select do |squares|
+  def empty_square_of_three(player_marker)
+    opportunity_lines = board.all_winning_line_squares.select do |squares|
       mostly_full = board.x_number_of_identical_markers?(2, squares)
       player_in_row = squares.map(&:marker).include?(player_marker)
       mostly_full && player_in_row
     end
-    return nil if opportunty_lines.empty?
-    opportunty_lines.first.select { |square| square.unmarked?}.first
+    return nil if opportunity_lines.empty?
+    opportunity_lines.first.select(&:unmarked?).first
   end
 
-  def display_result
+  def display_game_result_and_score
     clear_screen_and_display_board
+    display_winner_or_tie
+    puts "The current match score is #{human.name}: #{human.score}" \
+           " to #{computer.name}: #{computer.score}".center(77)
+    puts "-" * 77
+  end
 
+  def display_winner_or_tie
     case board.winning_marker
     when human.marker
       puts "You won this game, #{human.name}!"
@@ -281,16 +299,11 @@ class TTTGame
     else
       puts "The board is full, it's a tie. Snore..."
     end
-    puts "The current match score is #{human.name}: #{human.score} to #{computer.name}: #{computer.score}"
-    puts "-----------------------------------------------------------------------------"
   end
 
   def match_winner
-    if human.score == @score_needed_to_win
-      return human
-    elsif computer.score == @score_needed_to_win
-      return computer
-    end
+    return human if human.score == @score_needed_to_win
+    return computer if computer.score == @score_needed_to_win
     nil
   end
 
@@ -304,19 +317,28 @@ class TTTGame
   end
 
   def someone_won_match?
-    human.score == @score_needed_to_win || computer.score == @score_needed_to_win
+    human.score == @score_needed_to_win ||
+      computer.score == @score_needed_to_win
   end
 
   def display_match_result
     puts "\n"
     puts "*********************************************".center(70)
+    display_match_winner
+    puts "*********************************************".center(70)
+  end
+
+  def display_match_winner
     case match_winner
     when human
-      puts "Congratulations, #{human.name}! You have bested #{computer.name} in this match to #{@score_needed_to_win} games!"
+      puts "Congratulations, #{human.name}!"
+      puts "You have bested #{computer.name} in this match to" \
+           " #{@score_needed_to_win} games!"
     when computer
-      puts "Alas, #{computer.name} has won this match to #{@score_needed_to_win} games.".center(70)
+      puts "Alas, #{computer.name} has won this" \
+           " match to #{@score_needed_to_win} games.".center(70)
+    else puts "there is an error in this method"
     end
-    puts "*********************************************".center(70)
   end
 
   def play_again?
