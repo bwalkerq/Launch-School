@@ -93,11 +93,12 @@ end
 
 class Player
   attr_reader :marker
-  attr_accessor :score
+  attr_accessor :score, :name
 
-  def initialize(marker)
+  def initialize(marker, name=nil)
     @marker = marker
     @score = 0
+    @name = name
   end
 end
 
@@ -105,13 +106,14 @@ class TTTGame
   HUMAN_MARKER = "X"
   COMPUTER_MARKER = "O"
   FIRST_TO_MOVE = HUMAN_MARKER
+  COMPUTER_NAMES = %w(Jane Lizzie Darcy Bingley Wickham Collins)
 
   attr_reader :board, :human, :computer
 
   def initialize
     @board = Board.new
     @human = Player.new(HUMAN_MARKER)
-    @computer = Player.new(COMPUTER_MARKER)
+    @computer = Player.new(COMPUTER_MARKER, COMPUTER_NAMES.sample)
     @current_marker = nil
     @score_needed_to_win = nil
   end
@@ -126,9 +128,10 @@ class TTTGame
   private
 
   def main_game
+    get_human_name
+
     loop do # match loop
-      set_winning_score
-      determine_first_turn
+      game_setup
 
       loop do
         display_board
@@ -145,18 +148,31 @@ class TTTGame
     end
   end
 
+  def display_welcome_message
+    puts "Well howdee do! Welcome to TicTacToe."
+  end
+
+  def game_setup
+    set_winning_score
+    determine_first_turn
+  end
+
   def determine_first_turn
     response = nil
     loop do
-      puts "Who should go first? Type 1 for you, or 2 for the computer."
+      puts "\nWho should go first? Type 1 for you, or 2 for #{computer.name}."
       response = gets.chomp.to_i
       break if [1,2].include?(response)
-      puts "invalid input"
+      display_invalid_input
     end
     case response
     when 1 then @current_marker = HUMAN_MARKER
     when 2 then @current_marker = COMPUTER_MARKER
     end
+  end
+
+  def display_invalid_input
+      puts "    (Your input was not valid, please try again.)"
   end
 
   def players_move
@@ -167,30 +183,40 @@ class TTTGame
     end
   end
 
-  def display_welcome_message
-    puts "Well howdee do! Welcome to TicTacToe."
+  def get_human_name
+    response = nil
+    loop do
+      puts "\nKindly enter your name? (10 or fewer characters)"
+      response = gets.chomp.capitalize
+      length = response.length
+      break if length > 0 and length <= 10
+      display_invalid_input
+    end
+    human.name = response
+    puts "\nWelcome, #{human.name}! Today, you're playing against the computer, #{computer.name}."
   end
 
   def set_winning_score
     input = nil
     loop do
-      puts "How many games does either player need to win the match? (1-10)"
+      puts "\nHow many games does either player need to win the match? (1-10)"
       input = gets.chomp.to_i
       break if (1..10).include? input
-      puts "not a valid number of games"
+      display_invalid_input
     end
     @score_needed_to_win = input
   end
 
   def display_goodbye_message
-    puts "Thanks for playing, c'mon back now, ya hear?"
+    puts "Thanks for playing #{human.name}, c'mon back now, ya hear?"
   end
 
   def display_board
     puts ""
     puts ""
     puts "This is the start of a new game"
-    puts "You're a #{human.marker}. Computer is a #{computer.marker}."
+    puts "#{human.name}, you're the '#{human.marker}', and #{computer.name}
+          is the '#{computer.marker}'."
     puts ""
     board.draw
     puts ""
@@ -213,7 +239,7 @@ class TTTGame
     loop do
       square = gets.chomp.to_i
       break if board.unmarked_keys.include?(square)
-      puts "Sorry, invalid choice."
+      display_invalid_input
     end
 
     board[square] = human.marker
@@ -248,13 +274,13 @@ class TTTGame
 
     case board.winning_marker
     when human.marker
-      puts "You won this game!"
+      puts "You won this game, #{human.name}!"
     when computer.marker
-      puts "The computer won this game!"
+      puts "Well, shucks, #{computer.name} won this game!"
     else
       puts "The board is full, it's a tie. Snore..."
     end
-    puts "The current match score is You: #{human.score} to Computer: #{computer.score}"
+    puts "The current match score is #{human.name}: #{human.score} to #{computer.name}: #{computer.score}"
     puts "-----------------------------------------------------------------------------"
   end
 
@@ -285,9 +311,9 @@ class TTTGame
     puts "*********************************************".center(70)
     case match_winner
     when human
-      puts "Congratulations, you have bested the computer in this match to #{@score_needed_to_win} games!"
+      puts "Congratulations, #{human.name}! You have bested #{computer.name} in this match to #{@score_needed_to_win} games!"
     when computer
-      puts "Alas, the computer has won this match to #{@score_needed_to_win} games.".center(70)
+      puts "Alas, #{computer.name} has won this match to #{@score_needed_to_win} games.".center(70)
     end
     puts "*********************************************".center(70)
   end
@@ -298,7 +324,7 @@ class TTTGame
       puts "\n\nWould you like to play again? (y/n)"
       answer = gets.chomp.downcase
       break if %w(y n).include? answer
-      puts "please enter y or n"
+      display_invalid_input
     end
 
     answer == "y"
