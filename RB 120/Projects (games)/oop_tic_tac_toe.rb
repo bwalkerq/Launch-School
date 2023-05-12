@@ -128,10 +128,11 @@ class TTTGame
   private
 
   def main_game
-    human_name
+    prompt_name
 
     loop do # match loop
       game_setup
+      # reset
 
       single_game
 
@@ -146,8 +147,8 @@ class TTTGame
   end
 
   def game_setup
-    set_winning_score
-    determine_first_turn
+    prompt_winning_score
+    prompt_who_goes_first
   end
 
   def single_game
@@ -161,7 +162,7 @@ class TTTGame
     end
   end
 
-  def determine_first_turn
+  def prompt_who_goes_first
     response = nil
     loop do
       puts "\nWho should go first? Type 1 for you, or 2 for #{computer.name}."
@@ -192,12 +193,12 @@ class TTTGame
     end
   end
 
-  def human_name
+  def prompt_name
     response = nil
     loop do
       puts "\nKindly enter your name? (10 or fewer characters)"
-      response = gets.chomp.capitalize
-      break if !response.empty? && response.length <= 10
+      response = gets.chomp.capitalize.strip
+      break unless response.empty? || response.length > 10
       display_invalid_input
     end
     human.name = response
@@ -205,7 +206,7 @@ class TTTGame
     puts "Today, you're playing against the computer, #{computer.name}."
   end
 
-  def set_winning_score
+  def prompt_winning_score
     input = nil
     loop do
       puts "\nHow many games does either player need to win the match? (1-10)"
@@ -359,7 +360,7 @@ class TTTGame
 
   def reset
     board.reset
-    @current_marker = determine_first_turn
+    @current_marker = prompt_who_goes_first
     # clear
   end
 
