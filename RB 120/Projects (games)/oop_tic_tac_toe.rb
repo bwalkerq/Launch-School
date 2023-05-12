@@ -148,7 +148,7 @@ class TTTGame
 
   def game_setup
     prompt_winning_score
-    prompt_who_goes_first
+    reset
   end
 
   def single_game
@@ -286,7 +286,7 @@ class TTTGame
   def display_game_result_and_score
     clear_screen_and_display_board
     display_winner_or_tie
-    puts "The current match score is #{human.name}: #{human.score}" \
+    puts "\nThe current match score is #{human.name}: #{human.score}" \
            " to #{computer.name}: #{computer.score}".center(77)
     puts "-" * 77
   end
