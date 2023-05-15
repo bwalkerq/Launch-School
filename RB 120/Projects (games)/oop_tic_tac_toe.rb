@@ -1,3 +1,6 @@
+require_relative 'promptable.rb'
+require_relative 'displayable.rb'
+
 class Board
   attr_reader :squares
 
@@ -103,6 +106,7 @@ class Player
 end
 
 class TTTGame
+  include Promptable, Displayable
   HUMAN_MARKER = "X"
   COMPUTER_MARKER = "O"
   FIRST_TO_MOVE = HUMAN_MARKER
@@ -137,13 +141,9 @@ class TTTGame
       single_game
 
       display_match_result
-      break unless play_again?
+      break unless prompt_play_again?
       display_play_again_message
     end
-  end
-
-  def display_welcome_message
-    puts "Well howdee do! Welcome to TicTacToe."
   end
 
   def game_setup
@@ -162,17 +162,6 @@ class TTTGame
     end
   end
 
-  def prompt_who_goes_first
-    response = nil
-    loop do
-      puts "\nWho should go first? Type 1 for you, or 2 for #{computer.name}."
-      response = gets.chomp.to_i
-      break if [1, 2].include?(response)
-      display_invalid_input
-    end
-    current_marker_assignment!(response)
-  end
-
   def current_marker_assignment!(response)
     case response
     when 1 then @current_marker = HUMAN_MARKER
@@ -181,60 +170,12 @@ class TTTGame
     end
   end
 
-  def display_invalid_input
-    puts "    (Your input was not valid, please try again.)"
-  end
-
   def players_move
     loop do
       current_player_moves!
       break if board.someone_won? || board.full?
       clear_screen_and_display_board if human_turn?
     end
-  end
-
-  def prompt_name
-    response = nil
-    loop do
-      puts "\nKindly enter your name? (10 or fewer characters)"
-      response = gets.chomp.capitalize.strip
-      break unless response.empty? || response.length > 10
-      display_invalid_input
-    end
-    human.name = response
-    puts "\nWelcome, #{human.name}!"
-    puts "Today, you're playing against the computer, #{computer.name}."
-  end
-
-  def prompt_winning_score!
-    input = nil
-    loop do
-      puts "\nHow many games does either player need to win the match? (1-10)"
-      input = gets.chomp.to_i
-      break if (1..10).include? input
-      display_invalid_input
-    end
-    @score_needed_to_win = input
-  end
-
-  def display_goodbye_message
-    puts "Thanks for playing #{human.name}, c'mon back now, ya hear?"
-  end
-
-  def display_board
-    puts ""
-    puts ""
-    puts "This is the start of a new game"
-    puts "#{human.name}, you're the '#{human.marker}', and #{computer.name}
-          is the '#{computer.marker}'."
-    puts ""
-    board.draw
-    puts ""
-  end
-
-  def clear_screen_and_display_board
-    clear
-    display_board
   end
 
   def joiner(array, delimiter = ", ", end_word = "or")
@@ -283,25 +224,6 @@ class TTTGame
     opportunity_lines.first.select(&:unmarked?).first
   end
 
-  def display_game_result_and_score
-    clear_screen_and_display_board
-    display_winner_or_tie
-    puts "\nThe current match score is #{human.name}: #{human.score}" \
-           " to #{computer.name}: #{computer.score}".center(77)
-    puts "-" * 77
-  end
-
-  def display_winner_or_tie
-    case board.winning_marker
-    when human.marker
-      puts "You won this game, #{human.name}!"
-    when computer.marker
-      puts "Well, shucks, #{computer.name} won this game!"
-    else
-      puts "The board is full, it's a tie. Snore..."
-    end
-  end
-
   def match_winner
     return human if human.score == @score_needed_to_win
     return computer if computer.score == @score_needed_to_win
@@ -322,51 +244,10 @@ class TTTGame
       computer.score == @score_needed_to_win
   end
 
-  def display_match_result
-    puts "\n"
-    puts "*********************************************".center(70)
-    display_match_winner
-    puts "*********************************************".center(70)
-  end
-
-  def display_match_winner
-    case match_winner
-    when human
-      puts "Congratulations, #{human.name}!"
-      puts "You have bested #{computer.name} in this match to" \
-           " #{@score_needed_to_win} games!"
-    when computer
-      puts "Alas, #{computer.name} has won this" \
-           " match to #{@score_needed_to_win} games.".center(70)
-    else puts "there is an error in this method"
-    end
-  end
-
-  def play_again?
-    answer = nil
-    loop do
-      puts "\n\nWould you like to play again? (y/n)"
-      answer = gets.chomp.downcase
-      break if %w(y n).include? answer
-      display_invalid_input
-    end
-
-    answer == "y"
-  end
-
-  def clear
-    system 'clear'
-  end
-
   def reset!
     board.reset
     @current_marker = prompt_who_goes_first
     # clear
-  end
-
-  def display_play_again_message
-    puts "Let's play again!"
-    puts ""
   end
 
   def human_turn?
