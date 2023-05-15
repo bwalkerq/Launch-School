@@ -106,7 +106,7 @@ class TTTGame
   HUMAN_MARKER = "X"
   COMPUTER_MARKER = "O"
   FIRST_TO_MOVE = HUMAN_MARKER
-  COMPUTER_NAMES = %w(Jane Lizzie Darcy Bingley Wickham Collins)
+  COMPUTER_NAMES = %w(Jane Lizzie Darcy Bingley Wickham)
 
   attr_reader :board, :human, :computer
 
@@ -147,18 +147,18 @@ class TTTGame
   end
 
   def game_setup
-    prompt_winning_score
-    reset
+    prompt_winning_score!
+    reset!
   end
 
   def single_game
     loop do
       display_board
       players_move
-      increment_score
+      increment_score!
       display_game_result_and_score
       break if someone_won_match?
-      reset
+      reset!
     end
   end
 
@@ -170,10 +170,10 @@ class TTTGame
       break if [1, 2].include?(response)
       display_invalid_input
     end
-    current_marker_assignment(response)
+    current_marker_assignment!(response)
   end
 
-  def current_marker_assignment(response)
+  def current_marker_assignment!(response)
     case response
     when 1 then @current_marker = HUMAN_MARKER
     when 2 then @current_marker = COMPUTER_MARKER
@@ -187,7 +187,7 @@ class TTTGame
 
   def players_move
     loop do
-      current_player_moves
+      current_player_moves!
       break if board.someone_won? || board.full?
       clear_screen_and_display_board if human_turn?
     end
@@ -206,7 +206,7 @@ class TTTGame
     puts "Today, you're playing against the computer, #{computer.name}."
   end
 
-  def prompt_winning_score
+  def prompt_winning_score!
     input = nil
     loop do
       puts "\nHow many games does either player need to win the match? (1-10)"
@@ -243,7 +243,7 @@ class TTTGame
       .join(delimiter) + delimiter + end_word + " #{array[-1]}"
   end
 
-  def human_moves
+  def human_moves!
     square = nil
     puts "choose a square (#{joiner(board.unmarked_keys)}): "
     loop do
@@ -255,7 +255,7 @@ class TTTGame
     board[square] = human.marker
   end
 
-  def computer_moves
+  def computer_moves!
     win_opportunity = empty_square_of_three(COMPUTER_MARKER)
     block_human_win = empty_square_of_three(HUMAN_MARKER)
     computer_move_conditional(block_human_win, win_opportunity)
@@ -308,7 +308,7 @@ class TTTGame
     nil
   end
 
-  def increment_score
+  def increment_score!
     case board.winning_marker
     when human.marker
       human.score += 1
@@ -358,7 +358,7 @@ class TTTGame
     system 'clear'
   end
 
-  def reset
+  def reset!
     board.reset
     @current_marker = prompt_who_goes_first
     # clear
@@ -373,12 +373,12 @@ class TTTGame
     @current_marker == HUMAN_MARKER
   end
 
-  def current_player_moves
+  def current_player_moves!
     if human_turn?
-      human_moves
+      human_moves!
       @current_marker = COMPUTER_MARKER
     else
-      computer_moves
+      computer_moves!
       @current_marker = HUMAN_MARKER
     end
   end
