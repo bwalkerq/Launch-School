@@ -524,7 +524,7 @@ class TTTGame
       when 3 then change_starter!
       when 1
         main_game
-        break unless play_again?
+        break unless prompt_play_again?
       end
     end
   end
@@ -561,7 +561,7 @@ class TTTGame
     winner.wins += 1 if winner
   end
 
-  def play_again?
+  def prompt_play_again?
     get_text_from_user(CONFIG['play_again'], options: %w(Y N)) == "Y"
   end
 
