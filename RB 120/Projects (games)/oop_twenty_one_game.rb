@@ -2,7 +2,7 @@ module Displayable
   def display_welcome_message
     message = "** Welcome to the Twenty One card game, #{player.name}! **"
     length = message.length
-    puts "\n" + "-" * length
+    puts "\n#{'-' * length}"
     puts message
     puts "You're playing against the dealer, #{dealer.name}.".center(length)
     puts "Best of luck!".center(length)
@@ -18,9 +18,11 @@ module Displayable
   end
 
   def display_goodbye_message
+    message = "Thank you for playing Twenty-One, #{player.name}!"
     clear
     puts "\n\n"
-    puts "Thank you for playing Twenty-One, #{player.name}. It's been a pleasure."
+    puts message
+    puts "It's been a pleasure.".center(message.length)
     puts "\n\n"
   end
 end
@@ -62,15 +64,15 @@ class Participant
   def total
     total = @hand.collect(&:value).sum
 
-     # correct for aces
-     @hand.select(&:ace?).count.times do
-       break if total <= 21
-       total -= 10
-     end
-     # this is so much better than what I came up with, trying to change the
-     # name and value of the card. trying access and change a specific card was
-     # much harder than I expected, I didn't do it successfully, and then punted
-     # to this solution for correcting aces
+    # correct for aces
+    @hand.select(&:ace?).count.times do
+      break if total <= 21
+      total -= 10
+    end
+    # this is so much better than what I came up with, trying to change the
+    # name and value of the card. trying access and change a specific card was
+    # much harder than I expected, I didn't do it successfully, and then punted
+    # to this solution for correcting aces
     total
   end
 end
@@ -105,7 +107,7 @@ class Dealer < Participant
     first_card = "=> #{hand.first}"
     puts "---- #{name}'s Hand ----"
     puts first_card
-    puts "=>" + "???".center(first_card.length)
+    puts "=>#{'???'.center(first_card.length)}"
   end
 end
 
@@ -162,7 +164,7 @@ class Deck
   end
 end
 
-class TwentyOne #Orchestration Engine
+class TwentyOne # Orchestration Engine
   include Displayable
   attr_accessor :deck, :player, :dealer
 
@@ -174,15 +176,7 @@ class TwentyOne #Orchestration Engine
 
   def game
     display_welcome_message
-    loop do
-      deal_initial_cards
-      display_flop
-      player_turn
-      dealer_turn if !player.busted?
-      show_result
-      break unless prompt_play_again?
-      clear
-    end
+    main_game_loop
     display_goodbye_message
   end
 
@@ -207,7 +201,7 @@ class TwentyOne #Orchestration Engine
       "#{array.first} #{end_word} #{array.last}"
     else
       array[0, (array.length - 1)]
-      .join(delimiter) + delimiter + end_word + " #{array[-1]}"
+        .join(delimiter) + delimiter + end_word + " #{array[-1]}"
     end
   end
 
@@ -223,7 +217,7 @@ class TwentyOne #Orchestration Engine
 
   def start_new_deck
     puts "*****************************".center(65)
-    puts "We've reched the end of this deck, so we're starting a new one."
+    puts "We've reached the end of this deck, so we're starting a new one."
     puts "*****************************".center(65)
     @deck = Deck.new
   end
@@ -236,18 +230,14 @@ class TwentyOne #Orchestration Engine
   def player_turn
     loop do
       break if player.busted?
-      if player.prompt_hit?
-        deal_one_card(player)
-      else
-        break
-      end
+      break unless player.prompt_hit?
+      deal_one_card(player)
       display_flop
     end
   end
 
   def dealer_turn
     puts "\n\nIt is now #{dealer.name}'s turn."
-    total = dealer.total
     until dealer.busted? || dealer_at_least_ties?
       puts "#{dealer.name} chose to hit."
       deal_one_card(dealer)
@@ -292,6 +282,20 @@ class TwentyOne #Orchestration Engine
     end
 
     response == 1
+  end
+
+  private
+
+  def main_game_loop
+    loop do
+      deal_initial_cards
+      display_flop
+      player_turn
+      dealer_turn unless player.busted?
+      show_result
+      break unless prompt_play_again?
+      clear
+    end
   end
 end
 
