@@ -1,5 +1,12 @@
+module Displayable
+  def display_invalid_input
+    puts "    (Your input was not valid, please try again.)"
+  end
+end
+
 class Participant
-  attr_accessor :hand
+  include Displayable
+  attr_accessor :hand, :name
 
   def initialize
     @hand = []
@@ -25,10 +32,6 @@ class Participant
     response == 1
   end
 
-  def display_invalid_input
-    puts "    (Your input was not valid, please try again.)"
-  end
-
   def busted?
     total > 21
   end
@@ -50,11 +53,29 @@ class Participant
 end
 
 class Player < Participant
+  def initialize
+    super
+    prompt_name
+  end
 
+  def prompt_name
+    response = nil
+    loop do
+      puts "\nKindly enter your name? (10 or fewer characters)"
+      response = gets.chomp.capitalize.strip
+      break unless response.empty? || response.length > 10
+      display_invalid_input
+    end
+    @name = response
+  end
 end
 
 class Dealer < Participant
-
+  DEALER_NAMES = %w(Jane Lizzie Darcy Bingley Wickham)
+  def initialize
+    super
+    @name = DEALER_NAMES.sample
+  end
 end
 
 class Card
@@ -147,8 +168,8 @@ class TwentyOne #Orchestration Engine
   end
 
   def show_cards
-    puts "Your hand is #{joiner(player.hand.map(&:face))}, for a score of #{player.total}."
-    puts "The dealer's hand is #{joiner(dealer.hand.map(&:face))}, for a total of #{dealer.total}"
+    player.display_hand
+    dealer.display_hand
   end
 
   def deal_one_card(participant)
