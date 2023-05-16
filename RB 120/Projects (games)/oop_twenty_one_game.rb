@@ -168,7 +168,6 @@ class TwentyOne #Orchestration Engine
   def game
     display_welcome_message
     loop do
-      clear
       deal_initial_cards
       display_flop
       player_turn
@@ -234,7 +233,7 @@ class TwentyOne #Orchestration Engine
       else
         break
       end
-      show_cards
+      display_flop
     end
   end
 
@@ -249,13 +248,13 @@ class TwentyOne #Orchestration Engine
 
   def show_result
     if player.busted?
-      puts "Alas, you have busted. The dealer wins!"
+      puts "Alas, #{player.name}, you have busted. The dealer wins!"
     elsif dealer.busted?
-      puts "The dealer busted, and you are victorious!"
+      puts "#{dealer.name} busted, and you are victorious!"
     elsif winner == "tie"
-      puts "You and the dealer have tied, no one wins."
+      puts "You and #{dealer.name} have tied, no one wins."
     else
-      puts "The #{winner} has won!"
+      puts "The #{winner.name} has won!"
     end
   end
 
