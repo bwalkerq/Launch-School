@@ -220,7 +220,8 @@ class TwentyOne #Orchestration Engine
 
   def dealer_turn
     total = dealer.total
-    until total >= 17 || total > player.total || dealer.busted? do
+    until dealer.busted? || total >= player.total || total >= 17 do
+      puts "#{dealer.name} chose to hit."
       deal_one_card(dealer)
       show_cards
     end
