@@ -202,7 +202,15 @@ class TwentyOne #Orchestration Engine
     dealer.display_hand
   end
 
+  def start_new_deck
+    puts "*****************************".center(65)
+    puts "We've reched the end of this deck, so we're starting a new one."
+    puts "*****************************".center(65)
+    @deck = Deck.new
+  end
+
   def deal_one_card(participant)
+    start_new_deck if @deck.cards.empty?
     participant.hand << deck.deal
   end
 
