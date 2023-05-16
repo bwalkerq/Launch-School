@@ -238,12 +238,18 @@ class TwentyOne #Orchestration Engine
   end
 
   def dealer_turn
+    puts "\n\nIt is now #{dealer.name}'s turn."
     total = dealer.total
-    until dealer.busted? || total >= player.total || total >= 17 do
+    until dealer.busted? || dealer_at_least_ties?
       puts "#{dealer.name} chose to hit."
       deal_one_card(dealer)
-      show_cards
     end
+    puts "\n"
+    show_cards
+  end
+
+  def dealer_at_least_ties?
+    dealer.total >= player.total
   end
 
   def show_result
