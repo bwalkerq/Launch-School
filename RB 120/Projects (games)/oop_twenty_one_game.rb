@@ -16,6 +16,13 @@ module Displayable
   def clear
     system "clear"
   end
+
+  def display_goodbye_message
+    clear
+    puts "\n\n"
+    puts "Thank you for playing Twenty-One, #{player.name}. It's been a pleasure."
+    puts "\n\n"
+  end
 end
 
 class Participant
@@ -176,6 +183,7 @@ class TwentyOne #Orchestration Engine
       break unless prompt_play_again?
       clear
     end
+    display_goodbye_message
   end
 
   def reset_hands
