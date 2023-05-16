@@ -1,4 +1,14 @@
 module Displayable
+  def display_welcome_message
+    message = "** Welcome to the Twenty One card game, #{player.name}! **"
+    length = message.length
+    puts "\n" + "-" * length
+    puts message
+    puts "You're playing against the dealer, #{dealer.name}.".center(length)
+    puts "Best of luck!".center(length)
+    puts "-" * length
+  end
+
   def display_invalid_input
     puts "    (Your input was not valid, please try again.)"
   end
@@ -156,6 +166,7 @@ class TwentyOne #Orchestration Engine
   end
 
   def game
+    display_welcome_message
     loop do
       clear
       deal_initial_cards
@@ -164,6 +175,7 @@ class TwentyOne #Orchestration Engine
       dealer_turn if !player.busted?
       show_result
       break unless prompt_play_again?
+      clear
     end
   end
 
