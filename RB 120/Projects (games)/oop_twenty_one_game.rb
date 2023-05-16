@@ -2,6 +2,10 @@ module Displayable
   def display_invalid_input
     puts "    (Your input was not valid, please try again.)"
   end
+
+  def clear
+    system "clear"
+  end
 end
 
 class Participant
@@ -23,12 +27,14 @@ class Participant
 
   def prompt_hit?
     response = nil
+
     loop do
-      puts "Would you like to hit or stay? (1 for hit / 2 for stay)"
+      puts "\nWould you like to hit or stay? (1 for hit / 2 for stay)"
       response = gets.chomp.to_i
       break if !response.to_s.empty? && [1, 2].include?(response)
       display_invalid_input
     end
+
     response == 1
   end
 
@@ -59,6 +65,7 @@ class Player < Participant
   end
 
   def prompt_name
+    clear
     response = nil
     loop do
       puts "\nKindly enter your name? (10 or fewer characters)"
@@ -75,6 +82,13 @@ class Dealer < Participant
   def initialize
     super
     @name = DEALER_NAMES.sample
+  end
+
+  def flop
+    first_card = "=> #{hand.first}"
+    puts "---- #{name}'s Hand ----"
+    puts first_card
+    puts "=>" + "???".center(first_card.length)
   end
 end
 
@@ -132,6 +146,7 @@ class Deck
 end
 
 class TwentyOne #Orchestration Engine
+  include Displayable
   attr_accessor :deck, :player, :dealer
 
   def initialize
@@ -140,15 +155,25 @@ class TwentyOne #Orchestration Engine
     @dealer = Dealer.new
   end
 
-  def start
-    deal_cards
-    show_cards
-    player_turn
-    dealer_turn if !player.busted?
-    show_result
+  def game
+    loop do
+      clear
+      deal_initial_cards
+      display_flop
+      player_turn
+      dealer_turn if !player.busted?
+      show_result
+      break unless prompt_play_again?
+    end
   end
 
-  def deal_cards
+  def reset_hands
+    player.hand = []
+    dealer.hand = []
+  end
+
+  def deal_initial_cards
+    reset_hands
     2.times do
       player.hand << deck.deal
       dealer.hand << deck.deal
@@ -165,6 +190,11 @@ class TwentyOne #Orchestration Engine
       array[0, (array.length - 1)]
       .join(delimiter) + delimiter + end_word + " #{array[-1]}"
     end
+  end
+
+  def display_flop
+    player.display_hand
+    dealer.flop
   end
 
   def show_cards
@@ -216,8 +246,21 @@ class TwentyOne #Orchestration Engine
       "tie"
     end
   end
+
+  def prompt_play_again?
+    response = nil
+
+    loop do
+      puts "\n\nWould you like to play again? (1 for Yes / 2 for No)"
+      response = gets.chomp.to_i
+      break if !response.to_s.empty? && [1, 2].include?(response)
+      display_invalid_input
+    end
+
+    response == 1
+  end
 end
 
-TwentyOne.new.start
+TwentyOne.new.game
 # deck = Deck.new
 # p hand = deck.cards.pop(30)
