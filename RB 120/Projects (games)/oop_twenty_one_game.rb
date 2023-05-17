@@ -138,7 +138,7 @@ class Player < Participant
 end
 
 class Dealer < Participant
-  DEALER_NAMES = %w(Jane Lizzie Darcy Bingley Wickham)
+  DEALER_NAMES = %w(Jane Lizzie Darcy Bingley Collins)
   def initialize
     super
     @name = DEALER_NAMES.sample
