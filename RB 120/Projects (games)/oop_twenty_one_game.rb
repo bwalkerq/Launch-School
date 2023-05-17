@@ -25,6 +25,47 @@ module Displayable
     puts "It's been a pleasure.".center(message.length)
     puts "\n\n"
   end
+
+  def joiner(array, delimiter = ", ", end_word = "and")
+    case array.length
+    when 1
+      array[0]
+    when 2
+      "#{array.first} #{end_word} #{array.last}"
+    else
+      array[0, (array.length - 1)]
+        .join(delimiter) + delimiter + end_word + " #{array[-1]}"
+    end
+  end
+
+  def display_result
+    if player.busted?
+      puts "Alas, #{player.name}, you have busted. The dealer wins!"
+    elsif dealer.busted?
+      puts "#{dealer.name} busted, and you are victorious!"
+    elsif winner == "tie"
+      puts "You and #{dealer.name} have tied, no one wins."
+    else
+      puts "The #{winner.name} has won!"
+    end
+  end
+
+end
+
+module Questionable
+  def prompt_play_again?
+    response = nil
+
+    loop do
+      puts "\n\nWould you like to play again? (1 for Yes / 2 for No)"
+      response = gets.chomp.to_i
+      break if !response.to_s.empty? && [1, 2].include?(response)
+      display_invalid_input
+    end
+
+    response == 1
+  end
+
 end
 
 class Participant
@@ -165,7 +206,7 @@ class Deck
 end
 
 class TwentyOne # Orchestration Engine
-  include Displayable
+  include Displayable, Questionable
   attr_accessor :deck, :player, :dealer
 
   def initialize
@@ -180,6 +221,8 @@ class TwentyOne # Orchestration Engine
     display_goodbye_message
   end
 
+  private
+
   def reset_hands
     player.hand = []
     dealer.hand = []
@@ -193,24 +236,12 @@ class TwentyOne # Orchestration Engine
     end
   end
 
-  def joiner(array, delimiter = ", ", end_word = "and")
-    case array.length
-    when 1
-      array[0]
-    when 2
-      "#{array.first} #{end_word} #{array.last}"
-    else
-      array[0, (array.length - 1)]
-        .join(delimiter) + delimiter + end_word + " #{array[-1]}"
-    end
-  end
-
   def display_flop
     player.display_hand
     dealer.flop
   end
 
-  def show_cards
+  def display_all_cards
     player.display_hand
     dealer.display_hand
   end
@@ -243,23 +274,11 @@ class TwentyOne # Orchestration Engine
       deal_one_card(dealer)
     end
     puts "\n"
-    show_cards
+    display_all_cards
   end
 
   def dealer_at_least_ties?
     dealer.total >= player.total
-  end
-
-  def show_result
-    if player.busted?
-      puts "Alas, #{player.name}, you have busted. The dealer wins!"
-    elsif dealer.busted?
-      puts "#{dealer.name} busted, and you are victorious!"
-    elsif winner == "tie"
-      puts "You and #{dealer.name} have tied, no one wins."
-    else
-      puts "The #{winner.name} has won!"
-    end
   end
 
   def winner
@@ -271,28 +290,13 @@ class TwentyOne # Orchestration Engine
     end
   end
 
-  def prompt_play_again?
-    response = nil
-
-    loop do
-      puts "\n\nWould you like to play again? (1 for Yes / 2 for No)"
-      response = gets.chomp.to_i
-      break if !response.to_s.empty? && [1, 2].include?(response)
-      display_invalid_input
-    end
-
-    response == 1
-  end
-
-  private
-
   def main_game_loop
     loop do
       deal_initial_cards
       display_flop
       player_turn
       dealer_turn unless player.busted?
-      show_result
+      display_result
       break unless prompt_play_again?
       clear
     end
@@ -300,5 +304,3 @@ class TwentyOne # Orchestration Engine
 end
 
 TwentyOne.new.game
-# deck = Deck.new
-# p hand = deck.cards.pop(30)
