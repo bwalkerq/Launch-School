@@ -1,0 +1,333 @@
+class Machine
+  def start
+    flip_switch(:on)
+  end
+
+  def stop
+    flip_switch(:off)
+  end
+
+  private
+
+  attr_writer :switch
+
+  def flip_switch(desired_state)
+    self.switch = desired_state
+  end
+end
+
+class FixedArray
+  def initialize(size)
+    @array = Array.new(size)
+  end
+
+  def [](index)
+    raise IndexError if index > @array.size
+    @array[index]
+  end
+
+  def []= (index, new)
+    raise IndexError if index > @array.size
+    @array[index]=new
+  end
+
+  def to_a
+    @array.clone
+  end
+
+  def to_s
+    @array.to_s
+  end
+end
+
+# fixed_array = FixedArray.new(5)
+# puts fixed_array[3] == nil
+# puts fixed_array.to_a == [nil] * 5
+#
+# fixed_array[3] = 'a'
+# puts fixed_array[3] == 'a'
+# puts fixed_array.to_a == [nil, nil, nil, 'a', nil]
+#
+# fixed_array[1] = 'b'
+# puts fixed_array[1] == 'b'
+# puts fixed_array.to_a == [nil, 'b', nil, 'a', nil]
+#
+# fixed_array[1] = 'c'
+# puts fixed_array[1] == 'c'
+# puts fixed_array.to_a == [nil, 'c', nil, 'a', nil]
+#
+# fixed_array[4] = 'd'
+# puts fixed_array[4] == 'd'
+# puts fixed_array.to_a == [nil, 'c', nil, 'a', 'd']
+# puts fixed_array.to_s == '[nil, "c", nil, "a", "d"]'
+#
+# puts fixed_array[-1] == 'd'
+# puts fixed_array[-4] == 'c'
+
+
+# begin
+#   p fixed_array[6]
+#   puts false
+# rescue IndexError
+#   puts true
+# end
+#
+# begin
+#   fixed_array[-7] = 3
+#   puts false
+# rescue IndexError
+#   puts true
+# end
+#
+# begin
+#   fixed_array[7] = 3
+#   puts false
+# rescue IndexError
+#   puts true
+# end
+
+class Student
+  def initialize(name, year)
+    @name = name
+    @year = year
+  end
+end
+
+class Graduate < Student
+  def initialize(name, year, parking)
+    super(name, year)
+    @parking = parking
+  end
+end
+
+class Undergraduate < Student
+  def initialize(name, year)
+    super
+  end
+end
+
+# benji = Undergraduate.new("Benji", 2010)
+# # p benji.parking
+#
+# benjamin = Graduate.new("Benjamin", 2012,"yes")
+# p benjamin
+
+
+# I'm choosing not to use fixed array from above because I'd rather keep
+# track of age of elements by position, and fixed array doesn't have
+# pop or unshift
+
+class CircularQueue
+  attr_accessor :array
+
+  def initialize(size)
+    @array = Array.new(size)
+  end
+
+  def queue_full?
+    @array.none?(nil)
+  end
+
+  def queue_empty?
+    @array.all?(nil)
+  end
+
+  def enqueue(new_element)
+    if queue_full?
+      dequeue(new_element)
+    else
+      nil_count = @array.count(nil)
+      @array[-nil_count] = new_element
+    end
+  end
+
+  def dequeue(element=nil)
+    if queue_empty?
+      return nil
+    else
+      @array << element
+      @array.shift
+    end
+  end
+end
+# I feel proud that I figured out my solution without reading the hint, and that
+# my solution is the preferred method. As soon as the problem said "connected
+# end-to-end" in a circle, I thought of a line, and then an array. It's a joy
+# to see how my mind interprets problems, sometimes!
+
+# test_queue = CircularQueue.new(3,)
+# p test_queue.array
+# p test_queue.queue_empty?
+# p test_queue.array[0]=1
+# p test_queue.array.shift # pulls first out
+# p test_queue.array
+# p test_queue.array.count(nil)
+
+# queue = CircularQueue.new(3)
+# puts queue.dequeue == nil
+#
+# queue.enqueue(1)
+# queue.enqueue(2)
+# puts queue.dequeue == 1
+#
+# queue.enqueue(3)
+# queue.enqueue(4)
+# puts queue.dequeue == 2
+#
+# queue.enqueue(5)
+# queue.enqueue(6)
+# queue.enqueue(7)
+# puts queue.dequeue == 5
+# puts queue.dequeue == 6
+# puts queue.dequeue == 7
+# puts queue.dequeue == nil
+#
+# queue = CircularQueue.new(4)
+# puts queue.dequeue == nil
+#
+# queue.enqueue(1)
+# queue.enqueue(2)
+# puts queue.dequeue == 1
+#
+#
+# queue.enqueue(3)
+# queue.enqueue(4)
+# puts queue.dequeue == 2
+#
+# queue.enqueue(5)
+# queue.enqueue(6)
+# queue.enqueue(7)
+# puts queue.dequeue == 4
+# puts queue.dequeue == 5
+# puts queue.dequeue == 6
+# puts queue.dequeue == 7
+# puts queue.dequeue == nil
+
+class Minilang
+  def initialize
+    @register = 0
+    @stack = []
+  end
+end
+# dunno what .eval does, I read the documentation for the three versions of eval
+# and none of it made sense, so I'm not about to go for eval plus send plus error
+# exceptions, nah
+
+# Minilang.new('PRINT').eval
+# # 0
+#
+# Minilang.new('5 PUSH 3 MULT PRINT').eval
+# # 15
+#
+# Minilang.new('5 PRINT PUSH 3 PRINT ADD PRINT').eval
+# # 5
+# # 3
+# # 8
+#
+# Minilang.new('5 PUSH 10 PRINT POP PRINT').eval
+# # 10
+# # 5
+#
+# Minilang.new('5 PUSH POP POP PRINT').eval
+# # Empty stack!
+#
+# Minilang.new('3 PUSH PUSH 7 DIV MULT PRINT ').eval
+# # 6
+#
+# Minilang.new('4 PUSH PUSH 7 MOD MULT PRINT ').eval
+# # 12
+#
+# Minilang.new('-3 PUSH 5 XSUB PRINT').eval
+# # Invalid token: XSUB
+#
+# Minilang.new('-3 PUSH 5 SUB PRINT').eval
+# # 8
+#
+# Minilang.new('6 PUSH').eval
+# # (nothing printed; no PRINT commands)
+
+class GuessingGame
+
+  def initialize(low, high)
+    @range = (low..high).to_a
+    @secret = nil
+    @guesses = nil
+    @wins = false
+  end
+
+  def play
+    @secret = @range.sample
+    @guesses = Math.log2(@range.size).to_i + 1
+    @wins = false
+    loop do
+      play_one_round
+      break if @wins == true || @guesses == 0
+    end
+    if @wins == true
+      puts "You won!"
+    else
+      puts "You lost, bro."
+    end
+  end
+
+  def play_one_round
+    response = nil
+    puts "You have #{@guesses} guesses remaining."
+    loop do
+      puts "Enter a number between #{@range.first} and #{@range.last}:"
+      response = gets.chomp.to_i
+      break if @range.include?(response)
+      puts "Invalid guess"
+    end
+
+    if response == @secret
+      puts "That's the number!"
+      @wins = true
+    elsif response < @secret
+      puts "Your guess is too low."
+    else
+      puts "Your guess is too high."
+    end
+    @guesses -= 1
+  end
+end
+
+g = GuessingGame.new(500,1000)
+p g
+g.play
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
