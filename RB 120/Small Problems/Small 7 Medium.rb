@@ -292,15 +292,109 @@ class GuessingGame
   end
 end
 
-g = GuessingGame.new(500,1000)
-p g
-g.play
+# g = GuessingGame.new(500,1000)
+# p g
+# g.play
+
+class Card
+  include Comparable
+  attr_reader :rank, :suit
+
+  def initialize(rank, suit)
+    @rank = rank
+    @suit = suit
+  end
+
+  def rank_num
+    case @rank
+    when "Jack" then 11
+    when "Queen" then 12
+    when "King" then 13
+    when "Ace" then 14
+    else
+      @rank
+    end
+  end
+
+  def <=>(other)
+    self.rank_num <=> other.rank_num
+  end
+
+  def to_s
+    "#{@rank} of #{@suit}"
+  end
+end
+# the big take away for me here is that #<=> is not a class method; it's an
+# instance method. This is surprising! Because when #max returns the object
+# of a group by using the elements own #<=> for comparison, I def expected --oops
+# damn no I'm tripping. It's late and I'm fried from being with Olie all day,
+# I had originally written <=> as a class method, but Cards the class never
+# calls a method, it's always instances of Cards calling it. dang. that's a burn
+
+# cards = [Card.new(2, 'Hearts'),
+#          Card.new(10, 'Diamonds'),
+#          Card.new('Ace', 'Clubs')]
+# puts cards.map(&:rank_num)
+# puts cards
+# puts cards.min == Card.new(2, 'Hearts')
+# puts cards.max == Card.new('Ace', 'Clubs')
+#
+# cards = [Card.new(5, 'Hearts')]
+# puts cards.min == Card.new(5, 'Hearts')
+# puts cards.max == Card.new(5, 'Hearts')
+#
+# cards = [Card.new(4, 'Hearts'),
+#          Card.new(4, 'Diamonds'),
+#          Card.new(10, 'Clubs')]
+# puts cards.min.rank == 4
+# puts cards.max == Card.new(10, 'Clubs')
+#
+# cards = [Card.new(7, 'Diamonds'),
+#          Card.new('Jack', 'Diamonds'),
+#          Card.new('Jack', 'Spades')]
+# puts cards.min == Card.new(7, 'Diamonds')
+# puts cards.max.rank == 'Jack'
+#
+# cards = [Card.new(8, 'Diamonds'),
+#          Card.new(8, 'Clubs'),
+#          Card.new(8, 'Spades')]
+# puts cards.min.rank == 8
+# puts cards.max.rank == 8
 
 
+class Deck
+  RANKS = ((2..10).to_a + %w(Jack Queen King Ace)).freeze
+  SUITS = %w(Hearts Clubs Diamonds Spades).freeze
 
+  def initialize
+    @deck = new_deck
+  end
 
+  def new_deck
+    deck = Array.new
+    RANKS.each do |rank|
+      SUITS.each do |suit|
+        deck << Card.new(rank, suit)
+      end
+    end
+    deck.shuffle!
+  end
 
+  def draw
+    @deck = new_deck if @deck.empty?
+    @deck.pop
+  end
+end
 
+deck = Deck.new
+drawn = []
+52.times { drawn << deck.draw }
+p drawn.count { |card| card.rank == 5 } == 4
+p drawn.count { |card| card.suit == 'Hearts' } == 13
+
+drawn2 = []
+52.times { drawn2 << deck.draw }
+p drawn != drawn2 # Almost always.
 
 
 
