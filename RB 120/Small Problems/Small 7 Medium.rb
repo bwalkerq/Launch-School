@@ -406,9 +406,7 @@ class PokerHand
   end
 
   def print
-    @hand.each do|card|
-      puts card
-    end
+    puts @hand
   end
 
   def evaluate
