@@ -204,14 +204,37 @@ end
 # puts queue.dequeue == nil
 
 class Minilang
-  def initialize
+  attr_accessor :register, :stack
+  attr_reader :program
+
+  def initialize(str)
     @register = 0
     @stack = []
+    @program = str
   end
+
+  def eval
+    program.split.each do |token|
+      if token =~ /\A[-+]?\d+\z/
+        @register = token.to_i
+        next
+      end
+
+      case token
+      when 'ADD'   then @register += stack.pop
+      when 'DIV'   then @register /= stack.pop
+      when 'MULT'  then @register *= stack.pop
+      when 'MOD'   then @register %= stack.pop
+      when 'SUB'   then @register -= stack.pop
+      when 'PUSH'  then stack.push(@register)
+      when 'POP'   then @register = stack.pop
+      when 'PRINT' then puts @register
+      else              puts "error, shouldn't get here"
+      end
+    end
+  end
+
 end
-# dunno what .eval does, I read the documentation for the three versions of eval
-# and none of it made sense, so I'm not about to go for eval plus send plus error
-# exceptions, nah
 
 # Minilang.new('PRINT').eval
 # # 0
@@ -245,6 +268,10 @@ end
 #
 # Minilang.new('6 PUSH').eval
 # # (nothing printed; no PRINT commands)
+
+# This problem is out of place and poorly aligned given the context of this
+# course. "require 'set'?" Object#send? raising and resucing exceptions. This
+# whole problem feels like a dinosuar relic kept around as somebody's darling.
 
 class GuessingGame
 
@@ -476,9 +503,9 @@ class PokerHand
   end
 end
 
-hand = PokerHand.new(Deck.new)
-hand.print
-puts hand.evaluate
+# hand = PokerHand.new(Deck.new)
+# hand.print
+# puts hand.evaluate
 
 # Danger danger danger: monkey
 # patching for testing purposes.
@@ -487,104 +514,104 @@ class Array
 end
 
 # Test that we can identify each PokerHand type.
-hand = PokerHand.new([
-                       Card.new(10,      'Hearts'),
-                       Card.new('Ace',   'Hearts'),
-                       Card.new('Queen', 'Hearts'),
-                       Card.new('King',  'Hearts'),
-                       Card.new('Jack',  'Hearts')
-                     ])
-puts hand.evaluate == 'Royal flush'
-
-hand = PokerHand.new([
-                       Card.new(8,       'Clubs'),
-                       Card.new(9,       'Clubs'),
-                       Card.new('Queen', 'Clubs'),
-                       Card.new(10,      'Clubs'),
-                       Card.new('Jack',  'Clubs')
-                     ])
-puts hand.evaluate == 'Straight flush'
-
-hand = PokerHand.new([
-                       Card.new(3, 'Hearts'),
-                       Card.new(3, 'Clubs'),
-                       Card.new(5, 'Diamonds'),
-                       Card.new(3, 'Spades'),
-                       Card.new(3, 'Diamonds')
-                     ])
-puts hand.evaluate == 'Four of a kind'
-
-hand = PokerHand.new([
-                       Card.new(3, 'Hearts'),
-                       Card.new(3, 'Clubs'),
-                       Card.new(5, 'Diamonds'),
-                       Card.new(3, 'Spades'),
-                       Card.new(5, 'Hearts')
-                     ])
-puts hand.evaluate == 'Full house'
-
-hand = PokerHand.new([
-                       Card.new(10, 'Hearts'),
-                       Card.new('Ace', 'Hearts'),
-                       Card.new(2, 'Hearts'),
-                       Card.new('King', 'Hearts'),
-                       Card.new(3, 'Hearts')
-                     ])
-puts hand.evaluate == 'Flush'
-
-hand = PokerHand.new([
-                       Card.new(8,      'Clubs'),
-                       Card.new(9,      'Diamonds'),
-                       Card.new(10,     'Clubs'),
-                       Card.new(7,      'Hearts'),
-                       Card.new('Jack', 'Clubs')
-                     ])
-puts hand.evaluate == 'Straight'
-
-hand = PokerHand.new([
-                       Card.new('Queen', 'Clubs'),
-                       Card.new('King',  'Diamonds'),
-                       Card.new(10,      'Clubs'),
-                       Card.new('Ace',   'Hearts'),
-                       Card.new('Jack',  'Clubs')
-                     ])
-puts hand.evaluate == 'Straight'
-
-hand = PokerHand.new([
-                       Card.new(3, 'Hearts'),
-                       Card.new(3, 'Clubs'),
-                       Card.new(5, 'Diamonds'),
-                       Card.new(3, 'Spades'),
-                       Card.new(6, 'Diamonds')
-                     ])
-puts hand.evaluate == 'Three of a kind'
-
-hand = PokerHand.new([
-                       Card.new(9, 'Hearts'),
-                       Card.new(9, 'Clubs'),
-                       Card.new(5, 'Diamonds'),
-                       Card.new(8, 'Spades'),
-                       Card.new(5, 'Hearts')
-                     ])
-puts hand.evaluate == 'Two pair'
-
-hand = PokerHand.new([
-                       Card.new(2, 'Hearts'),
-                       Card.new(9, 'Clubs'),
-                       Card.new(5, 'Diamonds'),
-                       Card.new(9, 'Spades'),
-                       Card.new(3, 'Diamonds')
-                     ])
-puts hand.evaluate == 'Pair'
-
-hand = PokerHand.new([
-                       Card.new(2,      'Hearts'),
-                       Card.new('King', 'Clubs'),
-                       Card.new(5,      'Diamonds'),
-                       Card.new(9,      'Spades'),
-                       Card.new(3,      'Diamonds')
-                     ])
-puts hand.evaluate == 'High card'
+# hand = PokerHand.new([
+#                        Card.new(10,      'Hearts'),
+#                        Card.new('Ace',   'Hearts'),
+#                        Card.new('Queen', 'Hearts'),
+#                        Card.new('King',  'Hearts'),
+#                        Card.new('Jack',  'Hearts')
+#                      ])
+# puts hand.evaluate == 'Royal flush'
+#
+# hand = PokerHand.new([
+#                        Card.new(8,       'Clubs'),
+#                        Card.new(9,       'Clubs'),
+#                        Card.new('Queen', 'Clubs'),
+#                        Card.new(10,      'Clubs'),
+#                        Card.new('Jack',  'Clubs')
+#                      ])
+# puts hand.evaluate == 'Straight flush'
+#
+# hand = PokerHand.new([
+#                        Card.new(3, 'Hearts'),
+#                        Card.new(3, 'Clubs'),
+#                        Card.new(5, 'Diamonds'),
+#                        Card.new(3, 'Spades'),
+#                        Card.new(3, 'Diamonds')
+#                      ])
+# puts hand.evaluate == 'Four of a kind'
+#
+# hand = PokerHand.new([
+#                        Card.new(3, 'Hearts'),
+#                        Card.new(3, 'Clubs'),
+#                        Card.new(5, 'Diamonds'),
+#                        Card.new(3, 'Spades'),
+#                        Card.new(5, 'Hearts')
+#                      ])
+# puts hand.evaluate == 'Full house'
+#
+# hand = PokerHand.new([
+#                        Card.new(10, 'Hearts'),
+#                        Card.new('Ace', 'Hearts'),
+#                        Card.new(2, 'Hearts'),
+#                        Card.new('King', 'Hearts'),
+#                        Card.new(3, 'Hearts')
+#                      ])
+# puts hand.evaluate == 'Flush'
+#
+# hand = PokerHand.new([
+#                        Card.new(8,      'Clubs'),
+#                        Card.new(9,      'Diamonds'),
+#                        Card.new(10,     'Clubs'),
+#                        Card.new(7,      'Hearts'),
+#                        Card.new('Jack', 'Clubs')
+#                      ])
+# puts hand.evaluate == 'Straight'
+#
+# hand = PokerHand.new([
+#                        Card.new('Queen', 'Clubs'),
+#                        Card.new('King',  'Diamonds'),
+#                        Card.new(10,      'Clubs'),
+#                        Card.new('Ace',   'Hearts'),
+#                        Card.new('Jack',  'Clubs')
+#                      ])
+# puts hand.evaluate == 'Straight'
+#
+# hand = PokerHand.new([
+#                        Card.new(3, 'Hearts'),
+#                        Card.new(3, 'Clubs'),
+#                        Card.new(5, 'Diamonds'),
+#                        Card.new(3, 'Spades'),
+#                        Card.new(6, 'Diamonds')
+#                      ])
+# puts hand.evaluate == 'Three of a kind'
+#
+# hand = PokerHand.new([
+#                        Card.new(9, 'Hearts'),
+#                        Card.new(9, 'Clubs'),
+#                        Card.new(5, 'Diamonds'),
+#                        Card.new(8, 'Spades'),
+#                        Card.new(5, 'Hearts')
+#                      ])
+# puts hand.evaluate == 'Two pair'
+#
+# hand = PokerHand.new([
+#                        Card.new(2, 'Hearts'),
+#                        Card.new(9, 'Clubs'),
+#                        Card.new(5, 'Diamonds'),
+#                        Card.new(9, 'Spades'),
+#                        Card.new(3, 'Diamonds')
+#                      ])
+# puts hand.evaluate == 'Pair'
+#
+# hand = PokerHand.new([
+#                        Card.new(2,      'Hearts'),
+#                        Card.new('King', 'Clubs'),
+#                        Card.new(5,      'Diamonds'),
+#                        Card.new(9,      'Spades'),
+#                        Card.new(3,      'Diamonds')
+#                      ])
+# puts hand.evaluate == 'High card'
 
 
 
