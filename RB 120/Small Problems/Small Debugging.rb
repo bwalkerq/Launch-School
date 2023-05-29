@@ -577,7 +577,7 @@ end
 # puts johns_postal_service.send_mail(ellens_postal_service.street_address, Postcard.new('Greetings from Silicon Valley!'))
 # # => undefined method `860 Blackbird Ln.' for #<PostalService:0x00005571b4aaebe8> (NoMethodError)
 
-class AuthenticationError < Exception; end
+class AuthenticationError < StandardError; end
 
 # A mock search engine
 # that returns a random number instead of an actual count.
@@ -608,8 +608,8 @@ module DoesItRock
       negative = SearchEngine.count(%{"#{term} is not fun"}, API_KEY)
 
       (positive * 100) / (positive + negative)
-    rescue Exception
-      NoScore
+    rescue ZeroDivisionError
+      NoScore.new
     end
   end
 
@@ -626,28 +626,26 @@ module DoesItRock
     else
       "#{term} rocks!"
     end
-  rescue Exception => e
+  rescue StandardError => e
     e.message
   end
 end
 
 # Example (your output may differ)
-
+# puts AuthenticationError.ancestors
 puts DoesItRock.find_out('Sushi')       # Sushi seems to be ok...
 puts DoesItRock.find_out('dancing in the Rain')        # Rain is not fun.
 puts DoesItRock.find_out('Bug hunting') # Bug hunting rocks!
 
+# I never would have figured this out at this stage in ruby/exceptions/oop,
+# not sure why this problem is included??
+# seems very well-designed for a level above this current course.
+# inheriting from StandardError rather than Exception is clearly stated in the
+# article, I could have caught that.
+# Not sure how I could have known that #for_term would throw ZeroDivError? I'm
+# surprised that I was supposed to catch that.
+# I updated line 612 to be the string "NoScore" because I didn't see that it was
+# it's own class. Not sure why it has its own class??
+# Why rescue StandardError line 629?
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+p DoesItRock::NoScore.is_a?(Object)
