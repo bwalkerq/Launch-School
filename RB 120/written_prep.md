@@ -19,3 +19,11 @@ object. If you find an answer, I'd be curious. My thought is that only public
 methods define the behavior, where private methods are more seen as helper
 methods working in the background (even though they technically contribute to
 the behavior)
+
+Working with Karl:
+We're looking for the strength of mental models.
+Polymorphism and Encapsulation, Method Access Control
+Karl: We can only call private methods on self 
+public, you can call them on any variable which represents an object 
+come up with an example for calling a private and protected method
+@age, 
