@@ -1,10 +1,19 @@
 class Machine
+
+  def initialize(name)
+    @name = name
+  end
+
   def start
     flip_switch(:on)
   end
 
   def stop
     flip_switch(:off)
+  end
+
+  def equal_names?(other)
+    name == other.name
   end
 
   private
@@ -14,7 +23,16 @@ class Machine
   def flip_switch(desired_state)
     self.switch = desired_state
   end
+
+  protected
+
+  attr_reader :name
 end
+
+m = Machine.new("Bot")
+j = Machine.new("Bot")
+# p m
+p m.equal_names? j
 
 class FixedArray
   def initialize(size)
