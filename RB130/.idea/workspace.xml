@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="reshuffling folders">
+      <change afterPath="$PROJECT_DIR$/Small Problems/Small 1 Easy 1.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car_spec.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/car_test.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/temp.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Ruby File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Small Problems/Small 1 Easy 1.rb" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2QfF5habwpjnBysF5k5oKYKXe4s" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/benjaminwalker/Documents/Launch-School/RB130&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;PLAIN_TEXT&quot;
+    ]
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpringUtil" SPRING_PRE_LOADER_OPTION="true" RAKE_SPRING_PRE_LOADER_OPTION="true" RAILS_SPRING_PRE_LOADER_OPTION="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="" />
+      <created>1685736547602</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1685736547602</updated>
+      <workItem from="1685736548707" duration="3471000" />
+      <workItem from="1685822857032" duration="3907000" />
+      <workItem from="1685925218016" duration="8946000" />
+      <workItem from="1686075648228" duration="1943000" />
+      <workItem from="1686145195504" duration="13493000" />
+      <workItem from="1686316817304" duration="2458000" />
+    </task>
+    <task id="LOCAL-00001" summary="more examples for interview prep">
+      <created>1685973614072</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1685973614072</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Karl's 129 study session">
+      <created>1685973630504</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1685973630504</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Unversioned files for 130 folder">
+      <created>1685973658954</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1685973658954</updated>
+    </task>
+    <task id="LOCAL-00004" summary="L1 quiz, 80%, one true misunderstanding, unpacked.">
+      <created>1686146636124</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1686146636124</updated>
+    </task>
+    <task id="LOCAL-00005" summary="todo assignment complete (yesterday! forgot to commit). Learned that the word &quot;todo&quot; will prevent a commit (very handy!)">
+      <created>1686147085156</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1686147085156</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Study session with JD">
+      <created>1686319475749</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1686319475749</updated>
+    </task>
+    <task id="LOCAL-00007" summary="reshuffling folders">
+      <created>1686319496331</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1686319496331</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="more examples for interview prep" />
+    <MESSAGE value="Karl's 129 study session" />
+    <MESSAGE value="Unversioned files for 130 folder" />
+    <MESSAGE value="Todo assignment initial spike" />
+    <MESSAGE value="L1 quiz, 80%, one true misunderstanding, unpacked." />
+    <MESSAGE value="todo assignment complete (yesterday! forgot to commit)" />
+    <MESSAGE value="todo assignment complete (yesterday! forgot to commit). Learned that the word &quot;todo&quot; will prevent a commit (very handy!)" />
+    <MESSAGE value="Study session with JD" />
+    <MESSAGE value="reshuffling folders" />
+    <option name="LAST_COMMIT_MESSAGE" value="reshuffling folders" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/RB130@todo.rcov" NAME="todo Coverage Results" MODIFIED="1685980949959" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB130@temp.rcov" NAME="temp Coverage Results" MODIFIED="1686149732964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB130@Small_1_Easy_1.rcov" NAME="Small 1 Easy 1 Coverage Results" MODIFIED="1686317385767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+  </component>
+</project>
