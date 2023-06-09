@@ -62,27 +62,113 @@ def rot13(string)
   puts arr.join
 end
 
-p "a".ord
-p "A".ord
-rot13("Nqn Ybirynpr")
-rot13("Tenpr Ubccre")
-rot13("Nqryr Tbyqfgvar")
-rot13("Nyna Ghevat")
-rot13("Puneyrf Onoontr")
-rot13("Noqhyynu Zhunzznq ova Zhfn ny-Xujnevmzv")
-rot13("Wbua Ngnanfbss")
-rot13("Ybvf Unvog")
-rot13("Pynhqr Funaaba")
-rot13("Fgrir Wbof")
-rot13("Ovyy Tngrf")
-rot13("Gvz Orearef-Yrr")
-rot13("Fgrir Jbmavnx")
-rot13("Xbaenq Mhfr")
-rot13("Fve Nagbal Ubner")
-rot13("Zneiva Zvafxl")
-rot13("Lhxvuveb Zngfhzbgb")
-rot13("Unllvz Fybavzfxv")
-rot13("Tregehqr Oynapu")
+# p "a".ord
+# p "A".ord
+# p "A".ord.chr
+# rot13("Nqn Ybirynpr")
+# rot13("Tenpr Ubccre")
+# rot13("Nqryr Tbyqfgvar")
+# rot13("Nyna Ghevat")
+# rot13("Puneyrf Onoontr")
+# rot13("Noqhyynu Zhunzznq ova Zhfn ny-Xujnevmzv")
+# rot13("Wbua Ngnanfbss")
+# rot13("Ybvf Unvog")
+# rot13("Pynhqr Funaaba")
+# rot13("Fgrir Wbof")
+# rot13("Ovyy Tngrf")
+# rot13("Gvz Orearef-Yrr")
+# rot13("Fgrir Jbmavnx")
+# rot13("Xbaenq Mhfr")
+# rot13("Fve Nagbal Ubner")
+# rot13("Zneiva Zvafxl")
+# rot13("Lhxvuveb Zngfhzbgb")
+# rot13("Unllvz Fybavzfxv")
+# rot13("Tregehqr Oynapu")
+
+def any? (arr)
+  arr.each do |element|
+    return true if yield(element)
+  end
+  false
+end
+
+# p any?([1, 3, 5, 6]) { |value| value.even? } == true
+# p any?([1, 3, 5, 7]) { |value| value.even? } == false
+# p any?([2, 4, 6, 8]) { |value| value.odd? } == false
+# p any?([1, 3, 5, 7]) { |value| value % 5 == 0 } == true
+# p any?([1, 3, 5, 7]) { |value| true } == true
+# p any?([1, 3, 5, 7]) { |value| false } == false
+# p any?([]) { |value| true } == false
+
+def all? (arr)
+  arr.each { |element| return false unless yield(element) }
+  true
+end
+
+# p all?([1, 3, 5, 6]) { |value| value.odd? } == false
+# p all?([1, 3, 5, 7]) { |value| value.odd? } == true
+# p all?([2, 4, 6, 8]) { |value| value.even? } == true
+# p all?([1, 3, 5, 7]) { |value| value % 5 == 0 } == false
+# p all?([1, 3, 5, 7]) { |value| true } == true
+# p all?([1, 3, 5, 7]) { |value| false } == false
+# p all?([]) { |value| false } == true
+
+def none?(arr)
+  arr.each { |element| return false if yield(element) }
+  true
+end
+
+# p none?([1, 3, 5, 6]) { |value| value.even? } == false
+# p none?([1, 3, 5, 7]) { |value| value.even? } == true
+# p none?([2, 4, 6, 8]) { |value| value.odd? } == true
+# p none?([1, 3, 5, 7]) { |value| true } == false
+# p none?([1, 3, 5, 7]) { |value| value % 5 == 0 } == false
+# p none?([1, 3, 5, 7]) { |value| false } == true
+# p none?([]) { |value| true } == true
+
+def one?(arr)
+  seen_one = false
+  arr.each do |element|
+    if yield element
+      return false if seen_one
+      seen_one = true
+    end
+  end
+  seen_one
+end
+
+# p one?([1, 3, 5, 6]) { |value| value.even? }    # -> true
+# p one?([1, 3, 5, 7]) { |value| value.odd? }     # -> false
+# p one?([2, 4, 6, 8]) { |value| value.even? }    # -> false
+# p one?([1, 3, 5, 7]) { |value| value % 5 == 0 } # -> true
+# p one?([1, 3, 5, 7]) { |value| true }           # -> false
+# p one?([1, 3, 5, 7]) { |value| false }          # -> false
+# p one?([]) { |value| true }                     # -> false
+
+def count (arr)
+  arr.select { |n| yield n }.size
+end
+
+p count([1,2,3,4,5]) { |value| value.odd? } == 3
+p count([1,2,3,4,5]) { |value| value % 3 == 1 } == 2
+p count([1,2,3,4,5]) { |value| true } == 5
+p count([1,2,3,4,5]) { |value| false } == 0
+p count([]) { |value| value.even? } == 0
+p count(%w(Four score and seven)) { |value| value.size == 5 } == 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
