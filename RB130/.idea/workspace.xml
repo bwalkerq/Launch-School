@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="easy 1 complete">
-      <change afterPath="$PROJECT_DIR$/Small Problems/Small 2 easy 2.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="auto updated files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car.rb" beforeDir="false" afterPath="$PROJECT_DIR$/car.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/car_test.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +73,7 @@
       <workItem from="1686075648228" duration="1943000" />
       <workItem from="1686145195504" duration="13493000" />
       <workItem from="1686316817304" duration="10146000" />
-      <workItem from="1686583498193" duration="7762000" />
+      <workItem from="1686583498193" duration="9375000" />
     </task>
     <task id="LOCAL-00001" summary="more examples for interview prep">
       <created>1685973614072</created>
@@ -152,7 +152,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686324104833</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="easy 2 complete">
+      <created>1686599533970</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1686599533970</updated>
+    </task>
+    <task id="LOCAL-00013" summary="auto updated files">
+      <created>1686599547601</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1686599547601</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,12 +197,14 @@
     <MESSAGE value="First lessons on testing using Minitest" />
     <MESSAGE value="unversioned files" />
     <MESSAGE value="easy 1 complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="easy 1 complete" />
+    <MESSAGE value="easy 2 complete" />
+    <MESSAGE value="auto updated files" />
+    <option name="LAST_COMMIT_MESSAGE" value="auto updated files" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RB130@todo.rcov" NAME="todo Coverage Results" MODIFIED="1685980949959" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@temp.rcov" NAME="temp Coverage Results" MODIFIED="1686149732964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@Small_1_Easy_1.rcov" NAME="Small 1 Easy 1 Coverage Results" MODIFIED="1686323889073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
-    <SUITE FILE_PATH="coverage/RB130@Small_2_easy_2.rcov" NAME="Small 2 easy 2 Coverage Results" MODIFIED="1686599193837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB130@Small_2_easy_2.rcov" NAME="Small 2 easy 2 Coverage Results" MODIFIED="1686599384777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
   </component>
 </project>
