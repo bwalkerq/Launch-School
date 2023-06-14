@@ -1,6 +1,6 @@
 
 class Car
-  attr_accessor :wheels, :doors
+  attr_accessor :wheels, :doors, :name
 
   def initialize
     @wheels = 4
