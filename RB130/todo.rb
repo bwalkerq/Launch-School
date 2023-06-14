@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 # This class represents a to-do item and its associated
 # data: name and description. There's also a "done"
@@ -59,9 +58,14 @@ class TodoList
   end
   alias << add
 
+  def remove_at(idx)
+    @todos.delete(item_at(idx))
+  end
+
   def to_s
-    puts "---- Today's Todos ----"
-    todos.each { |elem| puts elem }
+    text = "---- #{title} ----\n"
+    text << @todos.map(&:to_s).join("\n")
+    text
   end
 
   def size
@@ -164,11 +168,12 @@ list.add(todo3)                 # adds todo3 to end of list, returns list
 # todo1.done!
 # todo2.done!
 list.mark_done('Buy milk')
-list.to_s
+puts list.to_s
 list.mark_all_done
-list.to_s
+puts list.to_s
 list.mark_all_undone
-list.to_s
+puts list.to_s
+puts list.class
 
 
 
@@ -226,7 +231,7 @@ list.to_s
 
 # remove_at
 # list.remove_at                  # raises ArgumentError
-# list.remove_at(1)               # removes and returns the 2nd item
+# p list.remove_at(1)               # removes and returns the 2nd item
 # list.remove_at(100)             # raises IndexError
 
 # ---- Outputting the list -----
