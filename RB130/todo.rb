@@ -167,13 +167,13 @@ list.add(todo2)                 # adds todo2 to end of list, returns list
 list.add(todo3)                 # adds todo3 to end of list, returns list
 # todo1.done!
 # todo2.done!
-list.mark_done('Buy milk')
-puts list.to_s
-list.mark_all_done
-puts list.to_s
-list.mark_all_undone
-puts list.to_s
-puts list.class
+# list.mark_done('Buy milk')
+# puts list.to_s
+# list.mark_all_done
+# puts list.to_s
+# list.mark_all_undone
+# puts list.to_s
+# puts list.class
 
 
 

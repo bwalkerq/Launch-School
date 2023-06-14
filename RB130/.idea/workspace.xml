@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="playing with assertion style, testing another instance variable">
-      <change afterPath="$PROJECT_DIR$/todolist_test.rb" afterDir="false" />
+    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="TodoList testing file complete">
+      <change afterPath="$PROJECT_DIR$/Small Problems/Small 3 Easy Testing.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car.rb" beforeDir="false" afterPath="$PROJECT_DIR$/car.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/car_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/car_test.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo.rb" beforeDir="false" afterPath="$PROJECT_DIR$/todo.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todolist_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/todolist_test.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +76,7 @@
       <workItem from="1686145195504" duration="13493000" />
       <workItem from="1686316817304" duration="10146000" />
       <workItem from="1686583498193" duration="18762000" />
-      <workItem from="1686752338553" duration="6053000" />
+      <workItem from="1686752338553" duration="8540000" />
     </task>
     <task id="LOCAL-00001" summary="more examples for interview prep">
       <created>1685973614072</created>
@@ -184,7 +183,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686664404050</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="car tests!">
+      <created>1686771378497</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1686771378497</updated>
+    </task>
+    <task id="LOCAL-00017" summary="TodoList testing file complete">
+      <created>1686771402811</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1686771402811</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,7 +231,9 @@
     <MESSAGE value="easy 2 complete" />
     <MESSAGE value="auto updated files" />
     <MESSAGE value="playing with assertion style, testing another instance variable" />
-    <option name="LAST_COMMIT_MESSAGE" value="playing with assertion style, testing another instance variable" />
+    <MESSAGE value="car tests!" />
+    <MESSAGE value="TodoList testing file complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="TodoList testing file complete" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RB130@todo.rcov" NAME="todo Coverage Results" MODIFIED="1686770730941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
