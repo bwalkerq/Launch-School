@@ -334,6 +334,8 @@ array = %w(Sue Pete Alice Tyler Rachel Kim Bonnie)
 bubble_sort!(array)
 p array == %w(Alice Bonnie Kim Pete Rachel Sue Tyler)
 
+# revisited this problem 6/2023 and completed it within ~5 min. Felt nice!
+
 # 38 minutes, not my best go; I spent at least half the time using Array#map! and trying
 # to debug it. later i just used an until loop to accomplish the same thing without the hot
 # mess of referencing the array while I'm mutating it. oy vey.
