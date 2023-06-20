@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="TodoList testing file complete">
-      <change afterPath="$PROJECT_DIR$/Small Problems/Small 3 Easy Testing.rb" afterDir="false" />
+    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="small easy testing complete">
+      <change afterPath="$PROJECT_DIR$/Small Problems/Small 4 Medium 1.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Small Problems/sample_file.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo.rb" beforeDir="false" afterPath="$PROJECT_DIR$/todo.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todolist_test.rb" beforeDir="false" afterPath="$PROJECT_DIR$/todolist_test.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +75,8 @@
       <workItem from="1686145195504" duration="13493000" />
       <workItem from="1686316817304" duration="10146000" />
       <workItem from="1686583498193" duration="18762000" />
-      <workItem from="1686752338553" duration="8540000" />
+      <workItem from="1686752338553" duration="30282000" />
+      <workItem from="1687269528983" duration="5837000" />
     </task>
     <task id="LOCAL-00001" summary="more examples for interview prep">
       <created>1685973614072</created>
@@ -197,7 +197,28 @@
       <option name="project" value="LOCAL" />
       <updated>1686771402811</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="TodoList testing file refactoring">
+      <created>1686773439275</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1686773439275</updated>
+    </task>
+    <task id="LOCAL-00019" summary="installed coverage gem">
+      <created>1686773461222</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1686773461222</updated>
+    </task>
+    <task id="LOCAL-00020" summary="small easy testing complete">
+      <created>1686773471102</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1686773471102</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,14 +254,19 @@
     <MESSAGE value="playing with assertion style, testing another instance variable" />
     <MESSAGE value="car tests!" />
     <MESSAGE value="TodoList testing file complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="TodoList testing file complete" />
+    <MESSAGE value="TodoList testing file refactoring" />
+    <MESSAGE value="installed coverage gem" />
+    <MESSAGE value="small easy testing complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="small easy testing complete" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RB130@todo.rcov" NAME="todo Coverage Results" MODIFIED="1686770730941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@temp.rcov" NAME="temp Coverage Results" MODIFIED="1686149732964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@Small_1_Easy_1.rcov" NAME="Small 1 Easy 1 Coverage Results" MODIFIED="1686323889073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@todolist_test_rb.rcov" NAME="todolist_test.rb Coverage Results" MODIFIED="1686770447876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB130@Small_4_Medium_1.rcov" NAME="Small 4 Medium 1 Coverage Results" MODIFIED="1687284676056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@Small_2_easy_2.rcov" NAME="Small 2 easy 2 Coverage Results" MODIFIED="1686599384777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB130@Unnamed.rcov" NAME="Small Problems Coverage Results" MODIFIED="1686790877247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Small Problems" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@car_test_rb.rcov" NAME="car_test.rb Coverage Results" MODIFIED="1686673508890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
   </component>
 </project>
