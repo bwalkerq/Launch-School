@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="Reflection on old problem, revisited">
-      <change afterPath="$PROJECT_DIR$/Challenges/triangle.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Challenges/triangle_test.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Small Problems/Medium testing/Small 5 Medium 2.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Small Problems/Medium testing/cash_register.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Small Problems/Medium testing/sample.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Small Problems/Medium testing/swap.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Small Problems/Medium testing/swap_test.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Small Problems/Medium testing/transaction.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Small Problems/Medium testing/transaction_test.rb" afterDir="false" />
+    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="Triangle Challenge complete">
+      <change afterPath="$PROJECT_DIR$/Challenges/point_mutations.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Challenges/point_mutations_test.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +84,7 @@
       <workItem from="1687355229433" duration="4990000" />
       <workItem from="1687360881444" duration="2777000" />
       <workItem from="1687547766258" duration="1857000" />
-      <workItem from="1687810646692" duration="1852000" />
+      <workItem from="1687810646692" duration="3337000" />
     </task>
     <task id="LOCAL-00001" summary="more examples for interview prep">
       <created>1685973614072</created>
@@ -247,7 +240,21 @@
       <option name="project" value="LOCAL" />
       <updated>1687287517105</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="small medium testing completed">
+      <created>1687875397921</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1687875397921</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Triangle Challenge complete">
+      <created>1687875413656</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1687875413656</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,11 +296,14 @@
     <MESSAGE value="small easy testing complete" />
     <MESSAGE value="Small medium 4 complete" />
     <MESSAGE value="Reflection on old problem, revisited" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reflection on old problem, revisited" />
+    <MESSAGE value="small medium testing completed" />
+    <MESSAGE value="Triangle Challenge complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="Triangle Challenge complete" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RB130@todo.rcov" NAME="todo Coverage Results" MODIFIED="1686770730941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@Small_1_Easy_1.rcov" NAME="Small 1 Easy 1 Coverage Results" MODIFIED="1686323889073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB130@point_mutations_test_rb.rcov" NAME="point_mutations_test.rb Coverage Results" MODIFIED="1687877776570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@todolist_test_rb.rcov" NAME="todolist_test.rb Coverage Results" MODIFIED="1686770447876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@130_small.rcov" NAME="130 small Coverage Results" MODIFIED="1687357868572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Small Problems" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@Small_5_Medium_2.rcov" NAME="Small 5 Medium 2 Coverage Results" MODIFIED="1687287914215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
