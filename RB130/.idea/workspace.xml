@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="Point Mutations Challenge complete">
-      <change afterPath="$PROJECT_DIR$/Challenges/roman_numerals.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Challenges/roman_numerals_test.rb" afterDir="false" />
+    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="roman_numerals.rb Challenge complete">
+      <change afterPath="$PROJECT_DIR$/Challenges/PEDAC.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Challenges/anagram.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Challenges/anagram_test.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +26,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Challenges/anagram.rb" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Challenges/anagram_test.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Challenges/roman_numerals.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Challenges/triangle.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Small Problems/Medium testing/swap_test.rb" root0="SKIP_INSPECTION" />
@@ -86,7 +89,7 @@
       <workItem from="1687360881444" duration="2777000" />
       <workItem from="1687547766258" duration="1857000" />
       <workItem from="1687810646692" duration="12434000" />
-      <workItem from="1688049048906" duration="565000" />
+      <workItem from="1688049048906" duration="4817000" />
     </task>
     <task id="LOCAL-00001" summary="more examples for interview prep">
       <created>1685973614072</created>
@@ -263,7 +266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687877864432</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="roman_numerals.rb Challenge complete">
+      <created>1688049982281</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1688049982281</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,7 +292,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Karl's 129 study session" />
     <MESSAGE value="Unversioned files for 130 folder" />
     <MESSAGE value="Todo assignment initial spike" />
     <MESSAGE value="L1 quiz, 80%, one true misunderstanding, unpacked." />
@@ -307,7 +316,22 @@
     <MESSAGE value="small medium testing completed" />
     <MESSAGE value="Triangle Challenge complete" />
     <MESSAGE value="Point Mutations Challenge complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="Point Mutations Challenge complete" />
+    <MESSAGE value="roman_numerals.rb Challenge complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="roman_numerals.rb Challenge complete" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/Challenges/anagram_test.rb</url>
+          <line>58</line>
+          <properties myBlockOrdinal="-1">
+            <option name="block-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RB130@todo.rcov" NAME="todo Coverage Results" MODIFIED="1686770730941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
@@ -315,7 +339,9 @@
     <SUITE FILE_PATH="coverage/RB130@point_mutations_test_rb.rcov" NAME="point_mutations_test.rb Coverage Results" MODIFIED="1687877776570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@todolist_test_rb.rcov" NAME="todolist_test.rb Coverage Results" MODIFIED="1686770447876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@130_small.rcov" NAME="130 small Coverage Results" MODIFIED="1687357868572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Small Problems" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB130@anagram_test_rb.rcov" NAME="anagram_test.rb Coverage Results" MODIFIED="1688054933175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@Small_5_Medium_2.rcov" NAME="Small 5 Medium 2 Coverage Results" MODIFIED="1687287914215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB130@anagram.rcov" NAME="anagram Coverage Results" MODIFIED="1688054932211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@Small_2_easy_2.rcov" NAME="Small 2 easy 2 Coverage Results" MODIFIED="1686599384777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@car_test_rb.rcov" NAME="car_test.rb Coverage Results" MODIFIED="1686673508890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@swap_test_rb.rcov" NAME="swap_test.rb Coverage Results" MODIFIED="1687362345849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
