@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="roman_numerals.rb Challenge complete">
-      <change afterPath="$PROJECT_DIR$/Challenges/PEDAC.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Challenges/anagram.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Challenges/anagram_test.rb" afterDir="false" />
+    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="Anagram Challenge complete">
+      <change afterPath="$PROJECT_DIR$/Challenges/scrabble_score.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Challenges/scrabble_score_test.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +28,7 @@
     <setting file="file://$PROJECT_DIR$/Challenges/anagram.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Challenges/anagram_test.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Challenges/roman_numerals.rb" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Challenges/scrabble_score.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Challenges/triangle.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Small Problems/Medium testing/swap_test.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Small Problems/Small 1 Easy 1.rb" root0="SKIP_INSPECTION" />
@@ -89,7 +89,7 @@
       <workItem from="1687360881444" duration="2777000" />
       <workItem from="1687547766258" duration="1857000" />
       <workItem from="1687810646692" duration="12434000" />
-      <workItem from="1688049048906" duration="4817000" />
+      <workItem from="1688049048906" duration="7356000" />
     </task>
     <task id="LOCAL-00001" summary="more examples for interview prep">
       <created>1685973614072</created>
@@ -273,7 +273,21 @@
       <option name="project" value="LOCAL" />
       <updated>1688049982281</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="PEDAC template included">
+      <created>1688055672390</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1688055672390</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Anagram Challenge complete">
+      <created>1688055689603</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1688055689603</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,8 +306,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Unversioned files for 130 folder" />
-    <MESSAGE value="Todo assignment initial spike" />
     <MESSAGE value="L1 quiz, 80%, one true misunderstanding, unpacked." />
     <MESSAGE value="todo assignment complete (yesterday! forgot to commit)" />
     <MESSAGE value="todo assignment complete (yesterday! forgot to commit). Learned that the word &quot;todo&quot; will prevent a commit (very handy!)" />
@@ -317,7 +329,9 @@
     <MESSAGE value="Triangle Challenge complete" />
     <MESSAGE value="Point Mutations Challenge complete" />
     <MESSAGE value="roman_numerals.rb Challenge complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="roman_numerals.rb Challenge complete" />
+    <MESSAGE value="PEDAC template included" />
+    <MESSAGE value="Anagram Challenge complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="Anagram Challenge complete" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -349,9 +363,11 @@
     <SUITE FILE_PATH="coverage/RB130@triangle.rcov" NAME="triangle Coverage Results" MODIFIED="1687874837797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@roman_numerals_test_rb.rcov" NAME="roman_numerals_test.rb Coverage Results" MODIFIED="1687968430404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@swap.rcov" NAME="swap Coverage Results" MODIFIED="1687362330519" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB130@scrabble_score.rcov" NAME="scrabble_score Coverage Results" MODIFIED="1688057070499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@roman_numerals.rcov" NAME="roman_numerals Coverage Results" MODIFIED="1687968265009" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@triangle_test_rb.rcov" NAME="triangle_test.rb Coverage Results" MODIFIED="1687875362980" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@Small_4_Medium_1.rcov" NAME="Small 4 Medium 1 Coverage Results" MODIFIED="1687362121758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB130@scrabble_score_test_rb.rcov" NAME="scrabble_score_test.rb Coverage Results" MODIFIED="1688057124828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@Unnamed.rcov" NAME="Small Problems Coverage Results" MODIFIED="1686790877247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Small Problems" MODULE_NAME="RB130" />
   </component>
 </project>
