@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="Octal Challenge refactored again">
-      <change afterPath="$PROJECT_DIR$/Challenges/sum_of_multiples.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Challenges/sum_of_multiples_test.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="Sum of Multiples Challenge complete">
+      <change afterPath="$PROJECT_DIR$/Challenges/beer_song.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Challenges/beer_song_test.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +26,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Challenges/anagram.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Challenges/anagram_test.rb" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Challenges/beer_song.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Challenges/octal.rb" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Challenges/roman_numerals.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Challenges/scrabble_score.rb" root0="SKIP_INSPECTION" />
@@ -91,7 +91,7 @@
       <workItem from="1687360881444" duration="2777000" />
       <workItem from="1687547766258" duration="1857000" />
       <workItem from="1687810646692" duration="12434000" />
-      <workItem from="1688049048906" duration="20327000" />
+      <workItem from="1688049048906" duration="21704000" />
     </task>
     <task id="LOCAL-00001" summary="more examples for interview prep">
       <created>1685973614072</created>
@@ -331,7 +331,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688139537123</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Sum of Multiples Challenge complete">
+      <created>1688142053924</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1688142053924</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,7 +357,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="First lessons on testing using Minitest" />
     <MESSAGE value="unversioned files" />
     <MESSAGE value="easy 1 complete" />
     <MESSAGE value="easy 2 complete" />
@@ -375,7 +381,8 @@
     <MESSAGE value="Octal Challenge complete" />
     <MESSAGE value="Octal Challenge refactored" />
     <MESSAGE value="Octal Challenge refactored again" />
-    <option name="LAST_COMMIT_MESSAGE" value="Octal Challenge refactored again" />
+    <MESSAGE value="Sum of Multiples Challenge complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sum of Multiples Challenge complete" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -403,6 +410,8 @@
     <SUITE FILE_PATH="coverage/RB130@swap_test_rb.rcov" NAME="swap_test.rb Coverage Results" MODIFIED="1687362345849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@temp.rcov" NAME="temp Coverage Results" MODIFIED="1686149732964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@roman_numerals_test_rb.rcov" NAME="roman_numerals_test.rb Coverage Results" MODIFIED="1687968430404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB130@beer_song.rcov" NAME="beer_song Coverage Results" MODIFIED="1688143154361" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB130@beer_song_test_rb.rcov" NAME="beer_song_test.rb Coverage Results" MODIFIED="1688143300337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@scrabble_score_test_rb.rcov" NAME="scrabble_score_test.rb Coverage Results" MODIFIED="1688058163618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@octal_test_rb.rcov" NAME="octal_test.rb Coverage Results" MODIFIED="1688139297391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@todo.rcov" NAME="todo Coverage Results" MODIFIED="1686770730941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
