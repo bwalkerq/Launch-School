@@ -8,11 +8,11 @@ class PerfectNumber
     end
     aliqot_sum = divisors.sum
     if aliqot_sum < number
-      "deficient"
+      "deficient, #{divisors}"
     elsif aliqot_sum > number
-      "abundant"
+      "abundant, #{divisors}"
     else
-      "perfect"
+      "perfect, #{divisors}"
     end
   end
 end

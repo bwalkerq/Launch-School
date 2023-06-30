@@ -32,6 +32,8 @@ class RomanNumeral
   end
 end
 
+p RomanNumeral.new(568).to_roman
+
 # updated PEDAC
 # algo
 # take the first entry of the digits array (representing the one's)
