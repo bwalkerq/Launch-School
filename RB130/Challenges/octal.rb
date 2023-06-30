@@ -16,7 +16,7 @@ class Octal
   private
 
   def invalid_octal?(str) # probably better to check for validity, rather than invalidity?
-    str.match(/[^0-7]/) ? true : false
+    str.match(/[^0-7]/)
   end
 end
 
