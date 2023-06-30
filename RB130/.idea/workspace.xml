@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="Sum of Multiples Challenge complete">
-      <change afterPath="$PROJECT_DIR$/Challenges/beer_song.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Challenges/beer_song_test.rb" afterDir="false" />
+    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="beer song Challenge complete">
+      <change afterPath="$PROJECT_DIR$/Challenges/series.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Challenges/series_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +31,7 @@
     <setting file="file://$PROJECT_DIR$/Challenges/octal.rb" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Challenges/roman_numerals.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Challenges/scrabble_score.rb" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Challenges/series.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Challenges/sum_of_multiples.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Challenges/triangle.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Small Problems/Medium testing/swap_test.rb" root0="SKIP_INSPECTION" />
@@ -91,7 +93,7 @@
       <workItem from="1687360881444" duration="2777000" />
       <workItem from="1687547766258" duration="1857000" />
       <workItem from="1687810646692" duration="12434000" />
-      <workItem from="1688049048906" duration="21704000" />
+      <workItem from="1688049048906" duration="23263000" />
     </task>
     <task id="LOCAL-00001" summary="more examples for interview prep">
       <created>1685973614072</created>
@@ -338,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688142053924</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="beer song Challenge complete">
+      <created>1688143643817</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1688143643817</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -357,7 +366,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="unversioned files" />
     <MESSAGE value="easy 1 complete" />
     <MESSAGE value="easy 2 complete" />
     <MESSAGE value="auto updated files" />
@@ -382,7 +390,8 @@
     <MESSAGE value="Octal Challenge refactored" />
     <MESSAGE value="Octal Challenge refactored again" />
     <MESSAGE value="Sum of Multiples Challenge complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sum of Multiples Challenge complete" />
+    <MESSAGE value="beer song Challenge complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="beer song Challenge complete" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -401,6 +410,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/RB130@perfect_numbers_test_rb.rcov" NAME="perfect_numbers_test.rb Coverage Results" MODIFIED="1688083900151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@point_mutations_test_rb.rcov" NAME="point_mutations_test.rb Coverage Results" MODIFIED="1687877776570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB130@series.rcov" NAME="series Coverage Results" MODIFIED="1688147868170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@130_small.rcov" NAME="130 small Coverage Results" MODIFIED="1687357868572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Small Problems" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@octal.rcov" NAME="octal Coverage Results" MODIFIED="1688138882668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@anagram_test_rb.rcov" NAME="anagram_test.rb Coverage Results" MODIFIED="1688054933175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
@@ -423,6 +433,7 @@
     <SUITE FILE_PATH="coverage/RB130@Small_2_easy_2.rcov" NAME="Small 2 easy 2 Coverage Results" MODIFIED="1686599384777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@triangle.rcov" NAME="triangle Coverage Results" MODIFIED="1687874837797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@swap.rcov" NAME="swap Coverage Results" MODIFIED="1687362330519" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB130@series_test_rb.rcov" NAME="series_test.rb Coverage Results" MODIFIED="1688148308710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@scrabble_score.rcov" NAME="scrabble_score Coverage Results" MODIFIED="1688057070499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@roman_numerals.rcov" NAME="roman_numerals Coverage Results" MODIFIED="1688085150871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@triangle_test_rb.rcov" NAME="triangle_test.rb Coverage Results" MODIFIED="1687875362980" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
