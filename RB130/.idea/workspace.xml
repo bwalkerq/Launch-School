@@ -4,10 +4,177 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="beer song Challenge complete">
-      <change afterPath="$PROJECT_DIR$/Challenges/series.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Challenges/series_test.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="Series Challenge complete">
+      <change beforePath="$PROJECT_DIR$/../LS95/Book_Exercises/1_Basics.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Book_Exercises/2_Variables/2_Variables.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Book_Exercises/2_Variables/age.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Book_Exercises/2_Variables/name.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Book_Exercises/3_Methods/Methods examples.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Book_Exercises/3_Methods/exercises.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Book_Exercises/3_Methods/return.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Book_Exercises/4_Control.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Book_Exercises/5_Loops.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Book_Exercises/6_Arrays.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Book_Exercises/7_Hashes/7_Hashes.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Book_Exercises/7_Hashes/optional_parameters.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Book_Exercises/8_More/8_More.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Book_Exercises/8_More/8_greeting.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Book_Exercises/9_Exercises.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/User_Input/age.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/User_Input/division.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/User_Input/login.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/User_Input/lsprinter.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/User_Input/lsprinter2.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/User_Input/opposites.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/User_Input/password.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/User_Input/repeater.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/User_Input/something.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/User_Input/something2.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/arrays.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/conditionals.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/debugging.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/exercises.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/hashes.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/loops.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/loops2.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/methods.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/return.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LS95/Exercises_Ruby_Basics/strings.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/.idea/RB101.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Assessments/Interview Practice/119_Interview_practice.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Assessments/Interview Practice/Codewars problems.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Assessments/Interview Practice/Codewars_2.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Assessments/Interview Practice/Interview Practice questions and template.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Assessments/Interview Practice/PEDAC-Template.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Assessments/Mock Exams/mock_exam_1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Assessments/Mock Exams/mock_exam_1.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Assessments/RB109-Study-Sessions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L2/.rubocop.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L2/RPSLS.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L2/calculator.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L2/car_loan.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L2/hello.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L2/psuedo.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L2/rock_paper_scissors.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L3/easy1.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L3/easy2.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L3/hard1.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L3/medium1.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L3/medium2.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L4/L4-quiz.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L4/PEDAC-example.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L4/PEDAC.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L4/Practice-Problems-Additional-Practice.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L4/Practice-Problems-Methods.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L5/L5-qiuz.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L5/Practice-Problems-Sorting_Nested-Collections_Blocks.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L6/.rubocop.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L6/21_game.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/L6/tictactoe.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/RB 119 interview coaching.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Small/Small-Documentation-Again.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Small/Small-Easy-1.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Small/Small-Easy-2.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Small/Small-Easy-3.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Small/Small-Easy-4.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Small/Small-Easy-5.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Small/Small-Easy-6.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Small/Small_Easy_8.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Small/Small_Easy_9.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Small/Small_Medium1_again.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Small/Small_Medium_1.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Small/Small_Medium_2.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Small/Small_debugging.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB101/Small/small_easy_7.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/RB130.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/PEDAC.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/anagram.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/anagram_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/beer_song.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/beer_song_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/octal.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/octal_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/perfect_numbers.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/perfect_numbers_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/point_mutations.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/point_mutations_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/roman_numerals.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/roman_numerals_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/scrabble_score.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/scrabble_score_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/series.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/series_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/sum_of_multiples.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/sum_of_multiples_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/triangle.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenges/triangle_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quizzes.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Small Problems/Medium testing/Small 5 Medium 2.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Small Problems/Medium testing/cash_register.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Small Problems/Medium testing/sample.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Small Problems/Medium testing/swap.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Small Problems/Medium testing/swap_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Small Problems/Medium testing/transaction.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Small Problems/Medium testing/transaction_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Small Problems/Small 1 Easy 1.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Small Problems/Small 2 easy 2.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Small Problems/Small 3 Easy Testing.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Small Problems/Small 4 Medium 1.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Small Problems/sample_file.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car_spec.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car_test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/.last_run.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/.resultset.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/.resultset.json.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/DataTables-1.10.20/images/sort_asc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/DataTables-1.10.20/images/sort_asc_disabled.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/DataTables-1.10.20/images/sort_both.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/DataTables-1.10.20/images/sort_desc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/DataTables-1.10.20/images/sort_desc_disabled.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/application.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/application.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/colorbox/border.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/colorbox/controls.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/colorbox/loading.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/colorbox/loading_background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/favicon_green.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/favicon_red.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/favicon_yellow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/images/ui-bg_flat_0_aaaaaa_40x100.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/images/ui-bg_flat_75_ffffff_40x100.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/images/ui-bg_glass_55_fbf9ee_1x400.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/images/ui-bg_glass_65_ffffff_1x400.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/images/ui-bg_glass_75_dadada_1x400.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/images/ui-bg_glass_75_e6e6e6_1x400.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/images/ui-bg_glass_95_fef1ec_1x400.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/images/ui-bg_highlight-soft_75_cccccc_1x100.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/images/ui-icons_222222_256x240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/images/ui-icons_2e83ff_256x240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/images/ui-icons_454545_256x240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/images/ui-icons_888888_256x240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/images/ui-icons_cd0a0a_256x240.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/loading.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/assets/0.12.3/magnify.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/study_sessions.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/todolist_test.rb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,21 +190,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Challenges/anagram.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Challenges/anagram_test.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Challenges/beer_song.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Challenges/octal.rb" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Challenges/roman_numerals.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Challenges/scrabble_score.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Challenges/series.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Challenges/sum_of_multiples.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Challenges/triangle.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Small Problems/Medium testing/swap_test.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Small Problems/Small 1 Easy 1.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Small Problems/Small 2 easy 2.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/car_test.rb" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -93,7 +245,7 @@
       <workItem from="1687360881444" duration="2777000" />
       <workItem from="1687547766258" duration="1857000" />
       <workItem from="1687810646692" duration="12434000" />
-      <workItem from="1688049048906" duration="23263000" />
+      <workItem from="1688049048906" duration="24434000" />
     </task>
     <task id="LOCAL-00001" summary="more examples for interview prep">
       <created>1685973614072</created>
@@ -347,7 +499,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688143643817</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Series Challenge complete">
+      <created>1688150119701</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1688150119701</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -366,7 +525,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="easy 1 complete" />
     <MESSAGE value="easy 2 complete" />
     <MESSAGE value="auto updated files" />
     <MESSAGE value="playing with assertion style, testing another instance variable" />
@@ -391,7 +549,8 @@
     <MESSAGE value="Octal Challenge refactored again" />
     <MESSAGE value="Sum of Multiples Challenge complete" />
     <MESSAGE value="beer song Challenge complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="beer song Challenge complete" />
+    <MESSAGE value="Series Challenge complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="Series Challenge complete" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -433,7 +592,7 @@
     <SUITE FILE_PATH="coverage/RB130@Small_2_easy_2.rcov" NAME="Small 2 easy 2 Coverage Results" MODIFIED="1686599384777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@triangle.rcov" NAME="triangle Coverage Results" MODIFIED="1687874837797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@swap.rcov" NAME="swap Coverage Results" MODIFIED="1687362330519" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
-    <SUITE FILE_PATH="coverage/RB130@series_test_rb.rcov" NAME="series_test.rb Coverage Results" MODIFIED="1688148308710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB130@series_test_rb.rcov" NAME="series_test.rb Coverage Results" MODIFIED="1688150049043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@scrabble_score.rcov" NAME="scrabble_score Coverage Results" MODIFIED="1688057070499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@roman_numerals.rcov" NAME="roman_numerals Coverage Results" MODIFIED="1688085150871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@triangle_test_rb.rcov" NAME="triangle_test.rb Coverage Results" MODIFIED="1687875362980" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
