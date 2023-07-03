@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="Series Challenge complete" />
+    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="refactoring directories">
+      <change afterPath="$PROJECT_DIR$/Medium Challenges/10_diamond.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Medium Challenges/10_diamond_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Easy Challenges/PEDAC.md" beforeDir="false" afterPath="$PROJECT_DIR$/Medium Challenges/PEDAC.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,15 +26,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Challenges/anagram.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Challenges/anagram_test.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Challenges/beer_song.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Challenges/octal.rb" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Challenges/roman_numerals.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Challenges/scrabble_score.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Challenges/series.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Challenges/sum_of_multiples.rb" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Challenges/triangle.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Small Problems/Medium testing/swap_test.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Small Problems/Small 1 Easy 1.rb" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Small Problems/Small 2 easy 2.rb" root0="SKIP_INSPECTION" />
@@ -52,7 +48,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/benjaminwalker/Documents/Launch-School/RB130&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/benjaminwalker/Documents/Launch-School/RB 130&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -66,6 +62,11 @@
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Medium Challenges" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SpringUtil" SPRING_PRE_LOADER_OPTION="true" RAKE_SPRING_PRE_LOADER_OPTION="true" RAILS_SPRING_PRE_LOADER_OPTION="true" />
   <component name="TaskManager">
@@ -90,6 +91,8 @@
       <workItem from="1687547766258" duration="1857000" />
       <workItem from="1687810646692" duration="12434000" />
       <workItem from="1688049048906" duration="24221000" />
+      <workItem from="1688150365614" duration="390000" />
+      <workItem from="1688257452015" duration="6469000" />
     </task>
     <task id="LOCAL-00001" summary="more examples for interview prep">
       <created>1685973614072</created>
@@ -350,7 +353,21 @@
       <option name="project" value="LOCAL" />
       <updated>1688150119701</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="refactoring directories">
+      <created>1688150387293</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1688150387293</updated>
+    </task>
+    <task id="LOCAL-00039" summary="refactoring directories">
+      <created>1688150394595</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1688150394595</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,7 +386,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="easy 2 complete" />
     <MESSAGE value="auto updated files" />
     <MESSAGE value="playing with assertion style, testing another instance variable" />
     <MESSAGE value="car tests!" />
@@ -394,7 +410,8 @@
     <MESSAGE value="Sum of Multiples Challenge complete" />
     <MESSAGE value="beer song Challenge complete" />
     <MESSAGE value="Series Challenge complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="Series Challenge complete" />
+    <MESSAGE value="refactoring directories" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring directories" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -430,6 +447,7 @@
     <SUITE FILE_PATH="coverage/RB130@todo.rcov" NAME="todo Coverage Results" MODIFIED="1686770730941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@sum_of_multiples.rcov" NAME="sum_of_multiples Coverage Results" MODIFIED="1688141516230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@Small_1_Easy_1.rcov" NAME="Small 1 Easy 1 Coverage Results" MODIFIED="1686323889073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB_130@10_diamond.rcov" NAME="10_diamond Coverage Results" MODIFIED="1688403526375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@todolist_test_rb.rcov" NAME="todolist_test.rb Coverage Results" MODIFIED="1686770447876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@perfect_numbers.rcov" NAME="perfect_numbers Coverage Results" MODIFIED="1688084888411" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@Small_5_Medium_2.rcov" NAME="Small 5 Medium 2 Coverage Results" MODIFIED="1687287914215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
@@ -441,6 +459,7 @@
     <SUITE FILE_PATH="coverage/RB130@roman_numerals.rcov" NAME="roman_numerals Coverage Results" MODIFIED="1688085150871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@triangle_test_rb.rcov" NAME="triangle_test.rb Coverage Results" MODIFIED="1687875362980" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@Small_4_Medium_1.rcov" NAME="Small 4 Medium 1 Coverage Results" MODIFIED="1687362121758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB_130@10_diamond_test_rb.rcov" NAME="10_diamond_test.rb Coverage Results" MODIFIED="1688403917677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@Unnamed.rcov" NAME="Small Problems Coverage Results" MODIFIED="1686790877247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Small Problems" MODULE_NAME="RB130" />
   </component>
 </project>
