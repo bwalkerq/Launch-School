@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="Robot Medium Challenge complete">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="Robot Medium Challenge given-solution reflections" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,7 +87,7 @@
       <workItem from="1687810646692" duration="12434000" />
       <workItem from="1688049048906" duration="24221000" />
       <workItem from="1688150365614" duration="390000" />
-      <workItem from="1688257452015" duration="10588000" />
+      <workItem from="1688257452015" duration="11019000" />
     </task>
     <task id="LOCAL-00001" summary="more examples for interview prep">
       <created>1685973614072</created>
@@ -378,7 +376,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688490211811</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Robot Medium Challenge given-solution reflections">
+      <created>1688491093190</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1688491093190</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,7 +402,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="car tests!" />
     <MESSAGE value="TodoList testing file complete" />
     <MESSAGE value="TodoList testing file refactoring" />
     <MESSAGE value="installed coverage gem" />
@@ -422,7 +426,8 @@
     <MESSAGE value="refactoring directories" />
     <MESSAGE value="Diamond Medium Challenge complete" />
     <MESSAGE value="Robot Medium Challenge complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="Robot Medium Challenge complete" />
+    <MESSAGE value="Robot Medium Challenge given-solution reflections" />
+    <option name="LAST_COMMIT_MESSAGE" value="Robot Medium Challenge given-solution reflections" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -464,7 +469,7 @@
     <SUITE FILE_PATH="coverage/RB130@perfect_numbers.rcov" NAME="perfect_numbers Coverage Results" MODIFIED="1688084888411" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@Small_5_Medium_2.rcov" NAME="Small 5 Medium 2 Coverage Results" MODIFIED="1687287914215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@Small_2_easy_2.rcov" NAME="Small 2 easy 2 Coverage Results" MODIFIED="1686599384777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
-    <SUITE FILE_PATH="coverage/RB_130@robot_name_test_rb.rcov" NAME="robot_name_test.rb Coverage Results" MODIFIED="1688490659222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/RB_130@robot_name_test_rb.rcov" NAME="robot_name_test.rb Coverage Results" MODIFIED="1688491070644" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@triangle.rcov" NAME="triangle Coverage Results" MODIFIED="1687874837797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@swap.rcov" NAME="swap Coverage Results" MODIFIED="1687362330519" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@series_test_rb.rcov" NAME="series_test.rb Coverage Results" MODIFIED="1688150049043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
