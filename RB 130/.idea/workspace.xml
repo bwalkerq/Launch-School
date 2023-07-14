@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="Robot Medium Challenge given-solution reflections" />
+    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="Robot Medium Challenge refactored">
+      <change afterPath="$PROJECT_DIR$/RB139_study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Easy Challenges/roman_numerals.rb" beforeDir="false" afterPath="$PROJECT_DIR$/Easy Challenges/roman_numerals.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RB130/.idea/workspace.xml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,7 +55,8 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;
+    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
@@ -87,7 +94,12 @@
       <workItem from="1687810646692" duration="12434000" />
       <workItem from="1688049048906" duration="24221000" />
       <workItem from="1688150365614" duration="390000" />
-      <workItem from="1688257452015" duration="11019000" />
+      <workItem from="1688257452015" duration="12292000" />
+      <workItem from="1688496395566" duration="839000" />
+      <workItem from="1688655341080" duration="600000" />
+      <workItem from="1688669818854" duration="13000" />
+      <workItem from="1689173081568" duration="7379000" />
+      <workItem from="1689253647271" duration="8230000" />
     </task>
     <task id="LOCAL-00001" summary="more examples for interview prep">
       <created>1685973614072</created>
@@ -383,7 +395,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688491093190</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Robot Medium Challenge refactored">
+      <created>1688491769912</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1688491769912</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -402,7 +421,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="TodoList testing file complete" />
     <MESSAGE value="TodoList testing file refactoring" />
     <MESSAGE value="installed coverage gem" />
     <MESSAGE value="small easy testing complete" />
@@ -427,7 +445,8 @@
     <MESSAGE value="Diamond Medium Challenge complete" />
     <MESSAGE value="Robot Medium Challenge complete" />
     <MESSAGE value="Robot Medium Challenge given-solution reflections" />
-    <option name="LAST_COMMIT_MESSAGE" value="Robot Medium Challenge given-solution reflections" />
+    <MESSAGE value="Robot Medium Challenge refactored" />
+    <option name="LAST_COMMIT_MESSAGE" value="Robot Medium Challenge refactored" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
