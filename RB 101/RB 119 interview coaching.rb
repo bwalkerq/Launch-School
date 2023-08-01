@@ -1,4 +1,24 @@
 =begin
+PROBLEM
+
+input:
+output:
+
+explicit rules:
+implicit rules:
+
+Questions:
+
+Mental Model:
+
+EXAMPLES
+
+DATA / ALGORITHM
+
+CODE
+=end
+
+=begin
 Feedback that i often give:
 - Think of the interview as a presentation of your process; you want to make
 it transparent what you're thinking and why, and also package it in a way
