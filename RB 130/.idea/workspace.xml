@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="Robot Medium Challenge refactored">
-      <change afterPath="$PROJECT_DIR$/RB139_study.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Easy Challenges/roman_numerals.rb" beforeDir="false" afterPath="$PROJECT_DIR$/Easy Challenges/roman_numerals.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RB130/.idea/workspace.xml" beforeDir="false" />
-    </list>
+    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="139 study guide (139 assessment completed)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,6 +94,7 @@
       <workItem from="1688669818854" duration="13000" />
       <workItem from="1689173081568" duration="7379000" />
       <workItem from="1689253647271" duration="8230000" />
+      <workItem from="1689299297583" duration="684000" />
     </task>
     <task id="LOCAL-00001" summary="more examples for interview prep">
       <created>1685973614072</created>
@@ -402,7 +397,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688491769912</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="139 study guide (139 assessment completed)">
+      <created>1689349585290</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1689349585290</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,7 +423,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="TodoList testing file refactoring" />
     <MESSAGE value="installed coverage gem" />
     <MESSAGE value="small easy testing complete" />
     <MESSAGE value="Small medium 4 complete" />
@@ -446,7 +447,8 @@
     <MESSAGE value="Robot Medium Challenge complete" />
     <MESSAGE value="Robot Medium Challenge given-solution reflections" />
     <MESSAGE value="Robot Medium Challenge refactored" />
-    <option name="LAST_COMMIT_MESSAGE" value="Robot Medium Challenge refactored" />
+    <MESSAGE value="139 study guide (139 assessment completed)" />
+    <option name="LAST_COMMIT_MESSAGE" value="139 study guide (139 assessment completed)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
