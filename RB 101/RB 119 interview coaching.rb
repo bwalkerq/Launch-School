@@ -19,7 +19,7 @@ CODE
 =end
 
 =begin
-Feedback that i often give:
+Feedback that I often give:
 - Think of the interview as a presentation of your process; you want to make
 it transparent what you're thinking and why, and also package it in a way
 that is easy for them to understand and follow. While thinking, talk through
@@ -37,8 +37,8 @@ back and revise your algo (blueprint and building construction, a la Spencer)
 
 =end
 
-PROBLEMS
-# # Write a function that connects each previous word to the next word by the shared letters. Return the resulting string (removing duplicate characters in the overlap) and the minimum number of shared letters across all pairs of strings.
+# #PROBLEMS
+# Write a function that connects each previous word to the next word by the shared letters. Return the resulting string (removing duplicate characters in the overlap) and the minimum number of shared letters across all pairs of strings.
 
 p join(["oven", "envier", "erase", "serious"])  == ["ovenvieraserious", 2]
 p join(["move", "over", "very"]) == ["movery", 3]
@@ -58,12 +58,39 @@ p high('aa b') == 'aa'
 # value, and then decrease down from there. Write a method that returns
 # true if an array is a spiral, else return false.
 
-p spiral([1,2,4,3,2,1]) == true
-p spiral([1,2,4,6,4,2,1]) == true
-p spiral([0,3,5,4,3,2,1]) == true
-p spiral([0,3,5,5,4,3,2,1]) == false
-p spiral([1,2,4,6,4,2,4]) == false
-p spiral([1,5,4,6,4,2,1]) == false
+p spiral([1, 2, 4, 3, 2, 1]) == true
+p spiral([1, 2, 4, 6, 4, 2, 1]) == true
+p spiral([0, 3, 5, 4, 3, 2, 1]) == true
+p spiral([0, 3, 5, 5, 4, 3, 2, 1]) == false
+p spiral([1, 2, 4, 6, 4, 2, 4]) == false
+p spiral([1, 5, 4, 6, 4, 2, 1]) == false
+
+=begin
+coaching Kana on 8/8/23
+
+lovely slow communication right out of the gate
+good to ask about the value vs the sum!
+You asked about 1234,4321...and you can just look at the examples!
+NICE, you caught that you can look at the examples
+**read the examples early on to make sense of the probelms implicit rules, and to answer edge case questions**
+[at about 5.5 minutes, you read all of the exmaples]
+
+During the process of "how to know if the value is the max value..."
+[what methods do you know for a max]
+
+first mention of increasing side and decreasing side at 14.5 min!
+
+19 min you figured out that it's not just the value of the integers, but also
+the ORDER of the values; you used the phrase "ascending order" and "decending order"
+
+at 22.5 min very strong and clear statement to start off the algorithm writing!
+It's clear that you've loaded the problem well
+23.3 first mention of sorting! wow!
+
+It's clear that you're smart! Great thinking process, it was really fun to watch/hear you make progress on this problem!
+In my opinion, you have everything working for you; you just need more practice to gain fluency and speed.
+=end
+
 
 =begin
 Problem from Mai Khu
