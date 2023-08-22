@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="139 study guide (139 assessment completed)" />
+    <list default="true" id="e1b9b281-d5f2-42cd-9d6f-94085654fa7b" name="Changes" comment="139 study guide (139 assessment completed)">
+      <change beforePath="$PROJECT_DIR$/Medium Challenges/10_diamond.rb" beforeDir="false" afterPath="$PROJECT_DIR$/Medium Challenges/10_diamond.rb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -95,6 +97,7 @@
       <workItem from="1689173081568" duration="7379000" />
       <workItem from="1689253647271" duration="8230000" />
       <workItem from="1689299297583" duration="684000" />
+      <workItem from="1692060807675" duration="779000" />
     </task>
     <task id="LOCAL-00001" summary="more examples for interview prep">
       <created>1685973614072</created>
@@ -484,6 +487,7 @@
     <SUITE FILE_PATH="coverage/RB_130@robot_name.rcov" NAME="robot_name Coverage Results" MODIFIED="1688408267967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@todo.rcov" NAME="todo Coverage Results" MODIFIED="1686770730941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@sum_of_multiples.rcov" NAME="sum_of_multiples Coverage Results" MODIFIED="1688141516230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
+    <SUITE FILE_PATH="coverage/10_diamond_rb@10_diamond.rcov" NAME="10_diamond Coverage Results" MODIFIED="1692060923398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@Small_1_Easy_1.rcov" NAME="Small 1 Easy 1 Coverage Results" MODIFIED="1686323889073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB_130@10_diamond.rcov" NAME="10_diamond Coverage Results" MODIFIED="1688403526375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
     <SUITE FILE_PATH="coverage/RB130@todolist_test_rb.rcov" NAME="todolist_test.rb Coverage Results" MODIFIED="1686770447876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="RB130" />
