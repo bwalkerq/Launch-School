@@ -21,9 +21,15 @@ loop do
 
   http_method, path, params = parse_request(request_line)
 
-
   client.puts "HTTP/1.1 200 OK\r\n\r\n"
-  client.puts rand(1..6)
+  client.puts http_method
+  client.puts path
+  client.puts params
+  rolls = params["rolls"].to_i
+  sides = params["sides"].to_i
+  rolls.times do
+    client.puts rand(1..sides)
+  end
 
   client.close
 end
