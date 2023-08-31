@@ -11,5 +11,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v2.1.4, rbenv: 2.7.6) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="webrick (v1.6.1, rbenv: 2.7.6) [gem]" level="application" />
   </component>
 </module>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Public Folder Files</title>
+  </head>
+
+<body>
+<h1>Public Folder Files</h1>
+<ol>
+  <% @file_names.each do |file_name| %>
+    <li >
+      <a href="/<%=file_name %>"><%= file_name %></a>
+    </li>
+  <% end %>
+</ol>
+<p>
+  <% if params[:sort] == "descending" %>
+    <a href="/">Sort Ascending</a>
+  <% else %>
+    <a href="/?sort=descending">Sort Descending</a>
+  <% end %>
+</p>
+
+</body>
+</html>
+
+
