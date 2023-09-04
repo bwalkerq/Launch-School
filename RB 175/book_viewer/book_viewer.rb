@@ -8,7 +8,7 @@ end
 
 helpers do
   def in_paragraphs(string)
-    string.split('\n\n').map{ |paragraph| "<p>#{paragraph}</p>"}.join
+    string.split("\n\n").map{ |paragraph| "<p>#{paragraph}</p>"}.join
   end
 end
 
