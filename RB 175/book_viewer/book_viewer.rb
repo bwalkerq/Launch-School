@@ -23,8 +23,8 @@ get "/" do
 end
 
 get "/chapters/:number" do
-  number = params[:number]
-  chapter_name = @contents[number.to_i - 1]
+  number = params[:number].to_i
+  chapter_name = @contents[number - 1]
 
   redirect "/" unless (1..(@contents.size)).cover? number
 
