@@ -34,6 +34,24 @@ get "/chapters/:number" do
   erb :chapter
 end
 
-not_found do
-  redirect "/"
+get "/search" do
+  query = params[:query]
+  @search_results = []
+
+  1.upto(12) do |integer|
+    @search_results << @contents[integer - 1] if
+      (File.read "data/chp#{integer}.txt").include?(query.to_s)
+    end
+
+  erb :search
 end
+
+
+
+
+
+
+
+
+
+
