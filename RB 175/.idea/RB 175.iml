@@ -12,6 +12,15 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v2.1.4, rbenv: 2.7.6) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, rbenv: 2.7.6) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.15.0, rbenv: 2.7.6) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mustermann (v3.0.0, rbenv: 2.7.6) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rack (v2.2.8, rbenv: 2.7.6) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rack-protection (v3.1.0, rbenv: 2.7.6) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ruby2_keywords (v0.0.5, rbenv: 2.7.6) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sinatra (v3.1.0, rbenv: 2.7.6) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sinatra-contrib (v3.1.0, rbenv: 2.7.6) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="tilt (v2.2.0, rbenv: 2.7.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="webrick (v1.6.1, rbenv: 2.7.6) [gem]" level="application" />
   </component>
 </module>
