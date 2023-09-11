@@ -7,8 +7,11 @@ before do
 end
 
 helpers do
+  # adds an index to the paragraph html element id
   def in_paragraphs(string)
-    string.split("\n\n").map{ |paragraph| "<p>#{paragraph}</p>"}.join
+    string.split("\n\n").map.with_index do |paragraph, index|
+      "<p id='#{index}'>#{paragraph}</p>"
+    end.join
   end
 
   # Calls the block for each chapter, passing that chapter's number, name, and
