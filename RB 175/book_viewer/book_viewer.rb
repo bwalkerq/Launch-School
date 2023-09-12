@@ -25,6 +25,17 @@ helpers do
     end.join
   end
 
+  # iterate through the text and wrap in strong
+  # if the query is multiple words, need to do something other than split on space
+  # each consecutive
+  # sub
+  # gsub
+  # replace
+  def bold_query_text(text, query)
+    text.gsub(query, "<strong>#{query}</strong>")
+  end
+  #take the f***ing win
+
   # Calls the block for each chapter, passing that chapter's number, name, and
   # contents.
   def each_chapter

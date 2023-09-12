@@ -19,7 +19,7 @@
             <% result[:paragraphs].each do |index, text| %>
               <li>
                 <a href="/chapters/<%= result[:number] %>#paragraph<%= index %>">
-                  <%= text %>
+                  <%= bold_query_text(text, params[:query]) %>
                 </a>
               </li>
             <% end %>
