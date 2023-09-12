@@ -9,8 +9,19 @@ end
 helpers do
   # adds an index to the paragraph html element id
   def in_paragraphs(string)
-    string.split("\n\n").map.with_index do |paragraph, index|
-      "<p id='#{index}'>#{paragraph}</p>"
+    string.split("\n\n").map.with_index do |line, index|
+      "<p id='paragraph#{index}'>#{line}</p>" # Here I learned that id="something" is
+    # how to reference particular parts of a page.
+    # The id embedded in the <p> tag is used by the URL to scroll to that part
+    # of the page. So the URL http://localhost:4567/chapters/1#paragraph235
+    # has an anchor (the part of the URL that starts with '#') and the page
+    # contains any html element with that id, the page will scroll there.
+    #
+    # I'm pretty annoyed (with myself?) because I think this is the type of problem
+    # that there's no way I could have solved on my own, having not done the HTML
+    # course. I was hoping to keep up with Phillip, but I don't think I'll be able to.
+    # If I have to keep looking at the solutions that depend on greater HTML knowledge than
+    # I have, it's going to take too long.
     end.join
   end
 
@@ -30,9 +41,12 @@ helpers do
     results = []
 
     return results if !query || query.empty?
-
     each_chapter do |number, name, contents|
-      results << {number: number, name: name} if contents.include?(query)
+      matches = {}
+      contents.split("\n\n").each_with_index do |paragraph, index|
+        matches[index] = paragraph if paragraph.include?(query)
+      end
+      results << {number: number, name: name, paragraphs: matches} if matches.any?
     end
 
     results
