@@ -1,15 +1,23 @@
+# require 'pry'
 require 'sinatra'
 require 'sinatra/reloader'
 require 'tilt/erubis'
 require 'yaml'
+
+before do
+  @users = YAML.load_file('public/users.yaml')
+  @user_names = @users.keys
+end
 
 get '/' do
   redirect '/users'
 end
 
 get '/users' do
-  @user_hash = YAML.load_file('public/users.yaml')
-  @user_names = @user_hash.keys
-
   erb :users
+end
+
+get '/:user_name' do
+  # binding.pry
+  @users[params[:user_name].to_sym][:email]
 end
