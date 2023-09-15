@@ -19,5 +19,8 @@ end
 
 get '/:user_name' do
   # binding.pry
-  @users[params[:user_name].to_sym][:email]
+  @email = @users[params[:user_name].to_sym][:email]
+  @interests = @users[params[:user_name].to_sym][:interests]
+
+  erb :user
 end

@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Users</title>
+</head>
+
+<body>
+<h2>Email</h2>
+<%= @email %>
+
+<h2>Interests</h2>
+<%= @interests.join(', ') %>
+
+<h2>Other Users</h2>
+<% @user_names.each do |sym| %>
+  <% next if sym.to_s == params[:user_name] %>
+  <p><a href="/<%= sym.to_s %>"><%= sym.to_s %></a></p>
+<% end %>
+</body>
+</html>
