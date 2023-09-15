@@ -1,11 +1,4 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Users</title>
-</head>
 
-<body>
 <h2>Email</h2>
 <%= @email %>
 
@@ -17,5 +10,3 @@
   <% next if sym.to_s == params[:user_name] %>
   <p><a href="/<%= sym.to_s %>"><%= sym.to_s %></a></p>
 <% end %>
-</body>
-</html>

@@ -1,14 +1,4 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Users</title>
-  </head>
-
-  <body>
   <h1>Users</h1>
     <% @user_names.each do |sym| %>
     <h2><a href="/<%= sym.to_s %>"><%= sym.to_s %></a></h2>
     <% end %>
-  </body>
-</html>

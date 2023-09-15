@@ -9,6 +9,20 @@ before do
   @user_names = @users.keys
 end
 
+helpers do
+  def count_users
+    @user_names.count
+  end
+
+  def count_interests
+    count = 0
+    @users.each do |k, value|
+      count += value[:interests].count
+    end
+    count
+  end
+end
+
 get '/' do
   redirect '/users'
 end
