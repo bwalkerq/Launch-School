@@ -1,6 +1,8 @@
 require "sinatra"
 require "sinatra/reloader"
+require 'sinatra/content_for'
 require "tilt/erubis"
+set :session_secret, SecureRandom.hex(32)
 
 configure do
   enable :sessions
@@ -50,4 +52,8 @@ post "/lists" do
   end
 end
 
-set :session_secret, SecureRandom.hex(32)
+get '/lists/:id' do
+  id = params[:id].to_i
+  @list = session[:lists][id]
+  erb :list, layout: :layout
+end
