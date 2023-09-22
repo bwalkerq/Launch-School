@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module type="RUBY_MODULE" version="4">
+<module version="4">
   <component name="ModuleRunConfigurationManager">
     <shared />
-  </component>
-  <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="rbenv: 2.7.6" jdkType="RUBY_SDK" />
-    <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, rbenv: 2.7.6) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.15.0, rbenv: 2.7.6) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="mustermann (v3.0.0, rbenv: 2.7.6) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rack (v2.2.8, rbenv: 2.7.6) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rack-protection (v3.1.0, rbenv: 2.7.6) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="ruby2_keywords (v0.0.5, rbenv: 2.7.6) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sinatra (v3.1.0, rbenv: 2.7.6) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sinatra-contrib (v3.1.0, rbenv: 2.7.6) [gem]" level="application" />
-  </component>
-  <component name="RubyModuleProperties">
-    <option name="autoCreated" value="true" />
   </component>
 </module>
