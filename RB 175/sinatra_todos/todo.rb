@@ -1,7 +1,7 @@
-require "sinatra"
-require "sinatra/reloader"
+require 'sinatra'
+require 'sinatra/reloader'
 require 'sinatra/content_for'
-require "tilt/erubis"
+require 'tilt/erubis'
 set :session_secret, SecureRandom.hex(32)
 
 configure do
@@ -38,7 +38,7 @@ def error_for_list_name(name)
 end
 
 # Create a new list
-post "/lists" do
+post '/lists' do
   list_name = params[:list_name].strip
 
   error = error_for_list_name(list_name)
@@ -47,14 +47,15 @@ post "/lists" do
     erb :new_list, layout: :layout
   else
     session[:lists] << { name: list_name, todos: [] }
-    session[:success] = "The list has been created."
-    redirect "/lists"
+    session[:success] = 'The list has been created.'
+    redirect '/lists'
   end
 end
 
+# View a single todo list
 get '/lists/:id' do
-  id = params[:id].to_i
-  @list = session[:lists][id]
+  @list_id = params[:id].to_i
+  @list = session[:lists][@list_id]
   erb :list, layout: :layout
 end
 
@@ -88,5 +89,28 @@ post '/lists/:id/destroy' do
   session[:lists].delete_at(id)
   session[:success] = 'the list was deleted.'
   redirect '/lists'
+end
+
+def error_for_todo(name)
+  if !(1..100).cover? name.size
+    'The todo item name must be between 1 and 100 characters.'
+  end
+end
+
+# add a new todo to a list
+post '/lists/:list_id/todos' do
+  @list_id = params[:list_id].to_i
+  @list = session[:lists][@list_id]
+  text = params[:todo].strip
+
+  error = error_for_todo(text)
+  if error
+    session[:error] = error
+    erb :list, layout: :layout
+  else
+    @list[:todos] << {name: params[:todo], completed: false}
+    session[:success] = 'The todo item has been added.'
+    redirect "/lists/#{@list_id}"
+  end
 end
 
