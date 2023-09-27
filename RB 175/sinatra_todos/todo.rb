@@ -2,11 +2,12 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sinatra/content_for'
 require 'tilt/erubis'
-set :session_secret, SecureRandom.hex(32)
+require 'pry'
 
 configure do
   enable :sessions
-  set :session_secret, 'secret'
+  set :session_secret, SecureRandom.hex(32)
+  # set :session_secret, 'secret'
 end
 
 before do
@@ -122,3 +123,29 @@ post '/lists/:list_id/todos/:todo_id/destroy' do
   session[:success] = 'the todo item was deleted.'
   redirect "/lists/#{list_id}"
 end
+
+# Mark a task as completed
+post '/lists/:list_id/todos/:todo_id' do
+  list_id = params[:list_id].to_i
+  todo_id = params[:todo_id].to_i
+  is_completed = params[:completed] == 'true'
+  session[:lists][list_id][:todos][todo_id][:completed] = is_completed
+  # binding.pry
+  session[:success] = 'the todo has been updated.'
+  redirect "/lists/#{list_id}"
+end
+
+post "/lists/:list_id/complete_all" do
+  list_id = params[:list_id].to_i
+  session[:lists][list_id][:todos].each do |item|
+    item[:completed] = true
+  end
+  session[:success] = 'All todos marked complete.'
+  redirect "/lists/#{list_id}"
+end
+
+
+
+
+
+
