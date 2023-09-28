@@ -10,6 +10,25 @@ configure do
   # set :session_secret, 'secret'
 end
 
+# methods that are meant to be accessible in the views as well as this file
+helpers do
+  def list_complete?(list)
+    todos_count_remaining(list) == 0 && todos_count(list) > 0
+  end
+
+  def list_class(list)
+    "complete" if list_complete?(list)
+  end
+
+  def todos_count_remaining(list)
+    list[:todos].count {|todo| todo[:completed] == false}
+  end
+
+  def todos_count(list)
+    list[:todos].size
+  end
+end
+
 before do
   session[:lists] ||= []
 end
@@ -151,7 +170,6 @@ post "/lists/:id/complete_all" do
   redirect "/lists/#{@list_id}"
 end
 # Why does the solution code use instance variables for this; when to use local vs instance
-
 
 
 
