@@ -118,31 +118,39 @@ end
 # Delete a todo from a list
 post '/lists/:list_id/todos/:todo_id/destroy' do
   list_id = params[:list_id].to_i
+
   todo_id = params[:todo_id].to_i
   session[:lists][list_id][:todos].delete_at(todo_id)
   session[:success] = 'the todo item was deleted.'
   redirect "/lists/#{list_id}"
 end
 
-# Mark a task as completed
+# Update the Status of a todo
 post '/lists/:list_id/todos/:todo_id' do
-  list_id = params[:list_id].to_i
+  @list_id = params[:list_id].to_i
+  @list = session[:lists][@list_id]
+
   todo_id = params[:todo_id].to_i
   is_completed = params[:completed] == 'true'
-  session[:lists][list_id][:todos][todo_id][:completed] = is_completed
-  # binding.pry
+  @list[:todos][todo_id][:completed] = is_completed
+
   session[:success] = 'the todo has been updated.'
-  redirect "/lists/#{list_id}"
+  redirect "/lists/#{@list_id}"
 end
 
-post "/lists/:list_id/complete_all" do
-  list_id = params[:list_id].to_i
-  session[:lists][list_id][:todos].each do |item|
+# Mark all todos as complete for a list
+post "/lists/:id/complete_all" do
+  @list_id = params[:id].to_i
+  @list = session[:lists][@list_id]
+
+  @list[:todos].each do |item|
     item[:completed] = true
   end
+
   session[:success] = 'All todos marked complete.'
-  redirect "/lists/#{list_id}"
+  redirect "/lists/#{@list_id}"
 end
+# Why does the solution code use instance variables for this; when to use local vs instance
 
 
 
