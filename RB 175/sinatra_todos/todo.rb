@@ -2,12 +2,11 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sinatra/content_for'
 require 'tilt/erubis'
-require 'pry'
+# require 'pry'
 
 configure do
   enable :sessions
   set :session_secret, SecureRandom.hex(32)
-  # set :session_secret, 'secret'
 end
 
 # methods that are meant to be accessible in the views as well as this file
@@ -26,6 +25,20 @@ helpers do
 
   def todos_count(list)
     list[:todos].size
+  end
+
+  def sort_lists(lists, &block)
+    complete_lists, incomplete_lists = lists.partition { |list| list_complete?(list)}
+
+    incomplete_lists.each{ |list| yield list, lists.index(list)}
+    complete_lists.each{ |list| yield list, lists.index(list)}
+  end
+
+  def sort_todos(todos, &block)
+    complete_todos, incomplete_todos = todos.partition { |todo| todo[:completed] }
+
+    incomplete_todos.each { |todo| yield todo, todos.index(todo) }
+    complete_todos.each { |todo| yield todo, todos.index(todo) }
   end
 end
 
@@ -169,7 +182,6 @@ post "/lists/:id/complete_all" do
   session[:success] = 'All todos marked complete.'
   redirect "/lists/#{@list_id}"
 end
-# Why does the solution code use instance variables for this; when to use local vs instance
 
 
 
