@@ -7,6 +7,7 @@ require 'tilt/erubis'
 configure do
   enable :sessions
   set :session_secret, SecureRandom.hex(32)
+  set :erb, :escape_html => true
 end
 
 # methods that are meant to be accessible in the views as well as this file
@@ -46,8 +47,10 @@ before do
   session[:lists] ||= []
 end
 
+HOME = "/lists"
+
 get "/" do
-  redirect "/lists"
+  redirect HOME
 end
 
 # View list of the lists
