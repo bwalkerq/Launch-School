@@ -1,6 +1,6 @@
 <section id="todos" class=<%= list_class(@list) %>>
   <header>
-  <h2><%= @list[:name] %></h2>
+  <h2><%= @list_name %></h2>
     <ul>
       <li>
         <form action="/lists/<%= @list_id %>/complete_all" method="post">
@@ -14,7 +14,7 @@
   </header>
 
   <ul>
-    <% sort_todos(@list[:todos]) do |todo| %>
+    <% sort_todos(@todos) do |todo| %>
       <% if todo[:completed] %>
         <li class="complete">
       <% else %>
@@ -51,8 +51,8 @@
   </fieldset>
 </form>
 
-<p><%= session[:lists][@list_id][:todos] %></p>
-<p><%= session[:lists][@list_id][:todos][1] %></p>
+<!--<p><%#= session[:lists][@list_id][:todos] %></p>-->
+<!--<p><%#= session[:lists][@list_id][:todos][1] %></p>-->
 
 <% content_for :header_links do  %>
 <a class="list" href="/lists">All Lists</a>
