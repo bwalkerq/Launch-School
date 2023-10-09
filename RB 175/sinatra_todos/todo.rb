@@ -145,7 +145,7 @@ post '/lists/:id/destroy' do
   id = params[:id].to_i
   session[:lists].reject! { |list| list[:id] == id }
   session[:success] = 'the list was deleted.'
-  if env["HTTP_X_REQUESTED_WITH"] = "XMLHttpRequest"
+  if env["HTTP_X_REQUESTED_WITH"] == "XMLHttpRequest"
     "/lists"
   else
     redirect '/lists'
