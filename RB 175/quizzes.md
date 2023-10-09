@@ -32,3 +32,11 @@ instance and so the order mattered. Here, the order doesn't matter because it
 uses `@animal_weight` when displaying an unedited record, and 
 `params[:animal_weight]` after an error. The way we set up our application, both
 items will never have a value at the same time, so it doesn't matter which we try first. 
+
+# L5 quiz
+4: an AJAX question that I didn't put a lot of effort into figuring out; I
+said that a status `200, "` would also communicate success with no body.
+Looking now, I couldn't find anything on if a status code can have a `, ""`?
+
+5: Unique identifiers SHOULD indeed be the same on front end and back end. They
+don't need to be sequential.
