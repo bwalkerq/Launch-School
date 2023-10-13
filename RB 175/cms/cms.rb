@@ -28,6 +28,7 @@ def load_file_content(path)
   end
 end
 
+# view the index of files
 get '/' do
   @files = Dir.glob(root + '/data/*').map do |path|
     File.basename(path)
@@ -35,9 +36,10 @@ get '/' do
   erb :index
 end
 
-get "/:filename" do
+# view a file
+get '/:filename' do
   file_name = params[:filename]
-  file_path = root + "/data/" + file_name
+  file_path = root + '/data/' + file_name
 
   if File.exist?(file_path)
     load_file_content file_path
@@ -45,4 +47,23 @@ get "/:filename" do
     session[:message] = "#{file_name} does not exist."
     redirect '/'
   end
+end
+
+# go to the edit page for a particular file
+get '/:filename/edit' do
+  @file_name = params[:filename]
+  @file_path = root + '/data/' + @file_name
+  @content = File.read @file_path
+
+  erb :edit_file
+end
+
+# update the contents of a file
+post '/:filename' do
+  file_name = params[:filename]
+  file_path = root + '/data/' + file_name
+  File.write(file_path, params[:edited_content])
+
+  session[:message] = "#{file_name} has been updated."
+  redirect '/'
 end

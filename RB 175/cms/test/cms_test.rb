@@ -51,4 +51,8 @@ class CmsTest < Minitest::Test
     get '/'
     refute_includes last_response.body, 'nofile.ext does not exist.'
   end
+
+  def test_edit_file_contents
+    get
+  end
 end
