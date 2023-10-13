@@ -1,10 +1,10 @@
 <form action="/<%= @file_name %>" method="post">
-  <label for="edited_content">Edit content of <%= @file_name %>:</label>
+  <label for="content">Edit content of <%= @file_name %>:</label>
   <div>
-    <textarea id="edited_content" name="edited_content" rows="20"
-            cols="100"><%= @content %></textarea>
+    <textarea id="content" name="content" rows="20"
+              cols="100"><%= @content %></textarea>
   </div>
   <form>
-    <input type="submit" value="Save Changes">
+    <button type="submit" value="Save Changes">
   </form>
 </form>
