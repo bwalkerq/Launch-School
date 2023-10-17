@@ -42,6 +42,31 @@ get '/' do
   erb :index
 end
 
+# Go to the create new document page
+get '/new' do
+  erb :new
+end
+
+# Create a new file, requires a name
+post '/create' do
+  filename = params[:filename].to_s # what object is this before #to_s, and what
+  # is the easy way to check the answer to this question?
+
+  if filename.size == 0
+    session[:message] = 'A name is required'
+    status 422
+    erb :new
+  else
+    file_path = File.join(data_path, filename) # figured this out
+
+    File.write(file_path, "") # learned that #write will create the file in
+    # the folder specified in the path
+    session[:message] = "#{params[:filename]} has been created."
+
+    redirect '/'
+  end
+end
+
 # view a file
 get "/:filename" do
   file_path = File.join(data_path, params[:filename])

@@ -37,6 +37,7 @@ class CmsTest < Minitest::Test
     assert_equal 'text/html;charset=utf-8', last_response['Content-Type']
     assert_includes last_response.body, 'about.md'
     assert_includes last_response.body, 'changes.txt'
+    assert_includes last_response.body, 'New Document'
   end
 
   def test_viewing_text_document
@@ -81,7 +82,8 @@ class CmsTest < Minitest::Test
   end
 
   def test_updating_document
-    post '/changes.txt', content: "new content"
+    post '/changes.txt', content: "new content" # this is dope that you
+    # can just include info for the params hash in the post call
     assert_equal 302, last_response.status
 
     get last_response['Location']
@@ -90,5 +92,31 @@ class CmsTest < Minitest::Test
     get '/changes.txt'
     assert_equal 200, last_response.status
     assert_includes last_response.body, 'new content'
+  end
+
+  def test_view_new_document_form
+    get '/new'
+
+    assert_equal 200, last_response.status
+    assert_includes last_response.body, "<input"
+    assert_includes last_response.body, %q(<button type="submit")
+  end
+
+  def test_create_new_file
+    post '/create', filename: 'test.txt'
+    assert_equal 302, last_response.status
+
+    get last_response['Location']
+    assert_includes last_response.body, "test.txt has been created"
+
+    get '/' # Remember to include the refresh-page behavior (message goes away
+    # and the new file is listed in the index. I got all the others!)
+    assert_includes last_response.body, "test.txt"
+  end
+
+  def test_create_new_file_without_filename
+    post '/create', filename: ''
+    assert_equal 422, last_response.status
+    assert_includes last_response.body, "A name is required"
   end
 end
