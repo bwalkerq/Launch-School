@@ -47,6 +47,34 @@ get '/new' do
   erb :new
 end
 
+# view sign in page
+get '/users/signin' do
+  erb :signin
+end
+
+# submit sign in information
+post '/users/signin' do
+  username = params[:username].to_s.downcase
+  password = params[:password].to_s.downcase
+
+  if username == 'admin' && password == 'secret'
+    session[:username] = username
+    session[:message] = "Welcome #{username}!"
+    redirect '/'
+  else
+    session[:message] = 'Invalid credentials'
+    status 422 # Remember to write a status code for errors
+    erb :signin
+  end
+end
+
+post '/users/signout' do
+  # reset params hash?
+  session.delete(:username)
+  session[:message] = 'You have been signed out.'
+  redirect '/'
+end
+
 # Create a new file, requires a name
 post '/create' do
   filename = params[:filename].to_s # what object is this before #to_s, and what

@@ -1,6 +1,3 @@
-<p>
-  <a href="/new">New Document</a>
-</p>
 <ul>
   <% @files.each do |file| %>
     <li>
@@ -12,3 +9,16 @@
     </li>
   <% end %>
 </ul>
+
+<p><a href="/new">New Document</a></p>
+
+<% if session[:username] %>
+  <form method="post" action="/users/signout">
+    <p class="user-status">
+      Signed in as <%= session[:username] %>.
+      <button type="submit">Sign Out</button>
+    </p>
+  </form>
+<% else %>
+  <p class="user-status"><a href="/users/signin">Sign In</a></p>
+<% end %>
