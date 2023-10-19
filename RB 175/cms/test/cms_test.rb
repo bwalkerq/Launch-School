@@ -132,4 +132,42 @@ class CmsTest < Minitest::Test
     get '/'
     refute_includes last_response.body, 'test.txt'
   end
+
+  def test_signin_form
+    get '/users/signin'
+    assert_equal 200, last_response.status
+    assert_includes last_response.body, "<input"
+    # note that it tested to make sure the innermost element showed up
+    assert_includes last_response.body, %q(<button type="submit")
+    # and that the button showed up
+  end
+
+  def test_signin
+    post '/users/signin', username: 'admin', password: 'secret'
+    assert_equal 302, last_response.status
+
+    get last_response['Location']
+    assert_includes last_response.body, "Welcome!"
+    assert_includes last_response.body, 'Signed in as admin'
+  end
+
+  def test_invalid_sign_in_credentials
+    post '/users/signin', username: 'nope'
+    assert_equal 422, last_response.status
+    assert_includes last_response.body, "Invalid credentials"
+    assert_includes last_response.body, %q(<input id="username" name="username" value="nope")
+  end
+
+  def test_signout
+    post "/users/signin", username: "admin", password: "secret"
+    get last_response["Location"]
+    assert_includes last_response.body, "Welcome"
+    # I notice that the solution never tests that the signout button appears
+
+    post "/users/signout"
+    get last_response["Location"]
+
+    assert_includes last_response.body, "You have been signed out"
+    assert_includes last_response.body, "Sign In"
+  end
 end

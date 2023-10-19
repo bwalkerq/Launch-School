@@ -4,7 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/RB 175.iml" filepath="$PROJECT_DIR$/.idea/RB 175.iml" />
       <module fileurl="file://$PROJECT_DIR$/book_viewer/book_viewer.iml" filepath="$PROJECT_DIR$/book_viewer/book_viewer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cms.iml" filepath="$PROJECT_DIR$/.idea/modules/cms.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/dynamic_directory_index.iml" filepath="$PROJECT_DIR$/.idea/modules/dynamic_directory_index.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sinatra_todos.iml" filepath="$PROJECT_DIR$/.idea/modules/sinatra_todos.iml" />
     </modules>
   </component>
 </project>
