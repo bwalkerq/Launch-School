@@ -27,6 +27,10 @@ class CmsTest < Minitest::Test
     end
   end
 
+  def session
+    last_request.env["rack.session"]
+  end
+
   def test_index
     create_document 'about.md'
     create_document 'changes.txt'
@@ -63,13 +67,7 @@ class CmsTest < Minitest::Test
   def test_nonexistant_document
     get '/nofile.ext'
     assert_equal 302, last_response.status
-
-    get last_response['Location']
-    assert_equal 200, last_response.status
-    assert_includes last_response.body, 'nofile.ext does not exist.'
-
-    get '/'
-    refute_includes last_response.body, 'nofile.ext does not exist.'
+    assert_equal 'nofile.ext does not exist.', session[:message]
   end
 
   def test_editing_document
@@ -85,9 +83,7 @@ class CmsTest < Minitest::Test
     post '/changes.txt', content: "new content" # this is dope that you
     # can just include info for the params hash in the post call
     assert_equal 302, last_response.status
-
-    get last_response['Location']
-    assert_includes last_response.body, "changes.txt has been updated"
+    assert_equal "changes.txt has been updated.", session[:message]
 
     get '/changes.txt'
     assert_equal 200, last_response.status
@@ -105,9 +101,7 @@ class CmsTest < Minitest::Test
   def test_create_new_file
     post '/create', filename: 'test.txt'
     assert_equal 302, last_response.status
-
-    get last_response['Location']
-    assert_includes last_response.body, "test.txt has been created"
+    assert_equal 'test.txt has been created.', session[:message]
 
     get '/' # Remember to include the refresh-page behavior (message goes away
     # and the new file is listed in the index. I got all the others!)
@@ -125,12 +119,10 @@ class CmsTest < Minitest::Test
 
     post '/test.txt/destroy'
     assert_equal 302, last_response.status
-
-    get last_response['Location']
-    assert_includes last_response.body, "test.txt has been deleted"
+    assert_equal 'test.txt has been deleted.', session[:message]
 
     get '/'
-    refute_includes last_response.body, 'test.txt'
+    refute_includes last_response.body, %q(href="/test.txt")
   end
 
   def test_signin_form
@@ -145,29 +137,34 @@ class CmsTest < Minitest::Test
   def test_signin
     post '/users/signin', username: 'admin', password: 'secret'
     assert_equal 302, last_response.status
+    assert_equal "Welcome #{session[:username]}!", session[:message]
+    assert_equal 'admin', session[:username]
 
     get last_response['Location']
-    assert_includes last_response.body, "Welcome!"
     assert_includes last_response.body, 'Signed in as admin'
   end
 
   def test_invalid_sign_in_credentials
     post '/users/signin', username: 'nope'
     assert_equal 422, last_response.status
+    assert_nil session[:username]
     assert_includes last_response.body, "Invalid credentials"
     assert_includes last_response.body, %q(<input id="username" name="username" value="nope")
+    #I note this last test is not included in the solution to check that the
+    # previous username is populated in the input box
   end
 
   def test_signout
-    post "/users/signin", username: "admin", password: "secret"
-    get last_response["Location"]
-    assert_includes last_response.body, "Welcome"
-    # I notice that the solution never tests that the signout button appears
+    get '/', {}, {'rack.session' => {username: 'admin'} }
+    assert_includes last_response.body, "Signed in as admin"
 
     post "/users/signout"
-    get last_response["Location"]
+    assert_equal "You have been signed out.", session[:message]
 
-    assert_includes last_response.body, "You have been signed out"
+    get last_response["Location"]
+    assert_nil session[:username]
     assert_includes last_response.body, "Sign In"
+    # I notice that the solution (here or elsewhere) never tests that the
+    # signout button appears
   end
 end
