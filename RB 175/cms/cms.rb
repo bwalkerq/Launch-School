@@ -33,6 +33,18 @@ def load_file_content(path)
   end
 end
 
+def user_signed_in?
+  session.key?(:username)
+end
+
+# redirect to index page with error message if not signed in
+def require_signed_in_user
+  unless user_signed_in?
+    session[:message] = 'You have to be signed in to do that'
+    redirect '/'
+  end
+end
+
 # view the index of files
 get '/' do
   pattern = File.join(data_path, "*")
@@ -44,6 +56,7 @@ end
 
 # Go to the create new document page
 get '/new' do
+  require_signed_in_user
   erb :new
 end
 
@@ -69,7 +82,6 @@ post '/users/signin' do
 end
 
 post '/users/signout' do
-  # reset params hash?
   session.delete(:username)
   session[:message] = 'You have been signed out.'
   redirect '/'
@@ -77,6 +89,7 @@ end
 
 # Create a new file, requires a name
 post '/create' do
+  require_signed_in_user
   filename = params[:filename].to_s # what object is this before #to_s, and what
   # is the easy way to check the answer to this question?
 
@@ -96,6 +109,7 @@ post '/create' do
 end
 
 post '/:filename/destroy' do
+  require_signed_in_user
   file_path = File.join(data_path, params[:filename])
 
   File.delete(file_path)
@@ -118,6 +132,7 @@ end
 
 # go to the edit page for a particular file
 get "/:filename/edit" do
+  require_signed_in_user
   file_path = File.join(data_path, params[:filename])
 
   @filename = params[:filename]
@@ -128,6 +143,7 @@ end
 
 # update the contents of a file
 post "/:filename" do
+  require_signed_in_user
   file_path = File.join(data_path, params[:filename])
 
   File.write(file_path, params[:content])

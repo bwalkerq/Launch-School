@@ -27,6 +27,10 @@ class CmsTest < Minitest::Test
     end
   end
 
+  def admin_session
+    { "rack.session" => { username: "admin" } }
+  end
+
   def session
     last_request.env["rack.session"]
   end
@@ -73,15 +77,15 @@ class CmsTest < Minitest::Test
   def test_editing_document
     create_document 'changes.txt'
 
-    get '/changes.txt/edit'
+    get '/changes.txt/edit', {}, admin_session
     assert_equal 200, last_response.status
     assert_includes last_response.body, '<textarea'
     assert_includes last_response.body, %q(<button type="submit")
   end
 
   def test_updating_document
-    post '/changes.txt', content: "new content" # this is dope that you
-    # can just include info for the params hash in the post call
+    post '/changes.txt', { content: "new content" }, admin_session
+    # this is dope that you can just include info for the params hash in the post call
     assert_equal 302, last_response.status
     assert_equal "changes.txt has been updated.", session[:message]
 
@@ -91,7 +95,7 @@ class CmsTest < Minitest::Test
   end
 
   def test_view_new_document_form
-    get '/new'
+    get '/new', {}, admin_session
 
     assert_equal 200, last_response.status
     assert_includes last_response.body, "<input"
@@ -99,7 +103,7 @@ class CmsTest < Minitest::Test
   end
 
   def test_create_new_file
-    post '/create', filename: 'test.txt'
+    post '/create', { filename: 'test.txt' }, admin_session
     assert_equal 302, last_response.status
     assert_equal 'test.txt has been created.', session[:message]
 
@@ -109,7 +113,7 @@ class CmsTest < Minitest::Test
   end
 
   def test_create_new_file_without_filename
-    post '/create', filename: ''
+    post '/create', { filename: '' }, admin_session
     assert_equal 422, last_response.status
     assert_includes last_response.body, "A name is required"
   end
@@ -117,7 +121,7 @@ class CmsTest < Minitest::Test
   def test_delete_a_file
     create_document 'test.txt'
 
-    post '/test.txt/destroy'
+    post '/test.txt/destroy', {}, admin_session
     assert_equal 302, last_response.status
     assert_equal 'test.txt has been deleted.', session[:message]
 
