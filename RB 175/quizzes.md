@@ -31,12 +31,29 @@ first, because in the todo app the params hash was empty in the analogous
 instance and so the order mattered. Here, the order doesn't matter because it
 uses `@animal_weight` when displaying an unedited record, and 
 `params[:animal_weight]` after an error. The way we set up our application, both
-items will never have a value at the same time, so it doesn't matter which we try first. 
+items will never have a value at the same time, so it doesn't matter which we 
+try first. 
 
-# L5 quiz
+# L5 quiz - Todos app project
 4: an AJAX question that I didn't put a lot of effort into figuring out; I
 said that a status `200, "` would also communicate success with no body.
 Looking now, I couldn't find anything on if a status code can have a `, ""`?
 
 5: Unique identifiers SHOULD indeed be the same on front end and back end. They
 don't need to be sequential.
+
+# L8 Quiz - File-based CMS project
+1 - gotcha question with the word 'plan.' Obviously, implementation occurs after
+planning
+4 - I knew that we write the http method in the route, errant check in that box,
+because I thought they made a type when reviewing answers; i.e. I thought they
+had made the mistake not me
+8 - a bit of a gotcha; I chose the exact string that would be returned, but overlooked
+the answer choice that was the more general answer "A HTML string." meh.
+14 - Ok, so I should have known that 'ENV' was not answer answer since it asked
+about methods. ENV returns the environment variables for my local system's shell
+(terminal). Also, I overlooked 'env' is an alias for request.env. But really, all I did to
+try to answer this question was search my files for each of these answer choices;
+I don't think I fully understood that env or request.env will return the same hash
+15 - question about content that we didn't or we barely learned, chose not to look up
+#halt is a method, #stop isn't. 
