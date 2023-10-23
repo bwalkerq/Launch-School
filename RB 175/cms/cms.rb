@@ -3,6 +3,7 @@ require 'sinatra/reloader'
 require 'tilt/erubis'
 require 'redcarpet'
 require 'yaml'
+require 'bcrypt'
 
 configure do
   enable :sessions
@@ -63,6 +64,17 @@ def require_signed_in_user
   end
 end
 
+def valid_credentials?(username, password)
+  credentials = load_user_credentials
+
+  if credentials.key?(username)
+    bcrypt_password = BCrypt::Password.new(credentials[username])
+    bcrypt_password == password
+  else
+    false
+  end
+end
+
 # view the index of files
 get '/' do
   pattern = File.join(data_path, "*")
@@ -85,12 +97,10 @@ end
 
 # submit sign in information
 post '/users/signin' do
-  credentials = load_user_credentials
-  username = params[:username].to_s.downcase
-  password = params[:password].to_s.downcase
+  username = params[:username]
 
 
-  if credentials.key?(username) && credentials[username] == password
+  if valid_credentials?(username, params[:password])
     session[:username] = username
     session[:message] = "Welcome #{username}!"
     redirect '/'
