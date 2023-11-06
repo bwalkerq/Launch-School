@@ -50,10 +50,10 @@ because I thought they made a type when reviewing answers; i.e. I thought they
 had made the mistake not me
 8 - a bit of a gotcha; I chose the exact string that would be returned, but overlooked
 the answer choice that was the more general answer "A HTML string." meh.
-14 - Ok, so I should have known that 'ENV' was not answer answer since it asked
+14 - Ok, so I should have known that 'ENV' was not answer since it asked
 about methods. ENV returns the environment variables for my local system's shell
 (terminal). Also, I overlooked 'env' is an alias for request.env. But really, all I did to
 try to answer this question was search my files for each of these answer choices;
 I don't think I fully understood that env or request.env will return the same hash
-15 - question about content that we didn't or we barely learned, chose not to look up
+15 - question about content that we didn't or we barely learned, chose not to look up;
 #halt is a method, #stop isn't. 
