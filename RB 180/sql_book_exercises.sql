@@ -1,10 +1,10 @@
-CREATE TABLE singers (
-                         id serial,
-                         first_name varchar(100) NOT NULL,
-                         last_name varchar(100),
-                         occupation varchar(150),
-                         date_of_birth varchar(50),
-                         deceased boolean DEFAULT true
+CREATE TABLE singers(
+    id serial,
+    first_name varchar(100) NOT NULL,
+    last_name varchar(100),
+    occupation varchar(150),
+    date_of_birth varchar(50),
+    deceased boolean DEFAULT true
 );
 
 CREATE TABLE animals (
@@ -25,15 +25,13 @@ ALTER TABLE orders
 INSERT INTO countries
 VALUES ('France', 'Paris', 67158000);
 
-INSERT INTO celebrities (first_name, last_name, occupation, date_of_birth, deceased)
+INSERT INTO singers (first_name, last_name, occupation, date_of_birth, deceased)
 VALUES ('Frank', 'Sinatra', 'Singer, Actor', 1915-12-12, true),
        ('Tom', 'Cruise', 'Actor', 1962-07-03, DEFUALT);
 
 -- set the column constraint to allow a null last name, then enter data
 
-ALTER TABLE celebrities
-    ALTER COLUMN last_name
-        DROP NOT NULL;
+
 
 -- this is a table constraint rather than a column constraint, which is what I thought first
 
@@ -146,22 +144,22 @@ update countries
 set continent = 'North America'
 where name = 'USA';
 
-update celebrities
-set deceased = true
-where first_name = 'Elvis';
+-- update celebrities
+-- set deceased = true
+-- where first_name = 'Elvis';
+--
+-- alter table celebrities
+--     alter column deceased
+--         set not null ;
+--
+-- select * from celebrities where first_name = 'Tom';
+-- delete from celebrities where first_name = 'Tom';
+--
+-- alter table celebrities
+--     rename to singers;
 
-alter table celebrities
-    alter column deceased
-        set not null ;
-
-select * from celebrities where first_name = 'Tom';
-delete from celebrities where first_name = 'Tom';
-
-alter table celebrities
-    rename to singers;
-
-select *
-from singers where occupation not like '%Singer%';
+select * from singers
+         where occupation not like '%Singer%';
 
 delete from singers where occupation not like '%Singer%';
 
@@ -423,34 +421,97 @@ VALUES (1, 3),
        (4, 1),
        (4, 5);
 
+select users.full_name, books.title, checkouts.checkout_date
+from users
+join checkouts on users.id = checkouts.user_id
+join books on books.id = checkouts.book_id;
 
+-- exercises for joins
 
+-- Write a query to return all of the country names along with their appropriate continent names.
 
+select c.name, t.continent_name
+from countries c join continents t
+    on c.continent_id = t.id;
 
+-- return all of the names and capitals of the European countries.
 
+select c.name, c.capital
+from countries as c join continents as n
+on c.continent_id = n.id where n.continent_name = 'Europe';
 
+-- return the first name of any singer who had an album released under the Warner Bros label.
 
+select DISTINCT singers.first_name --this is good, I forgot the distinct
+from singers join albums a on singers.id = a.singer_id
+where a.label LIKE '%Warner Bros%';
 
+--return the first name and last name of any singer who released an album in the
+-- 80s and who is still living, along with the names of the album that was
+-- released and the release date. Order the results by the singer's age (youngest first).
 
+select s.first_name, s.last_name, a.album_name, a.released
+from singers as s
+    join albums a
+        on s.id = a.singer_id
+where a.released >= '1980-01-01'
+  AND a.released < '1990-01-01'
+  and s.deceased = false
+order by date_of_birth desc ;
 
+-- first name and last name of any singer without an associated album entry.
 
+select first_name, last_name
+from singers
+where singers.id not in (
+    select singer_id from albums
+    );
 
+select first_name, last_name
+from singers left join albums a on singers.id = a.singer_id
+where a.singer_id is null;
 
+-- Return a list of all orders and their associated product items.
 
+select orders.id, orders.customer_id, orders.order_status, p.product_name
+from orders
+join order_items oi on orders.id = oi.order_id
+join products p on oi.product_id = p.id;
 
+-- id of any order that includes Fries. Use table aliasing in your query.
 
+select distinct o.id as "Order ID's that include Fries"
+from orders o
+    join order_items oi on o.id = oi.order_id
+join products p on oi.product_id = p.id
+where product_name = 'Fries';
 
+-- Build on the query from the previous question to return the name of any customer who ordered fries.
+select distinct customer_name as "Customers who like Fries" from customers
+join orders o on customers.id = o.customer_id
+join order_items oi on o.id = oi.order_id
+join products p on oi.product_id = p.id
+where product_name = 'Fries';
 
+-- return the total cost of Natasha O'Shea's orders.
 
+select sum(product_cost) as "total cost of Natasha's orders"
+from products p
+    join order_items oi on p.id = oi.product_id
+join orders o on oi.order_id = o.id
+join customers c2 on c2.id = o.customer_id
+where c2.customer_name = 'Natasha O''Shea'
+;
 
+-- return the name of every product included in an order alongside the number of
+-- times it has been ordered. 
+-- Sort the results by product name, ascending.
 
-
-
-
-
-
-
-
+select p.product_name, count(p.id) from products p
+    join order_items oi on p.id = oi.product_id
+    join orders o on oi.order_id = o.id
+group by product_name
+order by count(p.id) desc ;
 
 
 
