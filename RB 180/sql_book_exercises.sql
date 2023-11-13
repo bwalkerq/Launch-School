@@ -511,7 +511,7 @@ select p.product_name, count(p.id) from products p
     join order_items oi on p.id = oi.product_id
     join orders o on oi.order_id = o.id
 group by product_name
-order by count(p.id) desc ;
+order by product_name asc ;
 
 
 
