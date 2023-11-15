@@ -49,14 +49,37 @@ Select round(avg(wingspan), 1) as "average wingspan", -- learned to designate th
        max(wingspan)
 from birds;
 
+CREATE TABLE menu_items (
+    item text,
+    prep_time int,
+    ingredient_cost decimal(4,2),
+    sales integer,
+    menu_price dec (4,2)
+);
+
+INSERT INTO menu_items (item, prep_time, ingredient_cost, sales, menu_price)
+VALUES
+('omelette', 10, 1.50, 182, 7.99),
+('tacos', 5, 2.00, 254, 8.99),
+('oatmeal', 1, 0.50, 79, 5.99);
 
 
+SELECT item, (menu_price - ingredient_cost) as "profit" from menu_items
+order by (menu_price - ingredient_cost) desc
+limit 1;
 
-
-
-
-
-
+SELECT item,
+       menu_price,
+       ingredient_cost,
+       round(prep_time / 60.0 * 13.00, 2) as "labor",
+       (menu_price - ingredient_cost - round(prep_time / 60.0 * 13.00, 2)) as "profit"
+FROM menu_items
+order by profit desc ;
+/*
+ I got stuck on this part:
+ Also note that prep_time/60.0 returns a floating-point numeric value (recall
+ that prep_time is an integer). Alternatively, prep_time/60 would return 0.
+ */
 
 
 
