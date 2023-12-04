@@ -88,7 +88,7 @@ where customer_id is null;
 SELECT name, string_agg(s.description, ', ') as services from customers
 left outer join customers_services cs on customers.id = cs.customer_id
 left join services s on s.id = cs.services_id
-group by name
+group by name;
 /*
  I knew that I needed to do a left join at first; I didn't know that i had
  to do a left join again when joining to the services; without the second left
@@ -146,7 +146,7 @@ where price > 100;
 select * from services cross join customers where price > 100;
 select * from customers cross join services where price > 100;
 
-select * from services join customers_services cs on services.id = cs.services_id
+select * from services join customers_services cs on services.id = cs.services_id;
 
 delete
 from customers
