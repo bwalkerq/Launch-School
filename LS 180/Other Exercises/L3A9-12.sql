@@ -104,9 +104,47 @@ join categories c on bc.category_id = c.id
 group by author, books.id
 order by author;
 
+insert into categories (name)
+    values ('Space Exploration'), ('South Asia');
 
+alter table books alter title type text;
 
+insert into books (id, author, title)
+values (default, 'Lynn Sherr', 'Sally Ride: America''s First Woman in Space'),
+(default, 'Charlotte Brontë','Jane Eyre'),
+(default, 'Meeru Dhalwala and Vikram Vij', 'Vij''s: Elegant and Inspired Indian Cuisine')
+;
 
+update categories
+set name = 'Cookbook'
+where id = 9;
+
+insert into books_categories (book_id, category_id)
+values (4,1),
+       (4,5),
+       (4,7),
+       (5,2),
+       (5,4),
+       (6,9),
+       (6,5),
+       (6,8);
+
+alter table books_categories add unique (book_id, category_id);
+
+update categories
+set name = 'Polemic'
+where id = 10;
+
+update books_categories
+set category_id = 1
+where book_id = 6 and category_id = 5;
+
+SELECT categories.name, count(bc.category_id) as book_count,
+       string_agg(b.title, ', ') as book_titles
+FROM categories join books_categories bc on categories.id = bc.category_id
+join books b on b.id = bc.book_id
+group by categories.name
+order by categories.name;
 
 
 
