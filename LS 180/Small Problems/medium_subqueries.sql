@@ -57,9 +57,11 @@ SELECT items.name, count(b.item_id) from items
     left join bids b on items.id = b.item_id
 group by items.name order by name;
 
-SELECT id from items where ROW(name, initial_price, sales_price) = ROW ('Painting', 100.00, 250.00);
+SELECT id from items where
+                         ROW(name, initial_price, sales_price) =
+                         ROW ('Painting', 100.00, 250.00);
 /*This is an example of a problem where seeing an example (from the solution,
-  unfortunately, was all I needed. This corresponding-values type comparison
+  unfortunately) was all I needed. This corresponding-values type comparison
   makes immediate sense to me.
   */
 
@@ -75,3 +77,5 @@ EXPLAIN ANALYZE SELECT COUNT(bidder_id) AS max_bid FROM bids
                 GROUP BY bidder_id
                 ORDER BY max_bid DESC
                 LIMIT 1;
+
+SELECT * from bidders join items on true;

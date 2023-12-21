@@ -35,5 +35,6 @@ end
 p twos
 p twos.map(&:to_i).sum
 
+p "asdf7asdf8asdf98".match(/\d/)
 #Part 2
 
