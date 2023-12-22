@@ -7,4 +7,3 @@ CREATE TABLE expenses (
 
 ALTER TABLE expenses
     Add CONSTRAINT positive_amount check ( amount > 0.00 );
-

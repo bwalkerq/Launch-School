@@ -3,6 +3,8 @@
 require 'pg'
 require 'bundler/setup'
 
+CONNECTION = PG.connect(dbname: 'expenses')
+
 def display_help
   puts <<~HELP
 
@@ -19,24 +21,33 @@ def display_help
 end
 
 def list_expenses
-  connection = PG.connect(dbname: 'expenses')
 
-  result = connection.exec('SELECT * FROM expenses ORDER BY created_on ASC')
+  result = CONNECTION.exec('SELECT * FROM expenses ORDER BY created_on ASC')
   result.each do |tuple|
     columns = [tuple['id'].rjust(3),
                tuple['created_on'].rjust(10),
                tuple['amount'].rjust(12),
                tuple['memo']]
 
-    puts columns.join(" | ")
+    puts columns.join(' | ')
   end
 end
 
-arguments = ARGV
+def add_expense(amount, memo)
+  date = Time.now # Date.today didn't work here
+  sql = "INSERT INTO expenses (amount, memo, created_on)
+        VALUES ($1, $2, $3)"
+  CONNECTION.exec_params(sql, [amount, memo, date])
+end
 
-case arguments[0]
-when 'list'
+command = ARGV.first
+if command == "list"
   list_expenses
+elsif command == "add"
+  amount = ARGV[1]
+  memo = ARGV[2]
+  abort "You must provide an amount and memo." unless amount && memo
+  add_expense(amount, memo)
 else
   display_help
 end
