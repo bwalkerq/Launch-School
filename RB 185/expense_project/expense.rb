@@ -3,8 +3,6 @@
 require 'pg'
 require 'bundler/setup'
 
-CONNECTION = PG.connect(dbname: 'expenses')
-
 def display_help
   puts <<~HELP
 
@@ -20,34 +18,49 @@ def display_help
   HELP
 end
 
-def list_expenses
+class ExpenseData
+  def initialize
+    @connection = PG.connect(dbname: 'expenses')
+  end
 
-  result = CONNECTION.exec('SELECT * FROM expenses ORDER BY created_on ASC')
-  result.each do |tuple|
-    columns = [tuple['id'].rjust(3),
-               tuple['created_on'].rjust(10),
-               tuple['amount'].rjust(12),
-               tuple['memo']]
+  def list_expenses
+    result = @connection.exec('SELECT * FROM expenses ORDER BY created_on ASC')
+    result.each do |tuple|
+      columns = [tuple['id'].rjust(3),
+                 tuple['created_on'].rjust(10),
+                 tuple['amount'].rjust(12),
+                 tuple['memo']]
 
-    puts columns.join(' | ')
+      puts columns.join(' | ')
+    end
+  end
+
+  def add_expense(amount, memo)
+    date = Time.now # Date.today didn't work here
+    sql = "INSERT INTO expenses (amount, memo, created_on)
+          VALUES ($1, $2, $3)"
+    @connection.exec_params(sql, [amount, memo, date])
   end
 end
 
-def add_expense(amount, memo)
-  date = Time.now # Date.today didn't work here
-  sql = "INSERT INTO expenses (amount, memo, created_on)
-        VALUES ($1, $2, $3)"
-  CONNECTION.exec_params(sql, [amount, memo, date])
+class CLI
+  def initialize
+    @expense_data = ExpenseData.new
+  end
+
+  def run(arg)
+    command = arg.first
+    if command == "list"
+      @expense_data.list_expenses
+    elsif command == "add"
+      amount = arg[1]
+      memo = arg[2]
+      abort "You must provide an amount and memo." unless amount && memo
+      @expense_data.add_expense(amount, memo)
+    else
+      display_help
+    end
+  end
 end
 
-command = ARGV.first
-if command == "list"
-  list_expenses
-elsif command == "add"
-  amount = ARGV[1]
-  memo = ARGV[2]
-  abort "You must provide an amount and memo." unless amount && memo
-  add_expense(amount, memo)
-else
-  display_help
-end
+CLI.new.run(ARGV)
