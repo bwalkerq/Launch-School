@@ -22,13 +22,25 @@ class ExpenseData
   def search_expenses(query)
     sql = "SELECT * FROM expenses WHERE memo ILIKE $1"
     result = @connection.exec_params(sql, ["%#{query}%"])
-=begin
-    I had originally included "%#{query}%" in the sql statement, rather than
-the second argument of the exec_params. I guess the sql statement just needs only
-$1 and then whatever we're going to do to the argument before it's passed to the
-exec method has to be done in the array that we're passing.
-=end
+      #     I had originally included "%#{query}%" in the sql statement, rather than
+      # the second argument of the exec_params. I guess the sql statement just needs only
+      # $1 and then whatever we're going to do to the argument before it's passed to the
+      # exec method has to be done in the array that we're passing.
     display_expenses(result)
+  end
+
+  def delete_expense(id)
+    ids = @connection.exec("SELECT id FROM expenses;")
+    if ids.values.flatten.include?(id)
+      sql = "SELECT * FROM expenses WHERE id = $1;"
+      result = @connection.exec_params(sql, [id])
+      puts "The following expense has been deleted:"
+      display_expenses(result)
+      sql = "DELETE FROM expenses WHERE id = $1"
+      @connection.exec_params(sql, [id])
+    else
+      puts "There is no expense with the id '#{id}'."
+    end
   end
 
   private
@@ -62,6 +74,9 @@ class CLI
       @application.list_expenses
     when "search"
       @application.search_expenses(arguments[0])
+    when "delete"
+      id = arguments[0]
+      @application.delete_expense(id)
     else
       display_help
     end
