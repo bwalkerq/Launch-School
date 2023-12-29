@@ -37,26 +37,26 @@ class ExpenseData
 
   def add_expense(amount, memo)
     date = Time.now # Date.today didn't work here
-    sql = "INSERT INTO expenses (amount, memo, created_on)
-          VALUES ($1, $2, $3)"
+    sql = "INSERT INTO expenses (amount, memo, created_on) VALUES ($1, $2, $3)"
     @connection.exec_params(sql, [amount, memo, date])
   end
 end
 
 class CLI
   def initialize
-    @expense_data = ExpenseData.new
+    @application = ExpenseData.new
   end
 
-  def run(arg)
-    command = arg.first
-    if command == "list"
-      @expense_data.list_expenses
-    elsif command == "add"
-      amount = arg[1]
-      memo = arg[2]
+  def run(arguments)
+    command = arguments.shift
+    case command
+    when "add"
+      amount = arguments[0]
+      memo = arguments[1]
       abort "You must provide an amount and memo." unless amount && memo
-      @expense_data.add_expense(amount, memo)
+      @application.add_expense(amount, memo)
+    when "list"
+      @application.list_expenses
     else
       display_help
     end
