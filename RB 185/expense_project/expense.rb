@@ -3,21 +3,6 @@
 require 'pg'
 require 'bundler/setup'
 
-def display_help
-  puts <<~HELP
-
-    An expense recording system
-    
-    Commands:
-    
-    add AMOUNT MEMO - record a new expense
-    clear - delete all expenses
-    list - list all expenses
-    delete NUMBER - remove expense with id NUMBER
-    search QUERY - list expenses with a matching memo field
-  HELP
-end
-
 class ExpenseData
   def initialize
     @connection = PG.connect(dbname: 'expenses')
@@ -25,7 +10,31 @@ class ExpenseData
 
   def list_expenses
     result = @connection.exec('SELECT * FROM expenses ORDER BY created_on ASC')
-    result.each do |tuple|
+    display_expenses(result)
+  end
+
+  def add_expense(amount, memo)
+    date = Time.now # Date.today didn't work here
+    sql = "INSERT INTO expenses (amount, memo, created_on) VALUES ($1, $2, $3)"
+    @connection.exec_params(sql, [amount, memo, date])
+  end
+
+  def search_expenses(query)
+    sql = "SELECT * FROM expenses WHERE memo ILIKE $1"
+    result = @connection.exec_params(sql, ["%#{query}%"])
+=begin
+    I had originally included "%#{query}%" in the sql statement, rather than
+the second argument of the exec_params. I guess the sql statement just needs only
+$1 and then whatever we're going to do to the argument before it's passed to the
+exec method has to be done in the array that we're passing.
+=end
+    display_expenses(result)
+  end
+
+  private
+
+  def display_expenses(expenses)
+    expenses.each do |tuple|
       columns = [tuple['id'].rjust(3),
                  tuple['created_on'].rjust(10),
                  tuple['amount'].rjust(12),
@@ -33,12 +42,6 @@ class ExpenseData
 
       puts columns.join(' | ')
     end
-  end
-
-  def add_expense(amount, memo)
-    date = Time.now # Date.today didn't work here
-    sql = "INSERT INTO expenses (amount, memo, created_on) VALUES ($1, $2, $3)"
-    @connection.exec_params(sql, [amount, memo, date])
   end
 end
 
@@ -57,10 +60,27 @@ class CLI
       @application.add_expense(amount, memo)
     when "list"
       @application.list_expenses
+    when "search"
+      @application.search_expenses(arguments[0])
     else
       display_help
     end
   end
+end
+
+def display_help
+  puts <<~HELP
+
+    An expense recording system
+    
+    Commands:
+    
+    add AMOUNT MEMO - record a new expense
+    clear - delete all expenses
+    list - list all expenses
+    delete NUMBER - remove expense with id NUMBER
+    search QUERY - list expenses with a matching memo field
+  HELP
 end
 
 CLI.new.run(ARGV)
