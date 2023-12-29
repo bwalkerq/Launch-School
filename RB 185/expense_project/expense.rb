@@ -11,7 +11,8 @@ class ExpenseData
 
   def list_expenses
     result = @connection.exec('SELECT * FROM expenses ORDER BY created_on ASC')
-    display_expenses(result)
+    display_count(result)
+    display_expenses(result) if result.ntuples > 0
   end
 
   def add_expense(amount, memo)
@@ -27,7 +28,8 @@ class ExpenseData
       # the second argument of the exec_params. I guess the sql statement just needs only
       # $1 and then whatever we're going to do to the argument before it's passed to the
       # exec method has to be done in the array that we're passing.
-    display_expenses(result)
+    display_count(result)
+    display_expenses(result) if result.ntuples > 0
   end
 
   def delete_expense(id)
@@ -53,6 +55,17 @@ class ExpenseData
 
   private
 
+  def display_count(expenses)
+    count = expenses.ntuples
+    if count == 0
+      puts "There are no expenses."
+    elsif count == 1
+      puts "There is 1 expense."
+    else
+      puts "There are #{count} expenses."
+    end
+  end
+
   def display_expenses(expenses)
     expenses.each do |tuple|
       columns = [tuple['id'].rjust(3),
@@ -62,6 +75,11 @@ class ExpenseData
 
       puts columns.join(' | ')
     end
+    puts '-' * 50
+
+    amount_sum = expenses.field_values("amount").map(&:to_f).inject(:+) # got really close to this!
+
+    puts "Total #{format('%.2f', amount_sum.to_s).rjust(25)}" # not a chance, but, cool
   end
 end
 
