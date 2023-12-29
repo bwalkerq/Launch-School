@@ -30,14 +30,16 @@ class ExpenseData
   end
 
   def delete_expense(id)
-    ids = @connection.exec("SELECT id FROM expenses;")
-    if ids.values.flatten.include?(id)
-      sql = "SELECT * FROM expenses WHERE id = $1;"
-      result = @connection.exec_params(sql, [id])
+    sql = "SELECT * FROM expenses WHERE id = $1"
+    result = @connection.exec_params(sql, [id]) # smooth to keep reference to
+    # the soon-to-be deleted row here
+
+    if result.ntuples == 1
+      sql = "DELETE FROM expenses WHERE id=$1"
+      @connection.exec_params(sql, [id])
+
       puts "The following expense has been deleted:"
       display_expenses(result)
-      sql = "DELETE FROM expenses WHERE id = $1"
-      @connection.exec_params(sql, [id])
     else
       puts "There is no expense with the id '#{id}'."
     end
