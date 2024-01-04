@@ -5,8 +5,10 @@ require 'bundler/setup'
 require 'io/console'
 
 class ExpenseData
+
   def initialize
     @connection = PG.connect(dbname: 'expenses')
+    setup_schema
   end
 
   def list_expenses
@@ -24,10 +26,10 @@ class ExpenseData
   def search_expenses(query)
     sql = "SELECT * FROM expenses WHERE memo ILIKE $1"
     result = @connection.exec_params(sql, ["%#{query}%"])
-      #     I had originally included "%#{query}%" in the sql statement, rather than
-      # the second argument of the exec_params. I guess the sql statement just needs only
-      # $1 and then whatever we're going to do to the argument before it's passed to the
-      # exec method has to be done in the array that we're passing.
+    #     I had originally included "%#{query}%" in the sql statement, rather than
+    # the second argument of the exec_params. I guess the sql statement just needs only
+    # $1 and then whatever we're going to do to the argument before it's passed to the
+    # exec method has to be done in the array that we're passing.
     display_count(result)
     display_expenses(result) if result.ntuples > 0
   end
@@ -69,9 +71,9 @@ class ExpenseData
   def display_expenses(expenses)
     expenses.each do |tuple|
       columns = [tuple['id'].rjust(3),
-                 tuple['created_on'].rjust(10),
-                 tuple['amount'].rjust(12),
-                 tuple['memo']]
+      tuple['created_on'].rjust(10),
+      tuple['amount'].rjust(12),
+      tuple['memo']]
 
       puts columns.join(' | ')
     end
@@ -80,6 +82,24 @@ class ExpenseData
     amount_sum = expenses.field_values("amount").map(&:to_f).inject(:+) # got really close to this!
 
     puts "Total #{format('%.2f', amount_sum.to_s).rjust(25)}" # not a chance, but, cool
+  end
+
+  def setup_schema
+    result = @connection.exec <<~SQL
+      SELECT COUNT(*) FROM information_schema.tables
+      WHERE table_schema = 'public' AND table_name = 'expenses';
+    SQL
+
+    if result[0]['count'] == '0'
+      @connection.exec <<~SQL
+        CREATE TABLE expenses (
+          id serial PRIMARY KEY,
+          amount numeric(6,2) NOT NULL CHECK (amount >= 0.01),
+          memo text NOT NULL,
+          created_on date NOT NULL
+        );
+      SQL
+    end
   end
 end
 
