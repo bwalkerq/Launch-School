@@ -17,6 +17,7 @@
     <orderEntry type="library" scope="PROVIDED" name="sinatra (v3.1.0, rbenv: 2.7.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sinatra-contrib (v3.1.0, rbenv: 2.7.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tilt (v2.2.0, rbenv: 2.7.6) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="webrick (v1.8.1, rbenv: 2.7.6) [gem]" level="application" />
   </component>
   <component name="RubyModuleProperties">
     <option name="autoCreated" value="true" />
