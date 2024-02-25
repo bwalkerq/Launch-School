@@ -78,4 +78,12 @@ function lengthOfPhrase() {
   console.log(`There are ${length} characters in ${phrase}`)
 }
 
-lengthOfPhrase()
+// lengthOfPhrase()
+
+DIGITS = {}
+function stringToInteger(num) {
+
+}
+
+stringToInteger('4321');      // 4321
+stringToInteger('570');       // 570
