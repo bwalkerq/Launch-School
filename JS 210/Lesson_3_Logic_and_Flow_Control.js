@@ -113,23 +113,45 @@ function guessThePassword() {
 // guessThePassword()
 
 function studentGrade(firstGrade, secondGrade, thirdGrade) {
-  let average = (firstGrade + secondGrade + thirdGrade) / 3
-  let letterGrade = 'F'
+  let average = (firstGrade + secondGrade + thirdGrade) / 3;
+  let letterGrade = 'F';
 
   if (average >= 90) {
-    letterGrade = 'A'
+    letterGrade = 'A';
   } else if (average >= 70) {
-    letterGrade = 'B'
-
+    letterGrade = 'B';
   } else if (average >= 50) {
-    letterGrade = 'C'
+    letterGrade = 'C';
   }
-  console.log(`Based on the average of your 3 scores your letter grade is "${letterGrade}".`)
+  console.log(`Based on the average of your 3 scores your letter grade is "${letterGrade}".`);
 }
 
-studentGrade(65,89,91)
-studentGrade(95,89,91)
-studentGrade(5,9,91)
+// studentGrade(65,89,91)
+// studentGrade(95,89,91)
+// studentGrade(5,9,91)
+
+function gcd(int1, int2) {
+  /* start with the smaller, divide the larger by it, if not successful (zero
+  remainder), decrement one and test again. if successful, must also divide the
+  smaller.
+   */
+  let larger = int1 > int2 ? int1 : int2;
+  let smaller = larger === int1 ? int2 : int1;
+  let divisor = smaller
+
+  while (divisor >= 1) {
+    if (larger % divisor === 0 && smaller % divisor === 0) {
+      console.log(divisor);
+      break;
+    }
+    divisor--;
+  }
+
+}
+
+gcd(125, 600);   // 25
+gcd(15, 10);  // 5
+gcd(9, 2);    // 1
 
 
 
