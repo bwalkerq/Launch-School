@@ -82,18 +82,35 @@ from one another. two trues and two falses each return false. The straightforwar
 was is just to say when the first is not the same as the second.
  */
 
-isXor(false, true);     // true
-isXor(true, false);     // true
-isXor(false, false);    // false
-isXor(true, true);      // false
+// isXor(false, true);     // true
+// isXor(true, false);     // true
+// isXor(false, false);    // false
+// isXor(true, true);      // false
+//
+//
+// isXor(false, 3);        // true
+// isXor('a', undefined);  // true
+// isXor(null, '');        // false
+// isXor('2', 23);         // false
 
+let rlSync = require('readline-sync');
 
-isXor(false, 3);        // true
-isXor('a', undefined);  // true
-isXor(null, '');        // false
-isXor('2', 23);         // false
+function guessThePassword() {
+  const PASSWORD= "password";
+  let numOfGuesses = 0
 
+  while (numOfGuesses < 3) {
+    let guess = rlSync.question("What's the password?\n");
+    if (PASSWORD === guess) {
+      console.log(`You have successfully logged in, mother trucker!`);
+      return;
+    }
+    numOfGuesses++;
+  }
+  console.log(`nah, b`);
+}
 
+// guessThePassword()
 
 
 
