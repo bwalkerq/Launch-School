@@ -137,7 +137,7 @@ function gcd(int1, int2) {
    */
   let larger = int1 > int2 ? int1 : int2;
   let smaller = larger === int1 ? int2 : int1;
-  let divisor = smaller
+  let divisor = smaller;
 
   while (divisor >= 1) {
     if (larger % divisor === 0 && smaller % divisor === 0) {
@@ -146,14 +146,42 @@ function gcd(int1, int2) {
     }
     divisor--;
   }
-
 }
 
-gcd(125, 600);   // 25
-gcd(15, 10);  // 5
-gcd(9, 2);    // 1
+// gcd(125, 600);   // 25
+// gcd(15, 10);  // 5
+// gcd(9, 2);    // 1
 
+const checkGoldbach = (expectedSum) => {
+  if (expectedSum % 2 === 1 || expectedSum < 4 ) {
+    console.log(null);
+    return;
+  }
 
+  for (let candidate = 1; candidate <= expectedSum / 2; candidate++) {
+    if (isPrime(candidate) && isPrime(expectedSum - candidate)) {
+      console.log(candidate, (expectedSum - candidate));
+    }
+  }
+}
+
+// checkGoldbach(3);
+// // logs: null
+//
+// checkGoldbach(4);
+// // logs: 2 2
+//
+// checkGoldbach(12);
+// // logs: 5 7
+//
+// checkGoldbach(100);
+// // logs:
+// 3 97
+// 11 89
+// 17 83
+// 29 71
+// 41 59
+// 47 53
 
 
 
