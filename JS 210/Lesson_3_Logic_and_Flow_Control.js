@@ -183,9 +183,23 @@ const checkGoldbach = (expectedSum) => {
 // 41 59
 // 47 53
 
+const generatePattern = function (nStars) {
+  let numbersString = ''
+  let starsString = ''
 
+  for (let i = 1; i <= nStars; i++) {
+    starsString += '*'.repeat(String(i).length)
+  }
 
+  for (let lineNumber = 1; lineNumber <= nStars; lineNumber++) {
+    numbersString += lineNumber;
+    starsString = starsString.slice(String(lineNumber).length);
+    console.log(String(numbersString) + starsString);
+  }
+}
 
+generatePattern(5)
+generatePattern(14)
 
 
 
