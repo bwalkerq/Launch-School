@@ -36,7 +36,7 @@ function logMultiples(number) {
 
 function fizzBuzz () {
   for (let number = 0; number <= 100; number++) {
-    message = number
+    let message = number
 
     if (number % 15 === 0 ) {
       message = 'FizzBuzz';
@@ -78,7 +78,7 @@ function isXor(firstValue, secondValue) {
 }
 /* to me, this is way more direct, since what we're dealing with is
 parity; we're looking to return true when the boolean values are DIFFERENT
-from one another. two trues and two falses each return false. The straightforward
+from one another. two trues and two false each return false. The straightforward
 was is just to say when the first is not the same as the second.
  */
 
@@ -198,19 +198,179 @@ const generatePattern = function (nStars) {
   }
 }
 
-generatePattern(5)
-generatePattern(14)
+// generatePattern(5)
+// generatePattern(14)
+
+function indexOf(firstString, secondString) {
+  /* take one string and match the first instance of it within another string
+  return the index of the first instance
+  iterate through each character of the string, starting at the front, until a
+  match for the first character of the second string.
+
+  then check the next character of s2, and it must match the next character of s2 (or vice versa),
+  and this match must continue until all chars of s2 are matched. return the
+  index of the fist character in the s1.
+   */
+  let limit = firstString.length - secondString.length;
+
+  for (let indexFirst = 0; indexFirst <= limit; indexFirst++) {
+    let matchCount = 0; // the idea of counting matches is the only thing I overlooked
+    // in my original algo. it resets at the start of each iteration in the outer
+    // for loop, which is what got me stuck
+
+    for (let indexSecond = 0; indexSecond < secondString.length; indexSecond++) {
+      if (firstString[indexFirst + indexSecond] === secondString[indexSecond]) {
+        matchCount++;
+      } else {
+        break; // this only breaks out of the inner for loop, not both. I googled
+        // this for the same reason.
+      }
+    }
+
+    if (matchCount === secondString.length) {
+      return indexFirst;
+    }
+  }
+
+  return -1;
+}
+// I got really close and couldn't seal the deal. Am I happy I looked at the answer? I guess?
+
+function lastIndexOf(firstString, secondString) {
+  let limit = firstString.length - secondString.length;
+
+  for (let indexFirst = firstString.length - 1;
+       indexFirst >= limit; indexFirst--) {
+    let matchCount = 0;
+    let indexInnerFirst = indexFirst
+
+    for (let indexSecond = (secondString.length - 1); indexSecond >= 0;
+         indexSecond--) {
+      if (secondString[indexSecond] === firstString[indexInnerFirst]) {
+        matchCount++;
+        indexInnerFirst--;
+      } else {
+        break;
+      }
+    }
+
+    if (matchCount === secondString.length) {
+      return indexInnerFirst + 1;
+    }
+  }
+  return -1;
+}
+
+// console.log(indexOf('Some strings', 's'));                      // 5
+// console.log(indexOf('Blue Whale', 'Whale'));                    // 5
+// console.log(indexOf('Blue Whale', 'Blute'));                    // -1
+// console.log(indexOf('Blue Whale', 'leB'));                      // -1
+
+// console.log(lastIndexOf('Some strings', 's'));                  // 11
+// console.log(lastIndexOf('Blue Whale, Killer Whale', 'Whale'));  // 19
+// console.log(lastIndexOf('Blue Whale, Killer Whale', 'all'));    // -1
+
+/* nightmare of a problem. took at least 2 hours. I am in struggle land.
+what went well? I was able to make an algo close to the solution? what went wrong?
+I didn't see how to count the matches and catch the success (the matches equal the
+length of the second string.
+
+What a burn. basically messed up my whole day.
+ */
 
 
+/*
+problem: take a string and trip any leading or trailing whitespace chars, but not
+any whitespace in the middle of the string.
+
+iterate from the front and from the back.
+find the index of the first
+ */
+let trim = function (str) {
+  let startPoint = 0
+  let endPoint = str.length - 1
+  let trimmedString = '';
+
+  for (let index = 0; index < str.length; index++) {
+    if (str[index] !== ' ') {
+      break;
+    }
+    startPoint++;
+  }
+
+  for (let indexBackwards = endPoint; indexBackwards >= 0; indexBackwards++) {
+    if (str[indexBackwards] !== ' ') {
+      break;
+    }
+    endPoint--;
+  }
+
+  for (let indexReturn = startPoint; indexReturn <= endPoint; indexReturn++) {
+    trimmedString += str[indexReturn]
+  }
+  return trimmedString
+}
+// trim('  abc  ');  // "abc"
+// trim('abc   ');   // "abc"
+// trim(' ab c');    // "ab c"
+// trim(' a b  c');  // "a b  c"
+// trim('      ');   // ""
+// trim('');         // ""
+//
+// console.log(trim('  abc  '));  // "abc"
+// console.log(trim('abc   '));   // "abc"
+// console.log(trim(' ab c'));    // "ab c"
+// console.log(trim(' a b  c'));  // "a b  c"
+// console.log(trim('      '));   // ""
+// console.log(trim(''));         // ""
+
+let splitString = (str, delimiter) => {
+  if (delimiter === undefined) {
+    console.log('ERROR: No delimiter');
+    return;
+  }
 
 
+  let part = '';
+  for (let idx = 0; idx < str.length; idx++) {
+    if (str[idx] === delimiter) {
+      console.log(part);
+      part = ''
+    } else if (delimiter === '') {
+      console.log(str[idx]);
+    } else {
+      part += str[idx];
+    }
+  }
+  console.log(part)
+}
 
-
-
-
-
-
-
+// splitString('abc,123,hello world', ',');
+// // logs:
+// // abc
+// // 123
+// // hello world
+//
+// splitString('hello');
+// // logs:
+// // ERROR: No delimiter
+//
+// splitString('hello', '');
+// // logs:
+// // h
+// // e
+// // l
+// // l
+// // o
+//
+// splitString('hello', ';');
+// // logs:
+// // hello
+//
+// splitString(';hello;', ';');
+// // logs:
+// //  (this is a blank line)
+// // hello
 
 
 
