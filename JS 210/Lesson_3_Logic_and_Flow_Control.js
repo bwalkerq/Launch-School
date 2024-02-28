@@ -372,9 +372,30 @@ let splitString = (str, delimiter) => {
 // //  (this is a blank line)
 // // hello
 
+const isCount = value => Number.isInteger(value) && value >= 0;
+// this solution is better, but it was unclear that I could use these built in
+// methods. isInteger is good to know
 
+function repeat(string, times) {
+  if (!isCount(times)) {
+    return undefined;
+  }
 
+  let repeatedString = ''
+  for (let repeats = 0; repeats < times; repeats++) {
+    repeatedString += string;
+  }
+  return repeatedString;
+}
 
+repeat('abc', 1);       // "abc"
+repeat('abc', 2);       // "abcabc"
+repeat('abc', -1);      // undefined
+repeat('abc', 0);       // ""
+repeat('abc', 'a');     // undefined
+repeat('abc', false);   // undefined
+repeat('abc', null);    // undefined
+repeat('abc', '  ');    // undefined
 
 
 
