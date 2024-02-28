@@ -388,14 +388,70 @@ function repeat(string, times) {
   return repeatedString;
 }
 
-repeat('abc', 1);       // "abc"
-repeat('abc', 2);       // "abcabc"
-repeat('abc', -1);      // undefined
-repeat('abc', 0);       // ""
-repeat('abc', 'a');     // undefined
-repeat('abc', false);   // undefined
-repeat('abc', null);    // undefined
-repeat('abc', '  ');    // undefined
+// repeat('abc', 1);       // "abc"
+// repeat('abc', 2);       // "abcabc"
+// repeat('abc', -1);      // undefined
+// repeat('abc', 0);       // ""
+// repeat('abc', 'a');     // undefined
+// repeat('abc', false);   // undefined
+// repeat('abc', null);    // undefined
+// repeat('abc', '  ');    // undefined
+
+function startsWith(string, searchString) {
+  // console.log(indexOf(string, searchString) === 0)
+  // indexOf(string, searchString) === 0
+  for (let index = 0; index < searchString.length; index++) {
+    if (string[index] !== searchString[index]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+let str = 'We put comprehension and mastery above all else';
+startsWith(str, 'We');              // true
+startsWith(str, 'We put');          // true
+startsWith(str, '');                // true
+startsWith(str, 'put');             // false
+
+let longerString = 'We put comprehension and mastery above all else!';
+startsWith(str, longerString);      // false
+
+function toLowerCase(string) {
+  // 65 - 90 are the uppercase chars
+  let lowerCaseString = '';
+
+  for (let index = 0; index < string.length; index++) {
+    let charCode = string.charCodeAt(index)
+    if (charCode >= 65 && charCode <= 90) {
+      lowerCaseString += String.fromCharCode((charCode + 32));
+    } else {
+      lowerCaseString += string[index];
+    }
+  }
+  return lowerCaseString;
+}
+
+toLowerCase('ALPHABET');    // "alphabet"
+toLowerCase('123');         // "123"
+toLowerCase('abcDEF');      // "abcdef"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
