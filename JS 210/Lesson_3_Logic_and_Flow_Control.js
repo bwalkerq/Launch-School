@@ -512,14 +512,57 @@ function substring(string, start, end) {
 
 string = 'hello world';
 
-substring(string, 2, 4);    // "ll"
-substring(string, 4, 2);    // "ll"
-substring(string, 0, -1);   // ""
-substring(string, 2);       // "llo world"
-substring(string, 'a');     // "hello world"
-substring(string, 8, 20);   // "rld"
+// substring(string, 2, 4);    // "ll"
+// substring(string, 4, 2);    // "ll"
+// substring(string, 0, -1);   // ""
+// substring(string, 2);       // "llo world"
+// substring(string, 'a');     // "hello world"
+// substring(string, 8, 20);   // "rld"
 
+  /*
+  if the letter is capital, rotate it
+    65 - 90 are the uppercase chars
+  if the letter is lowercase, rotate it
+    97 - 122
+  if it's not a letter, keep it
+   */
 
+let codeReviewTitle = 'Znl V xvaqyl erdhrfg lbhe srrqonpx? Gunax lbh fb zhpu!'
+rot13(codeReviewTitle) // "May I kindly request your feedback? Thank you so much!"
+const rotateWithinRange = function (charCode, start, end) {
+  const MIDDLE_CODE = (start + end) / 2;
+  const OFFSET_VALUE = 13;
+
+  if (charCode > MIDDLE_CODE) {
+    charCode -= OFFSET_VALUE;
+  } else {
+    charCode += OFFSET_VALUE;
+  }
+  return String.fromCharCode(charCode);
+}
+
+let rot13 = (str) => {
+  let newString = '';
+
+  for (let index = 0; index < str.length; index++) {
+    let characterCode = str[index].charCodeAt(0);
+
+    if (characterCode >= 65 && characterCode <= 90) {
+      newString += rotateWithinRange(characterCode, 65, 90);
+    } else if (characterCode >= 97 && characterCode <= 122) {
+      newString += rotateWithinRange(characterCode, 97, 122);
+    } else {
+      newString += str[index];
+    }
+  }
+  return newString;
+}
+
+console.log(rot13('Teachers open the door, but you must enter by yourself.'));
+// logs: Grnpuref bcra gur qbbe, ohg lbh zhfg ragre ol lbhefrys.
+console.log(rot13('Don\'t hate me, because I am BEAUTIFUL!'))
+console.log(rot13('May I kindly request your feedback? Thank you so much!'))
+console.log(rot13(rot13('Don\'t hate me, because I am BEAUTIFUL!')))
 
 
 
