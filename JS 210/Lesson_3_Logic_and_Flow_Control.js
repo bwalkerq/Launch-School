@@ -419,25 +419,105 @@ startsWith(str, longerString);      // false
 
 function toLowerCase(string) {
   // 65 - 90 are the uppercase chars
+  const CONVERSION_OFFSET = 32 // the given solution had this, better for
+  // reading
   let lowerCaseString = '';
 
   for (let index = 0; index < string.length; index++) {
     let charCode = string.charCodeAt(index)
     if (charCode >= 65 && charCode <= 90) {
-      lowerCaseString += String.fromCharCode((charCode + 32));
+      lowerCaseString += String.fromCharCode((charCode + CONVERSION_OFFSET));
     } else {
       lowerCaseString += string[index];
     }
   }
+  console.log(lowerCaseString);
   return lowerCaseString;
 }
 
-toLowerCase('ALPHABET');    // "alphabet"
-toLowerCase('123');         // "123"
-toLowerCase('abcDEF');      // "abcdef"
+// toLowerCase('ALPHABET');    // "alphabet"
+// toLowerCase('123');         // "123"
+// toLowerCase('abcDEF');      // "abcdef"
 
+function substr(string, start, length) {
+  let substring = '';
 
+  if (start < 0) {
+    start = string.length + start;
+  }
 
+  for (let counter = 0; counter < length; counter += 1) {
+    let index = start + counter;
+
+    if (string[index] === undefined) {
+      break;
+    }
+  // for (let index = start; index < (start + length); index++) {
+  //   if (index >= string.length) {
+  //     break;
+  //   }
+    /*
+    My solution used the index in the for loop declaration, but their solution
+    uses a counter, which makes sense with the length. Theirs also uses
+    the undefined return value of calling an index that doesn't exist
+     */
+
+    substring += string[index];
+  }
+
+  console.log(substring);
+  return substring;
+}
+
+let string = 'hello world';
+
+// substr(string, 2, 4);      // "llo "
+// substr(string, -3, 2);     // "rl"
+// substr(string, 8, 20);     // "rld"
+// substr(string, 0, -20);    // ""
+// substr(string, 0, 0);      // ""
+
+const cleanIndex = function (string, index) {
+  if (!Number.isInteger(index) || index < 0) {
+    index = 0
+  } else if (index > string.length) {
+    index = string.length;
+  }
+  return index;
+}
+
+function substring(string, start, end) {
+  if (end === undefined) {
+    end = string.length;
+  }
+
+  start = cleanIndex(string, start)
+  end = cleanIndex(string, end)
+
+  if (end < start) {
+    temp = start;
+    start = end;
+    end = temp;
+  }
+
+  let newString = '';
+
+  for (let index = start; index < end; index++) {
+    newString += string[index];
+  }
+
+  console.log(newString);
+  return newString;
+}
+
+string = 'hello world';
+
+substring(string, 2, 4);    // "ll"
+substring(string, 4, 2);    // "ll"
+substring(string, 0, -1);   // ""
+substring(string, 2);       // "llo world"
+substring(string, 'a');     // "hello world"
+substring(string, 8, 20);   // "rld"
 
 
 
