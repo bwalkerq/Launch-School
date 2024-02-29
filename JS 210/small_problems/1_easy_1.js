@@ -99,19 +99,58 @@ function isLeapYear(year) {
   }
 }
 
-isLeapYear(2016);      // true
-isLeapYear(2015);      // false
-isLeapYear(2100);      // false
-isLeapYear(2400);      // true
-isLeapYear(240000);    // true
-isLeapYear(240001);    // false
-isLeapYear(2000);      // true
-isLeapYear(1900);      // false
-isLeapYear(1752);      // true
-isLeapYear(1700);      // true
-isLeapYear(1);         // false
-isLeapYear(100);       // true
-isLeapYear(400);       // true
+// isLeapYear(2016);      // true
+// isLeapYear(2015);      // false
+// isLeapYear(2100);      // false
+// isLeapYear(2400);      // true
+// isLeapYear(240000);    // true
+// isLeapYear(240001);    // false
+// isLeapYear(2000);      // true
+// isLeapYear(1900);      // false
+// isLeapYear(1752);      // true
+// isLeapYear(1700);      // true
+// isLeapYear(1);         // false
+// isLeapYear(100);       // true
+// isLeapYear(400);       // true
+
+const multisum = (limit) => {
+  let sum = 0;
+
+  for (let candidate = 1; candidate <= limit; candidate++) {
+    if (candidate % 3 === 0 || candidate % 5 === 0) {
+      sum += candidate;
+    }
+  }
+  console.log(sum);
+  return sum;
+}
+
+// multisum(3);       // 3
+// multisum(5);       // 8
+// multisum(10);      // 33
+// multisum(1000);    // 234168
+
+function utf16Value(string) {
+  let utfSum = 0;
+  for (let index = 0; index < string.length; index++) {
+    utfSum += string.charCodeAt(index);
+  }
+  console.log(utfSum);
+  return utfSum;
+}
+
+// utf16Value('Four score');         // 984
+// utf16Value('Launch School');      // 1251
+// utf16Value('a');                  // 97
+// utf16Value('');                   // 0
+//
+// // The next three lines demonstrate that the code
+// // works with non-ASCII characters from the UTF-16
+// // character set.
+// const OMEGA = "\u03A9";             // UTF-16 character 'Ω' (omega)
+// utf16Value(OMEGA);                  // 937
+// utf16Value(OMEGA + OMEGA + OMEGA);  // 2811
+
 
 
 
