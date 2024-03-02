@@ -126,9 +126,9 @@ function studentGrade(firstGrade, secondGrade, thirdGrade) {
   console.log(`Based on the average of your 3 scores your letter grade is "${letterGrade}".`);
 }
 
-// studentGrade(65,89,91)
-// studentGrade(95,89,91)
-// studentGrade(5,9,91)
+studentGrade(65,89,91)
+studentGrade(95,89,91)
+studentGrade(5,9,91)
 
 function gcd(int1, int2) {
   /* start with the smaller, divide the larger by it, if not successful (zero
@@ -528,7 +528,7 @@ string = 'hello world';
    */
 
 let codeReviewTitle = 'Znl V xvaqyl erdhrfg lbhe srrqonpx? Gunax lbh fb zhpu!'
-rot13(codeReviewTitle) // "May I kindly request your feedback? Thank you so much!"
+// rot13(codeReviewTitle) // "May I kindly request your feedback? Thank you so much!"
 const rotateWithinRange = function (charCode, start, end) {
   const MIDDLE_CODE = (start + end) / 2;
   const OFFSET_VALUE = 13;
@@ -558,11 +558,11 @@ let rot13 = (str) => {
   return newString;
 }
 
-console.log(rot13('Teachers open the door, but you must enter by yourself.'));
-// logs: Grnpuref bcra gur qbbe, ohg lbh zhfg ragre ol lbhefrys.
-console.log(rot13('Don\'t hate me, because I am BEAUTIFUL!'))
-console.log(rot13('May I kindly request your feedback? Thank you so much!'))
-console.log(rot13(rot13('Don\'t hate me, because I am BEAUTIFUL!')))
+// console.log(rot13('Teachers open the door, but you must enter by yourself.'));
+// // logs: Grnpuref bcra gur qbbe, ohg lbh zhfg ragre ol lbhefrys.
+// console.log(rot13('Don\'t hate me, because I am BEAUTIFUL!'))
+// console.log(rot13('May I kindly request your feedback? Thank you so much!'))
+// console.log(rot13(rot13('Don\'t hate me, because I am BEAUTIFUL!')))
 
 
 
