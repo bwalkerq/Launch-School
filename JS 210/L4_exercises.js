@@ -194,13 +194,212 @@ function arraysEqual(firstArray, secondArray) {
   return true;
 }
 
-console.log(arraysEqual([1], [1]) === true);
-console.log(arraysEqual([1], [2]) === false);
-console.log(arraysEqual([1, 2], [1, 2, 3]) === false);
-console.log(arraysEqual([1, 'hi', true], [1, 'hi', true]) === true);
-console.log(arraysEqual([1, 'hi', true], [1, 'hi', false]) === false);
-console.log(arraysEqual([1, 'hi', true], [1, 'hello', true]) === false);
-console.log(arraysEqual([1, 'hi', true], [2, 'hi', true]) === false);
+// console.log(arraysEqual([1], [1]) === true);
+// console.log(arraysEqual([1], [2]) === false);
+// console.log(arraysEqual([1, 2], [1, 2, 3]) === false);
+// console.log(arraysEqual([1, 'hi', true], [1, 'hi', true]) === true);
+// console.log(arraysEqual([1, 'hi', true], [1, 'hi', false]) === false);
+// console.log(arraysEqual([1, 'hi', true], [1, 'hello', true]) === false);
+// console.log(arraysEqual([1, 'hi', true], [2, 'hi', true]) === false);
+
+/*
+Assignment 9: Basic Array Uses
+ */
+
+function firstElementOf(arr) {
+  return arr[0];
+}
+
+// firstElementOf(['U', 'S', 'A']);  // returns "U"
+
+function lastElementOf(arr) {
+  console.log(arr[arr.length - 1]);
+  return (arr[arr.length - 1]);
+}
+
+// lastElementOf(['U', 'S', 'A']);  // returns "A"
+
+function nthElementOf(arr, index) {
+  return arr[index];
+}
+
+let digits = [4, 8, 15, 16, 23, 42];
+
+// nthElementOf(digits, 3);   // returns 16
+// nthElementOf(digits, 8);   // what does this return?  undefined
+// nthElementOf(digits, -1);  // what does this return? undefined
+
+function firstNOf(arr, count) {
+  return arr.slice(0, count);
+}
+
+// let digits = [4, 8, 15, 16, 23, 42];
+// firstNOf(digits, 3);    // returns [4, 8, 15]
+
+function lastNOf(arr, count) {
+  if (count > arr.length) {
+    console.log(arr.slice(0))
+    return arr.slice(0)
+  }
+  console.log(arr.slice(arr.length - count));
+  return arr.slice(arr.length - count);
+}
+
+digits = [4, 8, 15, 16, 23, 42];
+// lastNOf(digits, 1 + 6);
+// lastNOf(digits, 2 + 6);
+// lastNOf(digits, 3 + 6);
+// lastNOf(digits, 4 + 6);
+// lastNOf(digits, 5 + 6);
+// lastNOf(digits, 6 + 6);
+// lastNOf(digits, 7 + 6);
+//
+// console.log(digits.slice(-2));
+
+/*
+interesting note about this solution is that by adding the length to any count
+will actually solve the issue that resetting the index to 0 accomplishes above.
+ */
+
+function endsOf(beginningArr, endingArr) {
+  let dunk = [beginningArr[0], endingArr[endingArr.length - 1]];
+  console.log(dunk);
+  return dunk;
+}
+
+// endsOf([4, 8, 15], [16, 23, 42]);  // returns [4, 42]
+
+// Assignment 10: Intermediate
+
+function oddElementsOf(arr) {
+  let oddIndicesArray = [];
+  for (let index = 0; index < arr.length; index++) {
+    if (index % 2 === 1) {
+      oddIndicesArray.push(arr[index]);
+    }
+  }
+  console.log(oddIndicesArray);
+  return oddIndicesArray;
+}
+
+digits = [4, 8, 15, 16, 23, 42];
+
+// oddElementsOf(digits);    // returns [8, 16, 42]
+
+function forwardsBackwards(arr) {
+  // for (let index = arr.length - 1; index >= 0; index -= 1) {
+  //   arr.push(arr[index]);
+  // }
+  console.log(arr.concat(arr.slice().reverse()));
+  return arr.concat(arr.slice().reverse());
+}
+
+// forwardsBackwards(digits);
+
+function sortDescending(arr) {
+  return arr.slice().sort().reverse();
+
+  /* Their solution:
+  let arrCopy = arr.slice();
+  return arrCopy.sort((a, b) => b - a);  // Notice that function expressions can be passed as an argument.
+   */
+
+}
+
+// let array = [23, 4, 16, 42, 8, 15];
+// let result = sortDescending(array);
+// console.log(result);                 // logs    [42, 23, 16, 15, 8, 4]
+// console.log(array);                  // logs    [23, 4, 16, 42, 8, 15]
+
+function matrixSums(arr) {
+  let resultArray = []
+  for (let i = 0; i < arr.length; i++) {
+    let sum = 0
+    for (let j = 0; j < arr[i].length; j++) {
+      sum += arr[i][j];
+    }
+    resultArray.push(sum);
+  }
+  console.log(resultArray);
+  return resultArray;
+}
+
+// matrixSums([[2, 8, 5], [12, 48, 0], [12]]);  // returns [15, 60, 12]
+
+function uniqueElements(arr) {
+  let uniqueArray = []
+
+  for (let i = 0; i < arr.length; i++) {
+    let match = false;
+
+    for (let j = 0; j < uniqueArray.length; j++) {
+      if (arr[i] === uniqueArray[j]) {
+        match = true;
+        break;
+      }
+    }
+
+    if (!match) {
+      uniqueArray.push(arr[i]);
+    }
+  }
+  console.log(uniqueArray);
+}
+
+/* Their solution:
+function uniqueElements(arr) {
+  let uniques = [];
+  let len = arr.length;
+
+  for (let index = 0; index < len; index += 1) {
+    if (uniques.indexOf(arr[index]) === -1) {
+      // if the element doesn't have an index, -1 is returned. I agree this is
+      // more smooth.
+      uniques.push(arr[index]);
+    }
+  }
+
+  return uniques;
+}
+ */
+
+// uniqueElements([1, 2, 4, 3, 4, 1, 5, 4]);  // returns [1, 2, 4, 3, 5]
+// uniqueElements([10, 1, 10, 10, 2, 4, 3, 4, 1, 5, 4]);
+
+// Assignment 11: find missing numbers
+
+function missing(arr) {
+  let first = arr[0];
+  let last = arr[arr.length - 1];
+  let missingElements = [];
+
+  for (let candidate = first; candidate < last; candidate++) {
+    if (arr.indexOf(candidate) === -1) {
+      missingElements.push(candidate);
+    }
+  }
+
+  console.log(missingElements);
+}
+
+missing([-3, -2, 1, 5]);                  // [-1, 0, 2, 3, 4]
+missing([1, 2, 3, 4]);                    // []
+missing([1, 5]);                          // [2, 3, 4]
+missing([6]);                             // []
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
