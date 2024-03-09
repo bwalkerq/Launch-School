@@ -115,10 +115,95 @@ function reverseString(inputForReversal) {
 // reverse(array);             // [3, 2, 1]
 // array;                      // [1, 2, 3]
 
+function unshift(arr, ...args) {
+  for (let argIndex = 0; argIndex < args.length; argIndex++) {
+    arr.splice(0, 0, args[argIndex]);
+  }
+  return arr.length;
+}
 
+function shift(arr) {
+  return arr.splice(0, 1)[0];
+}
+//
+// shift([1, 2, 3]);                // 1
+// shift([]);                       // undefined
+// shift([[1, 2, 3], 4, 5]);        // [1, 2, 3]
+//
+// unshift([1, 2, 3], 5, 6);        // 5
+// unshift([1, 2, 3]);              // 3
+// unshift([4, 5], [1, 2, 3]);      // 3
+//
+// const testArray = [1, 2, 3];
+// shift(testArray);                // 1
+// testArray;                       // [2, 3]
+// unshift(testArray, 5);           // 3
+// testArray;                       // [5, 2, 3]
 
+function slice(array, begin, end) {
+  if (begin > array.length) begin = array.length;
+  if (end > array.length) end = array.length;
+  let slicedArray = []
 
+  for (let index = begin; index < end; index++) {
+    slicedArray.push(array[index])
+  }
 
+  return slicedArray;
+}
+
+// slice([1, 2, 3], 1, 2);               // [2]
+// slice([1, 2, 3], 2, 0);               // []
+// slice([1, 2, 3], 5, 1);               // []
+// slice([1, 2, 3], 0, 5);               // [1, 2, 3]
+//
+// const arr1 = [1, 2, 3];
+// slice(arr1, 1, 3);                     // [2, 3]
+// arr1;                                  // [1, 2, 3]
+
+function splice(array, start, deleteCount, ...args) {
+  start = start > array.length ? array.length : start;
+  deleteCount = (deleteCount > (array.length - start)) ? array.length - start : deleteCount;
+
+  let deletedArray = array.slice(start, start + deleteCount);
+
+  let rightHandSide = array.slice(start+deleteCount);
+
+  // mutate the array so that it contains only the left hand side elements
+  array.length = start
+
+  // insert the elements specified by the args array, and the right hand side elements
+  array.push(...args, ...rightHandSide)
+
+  return deletedArray;
+}
+
+// splice([1, 2, 3], 1, 2);              // [2, 3]
+// splice([1, 2, 3], 1, 3);              // [2, 3]
+// splice([1, 2, 3], 1, 0);              // []
+// splice([1, 2, 3], 0, 1);              // [1]
+// splice([1, 2, 3], 1, 0, 'a');         // []
+
+const arr2 = [1, 2, 3];
+splice(arr2, 1, 1, 'two');             // [2]
+arr2;                                  // [1, "two", 3]
+
+const arr3 = [1, 2, 3];
+splice(arr3, 1, 2, 'two', 'three');    // [2, 3]
+arr3;                                  // [1, "two", "three"]
+
+const arr4 = [1, 2, 3];
+splice(arr4, 1, 0);                    // []
+splice(arr4, 1, 0, 'a');               // []
+arr4;                                  // [1, "a", 2, 3]
+
+const arr5 = [1, 2, 3];
+splice(arr5, 0, 0, 'a');               // []
+arr5;                                  // ["a", 1, 2, 3]
+
+let test = [1,2,3,4];
+console.log(test.splice(1,2,10,11,12,13))
+console.log(test);
 
 
 
