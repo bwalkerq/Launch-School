@@ -165,8 +165,10 @@ function splice(array, start, deleteCount, ...args) {
   start = start > array.length ? array.length : start;
   deleteCount = (deleteCount > (array.length - start)) ? array.length - start : deleteCount;
 
+  // store the deleted elements for the return value at the end
   let deletedArray = array.slice(start, start + deleteCount);
 
+  // store the "right hand side" of the start index
   let rightHandSide = array.slice(start+deleteCount);
 
   // mutate the array so that it contains only the left hand side elements
@@ -184,26 +186,90 @@ function splice(array, start, deleteCount, ...args) {
 // splice([1, 2, 3], 0, 1);              // [1]
 // splice([1, 2, 3], 1, 0, 'a');         // []
 
-const arr2 = [1, 2, 3];
-splice(arr2, 1, 1, 'two');             // [2]
-arr2;                                  // [1, "two", 3]
+// const arr2 = [1, 2, 3];
+// splice(arr2, 1, 1, 'two');             // [2]
+// arr2;                                  // [1, "two", 3]
+//
+// const arr3 = [1, 2, 3];
+// splice(arr3, 1, 2, 'two', 'three');    // [2, 3]
+// arr3;                                  // [1, "two", "three"]
+//
+// const arr4 = [1, 2, 3];
+// splice(arr4, 1, 0);                    // []
+// splice(arr4, 1, 0, 'a');               // []
+// arr4;                                  // [1, "a", 2, 3]
+//
+// const arr5 = [1, 2, 3];
+// splice(arr5, 0, 0, 'a');               // []
+// arr5;                                  // ["a", 1, 2, 3]
+//
+// let test = [1,2,3,4];
+// console.log(test.splice(1,2,10,11,12,13))
+// console.log(test);
 
-const arr3 = [1, 2, 3];
-splice(arr3, 1, 2, 'two', 'three');    // [2, 3]
-arr3;                                  // [1, "two", "three"]
+// oddities
+/*
+I ran into this before; trying to make it easy to check outputs. the `===` operator
+doesn't compare the values of elements in arrays; instead it compares if the two
+objects are the exact same object stored in memory. So even though the array contain
+the same values, they aren't the same object, so false is returned.
+ */
 
-const arr4 = [1, 2, 3];
-splice(arr4, 1, 0);                    // []
-splice(arr4, 1, 0, 'a');               // []
-arr4;                                  // [1, "a", 2, 3]
+function areArraysEqual(array1, array2) {
+  if (array1.length !== array2.length) return false;
 
-const arr5 = [1, 2, 3];
-splice(arr5, 0, 0, 'a');               // []
-arr5;                                  // ["a", 1, 2, 3]
+  let array2Copy = array2.slice()
+  for (let i = 0; i < array1.length; i++) {
+    let indexOfCopy = array2Copy.indexOf(array1[i])
+    if (indexOfCopy >= 0) {
+      array2Copy.splice(indexOfCopy, 1)
+    } else {
+      return false;
+    }
+  }
 
-let test = [1,2,3,4];
-console.log(test.splice(1,2,10,11,12,13))
-console.log(test);
+  return true;
+}
+
+/*
+This is much smarter than my approach, which got caught on the last test case.
+Mine sorted the arrays and compared element by element, but the sort default
+behavior doesn't account for the string '1' and the number 1.
+
+By making a copy, find the element with #indexOf, and removing each element from
+the copy until you finish the whole thing, accounts for values that are equal in
+the sort but aren't the same value. (I think is just numbers and their string
+counterparts.)
+
+The #indexOf is nice because it removes the need for ordered comparison.
+ */
+
+// console.log(areArraysEqual([1, 2, 3], [1, 2, 3]) === true)
+// console.log(areArraysEqual([1, 2, 3], [3, 2, 1]) === true)
+// console.log(areArraysEqual(['a', 'b', 'c'], ['b', 'c', 'a']) === true)
+// console.log(areArraysEqual(['1', 2, 3], [1, 2, 3]) === false)
+// console.log(areArraysEqual([1, 1, 2, 3], [3, 1, 2, 1]) === true)
+// console.log(areArraysEqual([1, 2, 3, 4], [1, 1, 2, 3]) === false)
+// console.log(areArraysEqual([1, 1, 2, 2], [4, 2, 3, 1]) === false)
+// console.log(areArraysEqual([1, 1, 2], [1, 2, 2]) === false)
+// console.log(areArraysEqual([1, 1, 1], [1, 1]) === false)
+// console.log(areArraysEqual([1, 1], [1, 1]) === true)
+// console.log(areArraysEqual([1, '1'], ['1', 1]) === true)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
