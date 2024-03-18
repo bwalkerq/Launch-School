@@ -76,10 +76,11 @@ function radiansToDegrees(radian) {
 
 // radiansToDegrees(3.14)
 
-let a = -180;
+let a;
 // console.log(Math.abs(a));
 
-let b = 16777216;
+let b;
+b = 16777216;
 // console.log(Math.sqrt(b));
 
 // console.log(Math.pow(16, 6))
