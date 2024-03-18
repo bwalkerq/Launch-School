@@ -80,7 +80,6 @@ let a;
 // console.log(Math.abs(a));
 
 let b;
-b = 16777216;
 // console.log(Math.sqrt(b));
 
 // console.log(Math.pow(16, 6))
