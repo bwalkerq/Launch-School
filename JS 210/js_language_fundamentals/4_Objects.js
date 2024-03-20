@@ -91,7 +91,7 @@ function timeOfDay(deltaMinutes) {
   const hours = padWithZeroes(afterMidnight.getHours(), 2);
   const minutes = padWithZeroes(afterMidnight.getMinutes(), 2);
 
-  console.log(`${hours}:${minutes}`);
+  // console.log(`${hours}:${minutes}`);
   return `${hours}:${minutes}`;
 }
 
@@ -114,8 +114,39 @@ function padWithZeroes(number, length) {
 // timeOfDay(-4231);      // "01:29"
 
 
+const MINUTES_PER_HOUR = 60;
+const HOURS_PER_DAY = 24;
+const MINUTES_PER_DAY = HOURS_PER_DAY * MINUTES_PER_HOUR;
+const DATE_PART = '1/1/2000'
 
+function afterMidnight(timeStr) {
+  const midnight = new Date (`${DATE_PART} 00:00`)
+  const time = new Date(`${DATE_PART} ${timeStr}`)
 
+  return (time.getTime() - midnight.getTime()) / MILLISECONDS_PER_MINUTE;
+}
+/*
+it seems like a common practice with dates, and difference in dates is to use the
+pattern that finds the difference between two dates using Date.p.getTime()
+(i.e. given_date.getTime - standardized_date.getTime) and use that difference.
+Or use that sum, as in the previous problem. It's interesting that the way to deal
+with all the bothersome details of time is to boil it down to milliseconds. I feel
+like I might be grazing next to Jon's mind with this type of thinking. ha!
+ */
+
+function beforeMidnight(timeStr) {
+  let deltaMinutes = MINUTES_PER_DAY - afterMidnight(timeStr);
+  if (deltaMinutes === MINUTES_PER_DAY) {
+    deltaMinutes = 0;
+  }
+
+  return deltaMinutes;
+}
+
+console.log(afterMidnight('00:00') === 0);
+console.log(beforeMidnight('00:00') === 0);
+console.log(afterMidnight('12:34') === 754);
+console.log(beforeMidnight('12:34') === 686);
 
 
 
