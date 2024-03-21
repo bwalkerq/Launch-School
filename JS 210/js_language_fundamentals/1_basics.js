@@ -80,10 +80,87 @@ function lengthOfPhrase() {
 
 // lengthOfPhrase()
 
-DIGITS = {}
-function stringToInteger(num) {
+function stringToSignedInteger(str) {
+  let chars = str.split('');
+  let sum = 0;
+  let sign = '';
+  if (chars[0].match(/[+-]/)) {
+    sign = chars.shift();
+  }
 
+  for (let index = 0; index < chars.length; index++) {
+    sum += chars[index] * (10 ** (chars.length - 1 - index));
+  }
+
+  if (sign === '-') sum *= -1;
+
+  console.log(sum);
+  return sum;
 }
 
-stringToInteger('4321');      // 4321
-stringToInteger('570');       // 570
+// stringToSignedInteger('4321');      // 4321
+// stringToSignedInteger('-570');      // -570
+// stringToSignedInteger('+100');      // 100
+
+
+const DIGITS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+function integerToString(number) {
+  let result = '';
+
+  do {
+    let remainder = number % 10;
+    number = Math.floor(number / 10);
+
+    result = DIGITS[remainder] + result;
+  } while (number > 0);
+
+  return result;
+}
+
+// integerToString(4321);      // "4321"
+// integerToString(0);         // "0"
+// integerToString(5000);      // "5000"
+
+function signedIntegerToString(number) {
+  if (number < 0) {
+    return ('-' + integerToString(number * -1));
+  } else if (number > 0) {
+    return ('+' + integerToString(number));
+  } else {
+    return integerToString(number);
+  }
+}
+
+console.log(signedIntegerToString(4321) === "+4321");
+console.log(signedIntegerToString(-123) === "-123");
+console.log(signedIntegerToString(0) === "0");
+console.log(signedIntegerToString(-0))// === "-0");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
