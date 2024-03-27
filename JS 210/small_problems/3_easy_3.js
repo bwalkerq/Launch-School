@@ -134,7 +134,7 @@ this solution!
 
 function runningTotal(numbers) {
   let total = 0;
-  return numbers.map(number => total += number, total);
+  return numbers.map(number => total += number);
 }
 
 which apparently is too terse and unclear, so the updated version is:
