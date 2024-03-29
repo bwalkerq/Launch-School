@@ -9,7 +9,10 @@
 - ### understand the differences between loose and strict equality
 - ### how passing an argument into a function may or may not permanently change the value that a variable contains or points to
 - ### working with Strings, Arrays, and Objects. 
-  - In particular, you should be thoroughly familiar with the basic Array iteration methods (forEach, map, filter, and find) and how to use Object methods to access the keys and values in an Object as an Array.
+  - In particular, you should be thoroughly familiar with the basic Array iteration methods
+  (forEach, map, filter, and find) and how to use Object methods to access the keys and values in 
+  an Object as an Array.
+  - 
 - ### understand that arrays are objects, and be able to determine whether you have an Array
   - use class method `Array.isArray` to determine if an object is an array 
   - the indices of an array are string representations of non-negative integer Numbers. 

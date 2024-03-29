@@ -188,9 +188,8 @@ average([9, 47, 23, 95, 16, 52]);    // 40
 function average(arr) {
   let sum = 0;
   arr.forEach( el => sum += el);
-  console.log(Math.floor(sum / arr.length));
+  return (Math.floor(sum / arr.length));
 }
-
 
 
 
