@@ -129,3 +129,14 @@ function reverseWords(str) {
   });
   console.log(words.join(' '))
 }
+
+function dothis(arg1, another) {
+  arg1 = 3;
+  object1 = 1
+}
+
+let object1 = {1: 4}
+
+dothis(object1);
+
+console.log(object1)
