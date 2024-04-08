@@ -106,7 +106,7 @@ function substrings(str) {
   return result
 }
 
-console.log(substrings('abcde'));
+// console.log(substrings('abcde'));
 // [ "a", "ab", "abc", "abcd", "abcde",
 //   "b", "bc", "bcd", "bcde",
 //   "c", "cd", "cde",
@@ -118,17 +118,122 @@ palindromes('madam');      // [ "madam", "ada" ]
 
 palindromes('hello-madam-did-madam-goodbye');
 // returns
-[ "ll", "-madam-", "-madam-did-madam-", "madam", "madam-did-madam", "ada",
-  "adam-did-mada", "dam-did-mad", "am-did-ma", "m-did-m", "-did-", "did",
-  "-madam-", "madam", "ada", "oo" ]
+// [ "ll", "-madam-", "-madam-did-madam-", "madam", "madam-did-madam", "ada",
+//   "adam-did-mada", "dam-did-mad", "am-did-ma", "m-did-m", "-did-", "did",
+//   "-madam-", "madam", "ada", "oo" ]
 
 palindromes('knitting cassettes');
 // returns
-[ "nittin", "itti", "tt", "ss", "settes", "ette", "tt" ]
+// [ "nittin", "itti", "tt", "ss", "settes", "ette", "tt" ]
 
-function palindromes(str) {
-
+function isPalindrome(word) {
+  return word.length > 1 && word === word.split('').reverse().join('')
 }
+function palindromes(str) {
+  return (substrings(str).filter(isPalindrome));
+}
+
+// I had the same logic, and chose to mirror the given solution and break
+// out into two separate functions
+
+buyFruit([['apple', 3], ['orange', 1], ['banana', 2]]);
+// returns ["apple", "apple", "apple", "orange", "banana", "banana"]
+
+function buyFruit(twoDimArr) {
+  let result = [];
+  twoDimArr.forEach(subArr => {
+    for (let i = 0; i < subArr[1]; i++) {
+      result.push(subArr[0]);
+    }
+  });
+  return result;
+}
+
+function transactionsFor(inventoryItem, arr) {
+  return arr.filter(obj => obj.id === inventoryItem)
+// return arr.filter(({id}) => id === inventoryItem); // note equivalence
+}
+
+/* the thing to learn from their solution is, I think, a syntax sugar thing
+that, in this case, calls `.id` on each subobject in the array of objects.
+
+function transactionsFor(inventoryItem, transactions) {
+  return transactions.filter(({id}) => id === inventoryItem);
+}
+
+note that `({id})` calls `.id` on each object, so that the only property of the
+object in the block that you're dealing with is the `id` property. That's fine.
+
+ */
+
+const transactions = [ { id: 101, movement: 'in',  quantity:  5 },
+  { id: 105, movement: 'in',  quantity: 10 },
+  { id: 102, movement: 'out', quantity: 17 },
+  { id: 101, movement: 'in',  quantity: 12 },
+  { id: 103, movement: 'out', quantity: 15 },
+  { id: 102, movement: 'out', quantity: 15 },
+  { id: 105, movement: 'in',  quantity: 25 },
+  { id: 101, movement: 'out', quantity: 18 },
+  { id: 102, movement: 'in',  quantity: 22 },
+  { id: 103, movement: 'out', quantity: 15 }, ];
+
+// console.log(transactionsFor(101, transactions));
+// returns
+// [ { id: 101, movement: "in",  quantity:  5 },
+//   { id: 101, movement: "in",  quantity: 12 },
+//   { id: 101, movement: "out", quantity: 18 }, ]
+
+isItemAvailable(101, transactions);     // false
+isItemAvailable(105, transactions);     // true
+
+function isItemAvailable(inventoryItem, transactions) {
+  let relevantTransactions = transactionsFor(inventoryItem, transactions);
+  let total = 0;
+
+  relevantTransactions.forEach(obj => {
+    if (obj.movement === "in") {
+      total += obj.quantity;
+    } else {
+      total -= obj.quantity;
+    }
+  });
+  return total > 0;
+}
+
+/*
+Note their solution is nearly identical, though they use reduce with the `sum`
+variable built into the callback function. Note that setting the value of sum to
+zero happens at the very end of the long `reduce` block. Without it, it would be
+implicitly set to the first element, which is an object (i.e., { id: 101,
+movement: 'in', quantity: 5 }).
+
+function isItemAvailable(item, transactions) {
+  const quantity = transactionsFor(item, transactions).reduce((sum, transaction) => {
+    if (transaction.movement === 'in') {
+      return sum + transaction.quantity;
+    } else {
+      return sum - transaction.quantity;
+    }
+  }, 0);
+
+  return quantity > 0;
+}
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
