@@ -70,18 +70,44 @@
   - function name(a,b) {
   //stuff
   }
-  - (These two expressions don't get hoisted)
+  - (These next two expressions don't get hoisted)
   - let name = function(a,b) {}
   - Arrow functions
     - let name = (a,b) => {}
     - if one argument and one expression, don't need parentheses for the argument, and don't need return keyword: 
       - let name = a => build_different(a);
 - ### implicit return value of function invocations
-- ### first-class functions
+the return keyword must be used, else returns undefined
+
+- ### closures
+  - A closure is "the combination of a function and the lexical environment within which that 
+  function was [defined]." It's the function plus any variables from its lexical scope that it need
+  access to in order to work. So, if a function needs a variable that is not declared or initialized
+  in that function, then that variable is a part of the closure. The function and it's scope become a
+  single entity called a closure.
+  - my own words: a closure is an entity that encloses a function and it's scope, and is created when the
+  function is defined (either in a function declaration, or a function expression). A closure allows
+  a function to access variables from its lexical scope where the function was defined that it needs
+  in order to work. This is useful because a function may be invoked (successfully, without an error)
+  referencing one or more variables that were in scope at the function's definition, even if those variables
+  are not in the lexical scope at the point where the function is invoked. A closure is efficient, in
+  that it only encloses access to variables that are needed for invoking the function, but it does
+  not enclose variables that are in scope at the definition point, but aren't needed for invocation.
+  - "It's important to remember that closure definitions are purely lexical. Closures are based on 
+  your program's structure, not by what happens when you execute it. Even if you never call a 
+  particular function, that function forms a closure with its surrounding scope."
 - ### partial function application
-  - write a paragraph or two about closures, then do PFA
-- ### side effects
+  - partial function application is the practice of writing a function that depends on two (or more) arguments
+  in such a way where it can be executed with fewer arguments passed than the function requires.
+  - This is accomplished by encapsulating at least one of the required arguments within function, 
+  essentially by nesting functions within functions, so that when the outer function is called, it
+  is calling an inner function where at least one of the arguments is built into the function call.
+  - This means that the outer function is a more specific (and therefore, efficient) version of a
+  more general function because it needs fewer arguments passed in order to be called.
+- ### side effects & first-class functions
+  - 
 - ### naming conventions (legal vs idiomatic)
+  - refresh this
 - ### pure functions and side effects
   - pure functions have no side effects and, given the same arguments, will always return the same values
   - consistency in return values means that there is no random 
@@ -92,25 +118,36 @@
       - This is laundry list of many, including logged to the console 
     - raises an exception
     - it calls another function that has side effects
-- ### strict mode vs. sloppy mode
-- ### JavaScript syntactic sugar
-
-
-- ### implicit return value of function invocations
-the return keyword must be used, else returns undefined
-
-- ### closures
-
-- ### partial function application
-  - be clear about what is NOT PFA
-
-- ### side effects & first-class functions
-
-- ### naming conventions (legal vs idiomatic)
-refresh this
 
 - ### strict mode vs. sloppy mode
 read this.
 
 - ### JavaScript syntactic sugar
 refresh this
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
