@@ -1,6 +1,7 @@
-To do:
-- prewrite for hoisting
-- prewrite for 
+The principle demonstrated here is the arrays indices, and more specifically, that Arrays are Objects with the property keys (of key value pairs) abstracted away to implicit indices.
+
+Since arrays are zero-indexed, when line 4 tries to log `myArr[3]` its checking to see if there is an element with index 3, and more specifically, if a property exists with key `'3'`. Since there is no such property, an error is thrown.
+
 # 211 Study Guide
 - ### assignments and comparison
   - `let variable = 1;`
@@ -15,7 +16,6 @@ To do:
   - function declaration creates a function scope. So a function declared within another function
   is only accessible from within that function.
 - ## hoisting
-  - asdf
   - function declarations get hoisted (entirely; writes the whole function to memory), whereas function expressions get 
   hoisted according to their let/var keyword. The major side effect is that function declarations may be invoked prior
   to the declaration.
@@ -108,11 +108,11 @@ To do:
   your program's structure, not by what happens when you execute it. Even if you never call a 
   particular function, that function forms a closure with its surrounding scope."
 - ### partial function application
-  - partial function application is the practice of writing a function that depends on two (or more) arguments
+  - partial function application is the practice of writing a function that depends on two (or more) parameters
   in such a way where it can be executed with fewer arguments passed than the function requires.
-  - This is accomplished by encapsulating at least one of the required arguments within function, 
+  - This is accomplished by encapsulating at least one of the required parameters within function, 
   essentially by nesting functions within functions, so that when the outer function is called, it
-  is calling an inner function where at least one of the arguments is built into the function call.
+  is calling an inner function where at least one of the arguments is hardcoded into the function call.
   - This means that the outer function is a more specific (and therefore, efficient) version of a
   more general function because it needs fewer arguments passed in order to be called.
 - ### side effects & first-class functions
