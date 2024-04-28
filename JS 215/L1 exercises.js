@@ -179,14 +179,27 @@ function processReleaseData(data) {
   });
 }
 
-console.log(
-processReleaseData(newReleases)
-)
+// console.log(processReleaseData(newReleases))
 
 // should return:
 // [{ id: 70111470, title: 'Die Hard'}, { id: 675465, title: 'Fracture' }];
 
+function octalToDecimal(numberString) {
+  let array = numberString.split('');
+  let result = array.reverse().reduce( (total, el, index) => {
+    return total += Number(el) * 8 ** index;
+  }, 0);
 
+  console.log(result)
+  return result;
+}
+
+octalToDecimal('1');           // 1
+octalToDecimal('10');          // 8
+octalToDecimal('130');         // 88
+octalToDecimal('17');          // 15
+octalToDecimal('2047');        // 1063
+octalToDecimal('011');         // 9
 
 
 
