@@ -194,14 +194,31 @@ function octalToDecimal(numberString) {
   return result;
 }
 
-octalToDecimal('1');           // 1
-octalToDecimal('10');          // 8
-octalToDecimal('130');         // 88
-octalToDecimal('17');          // 15
-octalToDecimal('2047');        // 1063
-octalToDecimal('011');         // 9
+// octalToDecimal('1');           // 1
+// octalToDecimal('10');          // 8
+// octalToDecimal('130');         // 88
+// octalToDecimal('17');          // 15
+// octalToDecimal('2047');        // 1063
+// octalToDecimal('011');         // 9
 
+function anagram(word, list) {
+  return list.filter( el => compareWords(word, el))
+}
 
+function compareWords(first, second) {
+  if (first.length !== second.length) return false;
+  first = first.split('').sort()
+  second = second.split('').sort()
+
+  for (let i = 0; i < first.length; i++) {
+    if (first[i] !== second[i]) return false;
+  }
+  return true;
+}
+
+console.log(compareWords('gti', 'igt'));
+console.log(anagram('listen', ['enlists', 'google', 'inlets', 'banana']));  // [ "inlets" ]
+console.log(anagram('listen', ['enlist', 'google', 'inlets', 'banana']));   // [ "enlist", "inlets" ]
 
 
 
