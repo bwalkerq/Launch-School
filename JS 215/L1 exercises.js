@@ -250,17 +250,150 @@ function capitalizeWord(word) {
   return word.join('')
 }
 
-console.log(
-  processBands(bands));
+// console.log(
+//   processBands(bands));
 
 // should return:
-[
-  { name: 'Sunset Rubdown', country: 'Canada', active: false },
-  { name: 'Women', country: 'Canada', active: false },
-  { name: 'A Silver Mt Zion', country: 'Canada', active: true },
-]
+// [
+//   { name: 'Sunset Rubdown', country: 'Canada', active: false },
+//   { name: 'Women', country: 'Canada', active: false },
+//   { name: 'A Silver Mt Zion', country: 'Canada', active: true },
+// ]
 
+let studentScores = {
+  student1: {
+    id: 123456789,
+    scores: {
+      exams: [90, 95, 100, 80],
+      exercises: [20, 15, 10, 19, 15],
+    },
+  },
+  student2: {
+    id: 123456799,
+    scores: {
+      exams: [50, 70, 90, 100],
+      exercises: [0, 15, 20, 15, 15],
+    },
+  },
+  student3: {
+    id: 123457789,
+    scores: {
+      exams: [88, 87, 88, 89],
+      exercises: [10, 20, 10, 19, 18],
+    },
+  },
+  student4: {
+    id: 112233445,
+    scores: {
+      exams: [100, 100, 100, 100],
+      exercises: [10, 15, 10, 10, 15],
+    },
+  },
+  student5: {
+    id: 112233446,
+    scores: {
+      exams: [50, 80, 60, 90],
+      exercises: [10, 0, 10, 10, 0],
+    },
+  },
+};
 
+function generateClassRecordSummary(scores) {
+  let result = {studentGrades: [], exams: [],};
+  Object.keys(scores).forEach(student => {
+    result.studentGrades.push(studentGrade(scores[student]));
+  })
+
+  result.exams = examReport(scores)
+
+  console.log(result)
+  return result;
+}
+
+function calcExerciseScore(arr) {
+  return arr.reduce( (total, el) => total += el);
+}
+
+function calcTestAverage(arr) {
+  return (arr.reduce((total, el) => total += el) / arr.length);
+}
+
+function calculateGradePercent(testAve, exerciseGrade) {
+  return Math.round(calcTestAverage(testAve) * .65 +
+    calcExerciseScore(exerciseGrade) * .35);
+}
+
+function letterGrade(pointsOf100) {
+  if (pointsOf100 > 93) {
+    return 'A';
+  } else if (pointsOf100 > 85) {
+    return 'B';
+  } else if (pointsOf100 > 77) {
+    return 'C';
+  } else if (pointsOf100 > 69) {
+    return 'D';
+  } else if (pointsOf100 > 60) {
+    return 'E';
+  } else {
+    return 'F';
+  }
+}
+
+function studentGrade(studentHash) {
+  let grade = calculateGradePercent(studentHash.scores.exams,
+    studentHash.scores.exercises);
+  let letter = letterGrade(grade);
+  return `${grade} (${letter})`;
+}
+
+function examReport(studentHash) {
+  let examScores = examScoresByTest(studentHash)
+
+  return examScores.map(test => {
+    return {
+      average: Number(calcTestAverage(test).toFixed(1)),
+      minimum: test[0],
+      maximum: test.slice(-1)[0],
+    };
+  });
+}
+
+function examScoresByTest(studentHash) {
+  let scoresByStudent = Object.keys(studentHash).map(student => {
+    return studentHash[student].scores.exams;
+  });
+
+  let scoresByTest = []
+
+  for (let i = 0; i < scoresByStudent[0].length; i++) {
+    scoresByStudent.forEach( arr => {
+      scoresByTest[i] = scoresByTest[i] || [];
+      scoresByTest[i].push(arr[i]);
+    });
+  }
+  return scoresByTest.map(test => test.sort((a, b) => a - b))
+}
+
+// console.log(examScoresByTest(studentScores))
+// console.log(examRange(studentScores.student1))
+// console.log(studentGrade(studentScores.student2))
+// console.log(letterGrade(96))
+// console.log(calcTestAverage([50, 80, 60, 90]))
+// console.log(calcTestAverage([90, 80, 90]))
+// console.log(calcExerciseScore([20,30]))
+
+generateClassRecordSummary(studentScores);
+
+// returns:
+// {
+//   studentGrades: [ '87 (B)', '73 (D)', '84 (C)', '86 (B)', '56 (F)' ],
+//   exams: [
+//   { average: 75.6, minimum: 50, maximum: 100 },
+//   { average: 86.4, minimum: 70, maximum: 100 },
+//   { average: 87.6, minimum: 60, maximum: 100 },
+//   { average: 91.8, minimum: 80, maximum: 100 },
+//   ],
+// }
 
 
 
