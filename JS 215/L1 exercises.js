@@ -216,11 +216,49 @@ function compareWords(first, second) {
   return true;
 }
 
-console.log(compareWords('gti', 'igt'));
-console.log(anagram('listen', ['enlists', 'google', 'inlets', 'banana']));  // [ "inlets" ]
-console.log(anagram('listen', ['enlist', 'google', 'inlets', 'banana']));   // [ "enlist", "inlets" ]
+// console.log(compareWords('gti', 'igt'));
+// console.log(anagram('listen', ['enlists', 'google', 'inlets', 'banana']));  // [ "inlets" ]
+// console.log(anagram('listen', ['enlist', 'google', 'inlets', 'banana']));   // [ "enlist", "inlets" ]
 
+let bands = [
+  { name: 'sunset rubdown', country: 'UK', active: false },
+  { name: 'women', country: 'Germany', active: false },
+  { name: 'a silver mt. zion', country: 'Spain', active: true },
+];
 
+function processBands(data) {
+  let result = [];
+
+  data.forEach(hash => {
+    let newHash = {};
+    newHash.name = cleanUpName(hash.name);
+    newHash.country = 'Canada';
+    newHash.active = hash.active;
+    result.push(newHash);
+  });
+  return result;
+}
+
+function cleanUpName(name) {
+  name = name.split(' ').map(word => capitalizeWord(word)).join(' ');
+  return name.replace(/\./g, '')
+}
+
+function capitalizeWord(word) {
+  word = word.split('');
+  word.splice(0, 1, word[0].toUpperCase());
+  return word.join('')
+}
+
+console.log(
+  processBands(bands));
+
+// should return:
+[
+  { name: 'Sunset Rubdown', country: 'Canada', active: false },
+  { name: 'Women', country: 'Canada', active: false },
+  { name: 'A Silver Mt Zion', country: 'Canada', active: true },
+]
 
 
 
