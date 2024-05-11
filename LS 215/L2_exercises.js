@@ -226,8 +226,7 @@ let textExcerpt = 'To be or not to be-that is the question:\n' +
 let positiveWords = ['fortune', 'dream', 'love', 'respect', 'patience', 'devout', 'noble', 'resolution'];
 let negativeWords = ['die', 'heartache', 'death', 'despise', 'scorn', 'weary', 'trouble', 'oppress'];
 
-function sentiment(text) {
-  let sentiment = 'Neutral';
+function sentiment1(text) {
 
   let wordList = text.toLowerCase().match(/[a-z']+/g);
   // I looked at the solution for this. This is a nice way to capture all the
@@ -243,6 +242,7 @@ function sentiment(text) {
 
   let positiveCount = posIncluded.length - negIncluded.length;
 
+  let sentiment = 'Neutral';
   if (positiveCount > 0 ) {
     sentiment = 'Positive'
   } else if (positiveCount < 0) {
@@ -260,7 +260,7 @@ The sentiment of the text is ${sentiment}.
   console.log(result)
 }
 
-sentiment(textExcerpt);
+// sentiment1(textExcerpt);
 
 // console output
 
@@ -272,7 +272,43 @@ sentiment(textExcerpt);
 //
 // The sentiment of the text is Negative.
 
+let positiveRegex = /\bfortunes?\b|\bdream(s|t|ed)?\b|love(s|d)?\b|respect(s|ed)?\b|\bpatien(ce|t)?\b|\bdevout(ly)?\b|\bnobler?\b|\bresolut(e|ion)?\b/gi;
+let negativeRegex = /\bdie(s|d)?\b|\bheartached?\b|death|despise(s|d)?\b|\bscorn(s|ed)?\b|\bweary\b|\btroubles?\b|\boppress(es|ed|or('s)?)?\b/gi;
 
+function sentiment(text) {
+  let posIncluded = text.toLowerCase().match(positiveRegex)
+  let negIncluded = text.toLowerCase().match(negativeRegex)
+  let positiveCount = posIncluded.length - negIncluded.length;
+
+  let sentiment = 'Neutral';
+  if (positiveCount > 0 ) {
+    sentiment = 'Positive'
+  } else if (positiveCount < 0) {
+    sentiment = 'Negative'
+  }
+
+  let result = `There are ${posIncluded.length} positive words in the text.
+  Positive sentiments: ${posIncluded.join(', ')}
+  
+  There are ${negIncluded.length} negative words in the text.
+    Negative sentiments: ${negIncluded.join(', ')}
+  
+  The sentiment of the text is ${sentiment}.
+  `;
+  console.log(result)
+}
+
+// sentiment(textExcerpt);
+
+// console output
+
+// There are 9 positive type words in the text.
+//   Positive sentiments: nobler, fortune, devoutly, dream, dreams, respect, love, patient, resolution
+//
+// There are 10 negative type words in the text.
+//   Negative sentiments: troubles, die, heartache, die, death, scorns, oppressor's, despised, weary, death
+//
+// The sentiment of the text is Negative.
 
 
 
