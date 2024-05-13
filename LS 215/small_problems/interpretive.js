@@ -324,6 +324,7 @@ spend less time fixing typos to have more time to code
 // star([6]);
 // star(7);
 // star(9);
+// star(21);
 
 /*
 input: odd integer, n
@@ -377,13 +378,13 @@ function diamond(n) {
   topHalf.reverse().forEach(x => console.log(x));
 }
 
-diamond(3);
-diamond(5);
-diamond(7);
-diamond([7]);
-diamond(2);
-diamond(-2);
-diamond('asdf');
+// diamond(3);
+// diamond(5);
+// diamond(7);
+// diamond([7]);
+// diamond(2);
+// diamond(-2);
+// diamond('asdf');
 // something like 25 min? But this is annoying because it was the exact same
 // structure as the star one at the end. I clearly should have done this one
 // first. I think Phillip just wanted to share his solution because it's cool.
