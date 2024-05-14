@@ -390,13 +390,72 @@ function diamond(n) {
 // first. I think Phillip just wanted to share his solution because it's cool.
 
 /*
-input/test-writing questions
+input/test-writing questions to ask the interviewer
+all input:
+  - input validation? How should we handle bad input? error message?
+  - what do null, undefined, empty arrays, empty objects return?
+  - what should be done with repeat/duplicate values?
+
 if number input:
   - what is the range of inputs? amx and min?
   - can +/- infinity be an input?
   - negative numbers?
   - floats?
   -
+
+ questions for strings:
+  - which characters constitute a "word" or a "token"?
+    - uppercase and lowercase?
+    - hyphenated words?
+    - a 'dash' made of two hyphens?
+    - are there any "starts with" requirements (remember ^ anchor for regex)
+    - are there any "ends with" requirements (remember $ anchor)
+  - What characters will separate tokens (or words)?
+    - exactly one space, or more than one space? up to how many spaces?
+
+
+Data Structure lecture notes (90 min video)
+  - input data
+  - rules/requirements as data
+    - hash/object
+
+  - string, array, hash/object, number
+    - string
+      - concat, strip, reverse, etc.
+      - Regular Expression! split, replace, match...
+    - array
+      - need to walk through it (iteration)
+      - index
+      - abstractions!!
+        - map
+        - reduce
+        - select/filter
+        - all
+        - ...
+    - hash/object
+      - lookup table / dictionary
+      - partition data for more efficient access downstream
+      - digest
+    - number
+      - math operations
+      - number as string may have advantage over numbers
+  - compound data structures
+    - array of arrays
+    - hash with array/object values, etc.
+
+Algorithm
+  - algorithms have to be described in the language of chosen data structure!
+    - "then solve it" doesn't count
+  - have to be really fluent with
+    - String / Regex
+    - Array
+      - Ruby: Enumerable
+      - JavaScript: Higher-Order Functions
+    - Hash / Object
+      - Creation (default values)
+      - Access (default values)
+      - Iteration
+  - verify your algorithm with your examples / test cases
  */
 
 
