@@ -30,11 +30,13 @@ let longText = 'Four score and seven years ago our fathers brought forth' +
 
 function longestSentence(text) {
   let sentences = text.match(/\w[^!?.]*[.?!]+/g);
-  let longest = sentences.sort((a,b) => b.length - a.length)[0];
+  let longest = sentences.sort((a,b) => b.split(' ').length - a.split(' ').length)[0];
   let longestLength = longest.split(' ').length;
 
   console.log('The longest sentence is:\n' + longest + '\n');
   console.log(`The longest sentence has ${longestLength} words.`)
 }
 
-longestSentence(longText);
+// longestSentence(longText);
+longestSentence("To be or not to be? The brown fox is superlative!")
+longestSentence("The brown fox is superlative! To be or not to be?")
