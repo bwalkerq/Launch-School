@@ -115,10 +115,105 @@ let template2 = `the character verb the character's noun.`;
 // madlibs(template2);      // The "fox" "bites" the "dog"'s "tail".
 // madlibs(template2);      // The "cat" "pats" the "cat"'s "head".
 
+/*
+p:
+a matrix is an array that holds a set of arrays, all of which represent a row in the matrix.
+  the first subarray is the first row
+  the second is the second row
+  - the ith element is the ith row
+  - accessing the columns is a little stranger, where we have to access the jth
+  element in EACH row.
 
 
+input: a 3 by 3 matrix
+  an array
+  with 3 elements
+  each element is an array
+    with 3 elements, each a number
+output: the transpose of the original matrix
+  an array with 3 arrays,
+    all the same elements as the original, but the rows have become the columns, and vv
 
+e:
+for each element in the original, (i,j), that element becomes (j,i) in the transpose
 
+1,3
+5,10
+would become
+1,5
+3,10
+
+note that the diagonal elements don't rotate
+because they are actually i,i, so rotation has no effect
+
+it makes sense to process the original matrix row by row
+so for each ith row, the elements become the jth element in each new column
+e.g.
+the 2nd row 4,7,2 become the 2nd element in each row in the new. (same as becoming the 2nd column)
+
+nested iteration:
+1st row: i=0
+  j=0: new array[j][i] = old[i][j]
+
+d:
+arrays
+
+a:
+for each ith row, populate the ith element in each of the rows in the transpose
+for i
+  for j
+    new[j][i] = old[i][j]
+
+c:
+ */
+
+const matrix = [
+  [1, 5, 8],
+  [4, 7, 2],
+  [3, 9, 6]
+];
+
+function transpose(arr) {
+  let trans = arr[0].map(el => []);
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr[0].length; j++) {
+      trans[j][i] = arr[i][j];
+    }
+  }
+  return trans;
+}
+
+const newMatrix = transpose(matrix);
+
+console.log(newMatrix);      // [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
+console.log(matrix);         // [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
+
+// 18 min
+// obviously, math background helped here.
+// The challenge would be to get any size matrix.
+/*
+got it! I had a mistake with the j loop going until the length of the original,
+which only represents the number of rows of the original; the j loop needs to go
+through each element in each row of the original (which is the same as going through
+to each row of the transpose, so j < trans.length succeeds)
+
+ */
+
+const matrix2 = [
+  [1, 5, 8],
+  [4, 7, 2],
+  [3, 9, 6],
+  [4, 5, 6],
+];
+const matrix3 = [
+  [1, 5, 8, 2, 7, 8],
+  [4, 7, 2, 2, 7, 8],
+  [3, 9, 6, 2, 7, 8],
+  [4, 5, 6, 2, 7, 8],
+];
+console.log(transpose(matrix2))
+console.log(transpose(matrix3))
 
 
 
