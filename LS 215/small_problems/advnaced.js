@@ -45,25 +45,32 @@ deal with ending punctuation!
  */
 
 function madlibs(template) {
-  let wordArray = template.match(/[\w']+/g)
-    .map(word => {
-      if (Object.keys(replacements).includes(word)) {
-        return replaceKey(word);
-      } else if (word.includes('\'')) {
-        let words = word.split('\'')
-        words[0]= replaceKey(words[0]);
-        return words.join('\'');
-      } else {
-        return word;
-      }
-    });
-  console.log(wordArray.join(' ') + template.slice(-1));
-  return (wordArray.join(' ') + template.slice(-1));
+  console.log(
+    template.replace(/adjective|verb|adverb|noun|character/gi, replaceKey)
+  );
+
+  // let wordArray = template.match(/[\w']+/g)
+  //   .map(word => {
+      // if (Object.keys(replacements).includes(word)) {
+      //   return replaceKey(word);
+      // } else if (word.includes('\'')) {
+      //   let words = word.split('\'')
+      //   words[0]= replaceKey(words[0]);
+      //   return words.join('\'');
+      // } else {
+      //   return word;
+      // }
+    // });
+  // console.log(wordArray.join(' ') + template.slice(-1));
+  // return (wordArray.join(' ') + template.slice(-1));
 }
 // not easy!
-// Maybe 40 min, or a little over, I got up in the middle
-// the biggest takeaway from their solution is that String.p.replace is a way
-// better method to use
+/*
+Maybe 40 min, or a little over, I got up in the middle of solving it :/
+the biggest takeaway from their solution is that String.p.replace with a regex
+ is a way, way better method to use than includes and replacing words in an array with map.
+ I'm glad I did this problem! Replace is so powerful.
+*/
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -107,3 +114,39 @@ let template2 = `the character verb the character's noun.`;
 
 // madlibs(template2);      // The "fox" "bites" the "dog"'s "tail".
 // madlibs(template2);      // The "cat" "pats" the "cat"'s "head".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
