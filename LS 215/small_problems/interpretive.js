@@ -393,11 +393,11 @@ function diamond(n) {
 input/test-writing questions to ask the interviewer
 all input:
   - input validation? How should we handle bad input? error message?
-  - what do null, undefined, empty arrays, empty objects return?
+  - what do null, undefined, empty arrays, empty objects?
   - what should be done with repeat/duplicate values?
 
 if number input:
-  - what is the range of inputs? amx and min?
+  - what is the range of inputs? max and min?
   - can +/- infinity be an input?
   - negative numbers?
   - floats?
