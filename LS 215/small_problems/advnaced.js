@@ -509,18 +509,18 @@ function mergeSort(arr) {
   return merge(firstHalfCopy, secondHalfCopy);
 }
 
-console.log(mergeSort([9, 5, 7, 1]));           // [1, 5, 7, 9]
-console.log(mergeSort([9, 5, 7, 1,4,6]));
-// let hold = (mergeSort([9, 5, 7, 1,4,6,10,12]));
-// console.log(hold)
-console.log(mergeSort([5, 3]));                 // [3, 5]
-console.log(mergeSort([6, 2, 7, 1, 4]));        // [1, 2, 4, 6, 7]
+// console.log(mergeSort([9, 5, 7, 1]));           // [1, 5, 7, 9]
+// console.log(mergeSort([9, 5, 7, 1,4,6]));
+// // let hold = (mergeSort([9, 5, 7, 1,4,6,10,12]));
+// // console.log(hold)
+// console.log(mergeSort([5, 3]));                 // [3, 5]
+// console.log(mergeSort([6, 2, 7, 1, 4]));        // [1, 2, 4, 6, 7]
+// //
+// console.log(mergeSort(['Sue', 'Pete', 'Alice', 'Tyler', 'Rachel', 'Kim', 'Bonnie']));
+// // ["Alice", "Bonnie", "Kim", "Pete", "Rachel", "Sue", "Tyler"]
 //
-console.log(mergeSort(['Sue', 'Pete', 'Alice', 'Tyler', 'Rachel', 'Kim', 'Bonnie']));
-// ["Alice", "Bonnie", "Kim", "Pete", "Rachel", "Sue", "Tyler"]
-
-console.log(mergeSort([7, 3, 9, 15, 23, 1, 6, 51, 22, 37, 54, 43, 5, 25, 35, 18, 46]));
-// [1, 3, 5, 6, 7, 9, 15, 18, 22, 23, 25, 35, 37, 43, 46, 51, 54]
+// console.log(mergeSort([7, 3, 9, 15, 23, 1, 6, 51, 22, 37, 54, 43, 5, 25, 35, 18, 46]));
+// // [1, 3, 5, 6, 7, 9, 15, 18, 22, 23, 25, 35, 37, 43, 46, 51, 54]
 
 
 // brought me to my knees
@@ -540,10 +540,96 @@ the nested brackets.
 That was a crazy problem.
  */
 
+/*
+Binary search
 
+p:
+this is also recursive
+input:
+  array
+    of strings or numbers
+    sorted
+    odd or even in length
+  target
+    exactly one
+    of the same type as the array
+output:
+  the index of the target
+  return -1 if the target is not found
 
+e: all BAE
+const yellowPages = [
+'Apple Store', 'Bags Galore', 'Bike Store', 'Donuts R Us', 'Eat a Lot',
+'Good Food', 'Pasta Place', 'Pizzeria', 'Tiki Lounge', 'Zooper'];
+TI = 4 (length / 2 - 1)
+binarySearch(yellowPages, 'Pizzeria');                   // 7
+binarySearch(yellowPages, 'Apple Store');                // 0
 
+binarySearch([1, 5, 7, 11, 23, 45, 65, 89, 102], 77);    // -1
+binarySearch([1, 5, 7, 11, 23, 45, 65, 89, 102], 89);    // 7
+binarySearch([1, 5, 7, 11, 23, 45, 65, 89, 102], 5);     // 1
 
+binarySearch(['Alice', 'Bonnie', 'Kim', 'Pete', 'Rachel', 'Sue', 'Tyler'], 'Peter');  // -1
+binarySearch(['Alice', 'Bonnie', 'Kim', 'Pete', 'Rachel', 'Sue', 'Tyler'], 'Tyler');  // 6
+
+d:
+arrays
+subarrays as we keep slicing
+index for the return
+
+algo:
+init targetIndex counter for the index? otherwise we're just calling a function that returns the index
+
+if the target is found in the middle,
+  return half the length of the array.
+if middle is less than target
+  increment target by half the array length
+  call recursive on the second half
+else
+  no increment
+  call recursive on the first half
+ */
+
+function binarySearch(arr, target, targetIndex) {
+  // if (arr.length === 1 && arr[0] !== target) return -1;
+
+  targetIndex = targetIndex || 0;
+  let middle = Math.floor((arr.length-1) / 2);
+
+  if (arr[middle] === target) {
+    targetIndex += middle;
+    return targetIndex;
+  } else if (arr[middle] < target) {
+    targetIndex += middle + 1;
+    return binarySearch(arr.slice(middle + 1), target, targetIndex)
+  } else if (arr[middle] > target) {
+    return binarySearch(arr.slice(0, middle), target, targetIndex)
+  } else {
+    return -1;
+  }
+}
+
+// binarySearch([5,9,12], 12)
+
+const yellowPages = ['Apple Store', 'Bags Galore', 'Bike Store', 'Donuts R Us', 'Eat a Lot', 'Good Food', 'Pasta Place', 'Pizzeria', 'Tiki Lounge', 'Zooper'];
+// binarySearch(yellowPages, 'Pizzeria');                   // 7
+// binarySearch(yellowPages, 'Apple Store');                // 0
+//
+console.log(binarySearch([1, 5, 7, 11, 23, 45, 65, 89, 102], 77));    // -1
+console.log(binarySearch([1, 5, 7, 11, 23, 45, 65, 89, 102], 89));    // 7
+console.log(binarySearch([1, 5, 7, 11, 23, 45, 65, 89, 102], 5));     // 1
+console.log(binarySearch(['Alice', 'Bonnie', 'Kim', 'Pete', 'Rachel', 'Sue', 'Tyler'], 'Peter'));  // -1
+console.log(binarySearch(['Alice', 'Bonnie', 'Kim', 'Pete', 'Rachel', 'Sue', 'Tyler'], 'Tyler'));  // 6
+
+/*
+I actually solved this in time, but I got mixed up with logging values within the function
+vs logging the return values of the function calls. I was actually returning correct
+values for unhappy paths but not logging them.
+
+oh boy
+I did this recursively, even though it can be done non-recursively. F
+
+ */
 
 
 
