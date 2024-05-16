@@ -404,21 +404,141 @@ function merge(firstArr, secondArr) {
     }
   }
 
-  console.log(result)
+  // console.log(result);
+  return result;
 }
 
 
-merge([1, 5, 9], [2, 6, 8]);      // [1, 2, 5, 6, 8, 9]
-merge([1, 1, 3], [2, 2]);         // [1, 1, 2, 2, 3]
-merge([], [1, 4, 5]);             // [1, 4, 5]
-merge([1, 4, 5], []);             // [1, 4, 5]
-merge([1, 4, 5], [1, 4]);             // I expect [1, 1, 4, 4, 5]
+// merge([1, 5, 9], [2, 6, 8]);      // [1, 2, 5, 6, 8, 9]
+// merge([1, 1, 3], [2, 2]);         // [1, 1, 2, 2, 3]
+// merge([], [1, 4, 5]);             // [1, 4, 5]
+// merge([1, 4, 5], []);             // [1, 4, 5]
+// merge([1, 4, 5], [1, 4]);             // I expect [1, 1, 4, 4, 5]
 
 // 35 minutes
 // did a good job choosing a path and going for it
-// JS fluency still lacking, I got burned on unshift vs shift. I got them mixed up
+// JS fluency still lacking, I got burned on unshift vs shift. I got them mixed up.
+
+/*
+p: merge sort algorithm
+input:
+  an array
+  of either all numbers or all strings
+  of length >= 2
+output:
+  a sorted array
+  sorted with the merge sort algo
+
+req:
+can use merge from last problem
+the whole back half of the algo is the merge function that we used
+
+e:
+mergeSort([9, 5, 7, 1]);           // [1, 5, 7, 9]
+break into 2 then 4
+mergeSort([5, 3]);                 // [3, 5]
+mergeSort([6, 2, 7, 1, 4]);        // [1, 2, 4, 6, 7]
+what to do with an odd number?
+[[6, 2], [7, 1, 4]]
+[[[6], [2]], [[7, 1], [4]]]
+[[[6], [2]], [[[7], [1]], [4]]]
+this should be fine
+
+mergeSort(['Sue', 'Pete', 'Alice', 'Tyler', 'Rachel', 'Kim', 'Bonnie']);
+// ["Alice", "Bonnie", "Kim", "Pete", "Rachel", "Sue", "Tyler"]
+this comparison should be fine because all names capitalized
+
+mergeSort([7, 3, 9, 15, 23, 1, 6, 51, 22, 37, 54, 43, 5, 25, 35, 18, 46]);
+// [1, 3, 5, 6, 7, 9, 15, 18, 22, 23, 25, 35, 37, 43, 46, 51, 54]
+
+MTPS
+for an array of size 2 e.g. [2,4], want to return [2], [4]
+for [2,4,6] return [[[2],[4]],[6]]
 
 
+
+a:
+for an even number, split into ...
+splice? returns deleted
+slice? copies
+
+// nest(arr)
+// if the length is two, return the two nested bit
+//   [2,3] => [[2],[3]]
+//   map(x => [x]
+// if length 3?
+// else
+//   pass the first and second half to the same function
+//   [2,3,4,5] => [[2,3],[4,5]]
+//     arr.slice(0,arr.length/2)
+//     eventually => [[2],[3]],[[2],[3]]
+
+if the length is 1, return
+
+ */
+
+
+  // function nest(partialArray) {
+  //   if (partialArray.length === 2) {
+  //     console.log('length of 2')
+  //     return [[partialArray[0]],[partialArray[1]]]
+  //   } else if (partialArray.length === 3) {
+  //     console.log('length 3')
+  //     return [nest(partialArray.slice(0,2)),[partialArray[2]]]
+  //   } else {
+  //     console.log('else')
+  //     return [
+  //       nest(partialArray.slice(0,(partialArray.length / 2))),
+  //       nest(partialArray.slice(partialArray.length / 2)),
+  //     ]
+  //   }
+  // }
+  //
+  // return nest(arr)
+// ok so I need to establish variables to hold part of the array in each iteration
+
+function mergeSort(arr) {
+  if (arr.length === 1) return arr;
+
+  let firstHalfCopy = arr.slice(0,(arr.length / 2));
+  let secondHalfCopy = arr.slice(arr.length / 2);
+
+  firstHalfCopy = mergeSort(firstHalfCopy);
+  secondHalfCopy = mergeSort(secondHalfCopy);
+
+  return merge(firstHalfCopy, secondHalfCopy);
+}
+
+console.log(mergeSort([9, 5, 7, 1]));           // [1, 5, 7, 9]
+console.log(mergeSort([9, 5, 7, 1,4,6]));
+// let hold = (mergeSort([9, 5, 7, 1,4,6,10,12]));
+// console.log(hold)
+console.log(mergeSort([5, 3]));                 // [3, 5]
+console.log(mergeSort([6, 2, 7, 1, 4]));        // [1, 2, 4, 6, 7]
+//
+console.log(mergeSort(['Sue', 'Pete', 'Alice', 'Tyler', 'Rachel', 'Kim', 'Bonnie']));
+// ["Alice", "Bonnie", "Kim", "Pete", "Rachel", "Sue", "Tyler"]
+
+console.log(mergeSort([7, 3, 9, 15, 23, 1, 6, 51, 22, 37, 54, 43, 5, 25, 35, 18, 46]));
+// [1, 3, 5, 6, 7, 9, 15, 18, 22, 23, 25, 35, 37, 43, 46, 51, 54]
+
+
+// brought me to my knees
+/*
+what to take away? the utter simplicity of recursive functions; Many times in the
+past I have written these, and am always surprised by how simple they are.
+I had an understanding to return the argument once I got to a certain low state--
+I had chosen an array of size 2 instead of 1, needlessly complicating it. (MTPS)
+and I understood to recursively call the mergesort function on the first half and
+the second half. Makes sense.
+
+I did get confused with whether to return/call with or without the brackets,
+sort of losing the thread of when a return object already had brackets.
+I guess it comes down to slicing the first and second halves, that's what creates
+the nested brackets.
+
+That was a crazy problem.
+ */
 
 
 
