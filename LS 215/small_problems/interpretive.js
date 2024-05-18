@@ -389,17 +389,24 @@ function diamond(n) {
 // structure as the star one at the end. I clearly should have done this one
 // first. I think Phillip just wanted to share his solution because it's cool.
 
+// https://launchschool.com/exercise_sets/46af1f8b
+
 /*
 input/test-writing questions to ask the interviewer
 all input:
+  - what type(s) accepted
   - input validation? How should we handle bad input? error message?
   - what do null, undefined, empty arrays, empty objects?
+  - no input at all?
+
+arrays and objects:
   - what should be done with repeat/duplicate values?
+  - can it work with sparse arrays? (either empty values, or with a property)
 
 if number input:
   - what is the range of inputs? max and min?
-  - can +/- infinity be an input?
-  - negative numbers?
+  - can +/- infinity be an input? NaN?
+  - negative numbers? zero?
   - floats?
   -
 
@@ -412,6 +419,7 @@ if number input:
     - are there any "ends with" requirements (remember $ anchor)
   - What characters will separate tokens (or words)?
     - exactly one space, or more than one space? up to how many spaces?
+    For example: 'a', 'dog', 'DOG', 'doG', ' dog', 'dog ', 'dog cat', 'dogCat', 'dog_cat', '@', 'dog4', '4dog', '42', 'dog\n'.
 
 
 Data Structure lecture notes (90 min video)
@@ -457,7 +465,6 @@ Algorithm
       - Iteration
   - verify your algorithm with your examples / test cases
  */
-
 
 
 
