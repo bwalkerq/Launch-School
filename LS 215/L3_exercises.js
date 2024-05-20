@@ -43,8 +43,13 @@ iterate through comparing the strings, convert to numbers first
 //
  */
 
+console.log('4.2.t/asdf'.match(/[^0-9.]/g))
 function compareVersions(version1, version2) {
-  if ((version1 + version2).match(/[^0-9.]/)) return null;
+  if ((version1 + version2).match(/[^0-9.]/)
+  || (version1 + version2).match(/\.\.+/)
+  || (version1.match(/^\./ || /\.$/))) {
+    return null;
+  }
 
   let matches1 = version1.match(/[0-9]+/g);
   let matches2 = version2.match(/[0-9]+/g);
@@ -75,6 +80,8 @@ function compareVersions(version1, version2) {
 // console.log(compareVersions('2', '2.1.1.2.3') === -1);
 // console.log(compareVersions('1.2', '?') === null);
 // console.log(compareVersions('asd', '2') === null);
+console.log(compareVersions('2..3', '3') === null);
+console.log(compareVersions('.2.3', '3') === null);
 // console.log(compareVersions('', '') === );
 
 /*
@@ -319,19 +326,129 @@ questions:
   - what to do with duplicate values?
   - what if there are fewer than 3 elements, or if all elements are the same?
     this is answered in the problem statement, but I know they're going to ask this
-  - greatest by value, not abosoute value, right? negative integers are always < positive
+  - greatest by value, not absolute value, right? negative integers are always < positive
   - sparse arrays? ignore empty slots? ignore properties?
   - what to do with input of -/+ infinity? NaN, null, undefined?
   - any max or min limits for values?
 
+missed:
+  max number of elements for the array?
+  can the numbers be in any order (This is implied in the problem statement,
+    that we're not allowed to sort, so
+e:
+  made below
+
+data:
+  -arrays, copies of arrays, and spread syntax for an array
+
+a:
+  first filter out any values that aren't numbers
+
+  filter out the largest value (all of them) from the array
+    ID the max value
+    then filter, keeping any value that is not that value
+  this again, deleting the second largest value(s)
+    same process, with the filtered array
+  return the current largest, which is the third largest from the original
+    find the max, and simply return it (doesn't matter how many occurrences there are)
 
  */
 
+function thirdLargestValue(nums) {
+  nums = nums.filter(x => String(x).match(/[0-9]/));
+  let numsCopy = filterOutMaxValue(nums);
+  numsCopy = filterOutMaxValue(numsCopy);
 
+  let thirdLargest = Math.max(...numsCopy);
+  if (thirdLargest === -Infinity) {
+    return Math.max(...nums);
+  } else {
+    return thirdLargest;
+  }
 
+  function filterOutMaxValue(arr) {
+    let largest = Math.max(...arr);
+    return arr.filter(x => x < largest)
+  }
 
+}
 
+// console.log(Math.max(...[3, , ,2])) // weird stuff happens with sparse arrays
+// the Math.max of this spread is NaN, because it's comparing a bunch of values
+// that aren't numbers, just empty slots.
 
+// console.log(thirdLargestValue([3,1,2]) === 1);
+// console.log(thirdLargestValue([3,1,2,3,3,3,1,1,2,2,2]) === 1);
+// console.log(thirdLargestValue([3,2]) === 3);
+// console.log(thirdLargestValue([3, , ,2]) === 3);
+// console.log(thirdLargestValue([-3,-1,-2]) === -3);
+// console.log(thirdLargestValue([-Infinity,-1,-2]) )// === -Infinity);
+// console.log(thirdLargestValue([]) === )
+
+/*
+Write a function, primeNumberPrinter, that prints all prime numbers present as
+substrings in a given string.
+
+questions:
+arguments
+  - what to do with a missing argument
+  - extra arguments
+  - non-string arguments
+    - like an array of strings? object with string property values?
+    - null, undefined, boolean, numbers
+  - arguments that don't contain prime numbers, what to return?
+  - max length of a string? min length?
+
+parsing
+  - how to determine where one number ends and another begins
+  - what separates numbers
+  - is there a max length of a number?
+
+- printing the results vs returning?
+- return an array?
+- what about duplicate values in the string? each their own element in the array?
+
+missed:
+- EMPTY string argument? (actually, would have been covered when I asked min length)
+- what ORDER should the numbers appear in the array? order found? sorted by value?
+- can the string contain NEGATIVE numbers?
+- [to a lesser extent, I missed the idea that a set of digits could represent
+more than one number, e.g. 123 represents 12 and 23 in addition to 123 (which is
+honestly dumb, but it's the right question to ask. I had asked what separates
+numbers, so I think I would have been covered there.]
+ */
+
+/*
+Write a function that takes a two-dimensional array as the argument and turns it
+ into a flat array with all duplicated elements removed. Treat numbers and
+ number strings (e.g., 1 and '1') as duplicates, and keep the one that comes
+ first in the result.
+
+questions:
+input:
+  - extra arguments? missing argument?
+  - non-2D array? 3D? just 1D? how to handle that input?
+  - min or max size of the larger array, or of it's nested arrays?
+  - how many sub arrays can there be?
+  - what data types are allowed?
+    - boolean, undefined, null, float numbers
+
+  - sparse arrays?
+
+output:
+  - does the result array have to be sorted? filled by order in which the
+  elements are encountered?
+  - mutated original array, or new array?
+  -
+missed:
+- will the elements of the array always be arrays themselves? If not, what should I do?
+- NaN? do I remove duplicate NaN's (since they're not equal to themselves)
+- can the array contain objects?
+  - if objects are allowed, how do we determine equality? if they have the same
+  key value pair?
+- EMPTY subarrays?
+
+ */
 
 
 
