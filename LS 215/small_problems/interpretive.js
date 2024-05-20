@@ -402,13 +402,17 @@ all input:
 arrays and objects:
   - what should be done with repeat/duplicate values?
   - can it work with sparse arrays? (either empty values, or with a property)
+  - for nested 2D+ situations, will the elements always be of a certain type?
+    will each element of the array be a subarray, or will there be values mixed in
+
+
 
 if number input:
   - what is the range of inputs? max and min?
-  - can +/- infinity be an input? NaN?
+  - can +/- infinity be an input?
   - negative numbers? zero?
   - floats?
-  -
+  - NaN? NaN with duplicates because it doesn't equal itself?
 
  questions for strings:
   - which characters constitute a "word" or a "token"?
@@ -465,6 +469,89 @@ Algorithm
       - Iteration
   - verify your algorithm with your examples / test cases
  */
+
+/*
+Cesar
+p:
+input:
+  string literal to be encrypted, and key
+    '' returns ''
+    no max length
+    uppercase and lowercase accepted
+  key represents the number of letters it's shifted
+  key value is positive, representing a shift to the right
+  what is the range of the key?
+    0 min, no max
+    for values larger than 25, we cycle back through the alphabet
+
+output:
+  an encrypted string
+  non-letter characters are preserved
+  case preserved for letter characters
+
+e:
+written
+
+d:
+strings
+regex replace
+array with the letters
+
+a:
+mod the key to get a value between 0 and 25
+
+replace call on the whole string
+  any character a-zA-Z, replace using the function
+    if letter included in the lowercase
+      replace letter with corresponding letter
+    else (must be uppercase)
+      same helper as above
+
+    replace letter helper:
+    find the index of the letter in the array, add the key value, mod 25
+    return the letter at the new index value
+
+ */
+const ALPHA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+let alphalower = ALPHA.map(x => x.toLowerCase())
+
+function caesarEncrypt(text, key) {
+  return text.replace(/[a-z]/gi, (char) => {
+    if (alphalower.includes(char)) {
+      return replaceLetter(char, alphalower, key);
+    } else {
+      return replaceLetter(char, ALPHA, key);
+    }
+  })
+}
+function replaceLetter(letter, arr, key) {
+  let newCharIdx = (arr.indexOf(letter) + key) % 26;
+  return arr[newCharIdx]
+}
+
+console.log(caesarEncrypt('ab', 2) === 'cd');
+console.log(caesarEncrypt('a.b?3', 2) === 'c.d?3');
+console.log(caesarEncrypt('az', 2) === 'cb');
+console.log(caesarEncrypt('azAZ', 2) === 'cbCB');
+console.log(caesarEncrypt('ab', 0) === 'ab');
+console.log(caesarEncrypt('ab', 26) === 'ab');
+console.log(caesarEncrypt('ab', 28) === 'cd');
+console.log(caesarEncrypt('ab', -2) === 'cd');
+console.log(caesarEncrypt('', 2) === '');
+/*
+it's fine to have one value for almost all, but I should have edge cases tested
+  in this case, key = 0, 26 and greater than 26
+
+break out for helper functions a good thing, easy on my mind, allows me to debug
+better
+
+ONLY run the code after I have communicated what I'm expecting
+
+Sometimes (often) the algo that covers the most general case is the simplest algo.
+ */
+
+
+
 
 
 
