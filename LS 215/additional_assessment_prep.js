@@ -155,3 +155,191 @@ for (let chapter in book) {
 //   "Chapter Four": 46,
 //   "Chapter Five": 54
 // }, 50) === "Chapter Five")
+
+
+/*
+If we list all the natural numbers below 10 that are multiples of 3 or 5,
+we get 3, 5, 6 and 9. The sum of these multiples is 23.
+
+Finish the solution so that it returns the sum of all the multiples of 3 or 5
+ below the number passed in.
+
+Additionally, if the number is negative, return 0.
+
+Note: If the number is a multiple of both 3 and 5, only count it once.
+ */
+
+function threeFiver(number) {
+  if (number < 0) return 0;
+  let counter = 0;
+  let sum = 0;
+  while (counter < number) {
+    if (counter % 5 === 0 || counter % 3 === 0) {
+      sum += counter;
+    }
+    counter ++;
+  }
+  return sum;
+}
+
+/*
+move zeros to the end
+p:
+input: an array of elements
+
+output: the same array, with zeros moved to the end
+  does mutate
+
+e:
+with no zeros, return the whole array
+ignore all other elements, including sparse arrays?
+
+data:
+arrays baby
+
+a:
+filter a copy of the argument for just zeros, store them
+filter the original for everythihng but zeros
+concat
+
+
+ */
+
+function moveZeros(arr) {
+  let zeros = arr.filter(x => x === 0);
+  arr = arr.filter(x => x !== 0);
+  console.log(zeros, arr)
+  return arr.concat(zeros);
+}
+
+// console.log(moveZeros([true, 1, 0, 3, 'a', 0, false])) // [true, 1, 3, 'a', false, 0, 0])
+
+/*
+Snail Sort
+https://www.codewars.com/kata/521c2db8ddc89b9b7a0000c1/train/javascript
+
+p:
+input: an NxN array
+  square
+  can be 0x0, just [[]]
+
+output:
+  an array
+  containing the values of the input
+  in clockwise order from 1,1, like a snail
+
+e
+1,2
+3,4
+
+1243
+
+123
+456
+789
+
+3,6,9
+2,5,6
+1,4,7
+
+    123  6  987  45
+    first row
+    the last elem of the second
+    the last row, reversed
+    the rest of row 2
+
+11,12,13,14
+15,16,17,18
+19,20,21,22
+23,24,25,26
+
+row 1,
+last element each of second and third row,
+row 4 reverse,
+first element each from third and second row
+
+round 1:
+row 1
+last of 2
+last of 3
+row 4 reversed
+first of 3
+first of 2
+
+round 2:
+all (that's left) of 2
+all that's left of 3, reversed
+
+data:
+arrays all day
+
+a:
+this is recursive. eating away at the perimeter.
+for NxN, rows and columns i,j
+
+i = 0 (all)
+increment i by 1 until i = N, take nth column element
+  1,N
+  2,N
+i=N reversed (all) pop.reverse
+decrement i by 1 until i = 0, take 0th column element
+  2,0
+  1,0
+pop the 0th row, send to the algo again,
+  if we reach an undefined element, return the result
+
+  for recursion, we want to concat the result of each round
+  return result
+
+new idea:
+rotate the array 90 degree CCW, shift the array to the result (the first subarray)
+  reverse each row, then reflect the values i,j => j,i
+
+make a copy, start the process, when the row is undefined, return the result
+
+ */
+
+let longTest = [
+  [1, 2, 3, 4, 5, 6],
+  [20, 21, 22, 23, 24, 7],
+  [19, 32, 33, 34, 25, 8],
+  [18, 31, 36, 35, 26, 9],
+  [17, 30, 29, 28, 27, 10],
+  [16, 15, 14, 13, 12, 11]
+];
+let longSolution = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]
+
+let snail = function(array) {
+  function reverseRows(arr) {
+    return arr.map(row => {
+      return row.reverse();
+    });
+  }
+  function transpose(arr) {
+    let trans = arr[0].map(el => []);
+
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = 0; j < arr[0].length; j++) {
+        trans[j][i] = arr[i][j];
+      }
+    }
+    return trans;
+  }
+
+  let arrayCopy = array.slice();
+  let result = arrayCopy.shift();
+
+  while (arrayCopy[0] !== undefined) {
+    arrayCopy = reverseRows(arrayCopy)
+    arrayCopy = transpose(arrayCopy);
+    result.push(arrayCopy.shift());
+  }
+
+  return result.flat();
+}
+
+// console.log(snail(longTest))
+
+let n = [3, , 2, , 1,]
+console.log(n.sort())
+console.log(n.length)
