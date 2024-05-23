@@ -600,23 +600,75 @@ function sameVowelGroup(words) {
   return result;
 }
 
-console.log(sameVowelGroup(["many", "carriage", "emit", "apricot", "animal"])); // ["many"]
-console.log(sameVowelGroup(["hoops", "chuff", "bot", "bottom"])); // ["hoops", "bot", "bottom"]
-console.log(sameVowelGroup([])); // []
-console.log(sameVowelGroup(["ant", "any"])); // ["ant"]
-console.log(sameVowelGroup(["$money$", "new yooork", "y-e-o-m-a-n", "a%mnesty456"])); // ["$money$", "new yooork"]
-console.log(sameVowelGroup(['qwrt', 'uiop', 'sdfg'])); // ['qwrt', 'sdfg']
+// console.log(sameVowelGroup(["many", "carriage", "emit", "apricot", "animal"])); // ["many"]
+// console.log(sameVowelGroup(["hoops", "chuff", "bot", "bottom"])); // ["hoops", "bot", "bottom"]
+// console.log(sameVowelGroup([])); // []
+// console.log(sameVowelGroup(["ant", "any"])); // ["ant"]
+// console.log(sameVowelGroup(["$money$", "new yooork", "y-e-o-m-a-n", "a%mnesty456"])); // ["$money$", "new yooork"]
+// console.log(sameVowelGroup(['qwrt', 'uiop', 'sdfg'])); // ['qwrt', 'sdfg']
 
 
 /*
 Validating Sets (the game!)
 
+p: validate each group of three cards as a set or not. Sets have each category where all are the same or all are different.
 
- */
+input:
+  array
+    of three objects
+      each representing a card
+      with 4 properties
+        each property has 3 options
+
+out:
+  a boolean
+
+e:
+I know this game well, so examples not needed, but if I were making them, I'd make a set where:
+  - one prop is the same, others different
+  - all props different
+  - all props the same
+  - one with 2/3, so not a set
+
+d:
+array => scan, array of property values
+
+a:
+go through each property of all three cards, and return false if they're not all the same or not all different
+oooo
+I can pull into an array the values for each characteristic (e.g. all three colors) and if the array length is 2, return false
+for each card
+
+transform the array to the values of each card
+  check through corresponding values,
+  map the first element to a nested array with all characteristics
+
+  // 4 times, so the length of the first element, check each of the ith elements
+    push each into an array
+    remove duplicates
+    check length
+    if the number of distinct values is 2,
+      return false
+
+
+return true at the end!
+
+*/
 
 function isSet(cards) {
+  cards = cards.map(Object.values)
+  for (let i = 0; i < cards[0].length; i++) {
+    let singleProp = [];
+    cards.forEach(card => {
+      singleProp.push(card[i])
+    })
+    singleProp = singleProp.filter((v,i,a) => a.indexOf(v) === i);
 
+    if (singleProp.length === 2) return false;
+  }
+  return true;
 }
+
 console.log(isSet([
   { color: "green", number: 1, shade: "empty", shape: "squiggle" },
   { color: "green", number: 2, shade: "empty", shape: "diamond" },
@@ -634,3 +686,51 @@ console.log(isSet([
   { color: "green", number: 1, shade: "full", shape: "oval" },
   { color: "red", number: 3, shade: "full", shape: "oval" }
 ]) === false);
+
+// Like a boss
+/*
+the main thing I'm noticing is how I can see a path forward more clearly. I'm
+building JS fluency
+
+I like how this solution is very much about distillation. I think it could get
+in the weeds with all the different characteristics, like full, empty, oval, etc.
+Instead, I took a smoother approach and counted the number of distinct. Very nice.
+
+GPT:
+function isSet(cards) {
+  // Helper function to check if all properties are the same or different
+  const allSameOrDifferent = (prop1, prop2, prop3) => {
+    return prop1 === prop2 && prop2 === prop3 || prop1 !== prop2 && prop2 !== prop3 && prop1 !== prop3;
+  };
+
+  // Check if all properties are either all the same or all different for each property
+  const colorsAreSet = allSameOrDifferent(cards[0].color, cards[1].color, cards[2].color);
+  const numbersAreSet = allSameOrDifferent(cards[0].number, cards[1].number, cards[2].number);
+  const shadesAreSet = allSameOrDifferent(cards[0].shade, cards[1].shade, cards[2].shade);
+  const shapesAreSet = allSameOrDifferent(cards[0].shape, cards[1].shape, cards[2].shape);
+
+  // Return true if all properties are either all the same or all different for each property
+  return colorsAreSet && numbersAreSet && shadesAreSet && shapesAreSet;
+}
+
+[[When I asked to compare the two solutions]]
+Differences:
+
+Data Representation: Your solution converts each card object into an array of
+its property values, while my solution directly accesses the properties of
+each card object.
+
+Logic: Your solution iterates through the properties of the cards, while my
+solution explicitly checks each property (color, number, shade, and shape)
+individually.
+
+Handling Duplicates: Your solution filters out duplicate values within each
+property array, while my solution compares properties directly using a
+helper function.
+
+Your solution is more generic in terms of handling any number of properties,
+but it requires more processing to convert objects to arrays. My solution is
+more explicit in its logic and directly addresses the specific properties of
+the cards.
+ */
+
