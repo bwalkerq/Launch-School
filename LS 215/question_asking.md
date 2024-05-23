@@ -28,9 +28,32 @@ input/test-writing questions to ask the interviewer
 - which characters constitute a "word" or a "token"?
     - uppercase and lowercase?
     - hyphenated words?
+    - is 'y' a vowel
     - a 'dash' made of two hyphens?
     - are there any "starts with" requirements (remember ^ anchor for regex)
     - are there any "ends with" requirements (remember $ anchor)
 - What characters will separate tokens (or words)?
     - exactly one space, or more than one space? up to how many spaces?
       For example: 'a', 'dog', 'DOG', 'doG', ' dog', 'dog ', 'dog cat', 'dogCat', 'dog_cat', '@', 'dog4', '4dog', '42', 'dog\n'.
+
+## Feedback compiled across study sessions:
+Philip:
+- Become familiar with `Array.p.all` and `.some` (same as ruby #all? and #any?)
+  - returns boolean true if all (or, in the case of `.some`, at least one) the elements of an array return true for the `callbackFn` 
+- Build fluency with JS. as of 5/22 my PEDAC and process are both solid.
+- Look for problem-solving patterns
+  - consider that the vowel problem is a problem about distillation:
+    we only care about the vowels, not any other characters, the order, or the number of occurances of each vowel
+    it would be helpful to distill down each element to the part that we care about only, in this case the unique vowels that occurance
+    then match them to the beginning.
+- Getting distinct values from an array with duplicates
+  - I wrote my own, which is fine, re-creatable
+  - I found this, which is very smooth: 
+    - `arrWithDupes.filter((v,i,a) => a.indexOf(v) === i)`
+- Remember that when a function may return null (e.g. a `filter` call with no elements matching 
+) that I may need to use `||` or the fancier `??` (nullish coalescing operator) when assigning the result.
+  - e.g. `let included = first.match(/[aeiouy]/gi) || [];`
+
+AJ:
+- note that in order to filter out the empty elements from sparse arrays, have to write 
+a sort of guard clause
