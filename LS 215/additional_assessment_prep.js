@@ -72,12 +72,12 @@ let book = {
 }
 
 
-for (let chapter in book) {
-  book[chapter] = 10 - book[chapter];
-  console.log(chapter,
-  book[chapter]
-  );
-}
+// for (let chapter in book) {
+//   book[chapter] = 10 - book[chapter];
+//   console.log(chapter,
+//   book[chapter]
+//   );
+// }
 
 // console.log(
 // nearestChapter({
@@ -341,5 +341,296 @@ let snail = function(array) {
 // console.log(snail(longTest))
 
 let n = [3, , 2, , 1,]
-console.log(n.sort())
-console.log(n.length)
+// console.log(n.sort())
+// console.log(n.length)
+
+/*
+ungroup student data
+
+p:
+in: nested array of objects, several layers
+
+array of all data
+  objects for each teach
+    teacher key:, string name
+    data key: array of objects
+      each object a student with
+        name:
+        (one or more keys) of other info
+out:
+an array of objects
+  each represents a student with
+    teacher:
+    name:
+    (info):
+arr[0]['data'][0]
+
+e:
+each student object in data gets merged as part of the object holding the teacher
+however, each object gets the teacher, so it's not mapping each element of the outer array
+
+d: arrays, iteration, objects, entries, fromEntries
+
+a:
+// result array
+iterate the 1st array, for each teacherObj (obj, idx, array)
+  iterate through their `data` to pull out each student
+  teacherObj.data.foreach (studentObj, idx, dataArray)
+    build an object
+    let newObj = {}
+      put the teacher name first
+        - newobj[teacher] = array[idx].teacher
+      get each key and info added
+      - studentObj = {...newObj, ...studentobj
+    push newObject to result array
+
+ */
+function ungroupStudents(arr) {
+  let result = [];
+  arr.forEach((teacherObj, idx, outsideArray) => {
+    teacherObj.data.forEach((studentObj) => {
+      let newObj = {};
+      newObj.teacher = outsideArray[idx].teacher;
+      newObj = {...newObj, ...studentObj}
+      result.push(newObj)
+      console.log(newObj)
+    });
+  });
+  return result;
+}
+
+// GPT's function:
+/*
+function ungroupStudents(arr) {
+  return arr.flatMap(teacherObj => { // Using flatMap to flatten the array of arrays
+    const teacherName = teacherObj.teacher;
+    return teacherObj.data.map(studentObj => ({ // Using map to transform each student object
+      teacher: teacherName,
+      ...studentObj // Using object spread to merge studentObj properties
+    }));
+  });
+}
+ */
+
+let schoolData = [
+  {
+    teacher: "Ms. Car",
+    data: [
+      {
+        name: "James",
+        emergencyNumber: "617-771-1082",
+      },
+      {
+        name: "Alice",
+        allergies: ["nuts", "carrots"],
+      }
+      ],
+  },
+  {
+    teacher: "Mr. Lamb",
+    data: [
+      {
+        name: "Aaron",
+        age: 3
+      }
+      ]
+  }
+  ]
+
+// console.log(  ungroupStudents(schoolData));
+
+// console.log(schoolData[0]['data'][0])
+// let a = {key: 1}
+// let b = {a: 3, key: 8}
+// console.log({...a, ...b})
+
+// ungroupStudents(data)
+// ➞
+// [{
+//   teacher: "Ms. Car",
+//   name: "James",
+//   emergencyNumber: "617-771-1082",
+// }, {
+//   teacher: "Ms. Car",
+//   name: "Alice",
+//   allergies: ["nuts", "carrots"],
+// }, {
+//   teacher: "Mr. Lamb",
+//   name: "Aaron",
+//   age: 3,
+// }]
+
+// - Getting distinct values from an array with duplicates
+let arrWithDupes = [1,2,3,1,4,5,5,5,3,2,1,6]
+function uniqueArray(arr) {
+  let result = [];
+  arr.forEach(el => {
+    if (!result.includes(el)) {
+      result.push(el)
+    }
+  });
+  return result;
+}
+
+
+// console.log(
+//   uniqueArray(arrWithDupes),
+//   arrWithDupes.filter((v,i,a) => a.indexOf(v) === i)
+// );
+
+
+// Write a function that selects all words that have all the same vowels (in any order and/or number) as the first word, including the first word.
+/*
+with Philip 5/22
+
+return an array that includes the words (including the first) that contain the same vowels
+
+input:
+  an array
+  any size
+  string elements
+  one argument
+  can contain white spaces
+  any characters possible, we're only matching the vowels
+
+output
+  empty if emtpy given
+  a new array
+  with the words from the given array
+    that have the same vowels
+      must have at least one of each of the vowels from the first word
+      can't have any other vowels
+
+e: done below
+
+d:
+arrays, filtering
+regex
+
+a:
+// make a new regex from the first word that represents the vowels to match
+
+// let pattern = new RegExp(strVar, 'gi')
+
+take the vowels from the first word
+  match the first word to a regex for the vowels
+remove the duplicate vowels
+  ??
+
+filter the array to keep the words that contain at least one occurance of each of the same vowels as the first word
+  iterate the list of included vowels
+    if the string matches the vowel, continue
+    else, return false
+    at the end return true
+
+filter the full vowel list down to the non-included vowels
+
+reject the words that contain additional vowels
+filter again
+  if the word includes a non-included vowel
+    return false
+  else
+    return true
+
+return the filtered list
+
+*/
+
+function sameVowelGroup(arr) {
+  if (arr.length === 0) return [];
+  let first = arr[0];
+  let included = first.match(/[aeiouy]/gi) || [];
+
+  let nonInc = 'aeiouy'.split('').filter(x => {
+    return !included.includes(x);
+  })
+
+  return arr.filter(word => {
+    let keep = included.all(vowel => word.match(vowel));
+
+    //if word does include non-included vowel
+    nonInc.forEach(vowel => {
+      if (word.match(vowel)) keep = false;
+    })
+
+    return keep;
+  });
+}
+
+// console.log(sameVowelGroup(["toe", "ocelot", "ocea"])) //➞ ["toe", "ocelot"]
+// console.log(sameVowelGroup(["toe", "ocelot", "oops"])) //➞ ["toe", "ocelot"]
+// console.log(sameVowelGroup(["toeo", "ace", "oops"])) //➞ ["toeo"]
+// console.log(sameVowelGroup(["tooe", "toadey"])) //➞ ["tooe"]
+// console.log(sameVowelGroup(["toe", "toe adey"])) //➞ ["toe"]
+// console.log(sameVowelGroup(["toe", "to edf ef"])) //➞ ["toe"]
+// console.log(sameVowelGroup(["o", "to edf", 'ao', 'ootoo'])) //➞ ["o", 'ootoo']
+// console.log(sameVowelGroup(["sdf", "to edf ef", 'ghj', 'a', 'ae'])) //➞ ['sdf', 'ghj']
+
+
+// console.log(sameVowelGroup(["many", "carriage", "emit", "apricot", "animal"]) )//== ["many"]);
+// console.log(sameVowelGroup(["hoops", "chuff", "bot", "bottom"]));// == ["hoops", "bot", "bottom"]);
+// console.log(sameVowelGroup([])); // == []);
+// console.log(sameVowelGroup(["ant", "any"])); // == ["ant"]);
+// console.log(sameVowelGroup(["$money$", "new yooork", "y-e-o-m-a-n", "a%mnesty456"])); // == ["$money$", "new yooork"]);
+// console.log(sameVowelGroup(['qwrt', 'uiop', 'sdfg'])); // == ['qwrt', 'sdfg']);
+
+// Here is GPT's solution:
+function sameVowelGroup(words) {
+  if (words.length === 0) return [];
+
+  const vowels = 'aeiou';
+
+  // Function to get unique vowels from a word
+  function getUniqueVowels(word) {
+    const uniqueVowels = [];
+    for (let char of word) {
+      if (vowels.includes(char) && !uniqueVowels.includes(char)) {
+        uniqueVowels.push(char);
+      }
+    }
+    return uniqueVowels.sort().join('');
+  }
+
+  // Get the unique vowel set for the first word
+  const firstWordVowels = getUniqueVowels(words[0]);
+
+  // Filter words whose unique vowel sets match the first word's unique vowel set
+  const result = words.filter(word => getUniqueVowels(word) === firstWordVowels);
+
+  return result;
+}
+
+console.log(sameVowelGroup(["many", "carriage", "emit", "apricot", "animal"])); // ["many"]
+console.log(sameVowelGroup(["hoops", "chuff", "bot", "bottom"])); // ["hoops", "bot", "bottom"]
+console.log(sameVowelGroup([])); // []
+console.log(sameVowelGroup(["ant", "any"])); // ["ant"]
+console.log(sameVowelGroup(["$money$", "new yooork", "y-e-o-m-a-n", "a%mnesty456"])); // ["$money$", "new yooork"]
+console.log(sameVowelGroup(['qwrt', 'uiop', 'sdfg'])); // ['qwrt', 'sdfg']
+
+
+/*
+Validating Sets (the game!)
+
+
+ */
+
+function isSet(cards) {
+
+}
+console.log(isSet([
+  { color: "green", number: 1, shade: "empty", shape: "squiggle" },
+  { color: "green", number: 2, shade: "empty", shape: "diamond" },
+  { color: "green", number: 3, shade: "empty", shape: "oval" }
+]) === true);
+
+console.log(isSet([
+  { color: "purple", number: 1, shade: "full", shape: "oval" },
+  { color: "green", number: 1, shade: "full", shape: "oval" },
+  { color: "red", number: 1, shade: "full", shape: "oval" }
+]) === true);
+
+console.log(isSet([
+  { color: "purple", number: 3, shade: "full", shape: "oval" },
+  { color: "green", number: 1, shade: "full", shape: "oval" },
+  { color: "red", number: 3, shade: "full", shape: "oval" }
+]) === false);
