@@ -734,3 +734,111 @@ more explicit in its logic and directly addresses the specific properties of
 the cards.
  */
 
+/*
+p:
+given two objects, combine keys and values into one object, and values that correspond to a shared key get combined
+
+input:
+  two objects
+    string key, integer values
+  may not have the same number of properties
+
+out:
+  an object
+    keys combined,
+    values copied over or combined for shared keys
+
+examples:
+same length, one combined
+different lengths, some combined
+none combined
+
+d:
+I feel like there's reducing going on here, so I'm leaning towards arrays for reduce
+
+a:
+// get all the keys, iterate through
+//   - concat keys from both
+//   -remove dupes
+  // - for each iterate
+  sum the existing entries by checking for the same name, sum the values
+    - value 1 from the first or 0
+    - value 2 from the second or 0
+  sum with zero guard clause when non-matched prop key
+
+  add the key value pair to the result
+    result.key = summed
+
+*/
+function combine(firstObj, secondObj) {
+  let keys = [...Object.keys(firstObj), ...Object.keys(secondObj)].filter((v,i,a) => a.indexOf(v) === i);
+  let result = {};
+
+  keys.forEach(key => {
+    let firstVal = firstObj[key] || 0;
+    let secondVal = secondObj[key] || 0;
+    result[key] = firstVal + secondVal;
+  })
+
+  result = Object.fromEntries(Object.entries(result).sort((a, b) => a[1] - b[1]))
+
+  return result;
+}
+/*
+25 min to initial solution
+Overlooked THE ORDER of the result object. This is the second time I've been
+  burned or order of the result
+spent maybe 5-8 min more to use entries and fromEntries to sort the object.
+
+GPT's solution is way smoother.
+Great use of for in loops, which I haven't used yet!
+*/
+function combineGPT(income1, income2) {
+  const combinedIncome = {};
+
+  // Iterate over the keys in the first income object
+  for (let key in income1) {
+    // Add the income from the first object to the combined income
+    combinedIncome[key] = income1[key];
+  }
+
+  // Iterate over the keys in the second income object
+  for (let key in income2) {
+    // If the category already exists in the combined income, add the income from the second object
+    // Otherwise, create a new entry in the combined income
+    combinedIncome[key] = (combinedIncome[key] || 0) + income2[key];
+  }
+
+  return combinedIncome;
+}
+
+
+
+const user1 = {
+  powerPlant: 70000,
+  rental: 12000,
+}
+
+const user2 = {
+  teaching: 40000,
+  rental: 10000,
+}
+
+console.log(
+  combine(user1, user2)) // === {
+// powerPlant: 70000,
+//   teaching: 40000,
+//   rental: 22000   // The rental income is added together.
+// })
+
+const user3 = {
+  powerPlant: 70000,
+  teaching: 111,
+  rental: 12000,
+}
+console.log(
+  combine(user3, user2)) // === {
+//   powerPlant: 70000,
+//   teaching: 40111, // also teaching combined
+//   rental: 22000   // The rental income is added together.
+// })
