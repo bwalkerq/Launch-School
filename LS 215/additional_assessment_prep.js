@@ -1040,10 +1040,11 @@ let countsObj = array.reduce((obj, currentValue) => {
   obj[currentValue] += 1 // increment the count for that occurrence
   return obj // returning the object for each iteration of reduce
 }, {});
-console.log(countsObj)
+// console.log(countsObj)
 
-//
-resultArr.push(array.splice(array.indexOf(Math.min(...arr)), 1)[0])
+// this avoids sort
+// and grabs the min value out of an array, and can keep grabbing the new min (from AJ)
+// resultArr.push(array.splice(array.indexOf(Math.min(...arr)), 1)[0])
 
 /*
 remember to ask about sparse arrays
@@ -1068,4 +1069,195 @@ remember to ask about sparse arrays
 // console.log(allPairs([1, 3, 5, 4, 0, 2, 2], 4)) //, [[0, 4], [1, 3], [2, 2]])
 // console.log(allPairs([1, 3, 5, '4', 0], 4)) //, [[0, 4], [1, 3]])
 
+/*
+Create a function that takes an array of football clubs with properties: name, wins, loss, draws, scored, conceded, and returns the team name with the highest number of points. If two teams have the same number of points, return the team with the largest goal difference.
 
+How to Calculate Points and Goal Difference
+team = { name: "Manchester United", wins: 30, loss: 3, draws: 5, scored: 88, conceded: 20 }
+
+Total Points = 3 * wins + 0 * loss + 1 * draws = 3 * 30 + 0 * 3 + 5 * 1 = 95 points
+Goal Difference = scored - conceded = 88 - 20 = 68
+
+problem: given stats on teams, return the winner (most points) or in case of tie, the highest goal difference
+
+in:
+an array
+  of objects
+    each structured the same way
+    strings and numbers where expected
+
+out:
+a string
+  the name of the winning club
+    winner is the most points earned
+      in case of tie,
+        tiebreaker is highest goal difference
+
+e:
+(what if tie and then tie for goal diff? hope that doesn't happen...)
+
+d:
+objects
+store stats in same object? (good for checking as I code)
+possible array to store info?
+
+a:
+for each team in the array
+  // Calculate the score and GoalDif
+  // store as properties
+
+  // calculate the max score
+    // map to just the values, calculate the max BY SPREADing the mapped array
+
+  iterate through the teams again
+    if the score is equal the max, store name in array
+    if length is 1,
+      return the only element
+    else
+      calculate the max goal diff, match to the
+
+// helper
+// max value of given property
+//   map to just values of given key, return the max
+//   I'll use this up to twice
+*/
+
+function champions(arr) {
+  for (let team of arr) {
+    team.points = team.wins * 3 + team.draws * 1;
+    team.goalDiff = team.scored - team.conceded;
+  }
+
+  function maxVal(key) {
+    return Math.max(...arr.map(team => team[key]));
+  }
+
+  const maxPoints = maxVal('points')
+  let maxTeams = arr.filter(x => x.points === maxPoints);
+
+  console.log(arr)
+  console.log(maxTeams)
+
+  if (maxTeams.length === 1) {
+    return maxTeams[0].name;
+  } else {
+    const maxGoalDiff = maxVal('goalDiff');
+    maxTeams = maxTeams.filter(team => team.goalDiff === maxGoalDiff);
+    return maxTeams[0].name;
+  }
+}
+
+/*
+GPT
+The main difference between my solution and this is that I directly calculate
+the max values of the goalDiff and the Points, whereas this just keeps a tally,
+and if the current points are greater, then the champion's name is replaced.
+
+This solution is much more straightforward, I think
+easier to type, easier to read.
+
+To distill this problem is:
+"iterate through a list of values and return the greatest"
+  the values are embedded in object properties, and have to be calculated
+  but with each value, just keep the ticker/tracker updated as you find greater ones
+  and update the champions string for the return value
+  there's a clause thrown in there about ties that requires some conditional logic
+but ultimately , it's of the structure of "iterate and return the max of a list"
+
+I hate to admit it, but coding with GPT is helping me in a few particular ways,
+and seeing the "standard" solution for many of these problems is helping me see
+larger structures or motifs.
+*/
+
+function championsGPT(teams) {
+  let maxPoints = -1;
+  let maxGoalDiff = -1;
+  let champion = "";
+
+  for (let team of teams) {
+    const points = 3 * team.wins + 1 * team.draws;
+    const goalDifference = team.scored - team.conceded;
+
+    if (points > maxPoints || (points === maxPoints && goalDifference > maxGoalDiff)) {
+      maxPoints = points;
+      maxGoalDiff = goalDifference;
+      champion = team.name;
+    }
+  }
+
+  return champion;
+}
+
+// console.log(champions([
+//   {
+//     name: "Chelsea",
+//     wins: 35,
+//     loss: 3,
+//     draws: 0,
+//     scored: 102,
+//     conceded: 20,
+//   },
+//   {
+//     name: "Liverpool",
+//     wins: 24,
+//     loss: 6,
+//     draws: 8,
+//     scored: 118,
+//     conceded: 29,
+//   },
+//   {
+//     name: "Arsenal",
+//     wins: 28,
+//     loss: 2,
+//     draws: 8,
+//     scored: 87,
+//     conceded: 39,
+//   },
+// ]) === "Chelsea")
+
+// console.log(champions([
+//   {
+//     name: "Manchester United",
+//     wins: 30,
+//     loss: 3,
+//     draws: 5,
+//     scored: 88,
+//     conceded: 20,
+//   },
+//   {
+//     name: "Arsenal",
+//     wins: 24,
+//     loss: 6,
+//     draws: 8,
+//     scored: 98,
+//     conceded: 29,
+//   },
+//   {
+//     name: "Chelsea",
+//     wins: 22,
+//     loss: 8,
+//     draws: 8,
+//     scored: 98,
+//     conceded: 29,
+//   },
+//   ]) === "Manchester United");
+
+//   // same points, tie breaker goes to ManU
+  console.log(championsGPT([
+    {
+      name: "Manchester United",
+      wins: 1,
+      loss: 3,
+      draws: 5,
+      scored: 10,
+      conceded: 1,
+    },
+    {
+      name: "Arsenal",
+      wins: 1,
+      loss: 3,
+      draws: 5,
+      scored: 10,
+      conceded: 5,
+    }
+    ]) === "Manchester United");
