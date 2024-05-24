@@ -57,3 +57,22 @@ Philip:
 AJ:
 - note that in order to filter out the empty elements from sparse arrays, have to write 
 a sort of guard clause
+
+let array = [1,1,2,3,4,2,3,4,5,6,5,6,5,6]
+let countsObj = array.reduce((obj, cv) => {
+obj[cv] = obj[cv] || 0;
+obj[cv] += 1
+return obj
+}, {});
+
+console.log(countsObj)
+
+
+
+if (captureObj[currentChar].length === 2) {
+return { [currentChar]: captureObj[currentChar] }  // KEY ON THIS LINE
+}
+
+return Object.fromEntries(Object.entries(resultObj).sort((a, b) => b[1] - a[1]));
+
+resultArr.push(array.splice(array.indexOf(Math.min(...arr)), 1)[0])

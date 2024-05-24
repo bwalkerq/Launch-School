@@ -669,25 +669,7 @@ function isSet(cards) {
   return true;
 }
 
-console.log(isSet([
-  { color: "green", number: 1, shade: "empty", shape: "squiggle" },
-  { color: "green", number: 2, shade: "empty", shape: "diamond" },
-  { color: "green", number: 3, shade: "empty", shape: "oval" }
-]) === true);
-
-console.log(isSet([
-  { color: "purple", number: 1, shade: "full", shape: "oval" },
-  { color: "green", number: 1, shade: "full", shape: "oval" },
-  { color: "red", number: 1, shade: "full", shape: "oval" }
-]) === true);
-
-console.log(isSet([
-  { color: "purple", number: 3, shade: "full", shape: "oval" },
-  { color: "green", number: 1, shade: "full", shape: "oval" },
-  { color: "red", number: 3, shade: "full", shape: "oval" }
-]) === false);
-
-// Like a boss
+//  Like a boss
 /*
 the main thing I'm noticing is how I can see a path forward more clearly. I'm
 building JS fluency
@@ -824,8 +806,8 @@ const user2 = {
   rental: 10000,
 }
 
-console.log(
-  combine(user1, user2)) // === {
+// console.log(
+//   combine(user1, user2)) // === {
 // powerPlant: 70000,
 //   teaching: 40000,
 //   rental: 22000   // The rental income is added together.
@@ -836,9 +818,254 @@ const user3 = {
   teaching: 111,
   rental: 12000,
 }
-console.log(
-  combine(user3, user2)) // === {
+// console.log(
+//   combine(user3, user2)) // === {
 //   powerPlant: 70000,
 //   teaching: 40111, // also teaching combined
 //   rental: 22000   // The rental income is added together.
 // })
+
+/*
+p: given coordinates for two rectangles, return the area of the overlapping portions
+
+in:
+two arrays
+  each with two objects
+    each object contains two coordinates
+      that represent a pair of opposite vertices of a rect.
+  always in x,y format
+  coordinate values are integers
+    pos or neg
+
+out:
+a number
+  that represents the area of the overlapping rectangles
+
+can the rectangles not overlap?
+  deal with this separately
+
+e:
+  [{ x: 2, y: 1 }, { x: 5, y: 5 }],
+  [{ x: 3, y: 2 }, { x: 5, y: 7 }]
+
+  I'm noticing that the x values are 2,5,3,5
+  sorted they're 2,3,5,5
+
+  y values are 1,2,5,7
+
+  that the distance between the middle two, those are the side lengths of the overlapping triangle
+
+  5-3 = 2
+  5-2 = 3
+  2*3 = 6
+
+  [{ x: 2, y: -9 }, { x: 13, y: -4 }],
+  [{ x: 5, y: -11 }, { x: 7, y: -2 }]
+
+  2,5,7,13 and -11,-9,-4,-2
+     2               -5
+  2 * 5 = 10
+
+d: arrays of the x and y values
+arithmetic on the middle entries, more arithmetic
+abs val the product
+
+a:
+when dealing with non-overlapping situation,
+  if the max x of 1st < min x of 2nd or vice versa
+  same for y's, then return 0
+
+combine the arrays
+iterate through each object
+  compile x's and y's
+  sort them
+  calculate differnce of the middle two values of each
+  multiply them, abval
+
+*/
+
+function overlappingRectangles(firstRect, secondRect) {
+  let xCoords = [];
+  let yCoords = [];
+
+  [...firstRect, ...secondRect].forEach(obj => {
+    xCoords.push(obj.x);
+    yCoords.push(obj.y);
+  })
+
+  function zeroOverlap(arr) {
+    if (String(arr) === String(arr.slice().sort())) return true;
+  }
+
+  if (zeroOverlap(xCoords) || zeroOverlap(yCoords)) return 0;
+
+  let n = [xCoords, yCoords].map(arr => {
+    arr.sort((a, b) => a - b);
+    return Math.abs(arr[2] - arr[1]);
+  });
+
+  return n.reduce((x,y) => x * y);
+}
+
+/*
+I got poned by this, but it was at the end of the insane solo parenting week,
+late at night, and I solved it in time except the non-overlap case
+which I had noted, but wasn't given cases for.
+
+One thing I really appreciate about edabit is the hiding of the test cases
+this is closer to the interview structure
+
+GPT's solution was very coordinate algebra heavy, which I think is much clearer.
+mine abstracts some arithmetic away in the sorting of the array's and finding
+the difference between the middle two values. It abstracts further by comparing
+string versions of the sorted and non-sorted arrays -- that strategy was born out
+of extreme tiredness. It make much more sense (though it's more labor-intensive)
+to write the coordinate geometry stuff.
+ */
+function overlappingRectanglesGPT(rect1, rect2) {
+  // Function to find overlap in 1 dimension
+  function overlap(p1, p2, p3, p4) {
+    return Math.max(0, Math.min(p2, p4) - Math.max(p1, p3));
+  }
+
+  // Coordinates of the opposite angles of the rectangles
+  const x1 = rect1[0].x, y1 = rect1[0].y;
+  const x2 = rect1[1].x, y2 = rect1[1].y;
+  const x3 = rect2[0].x, y3 = rect2[0].y;
+  const x4 = rect2[1].x, y4 = rect2[1].y;
+
+  // Calculate overlap in x and y dimensions
+  const overlap_x = overlap(x1, x2, x3, x4);
+  const overlap_y = overlap(y1, y2, y3, y4);
+
+  // Calculate area of overlap
+  const area = overlap_x * overlap_y;
+
+  return area;
+}
+
+// console.log(overlappingRectangles(
+//   [{ x: 2, y: 1 }, { x: 5, y: 5 }],
+//   [{ x: 3, y: 2 }, { x: 5, y: 7 }]
+// ) === 6);
+//
+// console.log(overlappingRectangles(
+//   [{ x: 2, y: -9 }, { x: 13, y: -4 }],
+//   [{ x: 5, y: -11 }, { x: 7, y: -2 }]
+// ) === 10);
+//
+// console.log(overlappingRectangles(
+//   [{ x: -8, y: -7 }, { x: -4, y: 0 }],
+//   [{ x: -5, y: -9 }, { x: -1, y: -2 }]
+// ) === 5);
+
+/*
+
+All Pairs that Sum to Target
+Create a function that returns all pairs of numbers in an array that sum to a target. Sort the pairs in ascending order with respect to the smaller number, then order each pair in this order: [smaller, larger].
+
+p:
+given an array of numbers and a target, return a nested array of all of the pairs of numbers that sum to the target. Sort each subarray ascending, sort outer array asc by each pairs lowest value
+
+in:
+an array
+  of numbers and strings
+    all strings are string numbers
+  of any size
+  if empty array, (return empty)
+  negatives are accepted
+
+and a target
+  a whole number integer
+  negative possible
+
+output:
+new array
+  nested array
+    of 2-el arrays
+      the pairs of integers that sum to the target
+      numbers may be used more than once, as long as they are paired with a different instance of the same integer partner
+
+  return empty array if no pairs
+
+  e: done
+  console.log(allPairs([2, 4, 5, 3], 7))//  ➞ [[2, 5], [3, 4]]
+[2, 4, 5, 3]
+[2, 3, 4, 5]
+
+
+d: arrays! sliding window situation, to mimic combinations
+
+a:
+sort array first (can mutate)
+
+for each number in the array
+  search through the rest of the array (to the right of the number)
+  for each element in the larger array
+    for each element in the portion of the array to the right
+  ID any candidates that sum to the target
+    if the i and the j sum to the target,
+  collect successful pairs as a two element array into the result array
+    result push [i,j]
+
+return the result
+*/
+
+// function allPairs(arr, n) {
+//   arr = arr.map(x => Number(x)).sort();
+//   let result = [];
+
+//   for (let i = 0; i < arr.length; i++) {
+//     for (let jthElement of arr.slice(i + 1))
+//     if (arr[i] + jthElement === n) {
+//       result.push([arr[i], jthElement])
+//     }
+//   }
+//   return result;
+// }
+
+// console.log([1,1,2,3,4,2,3,4,5,6,5,6,5,6].filter((v,i,a) => a.indexOf(v) === i))
+
+// let arr = [1, 1, 2, 3, 4]
+// let uniqArr = [...new Set(arr)]   // [1, 2, 3, 4]
+
+//sick bits of code:
+// A.p.reduce() is sick
+// count the occurrences of an element in an array, store in an object
+let array = [1,1,2,3,4,2,3,4,5,6,5,6,5,6]
+let countsObj = array.reduce((obj, currentValue) => {
+  obj[currentValue] = obj[currentValue] || 0;
+    // if the key exists in the returned object (a value is returned, set it to
+    // itself, or set it to zero when this is the first occurrence of the key
+  obj[currentValue] += 1 // increment the count for that occurrence
+  return obj // returning the object for each iteration of reduce
+}, {});
+console.log(countsObj)
+
+//
+resultArr.push(array.splice(array.indexOf(Math.min(...arr)), 1)[0])
+
+/*
+remember to ask about sparse arrays
+
+*/
+
+// console.log(allPairs([5, 3, 9, 2, 1], 3))//  ➞ [[1, 2]]
+// console.log(allPairs([2, 4, 5, 3], 7))//  ➞ [[2, 5], [3, 4]]
+// console.log(allPairs([-2, -4, -5, -3], -7))//  ➞ [[-2, -5], [-3, -4]]
+// console.log(allPairs([5, 3, 9, 2, 1], 100))//  ➞ []
+// // a number used more than once in a pair
+// console.log(allPairs([5, 3, 1, 2, 1], 3))//  ➞ [[1, 2], [1, 2]]
+// console.log(allPairs([2, 1, 2, 1], 3))//  ➞ [[1, 2], [1, 2], [1, 2], [1, 2]]
+
+
+// console.log(allPairs([4, 5, 1, 3, 6, 8], 9)) //, [[1, 8], [3, 6], [4, 5]])
+// console.log(allPairs([5, 2], 14)) //, [])
+// console.log(allPairs([5, 5, 2], 14)) //, [])
+// console.log(allPairs([8, 7, 7, 2, 4, 6], 14)) //, [[6, 8], [7, 7]])
+// console.log(allPairs([8, 7, 2, 4, 6], 14)) //, [[6, 8]])
+// console.log(allPairs([1, 3, 5, 4, 0, 2], 4)) //, [[0, 4], [1, 3]])
+// console.log(allPairs([1, 3, 5, 4, 0, 2, 2], 4)) //, [[0, 4], [1, 3], [2, 2]])
+// console.log(allPairs([1, 3, 5, '4', 0], 4)) //, [[0, 4], [1, 3]])
+
+
