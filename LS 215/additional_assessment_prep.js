@@ -1242,22 +1242,155 @@ function championsGPT(teams) {
 //   },
 //   ]) === "Manchester United");
 
-//   // same points, tie breaker goes to ManU
-  console.log(championsGPT([
-    {
-      name: "Manchester United",
-      wins: 1,
-      loss: 3,
-      draws: 5,
-      scored: 10,
-      conceded: 1,
-    },
-    {
-      name: "Arsenal",
-      wins: 1,
-      loss: 3,
-      draws: 5,
-      scored: 10,
-      conceded: 5,
+//   // same points, tiebreaker goes to ManU
+//   console.log(championsGPT([
+//     {
+//       name: "Manchester United",
+//       wins: 1,
+//       loss: 3,
+//       draws: 5,
+//       scored: 10,
+//       conceded: 1,
+//     },
+//     {
+//       name: "Arsenal",
+//       wins: 1,
+//       loss: 3,
+//       draws: 5,
+//       scored: 10,
+//       conceded: 5,
+//     }
+//     ]) === "Manchester United");
+
+
+/*
+with Jon 5/27
+Images can be described as a 3D array.
+
+// This image has only one white pixel:
+
+[
+  [[255, 255, 255]]
+]
+
+// This one is a 2 by 2 black image:
+
+[
+  [[0, 0, 0], [0, 0, 0]],
+  [[0, 0, 0], [0, 0, 0]]
+]
+
+Your task is to create a function that takes a 3D array representation of an image and returns the inverse of that.
+
+p: take a 3d array, return an invert of the array
+
+invert refers to the colors, becoming the opposite
+range of a color is 0 - 255
+155 is the inversion of 100
+
+  the (ab val) difference between 255 and a color number is its inversion
+
+in:
+  a 3D array
+    of any size, any dimension
+    each pixel has 3 numveric el's
+      neg or positve integers
+      unlimited range
+      less than zero collapses to 0
+      greater than 255 collapses to 255
+out:
+  a new array, don't mutate
+  a 3D array
+    same size and dimensions
+    colors inverted, i.e. numeric differences from 255
+empty 3d array returns an empty 3d array
+
+e:
+invert([
+  [[255, 255, 255], [255, 255, 255]],
+  [[255, 255, 255], [255, 255, 255]]
+]) ➞ [
+  [[0, 0, 0], [0, 0, 0]],
+  [[0, 0, 0], [0, 0, 0]]
+]
+
+d:
+arrays and mapping
+
+a:
+helper function
+invert a color
+  given an interger, collapse if nec,
+  return 255 - integer.
+
+3-d mapping
+return
+map just the el
+  map just the el
+    map transform each num el
+      helper function
+
+*/
+
+function invert(arr) {
+  return arr.map(row => {
+    return row.map(pixel => {
+      return pixel.map(numVal => {
+        return invertColor(numVal);
+      });
+    });
+  });
+
+  function invertColor(integer) {
+    if (integer < 0) {
+      return 255;
+    } else if (integer > 255) {
+      return 0;
+    } else {
+      return 255 - integer;
     }
-    ]) === "Manchester United");
+  }
+}
+
+function invertJonSolution(arr) {
+  return arr.map(row => {
+    return row.map(pixel => {
+      return pixel.map(numVal => {
+        return 255 - (numVal > 255 ? 255 : (numVal < 0 ? 0 : numVal));
+      });
+    });
+  });
+}
+
+  console.log(
+    invert([
+      [[255, 255, 255], [255, 255, 255]],
+      [[255, 255, 255], [255, 255, 255]]
+    ])
+  );
+// ➞ [
+  // [[0, 0, 0], [0, 0, 0]],
+//   [[0, 0, 0], [0, 0, 0]]
+// ]
+
+  console.log(
+    invert([
+      [[255, 255, 255]],
+      [[255, 255, 255], [255, 255, 255]]
+    ])
+  );
+// ➞ [
+  // [[0, 0, 0]],
+//   [[0, 0, 0], [0, 0, 0]]
+// ]
+
+  console.log(
+    invert([
+      [[-255, -255, -255]],
+      [[256, 1000, 300], [155, 254, 1]]
+    ])
+  );
+// ➞ [
+// [[255, 255, 255]],
+//   [[0, 0, 0], [100, 1, 254]]
+// ]
