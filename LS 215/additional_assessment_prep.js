@@ -1847,17 +1847,97 @@ Also told me to use Object.p.hasOwnProperty (which is above my pay-grade, but I
 looked into this, and it seems like good advice.
 
 */
+//
+// console.log(recurIndex("DXTDXTXDTXD")) //➞ {"D": [0, 3]}
+// // D first appeared at index 0, resurfaced at index 3
+// // T appeared and resurfaced at indices 2 and 5 but D and X completed the cycle first
+//
+// console.log(recurIndex("YXZXYTUVXWV")) //➞ {"X": [1, 3]}
+//
+// console.log(recurIndex("YZTTZMNERXE")) //➞ {"T": [2, 3]}
+//
+// console.log(recurIndex("AREDCBSDERD")) //➞ {"D": [3, 7]}
+//
+// console.log(recurIndex("")) //➞ {}
+//
+// console.log(recurIndex(null)) //➞ {}
 
-console.log(recurIndex("DXTDXTXDTXD")) //➞ {"D": [0, 3]}
-// D first appeared at index 0, resurfaced at index 3
-// T appeared and resurfaced at indices 2 and 5 but D and X completed the cycle first
 
-console.log(recurIndex("YXZXYTUVXWV")) //➞ {"X": [1, 3]}
+/*
+Deep Arithmetic
+Write a function that takes an array of strings of arbitrary dimensionality ([], [][], [][][], etc.) and returns the sum of every separate number in each string in the array.
 
-console.log(recurIndex("YZTTZMNERXE")) //➞ {"T": [2, 3]}
+p: find all the distinct numbers and sum them
+in:
+an array
+  potentially of lots of sub Arrays
+  with strings with lots of characters
+    including digits,
+    and negative numbers
 
-console.log(recurIndex("AREDCBSDERD")) //➞ {"D": [3, 7]}
+out:
+an integer
+  the sum of all the numbers that were pulled out
 
-console.log(recurIndex("")) //➞ {}
+Examples
+sum(["1", "five", "2wenty", "thr33"]) ➞ 36
+1,2,33 sums to 36
 
-console.log(recurIndex(null)) //➞ {}
+sum([["1X2", "t3n"],["1024", "5", "64"]]) ➞ 1099
+1,2,3,1024,5,64
+
+sum([[["1"], "10v3"], ["738h"], [["s0"], ["1mu4ch3"],"-1s0"]]) ➞ 759
+Notes
+Numbers in strings can be negative, but will all be base-10 integers.
+Negative numbers may directly follow another number.
+The hyphen or minus character ("-") does not only occur in numbers.
+Arrays may be ragged or empty.
+
+d:
+arrays flatmap regex matching
+reduce for sum
+
+a:
+flatmap the array
+for each string
+  match to a regex that catches those digits, negatives
+    if the match group length is one,
+      return the first element
+    else
+      return the match group
+  (wait, if it's one match, it's a bunch of stuff, if it's multiple, it's just the matches) (great news, if the match is one, it's length is one.)
+
+flatten the mapped result (because match groups may be however dimensional)
+reduce
+  parseInt each string and sum with accum
+  return the accum
+
+*/
+// console.log('aaasdaasdfadsaaa'.match(/a*/));
+
+function sum(arr) {
+  arr = arr.flat(Infinity).map(str => {
+    return str.match(/\-?[0-9]+/g);
+  });
+  return arr.flat().reduce((acc, currentValue) => {
+    if (!currentValue) return acc;
+    return acc += parseInt(currentValue);
+  }, 0);
+}
+/*
+very proud of this solution! 24 minutes
+somewhat thinky regex, with optional `-` leading, and any number of digits
+had to figure out flat(Infinity) which is very nice to remember (good for given nested array of arbitrary depth)
+had to remember to parseInt each of the values
+had to remember to pass an initial value of `acc` as 0 to sum the numbers
+
+*/
+
+
+console.log(sum(["1", "five", "2wenty", "thr33"])) //➞ 36
+// 1,2,33 sums to 36
+
+console.log(sum([["1X2", "t3n"],["1024", "5", "64"]])) //➞ 1099
+// 1,2,3,1024,5,64
+
+console.log(sum([[["1"], "10v3"], ["738h"], [["s0"], ["1mu4ch3"],"-1s0"]])) //➞ 759
