@@ -1578,3 +1578,86 @@ function getNotesDistribution(arr) {
 // unintentionally got a problem that needed a distribution output, same as last
 // time, so very easy.
 // 16 min
+
+
+
+
+
+
+
+/*
+Splitting Objects Inside an Array
+You bought a few bunches of fruit over the weekend. Create a function that splits a bunch into singular objects inside an array.
+
+p: given an array of objects with quantities, destructure into an array of objects corresponding to their counts
+
+in:
+an array
+  of objects
+    with name and quantity props
+    string and integer values, resp
+    integer > 0
+
+out:
+an array
+  of objects
+  same properties, but each quantity is 1
+  each fruit object is duplicated the corresponding counts
+
+e:
+BAE
+
+d:
+array, for of
+for loop with i = quantity
+or reduce
+
+a:
+reduce the array with acc array
+  repeatFruit(name, quantity, accobj)
+  return the accArray
+
+function
+repeatFruit(name, quantity, accobj)
+for loop up to quantity
+put into accarray name, quantity = 1
+*/
+function splitBunches(arr) {
+  return arr.reduce((accArray, obj) => {
+    for (let i = 0; i < obj.quantity; i++) {
+      accArray.push({name: obj.name, quantity: 1})
+    }
+    return accArray;
+  }, []);
+}
+
+// console.log(splitBunches([
+//   { name: "grapes", quantity: 2 }
+// ]));
+// // ➞ [
+// //   { name: "grapes", quantity: 1 },
+// //   { name: "grapes", quantity: 1 }
+// // ]
+//
+//
+// console.log(splitBunches([
+//   { name: "currants", quantity: 1 },
+//   { name: "grapes", quantity: 2 },
+//   { name: "bananas", quantity: 2 }
+// ]));
+//  ➞ [
+//   { name: "currants", quantity: 1},
+//   { name: "grapes", quantity: 1 },
+//   { name: "grapes", quantity: 1 },
+//   { name: "bananas", quantity: 1 },
+//   { name: "bananas", quantity: 1 }
+// ]
+
+/*
+easy, <20 min with a big interruption in the middle. Feeling good that I've
+gotten to practice reduce three times today.
+GPT's solution did even simpler and just init's a result array, For each through
+ the original, and does the same for loop to push the right number of items to
+ the result.
+*/
+
