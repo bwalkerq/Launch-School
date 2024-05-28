@@ -1362,35 +1362,137 @@ function invertJonSolution(arr) {
   });
 }
 
-  console.log(
-    invert([
-      [[255, 255, 255], [255, 255, 255]],
-      [[255, 255, 255], [255, 255, 255]]
-    ])
-  );
-// ➞ [
-  // [[0, 0, 0], [0, 0, 0]],
-//   [[0, 0, 0], [0, 0, 0]]
-// ]
+//   console.log(
+//     invert([
+//       [[255, 255, 255], [255, 255, 255]],
+//       [[255, 255, 255], [255, 255, 255]]
+//     ])
+//   );
+// // ➞ [
+//   // [[0, 0, 0], [0, 0, 0]],
+// //   [[0, 0, 0], [0, 0, 0]]
+// // ]
+//
+//   console.log(
+//     invert([
+//       [[255, 255, 255]],
+//       [[255, 255, 255], [255, 255, 255]]
+//     ])
+//   );
+// // ➞ [
+//   // [[0, 0, 0]],
+// //   [[0, 0, 0], [0, 0, 0]]
+// // ]
+//
+//   console.log(
+//     invert([
+//       [[-255, -255, -255]],
+//       [[256, 1000, 300], [155, 254, 1]]
+//     ])
+//   );
+// // ➞ [
+// // [[255, 255, 255]],
+// //   [[0, 0, 0], [100, 1, 254]]
+// // ]
 
-  console.log(
-    invert([
-      [[255, 255, 255]],
-      [[255, 255, 255], [255, 255, 255]]
-    ])
-  );
-// ➞ [
-  // [[0, 0, 0]],
-//   [[0, 0, 0], [0, 0, 0]]
-// ]
+/*
+You were tasked with making a list of every makeup item your local pharmacy had in stock. You created a very long array of each item, with each element having both a name and brand property. Now you're looking to simplify the list by combining duplicate items, and adding a count property to everything.
 
-  console.log(
-    invert([
-      [[-255, -255, -255]],
-      [[256, 1000, 300], [155, 254, 1]]
-    ])
-  );
-// ➞ [
-// [[255, 255, 255]],
-//   [[0, 0, 0], [100, 1, 254]]
+p: given a long array of objects, return a condensed array that has a count rather than duplicate objects
+in:
+an array
+  of objects
+    brand and name properties
+
+out:
+a new array
+  of objects
+    with duplicates removed, an object count for each distinct object
+
+e:
+can different products every have the same brand or same name but not both? (assume yes)
+other properties?
+
+d: array of bojects for iteration
+new object for containing, adding the count
+
+a:
+
+init currentBrand and currentName trackers
+
+simple iteration of the array
+  if the item's brand and name don't match the current,
+    reassign current trackers
+    create a new object in the result
+    start count at 1
+  else
+    iterate the count
+
+ return the result
+*/
+function simplifyListOLD(arr) {
+  let result = [];
+  let currentBrand = '';
+  let currentName = '';
+
+  arr.forEach(item => {
+    // console.log(item.brand, item.name);
+    if (item.brand !== currentBrand || item.name !== currentName) {
+      currentBrand = item.brand;
+      currentName = item.name;
+      item.count = 1;
+      result.push(item);
+    } else {
+      result[result.length-1].count += 1;
+    }
+  });
+
+  return result;
+}
+
+// BIG BURN
+/*
+the takeaway here is that for getting counts of something, USE REDUCE
+I knew in writing it that my solution wouldn't work for non-adjacent duplicate
+items. Interestingly, this was one of the first times that GPT didn't detect that
+my solution wouldn't work for that type of input even though I asked it directly.
+This gives me heart! ha!
+Anyway, reduce is the way to go. I will try to implement it now without further
+ looking at the given solution
+
+ a:
+ reduce the given array, with an accumulator object, return the accumulator each time
+
+
+ */
+
+function simplifyList(arr) {
+  return Object.values(arr.reduce((acc, product) => {
+    const key = `${product.brand}_${product.name}`;
+    acc[key] = acc[key] || {brand: product.brand, name: product.name, count: 0};
+    acc[key].count += 1;
+    return acc;
+  }, {}));
+}
+// DOUBLE BIG BURN with RETURNING the accumulator. shit!
+
+
+
+const example = [
+  { brand: "Stila", name: "Stay All Day Liquid Lipstick" },
+  { brand: "NARS", name: "Cosmetics Voyageur Pallete" },
+  { brand: "Stila", name: "Stay All Day Liquid Lipstick" },
+  { brand: "Urban Decay", name: "Naked Honey Pallete" },
+  { brand: "Stila", name: "Stay All Day Liquid Lipstick" },
+  { brand: "NARS", name: "Cosmetics Voyageur Pallete" },
+]
+// console.log((example[0]))
+
+
+// console.log(
+//   simplifyList(example))
+//  ➞ [
+//   { brand: "NARS", name: "Cosmetics Voyageur Pallete", count: 2 },
+//   { brand: "Urban Decay", name: "Naked Honey Pallete", count: 1 },
+//   { brand: "Stila", name: "Stay All Day Liquid Lipstick", count: 3 }
 // ]
