@@ -1661,3 +1661,203 @@ GPT's solution did even simpler and just init's a result array, For each through
  the result.
 */
 
+/*
+Standard Competition Ranking
+Standard competition ranking (also known as "1224" ranking) assigns the same rank to matching values. Rank numbers are increased each time, so ranks are sometimes skipped. If we have 5 scores (the highest score having a rank of 1):
+
+No matching values:
+
+Scores = [99, 98, 97, 96, 95]
+Rank = 1,  2,  3,  4,  5
+With matching values:
+
+Scores = [99, 98, 98, 96, 95]
+Rank = 1,  2,  2,  4,  5
+
+// Second and third scores are equal, so rank "3" is skipped.
+Given an object containing the names and scores of 5 competitors, and a competitor name, return the rank of that competitor after applying competition ranking.
+
+p: given some scores, put them in standard comp rank, with tie scores having the same rank, and some ranks skipped
+in:
+an object
+  name keys, score values
+  strings and integer numbers
+a name
+  string
+  someone in the given object
+out:
+an integer rank of the target person
+
+e:
+No matching values:
+Scores = [99, 98, 97, 96, 95]
+Rank = 1,  2,  3,  4,  5
+
+With matching values:
+Scores = [99, 9, 9, 6, 5]
+Rank = 1,  2,  2,  4,  5
+
+Scores = [9, 9, 9, 6, 5]
+Rank = 1,  1,  1,  4,  5
+
+Scores = [9, 9, 9, 9, 15]
+Rank    = 2, 2, 2, 2, 1
+
+double names?
+mutate?
+
+d:
+object (mutate)
+array: some iteration where I reference the array I'm iterating
+
+a:
+
+rank = -1
+take all the values, sorted,
+iterate through
+
+if the current value is the same as previous,
+rank = previous rank
+else, rank = i+1
+if current val === target val, return rank
+
+*/
+
+function competitionRank(obj, targetName) {
+  let rank = -1;
+  let targetScore = obj[targetName];
+  const scores = Object.values(obj).sort((a,b) => b - a);
+
+  for (let i = 0; i < scores.length; i++) {
+    let currentScore = scores[i];
+
+    if (currentScore !== scores[i - 1]) {
+      rank = i + 1;
+    }
+
+    if (targetScore === currentScore) {
+      return rank;
+    }
+  }
+}
+/*
+33 min, and GPT couldn't do better than I did.
+I overlooked that sort() defaults to string representation of numbers, so I had to
+quickly figure out to explicitly sort by value. It was a fairly quick bug fix.
+
+I also had to rewrite my code because I tried to return early out of ForEach, and
+had to rewrite the whole thing into a for loop
+
+I'll ask GPT how to get out of that. DAMN it's good. :|
+
+instead of rewriting a forEach call into a for loop, I can use Array.p.some()!
+it's really smart, once I hit the thing that I want to return on, I can just
+return true to return out of the iteration. In this case, since I initialize rank
+outside the iteration, I can just return it at the end of the function.
+
+ */
+// console.log(competitionRank(
+//   {Lilly: 91, Harris: 87, Archie: 93, Lexi: 100, Ava: 88}, "Lilly")
+//   === 3);
+//
+// console.log(
+//   competitionRank({
+//     George: 96,
+//     Emily: 95,
+//     Susan: 93,
+//     Jane: 89,
+//     Brett: 82
+//   }, "Jane") === 4
+// );
+//
+// console.log(
+//   competitionRank({
+//     Kate: 92,
+//     Carol: 92,
+//     Jess: 87,
+//     Bruce: 87,
+//     Scott: 84
+//   }, "Bruce") === 3
+// );
+
+/*
+First Recurrence Index
+Create a function that identifies the very first item that has recurred in the string argument passed. It returns the identified item with the index where it first appeared and the very next index where it resurfaced -- entirely as an object; or as an empty object if the passed argument is either null, undefined, empty string, or no recurring item exists.
+
+Examples
+recurIndex("DXTDXTXDTXD") ➞ {"D": [0, 3]}
+// D first appeared at index 0, resurfaced at index 3
+// T appeared and resurfaced at indices 2 and 5 but D and X completed the cycle first
+
+recurIndex("YXZXYTUVXWV") ➞ {"X": [1, 3]}
+
+recurIndex("YZTTZMNERXE") ➞ {"T": [2, 3]}
+
+recurIndex("AREDCBSDERD") ➞ {"D": [3, 7]}
+
+recurIndex("") ➞ {}
+
+recurIndex(null) ➞ {}
+
+d: strings, arrays, reduce
+
+a:
+build a distribution of the characters until one character has been found twice
+array of the string
+init acc object
+iterate through with a for loop for early return,
+  build distribution-like object like normal pattern
+    the letter is the key, the value is the array with the index
+  if the length of the indeces array is 2, return that character and the indices array
+
+*/
+function recurIndex(str) {
+  let accObj = {};
+  if (!str) return accObj;
+  // const strArray = str.split(''); // don't need this!
+
+  for (let i = 0; i < str.length; i++) {
+    let currentLetter = str[i];
+    // if (accObj[currentLetter]) {
+    if (accObj.hasOwnProperty(currentLetter)) {
+      return {[currentLetter]: [accObj[currentLetter], i]};
+      // WRONG {currentLetter: [accObj[currentLetter], i]};
+      // remember the brackets around the key
+    } else {
+      accObj[currentLetter]= i;
+    }
+  }
+  return {};
+}
+
+/* Messed up time because I was interrupted, but overall flowed very well on what seemed like a challenging problem
+I recognized the distribution-like pattern shortly after starting
+I recognized that I had to early return before I started coding (originally thought reduce(), but then realized I didn't need the whole distribution)
+I didn't need the split array, since I can iterate the string on index directly
+Perhaps the scariest/most important moment is when I wrote the line for the early
+return, and kept getting
+`{ currentLetter: [0,3] }` instead of
+`{ D: [0,3] }`
+because I forgot the brackets around the key.
+
+GPT told me that creating an array for the occurrences i s unnecessary, I agree
+instead, I can just track the first occurrence as the property value, and then
+just create the array with the early return at the end.
+Also told me to use Object.p.hasOwnProperty (which is above my pay-grade, but I
+looked into this, and it seems like good advice.
+
+*/
+
+console.log(recurIndex("DXTDXTXDTXD")) //➞ {"D": [0, 3]}
+// D first appeared at index 0, resurfaced at index 3
+// T appeared and resurfaced at indices 2 and 5 but D and X completed the cycle first
+
+console.log(recurIndex("YXZXYTUVXWV")) //➞ {"X": [1, 3]}
+
+console.log(recurIndex("YZTTZMNERXE")) //➞ {"T": [2, 3]}
+
+console.log(recurIndex("AREDCBSDERD")) //➞ {"D": [3, 7]}
+
+console.log(recurIndex("")) //➞ {}
+
+console.log(recurIndex(null)) //➞ {}
