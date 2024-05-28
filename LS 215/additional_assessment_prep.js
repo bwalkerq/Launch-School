@@ -1496,3 +1496,85 @@ const example = [
 //   { brand: "Urban Decay", name: "Naked Honey Pallete", count: 1 },
 //   { brand: "Stila", name: "Stay All Day Liquid Lipstick", count: 3 }
 // ]
+
+
+/*
+Get Notes Distribution
+Create a function that takes an array of students and returns an object
+representing their notes distribution. Keep in mind that all invalid notes
+should not be counted in the distribution. Valid notes are: 1, 2, 3, 4, 5
+
+p: from an object with notes (grades) return a count of the notes
+
+input:
+an array
+  of objects
+    with name and notes keys
+    the notes are stored in an array
+      some invalid notes included
+      valid values are 1 through 5
+
+out:
+an object
+  with the notes distribution
+  notes are keys, occurrence is value
+  in descending order
+if a note doesn't occur, don't include in return
+
+e:
+getNotesDistribution([
+  {
+    "name": "Steve",
+    "notes": [5, 5, 3, -1, 6]  // filter out -1 and 6
+  },
+  {
+    "name": "John",
+    "notes": [3, 2, 5, 0, -3] // filter out 0 and -3, not in desc order, so sort
+  }
+] ➞ {
+  5: 3,
+  3: 2,
+  2: 1
+})
+
+d:
+array iterate to get the set of notes into an array
+reduce the array into the object for accumulation
+
+a:
+map the given array to it's notes arrays
+flatten the array so it's just note values
+reduce the array of notes with an acc obj
+  ignore invalid values
+  familiar pattern
+  set the value as a key to it's current value, or zero
+  increment
+  return the acc object
+
+return the object from the reduce call
+
+ */
+function getNotesDistribution(arr) {
+  arr = arr.map(obj => obj.notes).flat().filter(x => x >= 1 && x <= 5);
+  return arr.reduce((acc, currentVal) => {
+    acc[currentVal] = acc[currentVal] || 0;
+    acc[currentVal] += 1;
+    return acc;
+  }, {});
+}
+
+// console.log(
+//   getNotesDistribution([
+//     {
+//       "name": "Steve",
+//       "notes": [5, 5, 3, -1, 6]  // filter out -1 and 6
+//     },
+//     {
+//       "name": "John",
+//       "notes": [3, 2, 5, 0, -3] // filter out 0 and -3, not in desc order, so sort
+//     }
+//   ]))
+
+// unintentionally got a problem that needed a distribution output, same as last
+// time, so very easy.
+// 16 min
