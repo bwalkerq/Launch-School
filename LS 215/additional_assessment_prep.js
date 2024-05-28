@@ -1934,13 +1934,13 @@ had to remember to pass an initial value of `acc` as 0 to sum the numbers
 */
 
 
-console.log(sum(["1", "five", "2wenty", "thr33"])) //➞ 36
-// 1,2,33 sums to 36
-
-console.log(sum([["1X2", "t3n"],["1024", "5", "64"]])) //➞ 1099
-// 1,2,3,1024,5,64
-
-console.log(sum([[["1"], "10v3"], ["738h"], [["s0"], ["1mu4ch3"],"-1s0"]])) //➞ 759
+// console.log(sum(["1", "five", "2wenty", "thr33"])) //➞ 36
+// // 1,2,33 sums to 36
+//
+// console.log(sum([["1X2", "t3n"],["1024", "5", "64"]])) //➞ 1099
+// // 1,2,3,1024,5,64
+//
+// console.log(sum([[["1"], "10v3"], ["738h"], [["s0"], ["1mu4ch3"],"-1s0"]])) //➞ 759
 
 /*
 Create a function that takes an object and returns an object of all entries having unique marks. If the marks are the same, take who is eldest.
@@ -2015,28 +2015,55 @@ with Esther
 verbalize what I'm thinking during the data structures section
 */
 
-console.log(
-  getObject({
-    "0": { age: 18, name: "john", marks: "400" },
-    "1": { age: 17, name: "julie", marks: "400" },
-    "2": { age: 16, name: "Robin", marks: "200" },
-    "3": { age: 16, name: "Bella", marks: "300" }
-  }));
-// ➞ {
-//   "0": { age: 18, name: "john", marks: "400" },
-//   "1": { age: 16, name: "Robin", marks: "200" },
-//   "2": { age: 16, name: "Bella", marks: "300" }
-// }
+// console.log(
+//   getObject({
+//     "0": { age: 18, name: "john", marks: "400" },
+//     "1": { age: 17, name: "julie", marks: "400" },
+//     "2": { age: 16, name: "Robin", marks: "200" },
+//     "3": { age: 16, name: "Bella", marks: "300" }
+//   }));
+// // ➞ {
+// //   "0": { age: 18, name: "john", marks: "400" },
+// //   "1": { age: 16, name: "Robin", marks: "200" },
+// //   "2": { age: 16, name: "Bella", marks: "300" }
+// // }
+//
+// console.log(
+//   getObject({
+//     "0": { age: 217, name: "jack", marks: "400" },
+//     "1": { age: 18, name: "john", marks: "400" },
+//     "2": { age: 17, name: "julie", marks: "400" },
+//   }));
+// // ➞ {
+// // "0": { age: 217, name: "jack", marks: "400" },
+// // }
 
-console.log(
-  getObject({
-    "0": { age: 217, name: "jack", marks: "400" },
-    "1": { age: 18, name: "john", marks: "400" },
-    "2": { age: 17, name: "julie", marks: "400" },
-  }));
-// ➞ {
-// "0": { age: 217, name: "jack", marks: "400" },
-// }
+let nester = {
+  0: { age: 80, name: "john", },
+  1: { age: 7, name: "julie", },
+  2: { age: 9000, name: "Robin", },
+  3: { age: 600, name: "Bella", }
+};
+
+let entries = Object.entries(nester);
+entries.sort((a, b) => {
+  return b[1].age - a[1].age;
+});
+console.log(entries)
+
+let sortedNester = Object.fromEntries(entries)
+console.log(sortedNester)
+
+/*
+put the age values in an array, sort them
+
+nested iteration
+iterate through the values array
+  iterate through the outer object, check for the matching, add it to the result
+
+ */
+
+
 
 
 
