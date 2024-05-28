@@ -2038,6 +2038,21 @@ verbalize what I'm thinking during the data structures section
 // // "0": { age: 217, name: "jack", marks: "400" },
 // // }
 
+/*
+my own extension of the above problem: Sort a nested object by a value of one
+of the inner properties
+
+These were my initial thoughts, it doesn't have to be this complicated!
+    // put the age values in an array, sort them
+    // nested iteration
+    // iterate through the values array
+    //   iterate through the outer object, check for the matching, add it to the result
+
+A better way!
+turn the object into an array, sort() the array by accessing the values of the
+inner object!
+
+ */
 let nester = {
   0: { age: 80, name: "john", },
   1: { age: 7, name: "julie", },
@@ -2053,16 +2068,127 @@ console.log(entries)
 
 let sortedNester = Object.fromEntries(entries)
 console.log(sortedNester)
+// note this actually doesn't sort the object
+
 
 /*
-put the age values in an array, sort them
+Vending Machine
+Your task is to create a function that simulates a vending machine.
 
-nested iteration
-iterate through the values array
-  iterate through the outer object, check for the matching, add it to the result
+Given an amount of money (in cents ¢ to make it simpler) and a productNumber, the vending machine should output the correct product name and give back the correct amount of change.
 
- */
+The coins used for the change are the following: [500, 200, 100, 50, 20, 10]
 
+The return value is an object with 2 properties:
+
+product: the product name that the user selected.
+change: an array of coins (can be empty, must be sorted in descending order).
+
+p: given a product and payment, return an object with the requested product, and change
+in:
+the products (static)
+money in cents
+  an integer
+a product number
+
+out:
+"invalid product number" if out of range
+"not enough money" if too little
+an object
+  product property
+    string
+  change property
+    an array
+      of integers that are the coins representing the change
+      desc order
+    can be an empty array if no change
+e:
+vendingMachine(products, 200, 7) ➞ { product: "Crackers", change: [ 50, 20, 10 ] }
+
+vendingMachine(products, 500, 0) ➞ "Enter a valid product number"
+
+vendingMachine(products, 90, 1) ➞ "Not enough money for this product"
+
+d:
+objects!
+array for the change
+
+a:
+// result object {}
+
+// retreive the object matching the product number
+  // for each obj of the products array
+  // if the product number matches the requested
+    // check cost
+    // store product name in the result obj
+    return the object with the name and the change array
+      do arithmetic with the cost and money to make the change array
+
+// change array helper(price, payment) {
+//   empty result array
+//   calc change (while change >0)
+//    iterate through the coins
+//     if the change is greater than the coin
+//     push the coin to the result
+// subtract the coin's value from the change
+// while loop will stop once all change has been pushed to the array
+return the array
+}
+*/
+
+function vendingMachine(productsArr, payment, productNumber) {
+  const coins = [500, 200, 100, 50, 20, 10, 5, 1];
+
+  function changeArray(price, payment) {
+    let arr = [];
+    let change = payment - price;
+    for (let i = 0; i < coins.length; i++) {
+      if (change === 0) return arr;
+      if (change >= coins[i]) {
+        arr.push(coins[i]);
+        change = change - coins[i];
+        i = 0;
+      }
+    }
+  }
+
+  if (productNumber < 1 || productNumber > productsArr.length) return "Enter a valid product number";
+
+  let result = {};
+
+  for (let obj of productsArr) {
+    if (obj.number === productNumber) {
+      if (obj.price > payment) return 'Not enough money for this product';
+      result['product'] = obj.name;
+      result['change'] = changeArray(obj.price, payment)
+    }
+  }
+
+  return result;
+}
+
+// Products available
+const products = [
+  { number: 1, price: 100, name: 'Orange juice' },
+  { number: 2, price: 200, name: 'Soda' },
+  { number: 3, price: 150, name: 'Chocolate snack' },
+  { number: 4, price: 250, name: 'Cookies' },
+  { number: 5, price: 180, name: 'Gummy bears' },
+  { number: 6, price: 500, name: 'Condoms' },
+  { number: 7, price: 120, name: 'Crackers' },
+  { number: 8, price: 220, name: 'Potato chips' },
+  { number: 9, price: 80,  name: 'Small snack' },
+];
+
+
+// console.log(vendingMachine(products, 200, 7))
+// //  ➞ { product: "Crackers", change: [ 50, 20, 10 ] }
+//
+// console.log(vendingMachine(products, 500, 0))
+// //  ➞ "Enter a valid product number"
+//
+// console.log(vendingMachine(products, 90, 1) )
+// // ➞ "Not enough money for this product"
 
 
 
