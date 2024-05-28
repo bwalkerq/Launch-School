@@ -1941,3 +1941,127 @@ console.log(sum([["1X2", "t3n"],["1024", "5", "64"]])) //➞ 1099
 // 1,2,3,1024,5,64
 
 console.log(sum([[["1"], "10v3"], ["738h"], [["s0"], ["1mu4ch3"],"-1s0"]])) //➞ 759
+
+/*
+Create a function that takes an object and returns an object of all entries having unique marks. If the marks are the same, take who is eldest.
+
+p:
+given an object, return a filtered object based on unique marks with age as a tiebreaker
+in:
+an object
+  all structured the same way
+  string number key
+    object value with age, name, marks
+      note that marks are strings
+  size at least 1 property
+  NOT sorted desc by marks
+  duplicate names? sure
+  same mark and age? nope
+
+out:
+  return a new object
+  keys updated to reflect order by age, desc
+
+e:
+getObject({
+  "0": { age: 18, name: "john", marks: "400" },
+  "1": { age: 17, name: "julie", marks: "400" },
+  "2": { age: 16, name: "Robin", marks: "200" },
+  "3": { age: 16, name: "Bella", marks: "300" }
+}) ➞ {
+  "0": { age: 18, name: "john", marks: "400" },
+  "1": { age: 16, name: "Robin", marks: "200" },
+  "2": { age: 16, name: "Bella", marks: "300" }
+}
+
+d: objects into arrays?
+iterate with for in loop?
+
+a:
+no sorting needed, since objects are already sorted by age
+  corollary: always keep the first of a set of duplicates
+
+init result obj
+init seen array
+counter starts at zero
+iterate through the object
+  if the marks value hasn't been seen prior,
+  - if the value is included in the seen array
+    add it to the result obj with the counter key value as a string
+    add the marks value to seen array
+    increment the counter
+
+  return the result object
+*/
+
+function getObject(obj) {
+  let result = {};
+  let seen = [];
+  let counter = 0
+
+  for (let key in obj) {
+    if (!seen.includes(obj[key].marks)) {
+      result[String(counter)] = obj[key];
+      // console.log(result)
+      seen.push(obj[key].marks);
+      counter += 1;
+    }
+  }
+  return result;
+}
+/*
+30 min
+with Esther
+verbalize what I'm thinking during the data structures section
+*/
+
+console.log(
+  getObject({
+    "0": { age: 18, name: "john", marks: "400" },
+    "1": { age: 17, name: "julie", marks: "400" },
+    "2": { age: 16, name: "Robin", marks: "200" },
+    "3": { age: 16, name: "Bella", marks: "300" }
+  }));
+// ➞ {
+//   "0": { age: 18, name: "john", marks: "400" },
+//   "1": { age: 16, name: "Robin", marks: "200" },
+//   "2": { age: 16, name: "Bella", marks: "300" }
+// }
+
+console.log(
+  getObject({
+    "0": { age: 217, name: "jack", marks: "400" },
+    "1": { age: 18, name: "john", marks: "400" },
+    "2": { age: 17, name: "julie", marks: "400" },
+  }));
+// ➞ {
+// "0": { age: 217, name: "jack", marks: "400" },
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
