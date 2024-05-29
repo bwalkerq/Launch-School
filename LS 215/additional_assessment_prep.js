@@ -2213,7 +2213,57 @@ function vendingMachine(payment, productNumber) {
 // console.log(vendingMachine(90, 1) )
 // // ➞ "Not enough money for this product"
 
+/*
+Check If the Brick Fits through the Hole
+Write the function that takes three dimensions of a brick: height(a), width(b) and depth(c) and returns true if this brick can fit into a hole with the width(w) and height(h).
 
+Examples
+doesBrickFit(1, 1, 1, 1, 1) ➞ true
+
+doesBrickFit(1, 2, 1, 1, 1) ➞ true
+
+doesBrickFit(1, 2, 2, 1, 1) ➞ false
+Notes
+You can turn the brick with any side towards the hole.
+We assume that the brick fits if its sizes equal the ones of the hole (i.e. brick size should be less than or equal to the size of the hole, not strictly less).
+You can't put a brick in at a non-orthogonal angle. hahhahhaa
+
+p: given a 2D hole, check if a 3D brick fits
+in:
+5 numbers
+  3 dimensions of a brick
+  2 dimensions of a hole
+
+out: boolean if the brick fits through at an orthogonal angle
+
+e:
+note that if the at least 2 of the dimensions are less than or equal to the hole's two dimensions, it fits
+
+d:
+just arrays, some/all, or count
+
+a:
+slice the first three
+sort them asc
+if each of the first two is less than or equal to the corresponding 2, true
+
+*/
+function doesBrickFit(h, l, w, wBrick, hBrick) {
+  let brickDimensions = [h, l, w].sort((a,b) => a - b);
+  let holeDimensions = [wBrick, hBrick].sort((a,b) => a - b);
+  for (let i = 0; i < holeDimensions.length; i++) {
+    if (brickDimensions[i] > holeDimensions[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(doesBrickFit(1, 1, 1, 1, 1) === true)
+
+console.log(doesBrickFit(1, 2, 1, 1, 1) === true)
+
+console.log(doesBrickFit(5, 2, 2, 1, 1) === false)
 
 
 
