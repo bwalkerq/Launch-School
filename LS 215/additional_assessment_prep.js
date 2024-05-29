@@ -2060,15 +2060,15 @@ let nester = {
   3: { age: 600, name: "Bella", }
 };
 
-let entries = Object.entries(nester);
-entries.sort((a, b) => {
-  return b[1].age - a[1].age;
-});
-console.log(entries)
-
-let sortedNester = Object.fromEntries(entries)
-console.log(sortedNester)
-// note this actually doesn't sort the object
+// let entries = Object.entries(nester);
+// entries.sort((a, b) => {
+//   return b[1].age - a[1].age;
+// });
+// console.log(entries)
+//
+// let sortedNester = Object.fromEntries(entries)
+// console.log(sortedNester)
+// // note this actually doesn't sort the object
 
 
 /*
@@ -2136,58 +2136,81 @@ return the array
 }
 */
 
-function vendingMachine(productsArr, payment, productNumber) {
+function vendingMachine(payment, productNumber) {
+  // Products available
+  const products = [
+    { number: 1, price: 100, name: 'Orange juice' },
+    { number: 2, price: 200, name: 'Soda' },
+    { number: 3, price: 150, name: 'Chocolate snack' },
+    { number: 4, price: 250, name: 'Cookies' },
+    { number: 5, price: 180, name: 'Gummy bears' },
+    { number: 6, price: 500, name: 'Condoms' },
+    { number: 7, price: 120, name: 'Crackers' },
+    { number: 8, price: 220, name: 'Potato chips' },
+    { number: 9, price: 80,  name: 'Small snack' },
+  ];
+
   const coins = [500, 200, 100, 50, 20, 10, 5, 1];
 
-  function changeArray(price, payment) {
-    let arr = [];
-    let change = payment - price;
-    for (let i = 0; i < coins.length; i++) {
-      if (change === 0) return arr;
-      if (change >= coins[i]) {
-        arr.push(coins[i]);
-        change = change - coins[i];
-        i = 0;
-      }
+  // function changeArray(price, payment) {
+  //   let arr = [];
+  //   let change = payment - price;
+  //   for (let i = 0; i < coins.length; i++) {
+  //     if (change === 0) return arr;
+  //     if (change >= coins[i]) {
+  //       arr.push(coins[i]);
+  //       change = change - coins[i];
+  //       i = 0;
+  //     }
+  //   }
+  // }
+
+  // GPT's solution did the change array much, much better
+  /* the thing that got me is that I was trying to loop through the whole list
+  of coins each time, WHILE the change was greater than 0.
+
+  A better approach is to loop through the coins once, and stay on each coin
+  WHILE the current change amount is greater than the current coin. This makes
+  sense since you'd be adding multiple, say, 25 cent coins if the change amount
+  was 81.
+   */
+  if (productNumber < 1 || productNumber >= products.length) {
+    return "Enter a valid product number";
+  }
+
+  const product = products[productNumber -1];
+  // Calculate the change
+  let changeAmount = payment - product.price;
+  const change = [];
+
+  // Calculate the coins for the change
+  for (let coin of coins) {
+    while (changeAmount >= coin) {
+      change.push(coin);
+      changeAmount -= coin;
     }
   }
 
-  if (productNumber < 1 || productNumber > productsArr.length) return "Enter a valid product number";
-
   let result = {};
-
-  for (let obj of productsArr) {
+  for (let obj of products) {
     if (obj.number === productNumber) {
       if (obj.price > payment) return 'Not enough money for this product';
       result['product'] = obj.name;
-      result['change'] = changeArray(obj.price, payment)
+      result['change'] = change
     }
   }
 
   return result;
 }
 
-// Products available
-const products = [
-  { number: 1, price: 100, name: 'Orange juice' },
-  { number: 2, price: 200, name: 'Soda' },
-  { number: 3, price: 150, name: 'Chocolate snack' },
-  { number: 4, price: 250, name: 'Cookies' },
-  { number: 5, price: 180, name: 'Gummy bears' },
-  { number: 6, price: 500, name: 'Condoms' },
-  { number: 7, price: 120, name: 'Crackers' },
-  { number: 8, price: 220, name: 'Potato chips' },
-  { number: 9, price: 80,  name: 'Small snack' },
-];
 
-
-// console.log(vendingMachine(products, 200, 7))
+// console.log(vendingMachine(200, 7))
 // //  ➞ { product: "Crackers", change: [ 50, 20, 10 ] }
 //
-// console.log(vendingMachine(products, 500, 0))
+// console.log(vendingMachine(500, 0))
 // //  ➞ "Enter a valid product number"
 //
-// console.log(vendingMachine(products, 90, 1) )
+// console.log(vendingMachine(90, 1) )
 // // ➞ "Not enough money for this product"
 
 
