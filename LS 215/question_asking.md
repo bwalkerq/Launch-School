@@ -38,7 +38,7 @@ input/test-writing questions to ask the interviewer
 
 ## Feedback compiled across study sessions:
 Philip:
-- Become familiar with `Array.p.all` and `.some` (same as ruby #all? and #any?)
+- Become familiar with `Array.p.every()` and `.some()` (same as ruby #all? and #any?)
   - returns boolean true if all (or, in the case of `.some`, at least one) the elements of an array return true for the `callbackFn` 
 - Build fluency with JS. as of 5/22 my PEDAC and process are both solid.
 - Look for problem-solving patterns
