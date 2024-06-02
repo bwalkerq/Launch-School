@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="df906ed2-c5b7-4e0e-9bef-317f45cea20c" name="Changes" comment="Refactor files to give more specific name. 216 Complete!" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package.json" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2fVZdcBNpytkzCZm2HPyXon70EM" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Node.js.L1 exercises.js.executor": "Run",
+    "Node.js.L2_exercises.js.executor": "Run",
+    "Node.js.L3_exercises.js.executor": "Run",
+    "Node.js.additional_assessment_prep.js.executor": "Run",
+    "Node.js.advnaced.js.executor": "Run",
+    "Node.js.code_review_longest_sentence.js.executor": "Run",
+    "Node.js.interpretive.js.executor": "Run",
+    "Node.js.scratch.js.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/benjaminwalker/Documents/Launch-School/LS 215",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JavaScript"
+    ]
+  }
+}]]></component>
+  <component name="RunManager" selected="Node.js.additional_assessment_prep.js">
+    <configuration name="L3_exercises.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/L3_exercises.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="additional_assessment_prep.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/additional_assessment_prep.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="advnaced.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/small_problems/advnaced.js" working-dir="$PROJECT_DIR$/small_problems">
+      <method v="2" />
+    </configuration>
+    <configuration name="code_review_longest_sentence.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/code_review_longest_sentence.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="interpretive.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/small_problems/interpretive.js" working-dir="$PROJECT_DIR$/small_problems">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.additional_assessment_prep.js" />
+        <item itemvalue="Node.js.interpretive.js" />
+        <item itemvalue="Node.js.L3_exercises.js" />
+        <item itemvalue="Node.js.advnaced.js" />
+        <item itemvalue="Node.js.code_review_longest_sentence.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="df906ed2-c5b7-4e0e-9bef-317f45cea20c" name="Changes" comment="" />
+      <created>1713888293223</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1713888293223</updated>
+      <workItem from="1713888294334" duration="31017000" />
+      <workItem from="1714674826589" duration="109000" />
+      <workItem from="1714674944307" duration="5370000" />
+      <workItem from="1715082354108" duration="80018000" />
+      <workItem from="1715959015874" duration="87688000" />
+    </task>
+    <task id="LOCAL-00002" summary="Moving slowly through Lesson 1">
+      <option name="closed" value="true" />
+      <created>1714247968445</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714247968445</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Octal exercise">
+      <option name="closed" value="true" />
+      <created>1714317109853</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1714317109853</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Filter anagrams from a list exercise">
+      <option name="closed" value="true" />
+      <created>1714318063323</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1714318063323</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Process band names exercise complete">
+      <option name="closed" value="true" />
+      <created>1714399893462</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714399893462</updated>
+    </task>
+    <task id="LOCAL-00006" summary="class record summary exercise complete! (many functions)">
+      <option name="closed" value="true" />
+      <created>1714407290747</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1714407290747</updated>
+    </task>
+    <task id="LOCAL-00007" summary="refactor to correct directory name">
+      <option name="closed" value="true" />
+      <created>1714674857503</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1714674857503</updated>
+    </task>
+    <task id="LOCAL-00008" summary="L2 exercises complete through assignment 4">
+      <option name="closed" value="true" />
+      <created>1715024165875</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1715024165875</updated>
+    </task>
+    <task id="LOCAL-00009" summary="prepping for interview assessment with Phillip">
+      <option name="closed" value="true" />
+      <created>1715355990661</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1715355990661</updated>
+    </task>
+    <task id="LOCAL-00010" summary="progress through lesson 2 on string processing">
+      <option name="closed" value="true" />
+      <created>1715356012297</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1715356012297</updated>
+    </task>
+    <task id="LOCAL-00011" summary="sentiment analysis, learned how to capture all the words from a text into a usable array.">
+      <option name="closed" value="true" />
+      <created>1715357729479</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1715357729479</updated>
+    </task>
+    <task id="LOCAL-00012" summary="sentiment analysis with regex!">
+      <option name="closed" value="true" />
+      <created>1715459263464</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1715459263464</updated>
+    </task>
+    <task id="LOCAL-00013" summary="longest sentence complete, submitted for code review">
+      <option name="closed" value="true" />
+      <created>1715611765200</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1715611765200</updated>
+    </task>
+    <task id="LOCAL-00014" summary="updated solution after reading the solution given">
+      <option name="closed" value="true" />
+      <created>1715612293203</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1715612293203</updated>
+    </task>
+    <task id="LOCAL-00015" summary="L2 (string processing) quiz complete">
+      <option name="closed" value="true" />
+      <created>1715616317667</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1715616317667</updated>
+    </task>
+    <task id="LOCAL-00016" summary="additional notes to the pedac section">
+      <option name="closed" value="true" />
+      <created>1715696576824</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1715696576824</updated>
+    </task>
+    <task id="LOCAL-00017" summary="madlibs complete">
+      <option name="closed" value="true" />
+      <created>1715696592808</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1715696592808</updated>
+    </task>
+    <task id="LOCAL-00018" summary="longest sentence complete, now compares the length by word count rather than number of characters">
+      <option name="closed" value="true" />
+      <created>1715697050594</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1715697050594</updated>
+    </task>
+    <task id="LOCAL-00019" summary="reflections on using string.prototype.replace!">
+      <option name="closed" value="true" />
+      <created>1715697545845</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1715697545845</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Matrix transposition">
+      <option name="closed" value="true" />
+      <created>1715699780621</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1715699780621</updated>
+    </task>
+    <task id="LOCAL-00021" summary="matrix rotation complete, Merge sort complete two different ways">
+      <option name="closed" value="true" />
+      <created>1715791003231</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1715791003231</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Previous problem was simply merge done two different ways; this time merge *sort* brought me to my knees.">
+      <option name="closed" value="true" />
+      <created>1715870039139</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1715870039139</updated>
+    </task>
+    <task id="LOCAL-00023" summary="binary search complete. Recency Effect with recursion (from merge sort) whoops. I can, if desired, go back and solve this again without recursion.">
+      <option name="closed" value="true" />
+      <created>1715872812837</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1715872812837</updated>
+    </task>
+    <task id="LOCAL-00024" summary="L3 practice with asking questions and determining requirements from the problem statement">
+      <option name="closed" value="true" />
+      <created>1716063398608</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1716063398608</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Caesar Cipher with Jon, mock interview style, important practice!">
+      <option name="closed" value="true" />
+      <created>1716221445972</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1716221445972</updated>
+    </task>
+    <task id="LOCAL-00026" summary="lots of question-writing practice">
+      <option name="closed" value="true" />
+      <created>1716221463506</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1716221463506</updated>
+    </task>
+    <task id="LOCAL-00027" summary="studying with Paco, so helpful!">
+      <option name="closed" value="true" />
+      <created>1716319505204</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1716319505204</updated>
+    </task>
+    <task id="LOCAL-00028" summary="code warring">
+      <option name="closed" value="true" />
+      <created>1716319541764</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1716319541764</updated>
+    </task>
+    <task id="LOCAL-00029" summary="formalizing some questions">
+      <option name="closed" value="true" />
+      <created>1716319601382</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1716319601382</updated>
+    </task>
+    <task id="LOCAL-00030" summary="feedback section started, really useful">
+      <option name="closed" value="true" />
+      <created>1716476326483</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1716476326483</updated>
+    </task>
+    <task id="LOCAL-00031" summary="gaining steam, lots of practice live coding">
+      <option name="closed" value="true" />
+      <created>1716476356743</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1716476356743</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Set game object and reflection. I like my answer better than GPT">
+      <option name="closed" value="true" />
+      <created>1716497118123</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1716497118123</updated>
+    </task>
+    <task id="LOCAL-00033" summary="combine incomes problem (solo)">
+      <option name="closed" value="true" />
+      <created>1716559065040</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1716559065040</updated>
+    </task>
+    <task id="LOCAL-00034" summary="studying with AJ">
+      <option name="closed" value="true" />
+      <created>1716580936409</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1716580936409</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Champions (Tybo would like this one)">
+      <option name="closed" value="true" />
+      <created>1716582780000</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1716582780000</updated>
+    </task>
+    <task id="LOCAL-00036" summary="the pixel invert problem with Jon, too easy, not helpful">
+      <option name="closed" value="true" />
+      <created>1716823158104</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1716823158104</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Simplify list complete, remember to return the acc in reduce">
+      <option name="closed" value="true" />
+      <created>1716864977773</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1716864977774</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Get Notes Distribution">
+      <option name="closed" value="true" />
+      <created>1716865086099</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1716865086099</updated>
+    </task>
+    <task id="LOCAL-00039" summary="split bunches">
+      <option name="closed" value="true" />
+      <created>1716865140248</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1716865140248</updated>
+    </task>
+    <task id="LOCAL-00040" summary="adding some great little chunks">
+      <option name="closed" value="true" />
+      <created>1716865176254</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1716865176254</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Standard Competition and First Recurrence Index both complete">
+      <option name="closed" value="true" />
+      <created>1716865249769</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1716865249769</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Deep Arithmetic, very satisfying">
+      <option name="closed" value="true" />
+      <created>1716865333219</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1716865333219</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Playing with nested arrays problem, with Esther">
+      <option name="closed" value="true" />
+      <created>1716906285020</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1716906285020</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Weird burn where I learned that objects don't guarantee order, even after sorting. This was my own extension of a problem. It makes sense why the problem wasn't written this way!">
+      <option name="closed" value="true" />
+      <created>1716927746378</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1716927746378</updated>
+    </task>
+    <task id="LOCAL-00045" summary="vending machine">
+      <option name="closed" value="true" />
+      <created>1716928404282</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1716928404282</updated>
+    </task>
+    <task id="LOCAL-00046" summary="vending machine reflection with GPT, very efficient coin return learning">
+      <option name="closed" value="true" />
+      <created>1716993312399</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1716993312399</updated>
+    </task>
+    <task id="LOCAL-00047" summary="brick problem (too simple to be useful)">
+      <option name="closed" value="true" />
+      <created>1716993331107</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1716993331107</updated>
+    </task>
+    <task id="LOCAL-00048" summary="clutch realization that Array.p.all() doesn't exist, it's actually .every()!">
+      <option name="closed" value="true" />
+      <created>1716993384004</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1716993384004</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Refactor files to give more specific name. 216 Complete!">
+      <option name="closed" value="true" />
+      <created>1717084241046</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1717084241046</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Refactor files to give more specific name. 216 Complete!">
+      <option name="closed" value="true" />
+      <created>1717084266492</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1717084266493</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Caesar Cipher with Jon, mock interview style, important practice!" />
+    <MESSAGE value="lots of question-writing practice" />
+    <MESSAGE value="studying with Paco, so helpful!" />
+    <MESSAGE value="code warring" />
+    <MESSAGE value="formalizing some questions" />
+    <MESSAGE value="feedback section started, really useful" />
+    <MESSAGE value="gaining steam, lots of practice live coding" />
+    <MESSAGE value="Set game object and reflection. I like my answer better than GPT" />
+    <MESSAGE value="combine incomes problem (solo)" />
+    <MESSAGE value="studying with AJ" />
+    <MESSAGE value="Champions (Tybo would like this one)" />
+    <MESSAGE value="the pixel invert problem with Jon, too easy, not helpful" />
+    <MESSAGE value="Simplify list complete, remember to return the acc in reduce" />
+    <MESSAGE value="Get Notes Distribution" />
+    <MESSAGE value="split bunches" />
+    <MESSAGE value="adding some great little chunks" />
+    <MESSAGE value="Standard Competition and First Recurrence Index both complete" />
+    <MESSAGE value="Deep Arithmetic, very satisfying" />
+    <MESSAGE value="Playing with nested arrays problem, with Esther" />
+    <MESSAGE value="Weird burn where I learned that objects don't guarantee order, even after sorting. This was my own extension of a problem. It makes sense why the problem wasn't written this way!" />
+    <MESSAGE value="vending machine" />
+    <MESSAGE value="vending machine reflection with GPT, very efficient coin return learning" />
+    <MESSAGE value="brick problem (too simple to be useful)" />
+    <MESSAGE value="clutch realization that Array.p.all() doesn't exist, it's actually .every()!" />
+    <MESSAGE value="Refactor files to give more specific name. 216 Complete!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor files to give more specific name. 216 Complete!" />
+  </component>
+</project>
