@@ -23,7 +23,7 @@ function createGreeter(name) {
   };
 }
 const helloVictor = createGreeter('Victor');
-helloVictor.greet('morning');
+// helloVictor.greet('morning');
 
 /* I understood (without encountering the content from future lessons about JS
 closures and garbage collected) that `name` in the switch case refers to the
@@ -68,11 +68,11 @@ function objectsEqual(first, second) {
   }
 }
 
-console.log(objectsEqual({a: 'foo'}, {a: 'foo'}));                      // true
-console.log(objectsEqual({a: 'foo', b: 'bar'}, {a: 'foo'}));            // false
-console.log(objectsEqual({a: 'foo', b: 'bar'}, {b: "bar", a: 'foo'}));  // true
-console.log(objectsEqual({}, {}));                                      // true
-console.log(objectsEqual({a: 'foo', b: undefined}, {a: 'foo', c: 1}));  // false
+// console.log(objectsEqual({a: 'foo'}, {a: 'foo'}));                      // true
+// console.log(objectsEqual({a: 'foo', b: 'bar'}, {a: 'foo'}));            // false
+// console.log(objectsEqual({a: 'foo', b: 'bar'}, {b: "bar", a: 'foo'}));  // true
+// console.log(objectsEqual({}, {}));                                      // true
+// console.log(objectsEqual({a: 'foo', b: undefined}, {a: 'foo', c: 1}));  // false
 /*This last one got me. My solution does the same as the given, but mine
 * does the unconventional (I haven't seen it anywhere else) way by turning the
 * whole keys array to a string and comparing those...
@@ -87,3 +87,76 @@ console.log(objectsEqual({a: 'foo', b: undefined}, {a: 'foo', c: 1}));  // false
 * edge cases
 * */
 
+/*
+info: Logs the name and year of the student.
+addCourse: Enrolls student in a course. A course is an object literal that has
+properties for its name and code.
+listCourses: Returns a list of the courses student has enrolled in.
+addNote: Adds a note property to a course. Takes a code and a note as an
+argument. If a note already exists, the note is appended to the existing one.
+updateNote: Updates a note for a course. Updating a note replaces the existing
+note with the new note.
+viewNotes: Logs the notes for all the courses. Courses without notes are not displayed.
+*/
+function createStudent(name, year) {
+  return {
+    name,
+    year,
+    courses: [],
+    info() {
+      console.log(`${this.name} is a ${this.year} year student.`);
+    },
+    addCourse(course) {
+      this.courses.push(course);
+    },
+    listCourses() {
+      console.log(this.courses);
+      return this.courses;
+    },
+    addNote(code, note) {
+      this.courses.forEach(courseObj => {
+        if (courseObj.code === code) {
+          courseObj.notes = courseObj.notes || [];
+          courseObj.notes.push(note);
+        }
+      });
+    },
+    viewNotes() {
+      this.courses.forEach(courseObj => {
+        if (courseObj.notes) {
+          console.log(courseObj.name + ': ' + courseObj.notes.join('; '))
+        }
+      });
+    },
+    updateNote(code, note) {
+      this.courses.forEach(courseObj => {
+        if (courseObj.code === code) {
+          courseObj.notes = [];
+          courseObj.notes.push(note);
+        }
+      });
+    },
+  }
+}
+
+let foo = createStudent('Foo', '1st');
+foo.info();
+// "Foo is a 1st year student"
+foo.listCourses();
+// [];
+foo.addCourse({ name: 'Math', code: 101 });
+foo.addCourse({ name: 'Advanced Math', code: 102 });
+foo.listCourses();
+// [{ name: 'Math', code: 101 }, { name: 'Advanced Math', code: 102 }]
+foo.addNote(101, 'Fun course');
+foo.addNote(101, 'Remember to study for algebra');
+foo.viewNotes();
+// "Math: Fun course; Remember to study for algebra"
+foo.addNote(102, 'Difficult subject');
+foo.viewNotes();
+// "Math: Fun course; Remember to study for algebra"
+// "Advance Math: Difficult subject"
+foo.updateNote(101, 'Fun course');
+foo.viewNotes();
+// "Math: Fun course"
+// "Advanced Math: Difficult subject"
