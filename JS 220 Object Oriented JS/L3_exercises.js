@@ -4,11 +4,12 @@
 // a = 10;
 // console.log(global.a === a)
 
-function func() {
-  let b = 1;
-}
+// function func() {
+//   let b = 1;
+// }
 
-func();
+// func();
+
 
 // console.log(b)
 
@@ -193,5 +194,240 @@ foo = {
   }
 };
 foo.incrementA();
-console.log(foo.a)
+// console.log(foo.a)
+
+// I did pretty solid with those "What is this?(1)"
+
+let myObject = {
+  count: 1,
+  myChildObject: {
+    myMethod() {
+      return this.count;
+    },
+  },
+};
+// console.log(myObject.myChildObject.myMethod.call(myObject));
+
+// passing context as an argument
+let computer = {
+  price: 30000,
+  shipping: 2000,
+  total() {
+    let tax = 3000;
+    function specialDiscount(context) {
+      if (context.price > 20000) {
+        return 1000;
+      } else {
+        return 0;
+      }
+    }
+
+    return this.price + this.shipping + tax - specialDiscount(this);
+  }
+};
+
+// console.log(computer.total());
+
+// arrow function
+computer = {
+  price: 30000,
+  shipping: 2000,
+  total() {
+    let tax = 3000;
+    specialDiscount = () => {
+      if (this.price > 20000) {
+        return 1000;
+      } else {
+        return 0;
+      }
+    }
+
+    return this.price + this.shipping + tax - specialDiscount();
+  }
+};
+
+// console.log(computer.total());
+
+// binding the context to special discount
+computer = {
+  price: 30000,
+  shipping: 2000,
+  total() {
+    let tax = 3000;
+    let specialDiscount = function () {
+      if (this.price > 20000) {
+        return 1000;
+      } else {
+        return 0;
+      }
+    }.bind(this);
+
+    return this.price + this.shipping + tax - specialDiscount();
+  }
+};
+
+// console.log(computer.total());
+
+// call/apply
+computer = {
+  price: 30000,
+  shipping: 2000,
+  total() {
+    let tax = 3000;
+    function specialDiscount() {
+      if (this.price > 20000) {
+        return 1000;
+      } else {
+        return 0;
+      }
+    }
+
+    return this.price + this.shipping + tax - specialDiscount.apply(this);
+  }
+};
+
+// console.log(computer.total());
+
+// save context to local variable
+computer = {
+  price: 30000,
+  shipping: 2000,
+  total() {
+    let tax = 3000;
+    let self = this;
+    function specialDiscount() {
+      if (self.price > 20000) {
+        return 1000;
+      } else {
+        return 0;
+      }
+    }
+
+    return this.price + this.shipping + tax - specialDiscount();
+  }
+};
+
+// console.log(computer.total());
+
+let numbers = [1, 2, 3, 4];
+function makeCheckEven() {
+  return function (number) {
+      return number % 2 === 0;
+  }
+}
+
+let checkEven = makeCheckEven();
+
+// console.log(numbers.filter(checkEven)); // [2, 4]
+
+function execute(func, operand) {
+  return (func(operand))
+}
+
+// console.log(execute(function(number) {
+//   return number * 2;
+// }, 10)); // 20
+//
+// console.log(execute(function(string) {
+//   return string.toUpperCase();
+// }, 'hey there buddy')); // "HEY THERE BUDDY"
+
+
+function makeListTransformer(func) {
+  // ... implement this function
+  return function (array) {
+    return array.map(func);
+  }
+}
+
+let timesTwo = makeListTransformer(function(number) {
+  return number * 2;
+});
+
+// console.log(timesTwo([1, 2, 3, 4])); // [2, 4, 6, 8]
+
+
+function makeCounterLogger(startingNum) {
+  return function (endingNum) {
+    if (endingNum > startingNum) {
+      for (let i = startingNum; i <= endingNum; i++) {
+        console.log(i);
+      }
+    } else {
+      for (let i = startingNum; i >= endingNum; i--) {
+        console.log(i);
+      }
+    }
+  }
+}
+
+// let countLog = makeCounterLogger(5);
+// countLog(8); // 5,6,7,8
+//
+// countLog(2); // 5,4,3,2
+
+function makeList() {
+  let listArray = [];
+  return function (arg) {
+    if (arg === undefined) {
+      if (listArray.length === 0) return 'The list is empty';
+      listArray.forEach(value => console.log(value));
+    } else if (listArray.includes(arg)) {
+      let idx = listArray.indexOf(arg);
+      return listArray.splice(idx, 1)[0] + ' removed!';
+    } else {
+      listArray.push(arg);
+      return arg + ' added!';
+    }
+  }
+}
+
+let list = makeList();
+list();
+list('make breakfast');
+list('read book');
+list();
+list('make breakfast');
+list();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
