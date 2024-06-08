@@ -382,21 +382,93 @@ function makeList() {
   }
 }
 
-let list = makeList();
-list();
-list('make breakfast');
-list('read book');
-list();
-list('make breakfast');
-list();
+// let list = makeList();
+// list();
+// list('make breakfast');
+// list('read book');
+// list();
+// list('make breakfast');
+// list();
+
+function makeMultipleLister(num) {
+  return function () {
+    for (let counter = num; counter < 100; counter += num) {
+      console.log(counter);
+    }
+  }
+}
+
+let lister = makeMultipleLister(13);
+// lister();
+
+let total = 0;
+function addToTotal(num) {
+  return total += num;
+}
+
+function subtractFromTotal(num) {
+  return total -+ num;
+}
+
+// console.log(addToTotal(1));
+// console.log(subtractFromTotal(10));
+
+function startup() {
+  let status = 'ready';
+  return function() {
+    console.log('The system is ready.');
+  };
+}
+
+let ready = startup();
+let systemStatus = // ?
+/* Is there a way to set the value of `systemStatus` to the value of the inner
+ variable `status` without changing `startup` in any way? If so, how?
+* I answered no, and was correct.
+This is the technique for defining private variables. cool
+*/
 
 
+function makeList() {
+  let items = [];
 
+  return {
+    list() {
+      if (items.length === 0) {
+        console.log('The list is empty.');
+      } else {
+        items.forEach(item => {
+          console.log(item);
+        });
+      }
+    },
 
+    add(newItem) {
+      items.push(newItem);
+      console.log(newItem + ' added!');
+    },
 
+    remove(item) {
+      let index = items.indexOf(item);
+      items.splice(index, 1);
+      console.log(item + ' removed!');
+    },
+  };
+}
+/* I figured out how to accomplish this with a closure, thanks to heavy scaffolding
+* in the previous question. Still cool though!
+* This was the first time the webstorm failed me; for some reason it didn't see
+* `add` as a function. This works in node, however, and my solution essentially
+* matched that given one
+* */
 
-
-
+// let list = makeList();
+// list.add('peas');
+// list.list();
+// list.add('corn');
+// list.list();
+// list.remove('peas');
+// list.list();
 
 
 
