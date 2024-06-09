@@ -470,6 +470,53 @@ function makeList() {
 // list.remove('peas');
 // list.list();
 
+// Assignment 7
+function makeBank() {
+  let accountNumber = 101;
+  let accounts= [];
+
+  function makeAccount(number) {
+    let balance = 0;
+    let transactions = [];
+
+    return {
+      balance() {return balance},
+      number() {return number},
+      transactions() {return transactions},
+      deposit(amount) {
+        balance += amount;
+        transactions.push({type:'deposit', amount: amount})
+        return amount;
+      },
+      withdraw(amount) {
+        if (amount > this.balance) {
+          amount = this.balance;
+        }
+        transactions.push({type:'withdrawal', amount: amount})
+        balance -= amount;
+        return amount;
+      }
+    };
+  }
+
+  return {
+    openAccount() {
+      let newAccount = makeAccount(accountNumber);
+      accountNumber += 1;
+      accounts.push(newAccount);
+      return newAccount;
+    },
+    transfer(source, destination, amount) {
+      return destination.deposit(source.withdraw(amount));
+    }
+  };
+}
+
+
+
+
+
+
 
 
 
