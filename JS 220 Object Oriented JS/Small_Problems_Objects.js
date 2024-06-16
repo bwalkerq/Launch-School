@@ -106,11 +106,12 @@ function createStudent(name, year) {
     info() {
       console.log(`${this.name} is a ${this.year} year student.`);
     },
+    // adds a course object with name and code properties
+    // e.g. { name: 'Math', code: 101 }
     addCourse(course) {
       this.courses.push(course);
     },
     listCourses() {
-      console.log(this.courses);
       return this.courses;
     },
     addNote(code, note) {
@@ -139,24 +140,180 @@ function createStudent(name, year) {
   }
 }
 
-let foo = createStudent('Foo', '1st');
-foo.info();
-// "Foo is a 1st year student"
-foo.listCourses();
-// [];
-foo.addCourse({ name: 'Math', code: 101 });
-foo.addCourse({ name: 'Advanced Math', code: 102 });
-foo.listCourses();
-// [{ name: 'Math', code: 101 }, { name: 'Advanced Math', code: 102 }]
-foo.addNote(101, 'Fun course');
-foo.addNote(101, 'Remember to study for algebra');
-foo.viewNotes();
-// "Math: Fun course; Remember to study for algebra"
-foo.addNote(102, 'Difficult subject');
-foo.viewNotes();
-// "Math: Fun course; Remember to study for algebra"
-// "Advance Math: Difficult subject"
-foo.updateNote(101, 'Fun course');
-foo.viewNotes();
-// "Math: Fun course"
-// "Advanced Math: Difficult subject"
+// let foo = createStudent('Foo', '1st');
+// foo.info();
+// // "Foo is a 1st year student"
+// foo.listCourses();
+// // [];
+// foo.addCourse({ name: 'Math', code: 101 });
+// foo.addCourse({ name: 'Advanced Math', code: 102 });
+// foo.listCourses();
+// // [{ name: 'Math', code: 101 }, { name: 'Advanced Math', code: 102 }]
+// foo.addNote(101, 'Fun course');
+// foo.addNote(101, 'Remember to study for algebra');
+// foo.viewNotes();
+// // "Math: Fun course; Remember to study for algebra"
+// foo.addNote(102, 'Difficult subject');
+// foo.viewNotes();
+// // "Math: Fun course; Remember to study for algebra"
+// // "Advance Math: Difficult subject"
+// foo.updateNote(101, 'Fun course');
+// foo.viewNotes();
+// // "Math: Fun course"
+// // "Advanced Math: Difficult subject"
+
+function makeSchool () {
+  return {
+    students: [],
+    addStudent(name, year) {
+      const validYears = ['1st', '2nd', '3rd', '4th', '5th']
+      if (validYears.includes(year)){
+        let newStudent = createStudent(name, year);
+        this.students.push(newStudent);
+        return newStudent
+      } else {
+        console.log('Invalid Year.');
+      }
+    },
+    // takes a student, course name and code, and adds the course object to the
+    // student's courses.
+    enrollStudent(student, courseName, code) {
+      student.addCourse({name: courseName, code})
+    },
+
+    // given student object, code, and grade, adds a grade prop to the course
+    addGrade(student, courseName, grade) {
+      const course = student.listCourses().filter(({name}) => {
+        return name === courseName;
+      })[0];
+      if (course) {
+        course.grade = grade;
+      }
+    },
+    // my solution didn't rely on listcourses, which is smoother, and also
+    // relied on coursecode, which could be duplicated for, say, two intro courses.
+    // addGrade(student, courseCode, grade) {
+    //   student.courses.forEach(courseObj => {
+    //     if (courseObj.code === courseCode) {
+    //       courseObj.grade = grade;
+    //     }
+    //   });
+    // },
+
+    /* given a student object, logs the class and grade
+    * `name`: `grade`
+    * or, if a class has no grade, log
+    * `name`: 'In Progress' */
+    getReportCard(studentObj) {
+      studentObj.courses.forEach(courseObj => {
+        console.log(courseObj.name + ': '
+          + (courseObj.grade || 'In progress'))
+      })
+    },
+    // given a name of a course, logs the grades for each student enrolled
+    // in the course with a grade.
+    courseReport(courseName) {
+      function getCourse(student, courseName) {
+        return student.courses.filter(({name}) => name === courseName)[0];
+      }
+
+      const courseStudents = this.students.map(student => {
+        const course = getCourse(student, courseName) || { grade: undefined };
+        return { name: student.name, grade: course.grade };
+      }).filter(({grade}) => grade);
+
+      if (courseStudents.length > 0) {
+        console.log(`=${courseName} Grades=`);
+
+        const average = courseStudents.reduce((total, {name, grade}) => {
+          console.log(`${name}: ${String(grade)}`);
+          return total + grade;
+        }, 0) / courseStudents.length;
+
+        console.log('---');
+        console.log(`Course Average: ${String(average)}`);
+      }
+    },
+  }
+}
+
+// Examples of created student objects with grades; methods
+// on the objects are not shown here for brevity. The
+// following are only showing the properties that aren't
+// methods for the three objects
+const paul= {
+  name: 'Paul',
+  year: '3rd',
+  courses: [
+    { name: 'Math', code: 101, grade: 95, },
+    { name: 'Advanced Math', code: 102, grade: 90, },
+    { name: 'Physics', code: 202, }
+  ],
+}
+
+const mary= {
+  name: 'Mary',
+  year: '1st',
+  courses: [
+    { name: 'Math', code: 101, grade: 91, },
+  ],
+}
+
+
+const kim = {
+  name: 'Kim',
+  year: '2nd',
+  courses: [
+    { name: 'Math', code: 101, grade: 93, },
+    { name: 'Advanced Math', code: 102, grade: 90, },
+   ],
+}
+
+let school = makeSchool();
+
+//pre-populating the school for the test cases
+school.students.push(kim, mary, paul)
+
+let benji = school.addStudent('Benji', '4th');
+school.enrollStudent(benji, 'calcII', 102);
+school.addGrade(benji, 'calcII', 93);
+// benji.listCourses()
+
+school.getReportCard(paul);
+// = Math: 95
+//   = Advanced Math: 90
+//   = Physics: In progress
+
+school.courseReport('Math');
+// = =Math Grades=
+//   = Paul: 95
+//   = Mary: 91
+//   = Kim: 93
+//   = ---
+//   = Course Average: 93
+
+school.courseReport('Advanced Math');
+// = =Advanced Math Grades=
+//   = Paul: 90
+//   = Kim: 90
+//   = ---
+//   = Course Average: 90
+
+school.courseReport('Physics');
+// = undefined
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
