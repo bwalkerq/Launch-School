@@ -121,3 +121,6 @@ myFilter([2, 1, 3, 4, 5, 6, 12], function(val) {
 
 
 
+// Note that last problem is complete in the "small problems objects" file,
+// since it is a refactor of the last problem from that set.
+

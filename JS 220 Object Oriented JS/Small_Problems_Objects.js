@@ -162,30 +162,32 @@ function createStudent(name, year) {
 // // "Math: Fun course"
 // // "Advanced Math: Difficult subject"
 
-function makeSchool () {
+const school = (function() {
+  const students = [];
+  const validYears = ['1st', '2nd', '3rd', '4th', '5th']
+  function getCourse(student, courseName) {
+    return student.courses.filter(({name}) => name === courseName)[0];
+  }
+
   return {
-    students: [],
     addStudent(name, year) {
-      const validYears = ['1st', '2nd', '3rd', '4th', '5th']
       if (validYears.includes(year)){
-        let newStudent = createStudent(name, year);
-        this.students.push(newStudent);
-        return newStudent
+        const newStudent = createStudent(name, year);
+        students.push(newStudent);
+        return newStudent;
       } else {
         console.log('Invalid Year.');
       }
     },
-    // takes a student, course name and code, and adds the course object to the
-    // student's courses.
+
+    // adds the course object to the student's courses property.
     enrollStudent(student, courseName, code) {
       student.addCourse({name: courseName, code})
     },
 
-    // given student object, code, and grade, adds a grade prop to the course
+    // adds a grade property to the student's course
     addGrade(student, courseName, grade) {
-      const course = student.listCourses().filter(({name}) => {
-        return name === courseName;
-      })[0];
+      const course = getCourse(student,courseName);
       if (course) {
         course.grade = grade;
       }
@@ -200,24 +202,18 @@ function makeSchool () {
     //   });
     // },
 
-    /* given a student object, logs the class and grade
-    * `name`: `grade`
-    * or, if a class has no grade, log
-    * `name`: 'In Progress' */
+    // logs all classes and grades (or 'in progress') for a student
     getReportCard(studentObj) {
       studentObj.courses.forEach(courseObj => {
         console.log(courseObj.name + ': '
           + (courseObj.grade || 'In progress'))
       })
     },
+
     // given a name of a course, logs the grades for each student enrolled
     // in the course with a grade.
     courseReport(courseName) {
-      function getCourse(student, courseName) {
-        return student.courses.filter(({name}) => name === courseName)[0];
-      }
-
-      const courseStudents = this.students.map(student => {
+      const courseStudents = students.map(student => {
         const course = getCourse(student, courseName) || { grade: undefined };
         return { name: student.name, grade: course.grade };
       }).filter(({grade}) => grade);
@@ -235,7 +231,7 @@ function makeSchool () {
       }
     },
   }
-}
+})();
 
 // Examples of created student objects with grades; methods
 // on the objects are not shown here for brevity. The
@@ -269,10 +265,10 @@ const kim = {
    ],
 }
 
-let school = makeSchool();
 
 //pre-populating the school for the test cases
-school.students.push(kim, mary, paul)
+// school.students.push(kim, mary, paul)
+// this no longer works because I made the list of students private.
 
 let benji = school.addStudent('Benji', '4th');
 school.enrollStudent(benji, 'calcII', 102);
