@@ -65,7 +65,7 @@ function myBind(func, context, ...rest) {
 }
 // say('test', 'this', 'that')
 let betterBoundBenji = myBind(say, obj, 'the', 'great')
-betterBoundBenji()
+// betterBoundBenji();
 /* Well, I thought I did the solution, but I see now that I overlooked part
 * of the implementation. Here's theirs:
 * function myBind(func, ctx, ...partialArgs) {
@@ -97,7 +97,6 @@ function myFilter(array, func, context) {
     }
   });
 
-  console.log(result)
   return result;
 }
 
@@ -111,14 +110,59 @@ myFilter([2, 1, 3, 4, 5, 6, 12], function(val) {
 
 
 // Make A Stack
+function newStack () {
+  let stack = [];
+
+  return {
+    push(item) {
+      stack.push(item);
+    },
+    pop() {
+      return stack.pop();
+    },
+    printStack() {
+      stack.forEach(el => console.log(el))
+    },
+  };
+}
+
+let mine = newStack();
+// mine.push(2);
+// mine.push(4);
+// mine.push(9);
+// mine.printStack();
+// mine.pop();
+// mine.push(90);
+// mine.printStack()
 
 
 
+// const greeter = {
+//   sayGreetings() {
+//     let name = 'Naveed';
+//     let greeting = 'Hello';
+//     let message = `${greeting} ${name}!`;
+//     console.log(message);
+//   }
+// };
 
+/* Ok my solution not that close to the given, but this is a "toy example"
+* anyway, so I just need to remember the pattern:
+* */
 
+const greeter = {
+  message: (() => {
+    const name = 'Naveed';
+    const greeting = 'Hello';
 
+    return `${greeting} ${name}!`;
+  })(),
 
-
+  sayGreetings() {
+    console.log(this.message);
+  }
+};
+greeter.sayGreetings()
 
 
 // Note that last problem is complete in the "small problems objects" file,
