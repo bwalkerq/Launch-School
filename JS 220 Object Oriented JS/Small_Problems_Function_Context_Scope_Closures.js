@@ -4,17 +4,34 @@ const person = {
   fullName: this.firstName + this.lastName,
 };
 
-// console.log(person.fullName);
+console.log(person.fullName);
 
 /*This one got me
 * I expected the execution context to be `person` because the method belonging
 * to `person` was invoked.
 *
-* This is incorrect, since the method is being invoked
-* in the global context. When the method is called and evaluates `this.firstName`,
+* This is incorrect, since the property `fullName. When the method is called and evaluates `this.firstName`,
 * `this` is bound to the global object. so the return value is `undefined` since
 * there is no global property named `firstName`
 * */
+
+const personMaker = {
+  makePerson() {
+    return {
+      firstName: 'Rick ',
+      lastName: 'Sanchez',
+      fullName: this.firstName + this.lastName,
+    };
+  },
+};
+
+personMaker.firstName = "alfred";
+personMaker.lastName = "barry";
+let madePerson = personMaker.makePerson.call(personMaker.makePerson());
+console.log(madePerson);
+
+// actually got the full name we wanted by doing a fancy double call!
+
 
 const franchise1 = {
   name: 'How to Train Your Dragon',
