@@ -204,8 +204,15 @@ let foo = Object.create(prot)
 console.log(Object.getPrototypeOf(foo) === prot)
 console.log(prot.isPrototypeOf(foo))
 
+let boo = {};
+boo.myProp = 1;
 
+let far = Object.create(boo);
 
+// lots of code
+
+console.log(far.myProp);       // 1
+console.log(far.hasOwnProperty('myProp'))
 
 
 
