@@ -194,10 +194,15 @@ let payment3 = createPayment({
 
 invoice.addPayment(payment1);
 invoice.addPayments([payment2, payment3]);
-console.log(invoice.payments)
-console.log(invoice.amountDue());       // this should return 0
+// console.log(invoice.payments)
+// console.log(invoice.amountDue());       // this should return 0
 
 
+let prot = {};
+
+let foo = Object.create(prot)
+console.log(Object.getPrototypeOf(foo) === prot)
+console.log(prot.isPrototypeOf(foo))
 
 
 
