@@ -201,8 +201,8 @@ invoice.addPayments([payment2, payment3]);
 let prot = {};
 
 let foo = Object.create(prot)
-console.log(Object.getPrototypeOf(foo) === prot)
-console.log(prot.isPrototypeOf(foo))
+// console.log(Object.getPrototypeOf(foo) === prot)
+// console.log(prot.isPrototypeOf(foo))
 
 let boo = {};
 boo.myProp = 1;
@@ -211,9 +211,175 @@ let far = Object.create(boo);
 
 // lots of code
 
-console.log(far.myProp);       // 1
-console.log(far.hasOwnProperty('myProp'))
+// console.log(far.myProp);       // 1
+// console.log(far.hasOwnProperty('myProp'))
 
+function getDefiningObject(object, propKey) {
+  if (object === null || object.hasOwnProperty(propKey)) {
+    return object;
+  } else {
+    return getDefiningObject(Object.getPrototypeOf(object), propKey);
+  }
+}
+
+ foo = {
+  a: 1,
+  b: 2,
+};
+
+let bar = Object.create(foo);
+let baz = Object.create(bar);
+let qux = Object.create(baz);
+
+bar.c = 3;
+
+// console.log(getDefiningObject(qux, 'c') === bar);     // => true
+// console.log(getDefiningObject(qux, 'e'));             // => null
+
+
+function shallowCopy(object) {
+  return object
+}
+
+ foo = {
+  a: 1,
+  b: 2,
+};
+
+ bar = Object.create(foo);
+bar.c = 3;
+bar.say = function() {
+  console.log('c is ' + this.c);
+};
+
+ baz = shallowCopy(bar);
+// console.log(baz.a);       // => 1
+// baz.say();                // => c is 3
+// console.log(baz.hasOwnProperty('a'));  // false
+// console.log(baz.hasOwnProperty('b'));  // false
+// console.log(baz.hasOwnProperty('c'));  // true
+
+function extend(destination) {
+  [...arguments].forEach(obj => {
+    Object.keys(obj).forEach(k => {
+      destination[k] = obj[k];
+    });
+  });
+  return destination;
+}
+
+ foo = {
+  a: 0,
+  b: {
+    x: 1,
+    y: 2,
+  },
+};
+
+let joe = {
+  name: 'Joe'
+};
+
+let funcs = {
+  sayHello() {
+    console.log('Hello, ' + this.name);
+  },
+
+  sayGoodBye() {
+    console.log('Goodbye, ' + this.name);
+  },
+};
+
+let object = extend({}, foo, joe, funcs);
+
+// console.log(object.b.x);          // => 1
+// object.sayHello();                // => Hello, Joe
+
+let Dog = function() {};
+
+Dog.prototype.say = function() {
+  console.log(this.name + ' says Woof!');
+}
+
+Dog.prototype.run = function() {
+  console.log(this.name + ' runs away.');
+}
+
+// let fido = new Dog();
+// fido.name = 'Fido';
+// fido.say();             // => Fido says Woof!
+// fido.run();             // => Fido runs away.
+//
+// let spot = new Dog();
+// spot.name = 'Spot';
+// spot.say();             // => Spot says Woof!
+// spot.run();             // => Spot runs away.
+
+let RECTANGLE = {
+  area() {
+    return this.width * this.height;
+  },
+  perimeter() {
+    return 2 * (this.width + this.height);
+  },
+};
+
+function Rectangle(width, height) {
+  this.width = width;
+  this.height = height;
+  this.area = RECTANGLE.area.call(this);
+  this.perimeter = RECTANGLE.perimeter.call(this);
+}
+
+let rect1 = new Rectangle(2, 3);
+// console.log(rect1.area);
+// console.log(rect1.perimeter);
+
+function Circle(radius) {
+  this.radius = radius;
+}
+
+Circle.prototype.area = function () {
+  return Math.PI * this.radius ** 2;
+}
+
+let a = new Circle(3);
+let b = new Circle(4);
+
+// console.log(a.area().toFixed(2)); // => 28.27
+// console.log(b.area().toFixed(2)); // => 50.27
+
+
+// let ninjaA;
+// let ninjaB;
+// function Ninja() {
+//   this.swung = false;
+// }
+//
+// ninjaA = new Ninja();
+// ninjaB = new Ninja();
+//
+// // Add a swing method to the Ninja prototype which
+// // returns the calling object and modifies swung
+// Ninja.prototype.swing = function () {
+//   this.swung = true;
+//   return this;
+// }
+
+// console.log(ninjaA.swing().swung);      // must log true
+// console.log(ninjaB.swing().swung);      // must log true
+
+
+ninjaA = (function() {
+  function Ninja(){};
+  return new Ninja();
+})();
+
+// create a ninjaB object (2 solutions!)
+// let ninjaC = new (ninjaA.constructor)();
+// let ninjaC = Object.create(Object.getPrototypeOf(ninjaA))
+
+console.log(ninjaC.constructor === ninjaA.constructor);    // should log true
 
 
 
