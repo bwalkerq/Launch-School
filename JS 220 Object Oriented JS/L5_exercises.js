@@ -376,26 +376,117 @@ ninjaA = (function() {
 })();
 
 // create a ninjaB object (2 solutions!)
-// let ninjaC = new (ninjaA.constructor)();
+let ninjaC = new (ninjaA.constructor)();
 // let ninjaC = Object.create(Object.getPrototypeOf(ninjaA))
 
-console.log(ninjaC.constructor === ninjaA.constructor);    // should log true
+// console.log(ninjaC.constructor === ninjaA.constructor);    // should log true
 
 
+// Assignment 12
+let shape = {
+  getType() {
+    return this.type;
+  },
+}
+
+function Triangle(a, b, c) {
+  this.a = a;
+  this.b = b;
+  this.c = c;
+  this.type = 'triangle';
+}
+
+Triangle.prototype = shape;
+Triangle.prototype.getPerimeter = function () {
+  return this.a + this.b + this.c;
+};
+
+Triangle.prototype.constructor = Triangle; // I forgot to do this;
+/*
+One thing that you may miss to do is to set the constructor to the proper value.
+Typically, this is done for you automatically, in that a function's prototype
+object will automatically have a property constructor pointing to the function.
+However, in this case, since we pointed the Triangle function's prototype to
+shape, we lost that constructor reference. Therefore, we have to set it back manually.
+*/
+
+let t = new Triangle(3, 4, 5);
+// console.log(t.constructor);                 // Triangle(a, b, c)
+// console.log(shape.isPrototypeOf(t));        // true
+// console.log(t.getPerimeter());              // 12
+// console.log(t.getType());                   // "triangle"
+
+// console.log(("Hello").constructor.name);
+// console.log(([1,2,3]).constructor.name);
+// console.log(({name: 'Srdjan'}).constructor.name);
+// I knew to call constructor, but missed the `.name`
+// I realize now that I've never seen the String Function, for example
+
+function User(first, last) {
+  if (!(this instanceof User)) {
+    return new User(first, last);
+  }
+
+  this.name = first + ' ' + last;
+}
+
+let name = 'Jane Doe';
+let user1 = new User('John', 'Doe');
+let user2 = User('John', 'Doe');
+//
+// console.log(name);         // => Jane Doe
+// console.log(user1.name);   // => John Doe
+// console.log(user2.name);   // => John Doe
 
 
+function createObject(obj) {
+  function F() {}
+  F.prototype = obj;
+  return new F();
+}
+// didn't get this one
+
+ foo = {
+  a: 1
+};
+
+ bar = createObject(foo);
+// console.log(bar)
+// console.log(bar.a)
+// console.log(foo.isPrototypeOf(bar));         // true
 
 
+Object.prototype.begetObject = function() {
+  function F() {}
+  F.prototype = this;
+  return new F()
+}
+// got this one
 
+ bar = foo.begetObject();
+console.log(foo.isPrototypeOf(bar));         // true
 
+function neww(constructor, args) {
+  let object = Object.create(constructor.prototype);
+  let result = constructor.apply(object, args);
 
+  return typeof result === 'object' ? result : object;
+}
 
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
 
+Person.prototype.greeting = function() {
+  console.log('Hello, ' + this.firstName + ' ' + this.lastName);
+};
 
+let john = neww(Person, ['John', 'Doe']);
+john.greeting();          // => Hello, John Doe
+john.constructor;         // Person(firstName, lastName) {...}
 
-
-
-
+// no explanation given. This felt like a true reach. unreachable.
 
 
 
