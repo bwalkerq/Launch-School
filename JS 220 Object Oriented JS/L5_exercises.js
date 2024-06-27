@@ -464,7 +464,7 @@ Object.prototype.begetObject = function() {
 // got this one
 
  bar = foo.begetObject();
-console.log(foo.isPrototypeOf(bar));         // true
+// console.log(foo.isPrototypeOf(bar));         // true
 
 function neww(constructor, args) {
   let object = Object.create(constructor.prototype);
@@ -483,13 +483,35 @@ Person.prototype.greeting = function() {
 };
 
 let john = neww(Person, ['John', 'Doe']);
-john.greeting();          // => Hello, John Doe
-john.constructor;         // Person(firstName, lastName) {...}
+// john.greeting();          // => Hello, John Doe
+// john.constructor;         // Person(firstName, lastName) {...}
 
 // no explanation given. This felt like a true reach. unreachable.
 
+function Pet(animal, name) {
+  this.animal = animal;
+  this.name = name;
+}
 
+Pet.prototype.sleep = function () {
+  console.log("I am sleeping");
 
+}
+
+Pet.prototype.wake = function () {
+  console.log("I am sleeping");
+
+}
+
+let pudding = new Pet("Cat", "Pudding");
+// console.log(`I am a ${pudding.animal}. My name is ${pudding.name}.`);
+// pudding.sleep(); // I am sleeping
+// pudding.wake();  // I am awake
+
+let neptune = new Pet("Fish", "Neptune");
+// console.log(`I am a ${neptune.animal}. My name is ${neptune.name}.`);
+// neptune.sleep(); // I am sleeping
+// neptune.wake();  // I am awake
 
 
 
