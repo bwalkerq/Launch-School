@@ -324,14 +324,14 @@ let RECTANGLE = {
   },
 };
 
-function Rectangle(width, height) {
+function RectangleDraft(width, height) {
   this.width = width;
   this.height = height;
   this.area = RECTANGLE.area.call(this);
   this.perimeter = RECTANGLE.perimeter.call(this);
 }
 
-let rect1 = new Rectangle(2, 3);
+let rect1 = new RectangleDraft(2, 3);
 // console.log(rect1.area);
 // console.log(rect1.perimeter);
 
@@ -488,30 +488,135 @@ let john = neww(Person, ['John', 'Doe']);
 
 // no explanation given. This felt like a true reach. unreachable.
 
-function Pet(animal, name) {
-  this.animal = animal;
-  this.name = name;
-}
+// function Pet(animal, name) {
+//   this.animal = animal;
+//   this.name = name;
+// }
+//
+// Pet.prototype.sleep = function () {
+//   console.log("I am sleeping");
+//
+// }
+//
+// Pet.prototype.wake = function () {
+//   console.log("I am sleeping");
+//
+// }
 
-Pet.prototype.sleep = function () {
-  console.log("I am sleeping");
-
-}
-
-Pet.prototype.wake = function () {
-  console.log("I am sleeping");
-
-}
-
-let pudding = new Pet("Cat", "Pudding");
+// let pudding = new Pet("Cat", "Pudding");
 // console.log(`I am a ${pudding.animal}. My name is ${pudding.name}.`);
 // pudding.sleep(); // I am sleeping
 // pudding.wake();  // I am awake
 
-let neptune = new Pet("Fish", "Neptune");
+// let neptune = new Pet("Fish", "Neptune");
 // console.log(`I am a ${neptune.animal}. My name is ${neptune.name}.`);
 // neptune.sleep(); // I am sleeping
 // neptune.wake();  // I am awake
+
+
+// class Cat {
+//   constructor(name = 'Kitty') {
+//     this.name = name;
+//   }
+//
+//   greet() {
+//     console.log(`Hey there, I'm ${this.name}!`);
+//   }
+//
+//   rename(newName) {
+//     this.name = newName;
+//   }
+//
+//   static genericGreeting() {
+//     console.log("Hello! I'm a cat!");
+//   }
+// }
+
+// let kitty = new Cat();
+// kitty.greet(); // Hello! My name is Kitty!
+// kitty.rename('Sophie');
+// kitty.greet(); // Hello! My name is Sophie!
+// Cat.genericGreeting()
+
+class Rectangle {
+  constructor(width, length) {
+    this.length = length;
+    this.width = width;
+  }
+
+  getWidth() {
+    return this.width;
+  }
+
+  getLength() {
+    return this.length;
+  }
+
+  getArea() {
+    return this.length * this.width;
+  }
+}
+
+let rect = new Rectangle(4, 5);
+
+// console.log(rect.getWidth()); // 4
+// console.log(rect.getLength()); // 5
+// console.log(rect.getArea()); // 20
+
+class Square extends Rectangle {
+  constructor(size) {
+    super(size, size);
+  }
+}
+let square = new Square(5);
+// console.log(`area of square = ${square.getArea()}`); // area of square = 25
+
+// class Cat {
+//   constructor(name) {
+//     this.name = name;
+//   }
+//   speaks() {
+//     return `${this.name} says meowwww.`;
+//   }
+// }
+//
+// let fakeCat = Object.create(Cat.prototype)
+//   console.log(fakeCat instanceof Cat); // logs true
+// console.log(fakeCat.name);           // logs undefined
+// console.log(fakeCat.speaks());       // logs undefined says meowwww.
+
+
+class Pet {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+}
+
+class Cat extends Pet {
+  constructor(name, age, color) {
+    super(name, age);
+    this.color = color;
+  }
+
+  info() {
+    return `My cat ${this.name} is ${this.age} years old and has ${this.color} fur.`
+  }
+}
+
+pudding = new Cat('Pudding', 7, 'black and white');
+let butterscotch = new Cat('Butterscotch', 10, 'tan and white');
+
+console.log(pudding.info());
+console.log(butterscotch.info());
+
+
+
+
+
+
+
+
 
 
 
