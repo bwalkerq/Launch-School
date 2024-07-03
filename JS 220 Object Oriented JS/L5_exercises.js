@@ -805,7 +805,7 @@ class Banner {
 }
 
 let banner2 = new Banner('');
-banner2.displayBanner();
+// banner2.displayBanner();
 // +--+
 // |  |
 // |  |
@@ -813,7 +813,7 @@ banner2.displayBanner();
 // +--+
 
 let banner1 = new Banner('To boldly go where no one has gone before.');
-banner1.displayBanner();
+// banner1.displayBanner();
 // +--------------------------------------------+
 // |                                            |
 // | To boldly go where no one has gone before. |
@@ -821,9 +821,23 @@ banner1.displayBanner();
 // +--------------------------------------------+
 
 
+function newPerson(name) {
+  return {
+    name,
+  }
+}
 
 
-
+let me = newPerson('Shane Riley');
+Object.defineProperties(me, {
+  log: {
+    value: function () { console.log(this.name); },
+    writable: false,
+  }
+})
+me.log();     // => Shane Riley
+me.log = function() { console.log('Amanda Rose'); };
+me.log();     // => Shane Riley
 
 
 
