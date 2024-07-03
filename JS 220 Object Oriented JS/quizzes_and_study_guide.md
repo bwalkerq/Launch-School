@@ -25,4 +25,37 @@ let foo = function() {
 }();
 ```
 # Quiz 5
-# Quiz 6
+
+# Study Guide
+
+- Objects
+  - Organizing code into appropriate objects
+  - Object factories
+- Determining/setting function execution context (this)
+  - Implicit function execution context
+  - Explicit function execution context
+  - Dealing with context loss
+  - Lexical scope
+- Scope and Closures
+  - Higher-order functions
+  - Creating and using private data
+  - Garbage collection
+  - IIFEs
+  - Partial Function Application
+- Object creation patterns
+  - class syntax
+  - Constructor functions
+    - // when we use the new keyword on a constructor function:
+      // 1) create a new object
+      // 2) set prototype reference of new object to constructor function's prototype
+      // 3) reassigns `this` to the new object itself
+      // 4) returns the new object
+  - Pseudo-Classical pattern
+  - Prototype objects
+    - 
+  - Behavior delegation
+- Modules
+
+## questions
+- in pseudo classical, we assign the prototype to the...prototype that it inherits from using `Student.prototype = Object.create(Person.prototype);`. When do we use `Object.create()` with another "class" like `Person` and when do we use `Person.prototype`?
+-
