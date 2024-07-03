@@ -26,10 +26,11 @@
 // console.log(bar.ancestors());  // returns ['foo', 'Object.prototype']
 // console.log(foo.ancestors());  // returns ['Object.prototype']
 
-function delegate(obj, name) {
-  let thoseArgs = arguments
-  return function(obj, name) {
-    return obj[name](...thoseArgs)
+
+// #2 Delegate
+function delegate(obj, name, ...args) {
+  return () => {
+    return obj[name](...args)
   }
 }
 
@@ -53,61 +54,137 @@ const baz = {
 
 // #3 Classical Object Creation
 
-function Person(first, last, age, gender) {
-  this.firstName = first;
-  this.lastName = last;
-  this.age = age;
-  this.gender = gender;
+// function Person(first, last, age, gender) {
+//   this.firstName = first;
+//   this.lastName = last;
+//   this.age = age;
+//   this.gender = gender;
+// }
+
+// Person.prototype.fullName = function () {
+//   return this.firstName + ' ' + this.lastName;
+// }
+//
+// Person.prototype.communicate = function() {
+//   console.log('Communicating')
+// }
+//
+// Person.prototype.eat = function() {
+//   console.log('Eating')
+// }
+
+// Person.prototype.sleep = function() {
+//   console.log('Sleeping')
+// }
+
+class Person {
+  constructor(first, last, age, gender) {
+    this.firstName = first;
+    this.lastName = last;
+    this.age = age;
+    this.gender = gender;
+  }
+
+  fullName() {
+    return this.firstName + ' ' + this.lastName;
+  }
+
+  communicate() { console.log('Communicating') }
+
+  eat() { console.log('Eating') }
+
+  sleep() { console.log('Sleeping') }
 }
 
-Person.prototype.fullName = function () {
-  return this.firstName + ' ' + this.lastName;
+
+
+class Doctor extends Person {
+  constructor(first, last, age, gender, specialization) {
+    super(first, last, age, gender);
+    this.specialization = specialization;
+  }
+
+  diagnose() {
+    console.log('Diagnosing')
+  }
 }
 
-Person.prototype.communicate = function() {
-  console.log('Chit Chat')
+// function Doctor(first, last, age, gender, specialization) {
+//   Person.call(this, first, last, age, gender);
+//   this.specialization = specialization
+// }
+
+// Doctor.prototype = Object.create(Person.prototype);
+// Doctor.prototype.diagnose = function () {
+//   console.log('Diagnosing')
+// }
+// Doctor.prototype.constructor = Doctor;
+
+// function Professor(firstName, lastName, age, gender, subject) {
+//   Person.call(this, firstName, lastName, age, gender);
+//   this.subject = subject;
+// }
+//
+// Professor.prototype = Object.create(Person.prototype);
+// Professor.prototype.teach = () => {
+//   console.log('Teaching');
+// };
+// Professor.prototype.constructor = Professor;
+
+class Professor extends Person {
+  constructor(firstName, lastName, age, gender, subject) {
+    super(firstName, lastName, age, gender);
+    this.subject = subject;
+  }
+
+  teach() {
+    console.log('Teaching');
+  }
 }
 
-Person.prototype.eat = function() {
-  console.log('Eating')
+// function Student(first, last, age, gender, degree) {
+//   Person.call(this, first, last, age, gender);
+//   this.degree = degree;
+// }
+//
+// Student.prototype = Object.create(Person.prototype);
+// Student.prototype.study = function () {
+//   console.log('Studying');
+// }
+// Student.prototype.constructor = Student;
+
+class Student extends Person {
+  constructor(first, last, age, gender, degree) {
+    super(first, last, age, gender);
+    this.degree = degree;
+  }
+
+  study() {
+    console.log('Studying')
+  }
 }
 
-Person.prototype.sleep = function() {
-  console.log('Sleeping')
-}
+// function GraduateStudent(first, last, age, gender, degree, graduateDegree) {
+//   Student.call(this, first, last, age, gender, degree);
+//   this.graduateDegree = graduateDegree;
+// }
+//
+// GraduateStudent.prototype = Object.create(Student.prototype);
+// GraduateStudent.prototype.research = function () {
+//   console.log('Researching');
+// }
+// GraduateStudent.prototype.constructor = GraduateStudent;
 
-function Doctor(first, last, age, gender, specialization) {
-  Person.call(this, first, last, age, gender);
-  this.specialization = specialization
-}
+class GraduateStudent extends Student {
+  constructor(first, last, age, gender, degree, graduateDegree) {
+    super(first, last, age, gender, degree);
+    this.graduateDegree = graduateDegree;
+  }
 
-Doctor.prototype = Object.create(Person.prototype);
-Doctor.prototype.diagnose = function () {
-  console.log('Diagnosing')
+  research() {
+    console.log('Researching')
+  }
 }
-Doctor.prototype.constructor = Doctor;
-
-function Student(first, last, age, gender, degree) {
-  Person.call(this, first, last, age, gender);
-  this.degree = degree;
-}
-
-Student.prototype = Object.create(Person.prototype);
-Student.prototype.study = function () {
-  console.log('Studying');
-}
-Student.prototype.constructor = Student;
-
-function GraduateStudent(first, last, age, gender, degree, graduateDegree) {
-  Student.call(this, first, last, age, gender, degree);
-  this.graduateDegree = graduateDegree;
-}
-
-GraduateStudent.prototype = Object.create(Student.prototype);
-GraduateStudent.prototype.research = function () {
-  console.log('Researching');
-}
-GraduateStudent.prototype.constructor = GraduateStudent;
 
 const person = new Person('Foo', 'Bar', 21, 'male');
 // console.log(person instanceof Person);       // logs true
@@ -130,16 +207,6 @@ const doctor = new Doctor('Bar', 'Qux', 21, 'female', 'Pediatrics');
 // console.log(doctor.fullName());              // logs 'Bar Qux'
 // doctor.diagnose();                           // logs 'Diagnosing'
 
-function Professor(firstName, lastName, age, gender, subject) {
-  Person.call(this, firstName, lastName, age, gender);
-  this.subject = subject;
-}
-
-Professor.prototype = Object.create(Person.prototype);
-Professor.prototype.teach = () => {
-  console.log('Teaching');
-};
-Professor.prototype.constructor = Professor;
 
 const professor = new Professor('Bar', 'Foo', 48, 'female', 'Law');
 // console.log(professor instanceof Person);    // logs true
@@ -166,9 +233,17 @@ const graduateStudent = new GraduateStudent('Qux', 'Bar', 21, 'non-binary', 'BS 
 // graduateStudent.study();                     // logs 'Studying'
 // graduateStudent.research();                  // logs 'Researching'
 
+function Bard() {}
+function Food() {}
+Food.prototype = Object.create(Bard.prototype)
 
+let bard = Bard.prototype;
+let food = new Food;
+// console.log(bard.isPrototypeOf(food))
+// console.log(Object.getPrototypeOf(food) === bard)
 
-
+let canI = new Bard.prototype.constructor
+console.log(canI instanceof Bard)
 
 
 
