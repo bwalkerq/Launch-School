@@ -41,21 +41,41 @@ let foo = function() {
   - Creating and using private data
   - Garbage collection
   - IIFEs
+    - function expression that is immediately invoked
+      - creating closures
+      - need to make a function 
   - Partial Function Application
 - Object creation patterns
   - class syntax
   - Constructor functions
     - // when we use the new keyword on a constructor function:
-      // 1) create a new object
-      // 2) set prototype reference of new object to constructor function's prototype
-      // 3) reassigns `this` to the new object itself
-      // 4) returns the new object
+
+  ```
+  function Dog(name) {
+    this.name = name;
+  }
+  
+  let myDog = new Dog('Disco');
+  ```
+  
+  1. Instantiate a new object
+     2. Set the new object's prototype to the `Dog` function prototype
+     3. Within `Dog`, sets `this` to refer to the new object.
+     4. Execute the `Dog` function
+     5. Return the new object *unless* the function explicitly returns 
+     another object. If the function would return a primitive, it 
+     instead returns the new object.
   - Pseudo-Classical pattern
   - Prototype objects
-    - 
   - Behavior delegation
 - Modules
+  - only need to know commonJS modules
+    - why are modules important
+    - 
 
-## questions
-- in pseudo classical, we assign the prototype to the...prototype that it inherits from using `Student.prototype = Object.create(Person.prototype);`. When do we use `Object.create()` with another "class" like `Person` and when do we use `Person.prototype`?
--
+## questions that I found helpful
+in the scenario wherein a function's prototype is set to the same exact prototype as
+the function's from which it's supposed to inherit creates a pretty wild outcome: both
+the original "class" and the subclass now share a prototype, so any change to the subclass 
+affects the "parent" class as well, which is clearly suboptimal.
+That helped me make more sense of why we set the prototype to a object created from the prototype of the parent class
