@@ -1,0 +1,17 @@
+{
+  "name": "js-220-object-oriented-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "L2_exercises.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bwalkerq/Launch-School.git"
+  },
+  "private": true,
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
