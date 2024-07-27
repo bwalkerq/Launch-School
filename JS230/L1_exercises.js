@@ -1,3 +1,4 @@
+'use strict'
 let html = import('L1 exercises.html')
 
 let document = html.childNodes
@@ -186,8 +187,7 @@ console.log(texts)
 // Classification problem, my solution
 let obj = {};
 let keys = ['Kingdom', 'Phylum', 'Class', 'Order', 'Family', 'Genus', 'Species'];
-let tableParent = document.querySelector('.infobox')
-let rows = tableParent.querySelectorAll('tr')
+let rows = document.querySelectorAll('.infobox tr')
 
 for (const row of rows) {
   for (const key of keys) {
@@ -231,22 +231,57 @@ for (let index = 0; index < tds.length; index += 1) {
 console.log(classification);
 
 
+// A14 create/modify DOM nodes
+let paragraph = document.createElement('p');
+paragraph.textContent = 'great workout today, ratih';
+document.body.appendChild(paragraph);
 
 
+// A16
+// Use JavaScript to set a class of 'heading' to the heading (the h1 element).
+let heading = document.querySelector('h1');
+heading.classList.add('heading');
+// OR
+document.getElementById('h1').setAttribute('class', 'heading');
+// this probably better because mine could get the wrong h1 if a different one is first
 
+let uls;
+uls = document.querySelectorAll("ul");;
+for (const ul of uls) {
+  ul.setAttribute('class', 'bulleted');
+}
+/* again, mine is too general. they are looking at the DOM, seeing id of the
+ thing we're trying to modify, using that to 'get'
+ */
+document.getElementById('list').setAttribute('class', 'bulleted');
 
+document.getElementById('toggle').onclick = (e) => {
+  e.preventDefault();
+  let notice;
+  notice = document.getElementById('notice');
+  if (notice.getAttribute('class') === 'hidden') {
+    notice.setAttribute('class', 'visible');
+  } else {
+    notice.setAttribute('class', 'hidden');
+  }
+};
 
+document.getElementById('notice').onclick = (e) => {
+  e.preventDefault();
+  // e.currentTarget.classList.add('hidden');  NB: adding hidden to the class
+  // list, such that the class is now 'visible hidden', causes `hidden` to
+  // override `visible`, and the element is hidden.
+  e.currentTarget.setAttribute('class', 'hidden');
+}
 
+document.getElementById('multiplication').textContent = String(13 * 13);
 
-
-
-
-
-
-
-
-
-
+document.getElementsByTagName('body').setAttribute('id', 'styled');
+// This does NOT work because getElem... returns a (live) collection, so I need
+// to access the first element, rather than adding a property to the collection.
+document.getElementsByTagName('body')[0].setAttribute('id', 'styled');
+// but a better way is:
+document.body.id = 'styled';
 
 
 
