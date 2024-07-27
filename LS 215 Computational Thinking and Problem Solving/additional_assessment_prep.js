@@ -2265,7 +2265,41 @@ function doesBrickFit(h, l, w, wBrick, hBrick) {
 // console.log(doesBrickFit(5, 2, 2, 1, 1) === false)
 
 /* Super Strict Grading
-Given an object literal of student names and an array of their test scores over the semester, return a list of all the students who passed the course (in alphabetical order). However, there is one more thing to mention: the pass mark is 100% in everything!
+Did with Kana on 7/25/2024 (like 1.5 months after I did this, lol, I totally forgot how all this works)
+ - great process, very thorough up front. You will probably hit all the cases up front
+ - small thing: make your test cases in the code below? otherwise you have to move them?
+ - with the validating input, if your parameter is `data`, the function will automatically ignore other arguments; no need to directly access the first argument from `arguments`
+ - might have been my fault with the interjection about arguments, but it was suggested to me that I start coding by about 25 min (of 40), and I think this is reasonable given the nature of the assessment (with possible outlier cases, etc.)
+ - got caught up with console.logs and returns with your test cases. Smooth out that process:
+    - you can only use return in the function, and log each test as you check them, or log them all and comment them out, whatever. Just choose something and do it the same every time.
+ - you are fuent in JS, and you seem super prepared; you probably slay
+
+###******
+###****** My Notes for when I give this problem to another student in the future:
+###******
+Things to hide in the initial problem statement, but to reveal when they ask about it:
+- the return value should be an array
+ - return array sorted alphabetically
+- the number of test scores can vary among students
+- no one can pass, in which case an empty array returned
+
+optional challenge, maybe throw in at the end if they go fast:
+numerical scores (e.g. `20/20`) could be included in addition to string scores (`"20/20"`)
+
+// Super Strict Grading
+// modified problem statement (edited for mock interviews):
+// Given an object literal of student names and an array of their test scores over the semester, return the students who passed; passing means earning 100% in all test scores.
+
+// test case to be given
+console.log(whoPassed({
+  "Zach" : ["10/10", "160/160", "4/4"],
+  "Fred" : ["10/10", "160/160", "3/4"],
+}) )
+// ➞ ["Zach"]
+
+
+
+(BW's pedac)
 p:
 given an object with student's scores, return an array of the names of students who earned 100% in all assessments
 
@@ -2335,29 +2369,38 @@ const whoPassed = students =>
 
 
  */
-// console.log(whoPassed({
-//   "John" : ["5/5", "50/50", "10/10", "10/10"],
-//   "Sarah" : ["4/8", "50/57", "7/10", "10/18"],
-//   "Adam" : ["8/10", "22/25", "3/5", "5/5"],
-//   "Barry" : ["3/3", "20/20"]
-// }) )
-// // ➞ ["Barry", "John"]
-//
-// console.log(whoPassed({
-//   "Zara" : ["10/10"],
-//   "Kris" : ["30/30"],
-//   "Charlie" : ["100/100"],
-//   "Alex" : ["1/1"]
-// }) )
-// // ➞ ["Alex", "Charlie", "Kris", "Zara"]
-//
-// console.log(whoPassed({
-//   "Zach" : ["10/10", "2/4"],
-//   "Fred" : ["7/9", "2/3"]
-// }) )
+console.log(whoPassed({
+  "John" : ["5/5", "50/50", "10/10", "10/10"],
+  "Sarah" : ["4/8", "50/57", "7/10", "10/18"],
+  "Adam" : ["8/10", "22/25", "3/5", "5/5"],
+  "Barry" : ["3/3", "20/20"]
+}) )
+// ➞ ["Barry", "John"]
+
+console.log(whoPassed({
+  "Zara" : ["10/10"],
+  "Kris" : ["30/30"],
+  "Charlie" : ["100/100"],
+  "Alex" : ["1/1"]
+}) )
+// ➞ ["Alex", "Charlie", "Kris", "Zara"]
+
+console.log(whoPassed({
+  // "Zara" : [10/10, 5/5],
+  "Kris" : ["30/30"],
+  "Charlie" : ["100/100"],
+  "Alex" : ["1/1"]
+}) )
+// ➞ ["Alex", "Charlie", "Kris", "Zara"]
+
+console.log(whoPassed({
+  "Zach" : ["10/10", "2/4"],
+  "Fred" : ["7/9", "2/3"]
+}) )
 // ➞ []
 
-
+let a = [10/10, 5/5, 4/5];
+console.log(a)
 
 
 
