@@ -104,9 +104,33 @@ window.onload = () => {
 // = [["A"], ["STRONG"], ["SPAN", "SPAN"], ["P", "P"], ["SECTION", "SECTION"], ["HEADER", "MAIN", "FOOTER"], ["ARTICLE"]]
 
 
+function sliceTree(topID, bottomID) {
+  let fullElementTree = [];
+  let node = document.getElementById(bottomID);
 
+  if (!node) return undefined;  // the bottomID element doesn't exist
 
+  while (node) {
+    fullElementTree.push(node);
+    if (node.id === String(topID)) break;
+    node = node.parentElement;
+  }
 
+  if (!node) return undefined; // if we never got to the topID element, we get all the way
+  // to the top of the DOM (the <html> tab) and its parent is `null`.
+
+  return fullElementTree.reverse().map(el => el.tagName);
+}
+
+window.onload = () => {
+  console.log(sliceTree(1, 4));  // ["ARTICLE", "HEADER", "SPAN", "A"]
+  console.log(sliceTree(1, 76) === undefined);  // undefined
+  console.log(sliceTree(2, 5) === undefined);  // undefined
+  console.log(sliceTree(5, 4) === undefined);  // undefined
+  console.log(sliceTree(1, 23));  // ["ARTICLE", "FOOTER"]
+  console.log(sliceTree(1, 22));  // ["ARTICLE", "MAIN", "SECTION", "P", "SPAN", "STRONG", "A"]
+  console.log(sliceTree(11, 19));  // ["SECTION", "P", "SPAN", "STRONG", "A"]
+}
 
 
 
