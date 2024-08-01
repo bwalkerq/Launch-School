@@ -91,10 +91,10 @@ function siblingNamesArray(node) {
   return Array.prototype.slice.call(siblings).map(child => child.nodeName);
 }
 
-window.onload = () => {
-  console.log(domTreeTracer(2));
-  console.log(domTreeTracer(22));
-}
+// window.onload = () => {
+//   console.log(domTreeTracer(2));
+//   console.log(domTreeTracer(22));
+// }
 
 // > domTreeTracer(1);
 // = [["ARTICLE"]]
@@ -107,48 +107,72 @@ window.onload = () => {
 function sliceTree(topID, bottomID) {
   let fullElementTree = [];
   let node = document.getElementById(bottomID);
+  // start at the bottom of the tree
 
-  if (!node) return undefined;  // the bottomID element doesn't exist
+  if (!node) return undefined;  // case where the bottomID element doesn't exist
 
   while (node) {
-    fullElementTree.push(node);
-    if (node.id === String(topID)) break;
-    node = node.parentElement;
+    fullElementTree.push(node);  // populate the tree array
+    if (node.id === String(topID)) break;  // when we get to the topID, break
+    node = node.parentElement;  // otherwise, move on up the tree
   }
 
-  if (!node) return undefined; // if we never got to the topID element, we get all the way
-  // to the top of the DOM (the <html> tab) and its parent is `null`.
+  if (!node) return undefined; // if we never got to the topID element and broke
+  // out, we get all the way to the top of the DOM (the <html> tab) and its
+  // parent is `null`. This catches the no-valid-path case.
 
   return fullElementTree.reverse().map(el => el.tagName);
 }
 
-window.onload = () => {
-  console.log(sliceTree(1, 4));  // ["ARTICLE", "HEADER", "SPAN", "A"]
-  console.log(sliceTree(1, 76) === undefined);  // undefined
-  console.log(sliceTree(2, 5) === undefined);  // undefined
-  console.log(sliceTree(5, 4) === undefined);  // undefined
-  console.log(sliceTree(1, 23));  // ["ARTICLE", "FOOTER"]
-  console.log(sliceTree(1, 22));  // ["ARTICLE", "MAIN", "SECTION", "P", "SPAN", "STRONG", "A"]
-  console.log(sliceTree(11, 19));  // ["SECTION", "P", "SPAN", "STRONG", "A"]
+// window.onload = () => {
+//   console.log(sliceTree(1, 4));  // ["ARTICLE", "HEADER", "SPAN", "A"]
+//   console.log(sliceTree(1, 76) === undefined);  // undefined
+//   console.log(sliceTree(2, 5) === undefined);  // undefined
+//   console.log(sliceTree(5, 4) === undefined);  // undefined
+//   console.log(sliceTree(1, 23));  // ["ARTICLE", "FOOTER"]
+//   console.log(sliceTree(1, 22));  // ["ARTICLE", "MAIN", "SECTION", "P", "SPAN", "STRONG", "A"]
+//   console.log(sliceTree(11, 19));  // ["SECTION", "P", "SPAN", "STRONG", "A"]
+// }
+
+// Color
+function walk(node, callback) {
+  callback(node);
+  for (let index = 0; index < node.childNodes.length; index += 1) {
+    walk(node.childNodes[index], callback);
+  }
 }
 
+function walkLevels(node, callback, level) {
+  callback(node, level);
+  // level += 1;
+  for (let i = 0; i < node.children.length; i++) {
+    walkLevels(node.children[i], callback, level + 1);
+  }
+}
 
+function colorGeneration(targetLevel) {
+  walkLevels(document.body, (node, level) => {
+    if (targetLevel === level) {
+      // node.classList.add('generation-color');
+      node.setAttribute('class', 'generation-color')
+    }
+  }, 0);
 
+  return undefined;
+}
 
+// window.onload = () => {
+//   console.log(colorGeneration(4));
+// }
 
+// Karis Tobias' solution:
+function coloring(gen, parent=document.body, indent=0) {
+  if (indent === gen && parent.id) parent.classList.toggle('generation-color');
+  [...parent.children].forEach(child => coloring(gen, child, indent + 1));
+}
+/* [...spread syntax] for the children is pretty smooth.
 
-
-
-
-
-
-
-
-
-
-
-
-
+ */
 
 
 
