@@ -1943,7 +1943,22 @@ had to remember to pass an initial value of `acc` as 0 to sum the numbers
 // console.log(sum([[["1"], "10v3"], ["738h"], [["s0"], ["1mu4ch3"],"-1s0"]])) //➞ 759
 
 /*
-Create a function that takes an object and returns an object of all entries having unique marks. If the marks are the same, take who is eldest.
+
+feedback for Kana:
+first of all, I lvoe the more concise way of writing your pedac! That's a great upgrade from last time
+
+in terms of asking questions, I suggest that you actually DO ask a question that "just gives you the answer"! You had said that you didn't want to do that, but ask the question in the way that will give you most information and let them (the TA) tell you to ask a better question if necessary.
+e.g. with the given object, what might you ask? maybe "will all the given arguments be objects that are structured the same way? Same properties
+
+- is about fully fleshing out an idea before you commit to it (mentally, emotionally)
+
+
+
+Create a function that takes an object and returns an object of all entries having unique marks.
+
+
+keep for the questions:
+ - If the marks are the same, take who is eldest.
 
 p:
 given an object, return a filtered object based on unique marks with age as a tiebreaker
@@ -1992,9 +2007,18 @@ iterate through the object
     increment the counter
 
   return the result object
+
+new pedac while Kana is doing this same problem:
+IF the people are NOT sorted by age... this is very different problem
+
+for each of the unique marks,
+get a collection of people with the same mark, choose the oldest
+populate the result with the oldest
+
 */
 
-function getObject(obj) {
+// note this solution is weak; it assumes that the elements are ordered by age and by score. silly!
+function getObjectORIGINAL(obj) {
   let result = {};
   let seen = [];
   let counter = 0
@@ -2015,28 +2039,48 @@ with Esther
 verbalize what I'm thinking during the data structures section
 */
 
-// console.log(
-//   getObject({
-//     "0": { age: 18, name: "john", marks: "400" },
-//     "1": { age: 17, name: "julie", marks: "400" },
-//     "2": { age: 16, name: "Robin", marks: "200" },
-//     "3": { age: 16, name: "Bella", marks: "300" }
-//   }));
-// // ➞ {
-// //   "0": { age: 18, name: "john", marks: "400" },
-// //   "1": { age: 16, name: "Robin", marks: "200" },
-// //   "2": { age: 16, name: "Bella", marks: "300" }
-// // }
-//
-// console.log(
-//   getObject({
-//     "0": { age: 217, name: "jack", marks: "400" },
-//     "1": { age: 18, name: "john", marks: "400" },
-//     "2": { age: 17, name: "julie", marks: "400" },
-//   }));
-// // ➞ {
-// // "0": { age: 217, name: "jack", marks: "400" },
-// // }
+// This is muh better! Any order for age or score!
+function getObject(obj) {
+  let result = {};
+  let counter = 0;
+
+  let allMarks = Object.values(obj).map(el => el.marks)
+  let uniqueMarks = allMarks.filter((value, index, array) => array.indexOf(value) === index);
+
+  for (const uniqueMark of uniqueMarks) {
+    let subset = Object.values(obj).filter(el => el.marks === uniqueMark);
+    subset.sort((a, b) => b.age - a.age) // sort to oldest first
+    result[String(counter)] = subset[0]; // push the oldest
+    counter += 1;
+  }
+
+  return result;
+}
+
+console.log(
+  getObject({
+    "0": { age: 18, name: "jeff", marks: "400" },
+    "1": { age: 17, name: "julie", marks: "400" },
+    "2": { age: 16, name: "Robin", marks: "200" },
+    "3": { age: 19, name: "Hood", marks: "200" },
+    "4": { age: 16, name: "Bella", marks: "300" },
+    "5": { age: 180, name: "john", marks: "400" },
+  }));
+// ➞ {
+//   "0": { age: 18, name: "john", marks: "400" },
+//   "1": { age: 16, name: "Robin", marks: "200" },
+//   "2": { age: 16, name: "Bella", marks: "300" }
+// }
+
+console.log(
+  getObject({
+    "0": { age: 217, name: "jack", marks: "400" },
+    "1": { age: 18, name: "john", marks: "400" },
+    "2": { age: 17, name: "julie", marks: "400" },
+  }));
+// ➞ {
+// "0": { age: 217, name: "jack", marks: "400" },
+// }
 
 /*
 my own extension of the above problem: Sort a nested object by a value of one
@@ -2367,40 +2411,40 @@ const whoPassed = students =>
 		.sort()
 ```
 
-
- */
-console.log(whoPassed({
-  "John" : ["5/5", "50/50", "10/10", "10/10"],
-  "Sarah" : ["4/8", "50/57", "7/10", "10/18"],
-  "Adam" : ["8/10", "22/25", "3/5", "5/5"],
-  "Barry" : ["3/3", "20/20"]
-}) )
-// ➞ ["Barry", "John"]
-
-console.log(whoPassed({
-  "Zara" : ["10/10"],
-  "Kris" : ["30/30"],
-  "Charlie" : ["100/100"],
-  "Alex" : ["1/1"]
-}) )
-// ➞ ["Alex", "Charlie", "Kris", "Zara"]
-
-console.log(whoPassed({
-  // "Zara" : [10/10, 5/5],
-  "Kris" : ["30/30"],
-  "Charlie" : ["100/100"],
-  "Alex" : ["1/1"]
-}) )
-// ➞ ["Alex", "Charlie", "Kris", "Zara"]
-
-console.log(whoPassed({
-  "Zach" : ["10/10", "2/4"],
-  "Fred" : ["7/9", "2/3"]
-}) )
-// ➞ []
-
-let a = [10/10, 5/5, 4/5];
-console.log(a)
+//
+//  */
+// console.log(whoPassed({
+//   "John" : ["5/5", "50/50", "10/10", "10/10"],
+//   "Sarah" : ["4/8", "50/57", "7/10", "10/18"],
+//   "Adam" : ["8/10", "22/25", "3/5", "5/5"],
+//   "Barry" : ["3/3", "20/20"]
+// }) )
+// // ➞ ["Barry", "John"]
+//
+// console.log(whoPassed({
+//   "Zara" : ["10/10"],
+//   "Kris" : ["30/30"],
+//   "Charlie" : ["100/100"],
+//   "Alex" : ["1/1"]
+// }) )
+// // ➞ ["Alex", "Charlie", "Kris", "Zara"]
+//
+// console.log(whoPassed({
+//   // "Zara" : [10/10, 5/5],
+//   "Kris" : ["30/30"],
+//   "Charlie" : ["100/100"],
+//   "Alex" : ["1/1"]
+// }) )
+// // ➞ ["Alex", "Charlie", "Kris", "Zara"]
+//
+// console.log(whoPassed({
+//   "Zach" : ["10/10", "2/4"],
+//   "Fred" : ["7/9", "2/3"]
+// }) )
+// // ➞ []
+//
+// let a = [10/10, 5/5, 4/5];
+// console.log(a)
 
 
 
