@@ -171,13 +171,96 @@ function coloring(gen, parent=document.body, indent=0) {
   [...parent.children].forEach(child => coloring(gen, child, indent + 1));
 }
 /* [...spread syntax] for the children is pretty smooth.
-
  */
 
 
+// Node Swap
+
+function nodeSwapIncomplete(first, second) {
+  let firstEl = document.getElementById(first);
+  let secondEl = document.getElementById(second);
+  let siblings = [...firstEl.parentElement.children];
+
+  if (!siblings.includes(secondEl)) {
+    return undefined;
+  }
+
+  let [firstIdx, secondIdx] = [siblings.indexOf(firstEl), siblings.indexOf(secondEl)];
+  [siblings[firstIdx], siblings[secondIdx]] = [siblings[secondIdx], siblings[firstIdx]];
+
+  for (const sibling of siblings) {
+    firstEl.parentElement.appendChild(sibling);
+  }
+
+  return true;
+}
+/*
+dangit, Their test cases were all scenarios in which the swapped elements were
+direct siblings. Unfortunately, my solution only works for siblings, but their
+solution, which uses cloning, works for  non-sibling valid cases.
+ */
+
+function nodeSwapCloningSolution(node1Id, node2Id) {
+  const node1 = document.getElementById(node1Id);
+  const node2 = document.getElementById(node2Id);
+
+  if (!isInvalidSwap(node1, node2)) {
+    const node1Clone = node1.cloneNode(true);
+    const node2Clone = node2.cloneNode(true);
+    const node1Parent = node1.parentNode;
+    const node2Parent = node2.parentNode;
+
+    node1Parent.replaceChild(node2Clone, node1);
+    node2Parent.replaceChild(node1Clone, node2);
+    return true;
+  }
+}
+
+function isInvalidSwap(node1, node2) {
+  return ((!node1 || !node2) ||
+    node1.contains(node2) || node2.contains(node1));
+}
+
+function elementIncludedInTree(target, parent) {
+    return !!walk(parent, node => {
+      if (node === target) {
+        return true;
+      }
+    });
+}
+
+function nodeSwap(first, second) {
+  let firstEl = document.getElementById(first);
+  let secondEl = document.getElementById(second);
+
+  if (!firstEl || !secondEl || elementIncludedInTree(firstEl, secondEl) ||
+    elementIncludedInTree(secondEl, firstEl)) {
+    return undefined;
+  }
+
+  let tempNode = document.createElement("p")
+  firstEl.parentElement.replaceChild(tempNode, firstEl);
+  secondEl.parentElement.replaceChild(firstEl, secondEl);
+  tempNode.parentElement.replaceChild(secondEl, tempNode);
+
+  return true;
+}
 
 
+// window.onload = () => {
+  // nodeSwap(9,7);
+  // console.log(nodeSwap(1,3));
+  // console.log(nodeSwap(1,10))
+  // console.log(nodeSwap(2,9)) // non-siblings
+// }
 
+function nodesToArr(node = document.body) {
+  return [node.tagName, [...node.children].map(nodesToArr)];
+}
+
+window.onload = () => {
+  console.log(nodesToArr());
+}
 
 
 
