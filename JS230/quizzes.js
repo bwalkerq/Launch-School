@@ -50,17 +50,112 @@ function walk(node, callback) {
 the issue here is that two elements will end up having the same id, since we
 cloned one with a deep clone. that's a no no.
  */
-window.onload = () => {
-  let addIntroInfo = document.querySelector('.intro').cloneNode(true);
-  let addIntroInfoLink = addIntroInfo.querySelector('a');
+// window.onload = () => {
+//   let addIntroInfo = document.querySelector('.intro').cloneNode(true);
+//   let addIntroInfoLink = addIntroInfo.querySelector('a');
+//
+//   addIntroInfo.firstChild.nodeValue = 'We also have previous newsletters.';
+//   addIntroInfoLink.textContent = 'Check them out here.';
+//   addIntroInfoLink.href = 'newsletters.html';
+//   console.log(addIntroInfoLink)
+//
+//   document.body.insertBefore(addIntroInfo, document.querySelector('.form'));
+// }
 
-  addIntroInfo.firstChild.nodeValue = 'We also have previous newsletters.';
-  addIntroInfoLink.textContent = 'Check them out here.';
-  addIntroInfoLink.href = 'newsletters.html';
-  console.log(addIntroInfoLink)
 
-  document.body.insertBefore(addIntroInfo, document.querySelector('.form'));
+/* Quiz 2
+11/13
+
+#10
+correctly chose B, incorrectly chose C also.
+given:
+let p = new Promise((resolve, reject) => {
+  let value = Math.random();
+  if (value < 0.75) {
+    resolve(value);
+  } else {
+    reject(value);
+  }
+});
+Which of the following code snippets can be used to handle this Promise when
+it settles? Select all the snippets that are correct:
+
+C:
+async function showResult(p) {
+  try {
+    console.log(`In range: ${p}`)
+  } catch (error) {
+    console.log(`Out of range: ${error}`);
+  }
 }
+
+showResult(p);
+
+I skimmed this, knowing that there's an alternate version that handles promises
+with `async` in front of functions, and chose this because `try...catch` felt
+familiar.
+
+first of all, `p` in this choice is treated as a value, but it's actually a
+promise object.
+Second, there's no await. I think the following is due to the lack of use of await.
+"the catch block will never be executed since JavaScript won't recognize the
+ rejected promise until after all the code has been run."
+
+
+#11
+...
+Promise.all([download1, download2, download3])
+       .then(messages => messages.forEach(message => console.log(message)));
+
+overlooked that in the promise API, Promise.all() is passed an argument
+representing an *array of fulfilled promises*. I chose an answer that represented the idea
+that we *do* know that all the promises fulfill (correct), and we *don't* know the order in
+which they will fulfill (correct, but this led to my error). Since `all`
+executes when all have fulfilled, and takes an argument of the fulfilled promise
+objects, the order in which they are processed is the order of the array.
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
