@@ -1,20 +1,20 @@
 'use strict'
 
 // A11 Loading JSON via XHR
-let request = new XMLHttpRequest();
-request.open('GET', 'https://api.github.com/repos/rails/rails');
-request.responseType = 'json';
+// let request = new XMLHttpRequest();
+// request.open('GET', 'https://api.github.com/repos/rails/rails');
+// request.responseType = 'json';
+//
+// request.addEventListener('load', ev => {
+//   let data = request.data;
+//   console.log(request.status, data.open_issues);
+// });
+//
+// request.addEventListener('error', ev => {
+//   console.log("The request could not be completed!")
+// });
 
-request.addEventListener('load', ev => {
-  let data = request.data;
-  console.log(request.status, data.open_issues);
-});
-
-request.addEventListener('error', ev => {
-  console.log("The request could not be completed!")
-});
-
-request.send()
+// request.send()
 
 
 // A12 Sending JSON via XHR
@@ -24,14 +24,14 @@ Send the request using XMLHttpRequest with a Content-Type: application/json; cha
 Handle the response.
  */
 
-request = new XMLHttpRequest();
-request.open('POST', 'url')
-request.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
-
-let data = {this:'that', something:'those'};
-let json = JSON.stringify(data);
-
-request.send(json);
+// request = new XMLHttpRequest();
+// request.open('POST', 'url')
+// request.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
+//
+// let data = {this:'that', something:'those'};
+// let json = JSON.stringify(data);
+//
+// request.send(json);
 
 
 
@@ -51,7 +51,7 @@ request.send(json);
 POST /books HTTP/1.1
 host: lsjs230-book-catalog.herokuapp.com
 Content-Type: application/json; charset=utf-8
-Accept: */*                                                        /*
+Accept: */                                                        /*
 { 'title': 'Eloquent JavaScript', 'author': 'Marijn Haverbeke' }
  */
 
@@ -66,7 +66,7 @@ Accept: asterisk/asterisk
 
  */
 
-let create_a_product = new XMLHttpRequest();
+const create_a_product = new XMLHttpRequest();
 create_a_product.open('POST', 'https://ls-230-web-store-demo.herokuapp.com/v1/products');
 create_a_product.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
 create_a_product.setRequestHeader('Authorization', 'token AUTH_TOKEN');
