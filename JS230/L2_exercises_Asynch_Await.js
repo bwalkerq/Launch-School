@@ -128,7 +128,7 @@ I learned, by accident--leaving off `await` from the last `fetch` for the todos,
  */
 
 // Example usage:
-fetchUserProfile(1);
+// fetchUserProfile(1);
 // fetchUserProfile(2000);
 // Logs user profile, posts, and todos. Catches and logs errors at each step if they occur.
 
@@ -136,3 +136,67 @@ fetchUserProfile(1);
 //   GET https://jsonplaceholder.typicode.com/users/1
 //   GET https://jsonplaceholder.typicode.com/users/1/posts
 //   GET https://jsonplaceholder.typicode.com/users/1/todos
+
+
+// The thing from Ping that helped her understand promises
+
+function xhrPromise(method, url) {
+  return new Promise ((resolve, reject) => {
+    console.log("Hello from inside the Promise");
+    let request = new XMLHttpRequest();
+    request.open(method, url);
+
+    request.addEventListener('load', event => {
+      if (request.status === 200) {
+        resolve(request.responseText);
+      } else {
+        reject(`Error: ${request.status} ${request.statusText}`);
+      }
+    });
+
+    request.send();
+  });
+}
+
+xhrPromise('GET', 'https://api.github.com/repos/rails/rails')
+  .then(console.log)
+  .catch(console.error);
+
+console.log("Meanwhile, in sync land...");
+console.log("some sync code...");
+console.log("even more sync code!");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
