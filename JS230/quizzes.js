@@ -114,6 +114,21 @@ which they will fulfill (correct, but this led to my error). Since `all`
 executes when all have fulfilled, and takes an argument of the fulfilled promise
 objects, the order in which they are processed is the order of the array.
 
+
+Quiz 3
+********************************************************************************
+#3 I basically had no idea about what XMLHttpRequest was; it's a browser API that
+requests and loads HTML and JSON data via HTTP requests
+
+#4 I thought that the `XMLHttpRequest` method `open(method, url)` defaults to
+the root path if no `url` argument is provided, but  there is no default; both
+arguments must be provided.
+
+#9 - A simple vocabulary question:
+What is the name of the **policy** that prevents XMLHttpRequest from making
+cross-domain requests?
+Answer: Same origin policy
+(I had chosen CORS)
  */
 
 
