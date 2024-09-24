@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Getting Schedules</title>
+    <script src="small_problems.js"></script>
+</head>
+<body>
+<!--<form>-->
+<!--    <label for="email"> Email-->
+<!--        <input type="text" name="email" id="email">-->
+<!--    </label>-->
+
+<!--    <label for="name"> Name-->
+<!--        <input type="text" name="email" id="name">-->
+<!--    </label>-->
+<!--    <button type="submit">submit</button>-->
+<!--</form>-->
+
+<button id="add-schedule-template">Add Another Schedule Template</button>
+<!--this fieldset is used as the template, and is hidden.-->
+<fieldset class="schedule-fieldset" hidden>
+    <legend>Schedule 1</legend>
+    <select name="staff_id" class="staff-id">
+    </select>
+    <input name="date" value="" placeholder="mm-dd-yy">
+    <input name="time" value="" placeholder="hh:mm">
+</fieldset>
+<form>
+    <div id="schedules">
+<!--        the schedules that take user input are added within this div-->
+    </div>
+    <input type="submit">
+</form>
+
+<script>
+
+  const form = document.querySelector("form");
+  const schedulesDiv = document.getElementById('schedules')
+  const fieldset = document.querySelector('.schedule-fieldset')
+  const addTemplateButton = document.getElementById('add-schedule-template');
+
+  addTemplateButton.addEventListener('click', cloneFieldset);
+
+  form.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    handleSubmit();
+  })
+
+  initializeFieldset();
+
+  async function initializeFieldset() {
+    await createStaffOptions();
+    cloneFieldset();
+  }
+
+  // fills the select with the staff names
+  async function createStaffOptions() {
+    const staffSelection = document.querySelector('.staff-id');
+    const staffMembers = await getStaffMembers();
+
+    for (const staffMember of staffMembers) {
+      let option = new Option(staffMember.name, staffMember.id)
+      staffSelection.add(option);
+    }
+  }
+
+  // retrieves the list of staff from the server
+  async function getStaffMembers() {
+    const staffResponse =  await fetch("/api/staff_members", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const staffMembers = await staffResponse.json();
+    return staffMembers;
+  }
+
+  let fieldsetCount = 0
+
+  // clones the fieldset and adds to the DOM for submitting multiple schedules
+  function cloneFieldset() {
+    let clone = fieldset.cloneNode(true)
+    const legend = clone.querySelector('legend');
+    fieldsetCount += 1;
+    legend.innerText = `Schedule ${fieldsetCount}`;
+    clone.hidden = false;
+    schedulesDiv.appendChild(clone);
+  }
+
+  // converts formdata to an array of objects for the api
+  function formToArray(formData) {
+    const array = [];
+
+    let values = [...formData.values()]
+    for (let i = 0; i < values.length; i += 3) {
+      let staff_id = parseInt(values[i], 10);
+      let date = values[i + 1];
+      let time = values[i + 2];
+
+      array.push({staff_id, date, time});
+    }
+
+    return array;
+  }
+
+  // posts schedules to the server
+  async function postSchedules(arrayOfSchedules) {
+    const response = await fetch("/api/schedules", {
+      method: "POST",
+      body: JSON.stringify({"schedules": arrayOfSchedules}),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const text = await response.text();
+    if (response.status !== 201) {
+      throw text;
+    }
+    return text;
+  }
+
+  // resets inputs in the schedule fieldset
+  function clearInputs() {
+    let inputs = schedulesDiv.querySelectorAll("input");
+    for (const input of inputs) {
+      input.value = '';
+    }
+    let selects = schedulesDiv.querySelectorAll('select');
+    for (const select of selects) {
+      select.selectedIndex = 0;
+    }
+  }
+
+  // handles response from posting schedules
+  function handleSubmit() {
+    const data = new FormData(form);
+    let schedules = formToArray(data);
+    postSchedules(schedules)
+      .then((message) => {
+        clearInputs();
+        alert(message)
+      })
+      .catch((message) => alert(message));
+  }
+
+</script>
+
+</body>
+</html>
