@@ -141,6 +141,7 @@ I don't really get this, but it *feels* like something that would be powerful.
 // }
 
 // Selection Filters
+// initial attempt on my own
 // window.onload = () => {
 //   const classifications = document.querySelector('#animal-classifications');
 //   const animals = document.querySelector('#animals');
@@ -158,13 +159,38 @@ I don't really get this, but it *feels* like something that would be powerful.
 //   })
 // }
 
+// 2nd attempt with Phillip 9/18
+
+// Pedac
+// grab each select element
+// add a "select" listener for each
+  // listener should change option values in OTHER select element based on the current selected element
+  // according to option table which we can hold in a hash or w/e
+  // do option elements need to get added/deleted, or can we just make them invisible?
+  // we can add the hidden property to make the option hidden
+
+window.onload = () => {
+  const classifications = document.querySelector('#animal-classifications');
+
+  classifications.addEventListener("change", (event) => {
+    console.log('hi');
+    let options = [...classifications.getElementsByTagName('option')];
+    options[1].hidden = true;
+  });
+
+  const animals = document.querySelector('#animals');
+
+
+}
+
+
 /*
 ok holy crap, I have no idea how I was supposed to know how to identify an
 option that was selected from a dropdown. The rest of the CSS class? I don't
 think so...
 So, the dropdown element, called select, apparently gives an array of its
 options with select.options.
-select.selecteIndex returns the index value of the option that is selected.
+select.selectedIndex returns the index value of the option that is selected.
  */
 
 // Delegate Event Function
