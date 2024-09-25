@@ -397,9 +397,7 @@ fetchResource("invalidUrl");
 // Logs "Failed to load resource", then "Resource fetch attempt made"
 
 
-async function fetchUserProfile(id) {
 
-}
 
 
 

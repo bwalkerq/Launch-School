@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adding Staff</title>
+</head>
+<body>
+    <form>
+        <input name="email">
+        <input name="name">
+        <input type="submit">
+    </form>
+<script>
+    /*
+    given an email and name for a staff, add that staff member to the list of staff on the server
+
+    input email string, name string, on form submit
+    output: alert with the API response
+
+    D: none needed
+    A:
+    on submit
+        form event listener, on submit
+    XHR
+        initialize
+        Property
+            responseType: 'json'
+        Headers
+          content type header, application/json
+            accept: application/json
+        open
+            POST to the server, path: /api/staff_members
+
+        data:
+            from FormData object,  email and name properties
+            json encode the data
+        send(data)
+
+    handle response
+        event for load
+            request.response (this will be parsed json because ResponseType property)
+
+            Using response.status...if error,
+                alert,
+            if successful,
+                custom message with staff id number\
+     */
+
+    const form = document.querySelector("form");
+    form.addEventListener("submit", submitStaff)
+
+    function submitStaff(event) {
+      event.preventDefault();
+
+      let request = new XMLHttpRequest();
+      request.open('POST', '/api/staff_members')
+      request.setRequestHeader('Content-Type', 'application/json');
+      request.setRequestHeader('Accept', 'application/json, text/plain')
+
+
+      let formData = new FormData(form);
+      let body = {
+        "email": formData.get('email'),
+        "name": formData.get('name')
+      }
+
+      request.addEventListener('load', (ev) => {
+        if (request.status === 400) {
+          alert(request.response);
+        } else {
+          let response = JSON.parse(request.response);
+          alert(`way to go, you did this with Shawn, and the id number is ${response.id}`)
+        }
+      })
+
+      request.send(JSON.stringify(body));
+    }
+
+</script>
+</body>
+</html>
