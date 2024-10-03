@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
+</head>
+<body>
+
+<form>
+    <label> Type in a letter, bro
+        <input id="key" type="text" maxlength="1">
+    </label>
+    <input type="submit">
+</form>
+<a id="anchor">anchor</a>
+
+
+<h1 id="shawn" hidden >HEY</h1>
+
+<script>
+
+    $('form').on('submit', (ev) => {
+      ev.preventDefault();
+      let letter = $('#key').val()
+      $(document).on('keypress', function(ev) {
+        if (ev.key !== letter) {
+          return;
+        }
+        $('#anchor').trigger('click');
+      })
+    })
+
+    $('#anchor').on('click', (ev) => {
+      ev.preventDefault();
+      $('#shawn').slideToggle()
+    })
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Handlebars Practice</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
+</head>
+
+<body>
+
+</body>
+<script id="post" type="text/x-handlebars">
+    <article>
+        {{#each posts}}
+            <h1>{{this.title}}</h1>
+            <p><time>Posted on {{published}}</time></p>
+            {{{body}}}
+            <footer>
+                <p>
+                    Tags:
+                    {{#if tags}}
+                        {{#each tags}}
+                            {{>tag}}
+                        {{/each}}
+                    {{else}}
+                        not tagged
+                    {{/if}}
+                </p>
+            </footer>
+        {{/each}}
+    </article>
+</script>
+
+<script id="tag" type="text/x-handlebars">
+    <li><strong>{{this}}</strong></li>
+</script>
+
+<script>
+  let post = {
+    title: 'Lorem ipsum dolor sit amet',
+    published: 'April 1, 2015',
+    body: "Sed ut perspiciatis unde omnis <strong> iste natus </strong> error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.",
+    tags: ['dope', 'half-baked', 'thoughtful']
+  };
+
+  let post2 = {
+    title: 'this shit is old',
+    published: 'April 1, 2024',
+    body: "oldfest",
+    tags: []
+  };
+
+  const posts = [post, post2];
+
+  let postTemplate = Handlebars.compile($('#post').html());
+  let $tag = $('#tag')
+  let tagTemplate = Handlebars.compile($tag.html());
+  Handlebars.registerPartial('tag', $tag.html())
+
+  let $body = $('body');
+  $body.append(postTemplate({posts: posts}));
+</script>
+
+</html>
