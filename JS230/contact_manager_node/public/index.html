@@ -5,11 +5,150 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="doc/css/style.css">
+
   <script src="/javascripts/jquery.js"></script>
   <script src="/javascripts/handlebars.js"></script>
 </head>
+  <header class="bs-header">
+    <div class="container1">
+      <a href="#home">
+        <h1>Contact Manager</h1>
+      </a>
+      <p>Using a bunch of tech</p>
+    </div>
+  </header>
 <body>
-<h1>brooooo</h1>
+  <fieldset>
+    <a href="#contacts/new" class="btn btn-lg btn-" id="add-contact"> Add contact</a>
+    <input type="text" name="search" id="search" placeholder="search">
+  </fieldset>
+  <div id="contacts-display">
 
+  </div>
 </body>
+
+<script id="contacts" type="text/x-handlebars">
+  {{#each contacts}}
+    <fieldset>
+      <h2>{{full_name}}</h2>
+      <p>email:</p>
+      <p>{{email}}</p>
+      <p>phone:</p>
+      <p>{{phone_number}}</p>
+    </fieldset>
+  {{/each}}
+</script>
+
+
+<script>
+  let contactTemplate = Handlebars.compile($('#contacts').html());
+  const $contactsDisplay = $('#contacts-display')
+
+
+  async function getContacts() {
+    const response = await fetch('/api/contacts', {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    let contacts = await response.json();
+
+    return contacts;
+  }
+
+  function renderContacts(list) {
+    $contactsDisplay.html(contactTemplate({contacts: list}))
+  }
+
+  async function initialize() {
+    const contactList = await getContacts();
+    renderContacts(contactList);
+  }
+  initialize();
+
+  let contact = {
+    full_name: 'Dossie Easton',
+    email: 'dossie@cnm.com',
+    phone_number: 'asdf',
+    tags: 'ethical, non-mono'
+  }
+  async function addContact(contactObject) {
+    const response = await fetch('/api/contacts' , {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(contactObject)
+    });
+    console.log(response);
+  }
+  // addContact(contact);
+
+  async function deleteContact(id) {
+    const response = await fetch(`/api/contacts/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (response.status === 204) {
+      alert("Contact deleted successfully");
+    } else if (response.status === 400) {
+      alert('Contact not found');
+    } else {
+      const text = await response.text();
+      throw new Error(`Error deleting contact" ${text}`);
+    }
+  }
+
+  // deleteContact(4)xx
+
+</script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

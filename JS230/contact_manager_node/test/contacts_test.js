@@ -35,7 +35,7 @@ describe('Contacts', () => {
         .end((err, res) => {
           expect(res).to.have.status(200);
           expect(res.body.length).to.eql(1);
-          expect(res.body).to.eql(contactManager.getAll());
+          expect(res.body).to.eql(contactManager.getAsigll());
           done();
         });
     });
