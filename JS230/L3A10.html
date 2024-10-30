@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>L3A10 send a FormData with XHR</title>
+    <style>
+        #store {
+            border: solid 1px black;
+            padding: 0 1em;
+            float: left;
+            h1 {
+                font-size: 1.2em;
+            }
+
+            h2 {
+                font-size: 1em;
+            }
+            form {
+                button {
+                    margin-bottom: 1em;
+                }
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>Existing Page</h1>
+
+<div id="store"></div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let store = document.getElementById('store');
+
+    let request = new XMLHttpRequest();
+    request.open('GET', 'https://ls-230-web-store-demo.herokuapp.com/products');
+
+    request.addEventListener('load', event => store.innerHTML = request.response);
+    request.send();
+
+    store.addEventListener('click', event =>  {
+      let target = event.target;
+      if (target.tagName !== 'A') {
+        return;
+      }
+
+      event.preventDefault();
+
+      let request = new XMLHttpRequest();
+
+      request.open('GET', `https://ls-230-web-store-demo.herokuapp.com${target.getAttribute('href')}`);
+
+      request.addEventListener('load', event => store.innerHTML = request.response);
+      request.send();
+    });
+
+    store.addEventListener("submit", ev => {
+      ev.preventDefault();
+      let form = document.querySelector("form");
+      /* I learned that the form needs to be captured within the event listener; outside of
+      this and it will grab the wrong form, or no form at all.
+       */
+      let request = new XMLHttpRequest();
+      let data = new FormData(form);
+      request.open('POST', `https://ls-230-web-store-demo.herokuapp.com${form.getAttribute('action')}`)
+      request.setRequestHeader('Authorization', 'token AUTH_TOKEN')
+      request.addEventListener("load", ev1 => store.innerHTML = request.response);
+      request.send(data);
+    });
+  });
+
+</script>
+</body>
+</html>
