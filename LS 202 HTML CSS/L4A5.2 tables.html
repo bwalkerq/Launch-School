@@ -3,35 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>more tables</title>
+    <style>
+        thead {
+            background-color: lightgreen;
+        }
+        tbody tr th {
+            background-color: lightblue;
+        }
+
+        /*Note that the same can be accomplished by targeting attribute
+        values with brackets []*/
+        /*[scope="col"] {*/
+        /*    color: green;*/
+        /*}*/
+
+        /*[scope="row"] {*/
+        /*    color: blue;*/
+        /*}*/
+    </style>
 </head>
 <body>
 <table>
     <thead>
     <tr>
-        <th>Name</th>
-        <th>Major</th>
-        <th>GPA</th>
+        <th scope="col">Name</th>
+        <th scope="col">Major</th>
+        <th scope="col">GPA</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <th>    Chris Lee, Supply Chain Management, 3.7</th>
-        <td></td>
-        <td></td>
+        <th scope="row">Chris Lee</th>
+        <td>Supply Chain Management</td>
+        <td>3.7</td>
     </tr>
     <tr>
-        <th></th>
-        <td></td>
-        <td></td>
+        <th scope="row">Shane Riley</th>
+        <td>Photojournalism</td>
+        <td>3.8</td>
     </tr>
     <tr>
-        <th></th>
-        <td></td>
-        <td></td>
+        <th scope="row">Kevin Wang</th>
+        <td>Computer Science</td>
+        <td>4.0</td>
     </tr>
-
-    Shane Riley, Photojournalism, 3.8
-    Kevin Wang, Computer Science, 4.0
     </tbody>
 </table>
 
