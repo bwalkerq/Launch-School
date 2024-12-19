@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>forms practice problems</title>
+</head>
+<body>
+
+<form action="#" method="get">
+  <fieldset>
+    <legend>#11</legend>
+    <dl>
+      <dt><label for="category">Category</label></dt>
+      <dd>
+        <select size="3" id="category">
+          <option value="core">Core</option>
+          <option value="Plugins and Libraries" >Plugins Libraries
+          <option value="Conventions">Conventions
+          <option value="Reviews">Reviews
+          <option value="Opinion">Opinion
+          <option value="People">People
+        </select>
+      </dd>
+
+      <dt><label for="tags">Tags</label></dt>
+      <dd>
+        <select size="5" name="tags" id="tags" multiple>
+          <option value="html">HTML</option>
+        <option value="CSS">CSS</option>
+        <option value="Javascript">Javascript</option>
+        <option value="Ruby">Ruby</option>
+        <option value="Rails">Rails</option>
+        <option value="Python">Python</option>
+        <option value="Django">Django</option>
+      </select>
+    </dd>
+    </dl>
+
+    <input type="submit" value="Filter">
+    <input type="reset" value="Reset">
+  </fieldset>
+
+</form>
+
+<form action="#" method="post">
+  <fieldset>
+    <legend>Personal Information</legend>
+    <dl>
+      <dt>
+        <label for="first-name">First name:</label>
+      </dt>
+      <dd>
+        <input type="text" name="firstname" id="first-name" required>
+      </dd>
+      <dt>
+        <label for="first-name">Last name:</label>
+      </dt>
+      <dd>
+        <input type="text" name="lastname" id="last-name" required>
+      </dd>
+      <dt>
+        <label for="email">Email:</label>
+      </dt>
+      <dd>
+        <input type="email" name="email" id="email" autocomplete="off" autocapitalize="off" required>
+      </dd>
+      <dt>
+        <label for="phone">Phone:</label>
+      </dt>
+      <dd>
+        <input type="text" name="phone" id="phone" required placeholder="123-456-7890">
+      </dd>
+      <dt><label for="phone-type">Phone Type</label></dt>
+      <dd>
+        <select name="phone-type" id="phone-type">
+          <option value="home" selected>home</option>
+          <option value="business">business</option>
+          <option value="mobile">mobile</option>
+        </select>
+      </dd>
+      <dt><label for="message">Message</label> </dt>
+      <dd>
+        <textarea name="message" id="message" cols="80" rows="6" placeholder="Type your message here."></textarea>
+      </dd>
+    </dl>
+  </fieldset>
+</form>
+<form action="#" method="get">
+  <fieldset>
+    <legend>Search form (#7)</legend>
+    <label for="search">Search for</label>
+    <input type="search" name="search" id="search">
+    <label>
+      <input type="radio" name="TV" value="TV" required>
+      TV
+    </label>
+    <label>
+      <input type="radio" name="Movies" value="Movies">
+      Movies
+    </label>
+    <label>
+      <input type="radio" name="Music" value="Music">
+      Music
+    </label>
+    <button type="submit">Search</button>
+  </fieldset>
+</form>
+
+<form action="#" method="post">
+  <fieldset>
+    <legend>Movie Review</legend>
+    <dl>
+      <dt>
+        <label for="title">Movie</label>
+      </dt>
+      <dd>
+        <select name="title" id="title" size="4" equired>
+          <option value="Looper">Looper</option>
+          <option value="Frozen" >Frozen</option>
+          <option value="Tommy Boy">Tommy Boy</option>
+          <option value="Alien" selected>Alien</option>
+        </select>
+      </dd>
+      <dt>
+        <label for="rating">Rating</label>
+      </dt>
+      <dd>
+        <input type="number" name="rating" id="rating" min="1" max="5" step="1" value="1">
+      </dd>
+    </dl>
+    <div>
+      <label>
+        <input type="checkbox" name="favorite" checked>
+        Add to my favorites
+      </label>
+    </div>
+    <input type="submit" value="Rate movie">
+  </fieldset>
+</form>
+</body>
+</html>
