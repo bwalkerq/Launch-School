@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Form</title>
+  <style>
+    fieldset {
+      width: 400px;
+      margin: 0 auto;
+      /*border: none;*/
+    }
+    dl {
+      margin-bottom: 0;
+    }
+    dl + dl {
+      margin-top: 0;
+    }
+    dt {
+      margin-bottom: 5px;
+    }
+    dd {
+      margin: 0 0 25px 0;
+    }
+    .partial {
+      box-sizing: border-box;
+      display: inline-block;
+    }
+    .one_half {
+      width: 50%;
+    }
+    .one_tenth {
+      width: 10%;
+    }
+    .four_tenths {
+      width: 40%;
+    }
+    .left {
+      padding-right: 5px;
+    }
+    .right {
+      padding-left: 5px;
+    }
+    .both {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    input[type=text],
+    input[type=email] {
+      width: 100%;
+      height: 25px;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+<form action="#" method="post">
+  <fieldset>
+    <legend>Contact Form</legend>
+    <dl class="partial one_half left">
+      <dt><label for="first-name">First Name</label></dt>
+      <dd><input type="text" name="first-name" id="first-name" required></dd>
+    </dl><!--
+    --><dl class="partial one_half right">
+      <dt><label for="last-name">Last Name</label></dt>
+      <dd><input type="text" name="last-name" id="last-name" required></dd>
+    </dl>
+    <dl>
+      <dt><label for="email" class="required">Email</label> </dt>
+      <dd><input type="email" name="email" id="email" placeholder="example@domain.com" required></dd>
+    </dl>
+    <dl class="partial one_half left">
+      <dt><label for="city" class="required">City</label> </dt>
+      <dd><input type="text" name="city" id="city" required></dd>
+    </dl><!--
+    --><dl class="partial one_tenth both">
+      <dt><label for="state" class="required">State</label> </dt>
+      <dd>
+        <select name="state" id="state" required>
+          <option>AK</option>
+          <option>AL</option>
+          <option>AR</option>
+          <option>AZ</option>
+          <option>CA</option>
+          <option>CO</option>
+          <option>CT</option>
+          <option>DC</option>
+          <option>DE</option>
+          <option>FL</option>
+          <option>GA</option>
+          <option>HI</option>
+          <option>IA</option>
+          <option>ID</option>
+          <option>IL</option>
+          <option>IN</option>
+          <option>KS</option>
+          <option>KY</option>
+          <option>LA</option>
+          <option>MA</option>
+          <option>MD</option>
+          <option>ME</option>
+          <option>MI</option>
+          <option>MN</option>
+          <option>MO</option>
+          <option>MS</option>
+          <option>MT</option>
+          <option>NC</option>
+          <option>ND</option>
+          <option>NE</option>
+          <option>NH</option>
+          <option>NJ</option>
+          <option>NM</option>
+          <option>NV</option>
+          <option>NY</option>
+          <option>OH</option>
+          <option>OK</option>
+          <option>OR</option>
+          <option>PA</option>
+          <option>RI</option>
+          <option>SC</option>
+          <option>SD</option>
+          <option>TN</option>
+          <option>TX</option>
+          <option>UT</option>
+          <option>VA</option>
+          <option>VT</option>
+          <option>WA</option>
+          <option>WI</option>
+          <option>WV</option>
+          <option>WY</option>
+        </select>
+      </dd>
+    </dl><!--
+    --><dl class="partial four_tenths right">
+    <dt><label for="zip" class="required">Zip Code</label></dt>
+    <dd><input type="text" name="zip" id="zip"
+               maxlength="5" minlength="5" placeholder="54321" required></dd>
+    </dl>
+    <dl>
+      <dt><label for="color">Which is your favorite color?</label> </dt>
+      <dd><select name="color" id="color">
+        <option>Red</option>
+        <option>Blue</option>
+        <option>Green</option>
+      </select></dd>
+    </dl>
+    <dl>
+      <dt><label for="tech">Which web technologies do you want to learn?</label></dt>
+      <dd><select id="tech" name="tech" multiple>
+        <option>HTML</option>
+        <option>CSS</option>
+        <option>JavaScript</option>
+        <option>PHP</option>
+        <option>MySQL</option>
+        <option>Node.js</option>
+        <option>React</option>
+        <option>Redux</option>
+        <option>React Native</option>
+        <option>Swift</option>
+      </select> </dd>
+    </dl>
+    <dl>
+      <dt><label for="message">Message</label></dt>
+      <dd><textarea name="message" id="message" cols="80" rows="6"></textarea></dd>
+    </dl>
+    <input type="hidden" value="2014-12-26" name="date" id="date">
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+  </fieldset>
+
+
+</form>
+
+
+
+</body>
+</html>
