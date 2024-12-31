@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>L5A3</title>
+  <script
+          src="https://code.jquery.com/jquery-3.6.0.min.js"
+          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+          crossorigin="anonymous"
+  ></script>
+</head>
+<body>
+<ul>
+  <li><a href="#" data-block="gold">Gold Sponsors</a></li>
+  <li><a href="#" data-block="silver">Silver Sponsors</a></li>
+  <li><a href="#" data-block="bronze">Bronze Sponsors</a></li>
+</ul>
+
+<div id="gold" data-block="gold">
+  <h1>Gold Sponsors</h1>
+  <ul>
+    <li>this</li>
+    <li>this</li>
+    <li>this</li>
+    <li>this</li>
+    <li>this</li>
+    <li>this</li>
+    <li>this</li>
+    <li>this</li>
+    <li>this</li>
+    <li>that</li>
+    <li>those</li>
+  </ul>
+</div>
+
+<div id="silver" data-block="silver">
+  <h1>Silver Sponsors</h1>
+</div>
+
+<div id="bronze" data-block="bronze">
+  <h1>Bronze Sponsors</h1>
+</div>
+
+</body>
+<script>
+
+  let gold = document.getElementById('gold');
+  console.table(gold.dataset);
+  gold.dataset.block = 'silver';
+  gold.dataset.sponsor = 'Newman\'s Own';
+  // delete gold.dataset.block;
+
+  $('a').on('click', function(e) {
+    e.preventDefault();
+
+    $('article').hide().filter('[data-block=' + $(this).attr('data-block') + ']').show();
+  });
+
+
+</script>
+</html>
