@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Calculator</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="stylesheets/style.css" />
+<!--    <script src="javascripts/calculator.js"></script>-->
+  </head>
+  <body>
+    <main>
+      <h1 id="result">0</h1>
+
+      <form action="" method="post">
+        <fieldset>
+          <label for="first-number">
+            <input
+                    type="number"
+                    name="first-number"
+                    id="first-number"
+                    value="0"
+            />
+          </label>
+          <label for="operator">
+            <select name="operator" id="operator">
+              <option>+</option>
+              <option>-</option>
+              <option>*</option>
+              <option>/</option>
+            </select>
+          </label>
+          <label for="second-number">
+            <input
+                    type="number"
+                    name="second-number"
+                    id="second-number"
+                    value="0"
+            />
+          </label>
+          <input type="submit" id="submit" value="=" />
+        </fieldset>
+      </form>
+    </main>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      let submitButton = document.getElementById("submit");
+      let result = document.getElementById("result");
+
+      function calculate() {
+        let first_number = document.getElementById("first-number").value;
+        first_number = Number(first_number);
+        let second_number = document.getElementById("second-number").value;
+        second_number = Number(second_number);
+        let operator = document.getElementById("operator").value;
+        if (operator === "+") {
+          return first_number + second_number;
+        } else if (operator === "-") {
+          return first_number - second_number;
+        } else if (operator === "*") {
+          return first_number * second_number;
+        } else if (operator === "/") {
+          return first_number / second_number;
+        }
+      }
+
+      submitButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        result.innerText = String(calculate());
+      });
+    });
+  //   (this working is evidence that I can still do lots of stuff from JS 230
+    //   that I haven't done in a long time!)
+  </script>
+</html>
