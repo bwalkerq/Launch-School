@@ -23,6 +23,16 @@ img {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  transition: opacity 0.5s ease;
+  opacity: 1; /* fully visible */
+}
+
+img.fade-out {
+  opacity: 0;
+}
+
+img.fade-in {
+  opacity: 1;
 }
 
 figure {
@@ -57,4 +67,9 @@ li {
 
 li img {
   border: 3px solid #ffffff;
+}
+
+.active {
+  background: #151515;
+  border: 3px solid #00B7FF;
 }

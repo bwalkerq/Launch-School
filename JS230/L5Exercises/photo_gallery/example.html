@@ -9,15 +9,43 @@
     <main>
       <h1>My Photo Gallery</h1>
       <figure>
-        <img src="http://placehold.it/1200x900" alt="" />
+        <img id="display-image" src="https://via.placeholder.com/1200x900" alt="" />
         <figcaption>Example photo</figcaption>
       </figure>
       <ul>
-        <li><img src="http://placehold.it/1200x900" alt="" title="Photo 1" /></li>
-        <li><img src="http://placehold.it/1200x900" alt="" title="Photo 2" /></li>
-        <li><img src="http://placehold.it/1200x900" alt="" title="Photo 3" /></li>
-        <li><img src="http://placehold.it/1200x900" alt="" title="Photo 4" /></li>
+        <li><img src="https://via.placeholder.com/1200x900" alt="" title="Photo 1" /></li>
+        <li><img src="https://via.placeholder.com/1200x900/fff/333" alt="" title="Photo 2" /></li>
+        <li><img src="https://via.placeholder.com/1200x900/66cc33/f0f0f0" alt="" title="Photo 3" /></li>
+        <li><img src="https://via.placeholder.com/1200x900/993535/aaa" alt="" title="Photo 4" /></li>
       </ul>
     </main>
   </body>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let figure = document.querySelector('figure');
+    let displayImage = document.querySelector('#display-image');
+    let figCaption = figure.querySelector('figcaption');
+    let listImages = document.querySelectorAll('ul img');
+
+    function displayOnClick(event) {
+      event.preventDefault();
+      let image = event.target;
+      listImages.forEach(img => img.classList.remove('active'));
+      image.classList.toggle('active');
+      figCaption.textContent = image.title;
+
+      displayImage.classList.remove('fade-in');
+      displayImage.classList.add('fade-out');
+      //
+      setTimeout(() => {
+        displayImage.src = image.src;
+        displayImage.alt = image.alt;
+        displayImage.classList.remove('fade-out');
+        displayImage.classList.add('fade-in');
+      }, 500);
+    }
+
+    listImages.forEach(img => img.addEventListener('click', displayOnClick));
+  });
+</script>
 </html>
