@@ -10,13 +10,14 @@ body {
 #modal-layer {
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
+  left: 0;
   z-index: 2;
-  background-color: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, .3);
 }
-.modal {
+
+#modal {
   position: absolute;
   left: 50%;
   z-index: 3;
@@ -40,12 +41,36 @@ body {
   opacity: 1;
 }
 
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+#modal a.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  text-align: left;
+  text-indent: -8685px;
+  overflow: hidden;
+  background: transparent url("images/icon_close.png") 0 0 no-repeat;
+}
+
+#modal h3 {
+  display: inline-block;
+  font-size: 24px;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+#modal img {
+  display: inline-block;
+  width: 96px;
+  margin: 0 30px 0 0;
+  vertical-align: middle;
+}
+
+#modal p {
+  padding: 0;
+  font-size: 20px;
 }
 
 a {

@@ -23,12 +23,17 @@
     <main>
       <div id="team" class="column">
         <div id="modal-layer" class="hide"></div>
+<!--        I learned that the modal layer is essentially a "curtain;" it serves to visually separate the
+modal content from the rest of the page when the modal is shown. It slightly grays out everything in the
+background.
+-->
         <div id="modal" class="hide">
           <a href="#" class="close">Close</a>
           <img src="" alt="" />
           <h3></h3>
           <p></p>
         </div>
+<!-- Whereas this layer is actually the box that pops up; it gets dynamically populated with content.-->
         <article>
           <h2>Team</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniadolor</p>
@@ -61,6 +66,9 @@
         </article>
       </div>
     </main>
+<!-- It was clarifying to see the use of the custom data-* attributes in this example. Later, we access them
+by using the `.dataset` method.
+-->
 
     <footer>
       <p>
@@ -77,12 +85,58 @@
     </footer>
   </body>
 <script>
-  let modal = document.getElementById("modal");
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      modal.style.display = "block" ;
-    });
+document.addEventListener("DOMContentLoaded", function(event) {
+  let modal = document.querySelector("#modal");
+  let modalLayer = document.querySelector("#modal-layer");
+  // These need to be manipulated with show/hide classes
+  let modalTitle = modal.querySelector('h3');
+  let modalImage =  modal.querySelector('img');
+  let modalText = modal.querySelector('p');
+  // These are all the things that will get dynamically populated
+  let teamLinks = document.querySelectorAll('#team li > a');
+  // each of the links needs its own event handler (there's only 4, so performance not an issue
+
+  function showModal(event) {
+    event.preventDefault();
+    let link = event.target.closest("a");
+    // This is a bit of genius to grab the anchor element closest to the click (since this function
+    // is the handler for each time an anchor is clicked)
+    modalTitle.textContent = link.dataset.name;
+    modalImage.src = link.dataset.imageSource;
+    modalImage.alt = link.dataset.name;
+    modalText.textContent = link.dataset.text;
+    // sets the content dynamically
+    modalLayer.classList.replace("hide", "show");
+    modal.classList.replace('hide', 'show');
+  //   reveals!
+  }
+  //
+
+  function hideModal(event) {
+    event.preventDefault();
+    modalTitle.textContent = "";
+    modalImage.src = "";
+    modalImage.alt = null;
+    modalText.textContent = "";
+    // resets the content to blank
+    modalLayer.classList.replace("show", "hide");
+    modal.classList.replace('show', 'hide');
+  //   hides
+  }
+
+  teamLinks.forEach(link => link.addEventListener("click", showModal));
+  // creates a listener for each of the people on the team, and passes showModal as the handler
+  document.querySelector('#modal-layer').addEventListener("click", hideModal);
+  // If anywhere outside the modal is clicked, it will click the modal layer (since that's
+  // covering the rest of the page)
+  document.querySelector('#modal a.close').addEventListener("click", hideModal);
+  // targets the anchor with the class 'close' within the modal id div, which is that little 'x', and
+  // hides the modal
+  document.addEventListener('keyup', function(event) {
+    if (event.key === "Escape") {
+      hideModal(event);
+    }
   });
+});
 </script>
 </html>
