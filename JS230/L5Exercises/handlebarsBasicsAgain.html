@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>handlebars basics exercises take 2</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+</head>
+<body>
+
+</body>
+<script id="post" type="text/x-handlebars">
+  <article>
+    <h1>{{title}}</h1>
+    <p><time>Posted on {{published}}</time></p>
+    {{{body}}}
+  </article>
+</script>
+<script>
+  let post = {
+    title: 'Lorem ipsum dolor sit amet',
+    published: 'April 1, 2015',
+    body: 'Sed ut perspiciatis unde omnis iste <strong>natus</strong> error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.'
+  };
+  let postTemplate = Handlebars.compile(document.querySelector('#post').innerHTML);
+  document.body.insertAdjacentHTML('beforeend', postTemplate(post));
+</script>
+</html>
