@@ -19,5 +19,26 @@
     "email": "ph@example.com",
     "phone_number": "54321098761",
     "tags": null
+  },
+  {
+    "full_name": "Dossie Easton",
+    "phone_number": "asdf",
+    "email": "dossie@cnm.com",
+    "tags": "ethical, non-mono",
+    "id": 4
+  },
+  {
+    "full_name": "Dossie Easton",
+    "phone_number": "asdf",
+    "email": "dossie@cnm.com",
+    "tags": "ethical, non-mono",
+    "id": 5
+  },
+  {
+    "full_name": "Dossie Easton",
+    "phone_number": "asdf",
+    "email": "dossie@cnm.com",
+    "tags": "ethical, non-mono",
+    "id": 6
   }
 ]
