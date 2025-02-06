@@ -47,10 +47,38 @@ document.addEventListener("DOMContentLoaded", ev =>{
       alert("Contact added successfully");
     } else {
       const text = await response.text();
-      throw new Error(`Error deleting contact" ${text}`);
+      throw new Error(`Error adding contact" ${text}`);
     }
   }
   // addContact(testContact);
+
+  let testUpdateContact = {
+    full_name: 'Dossie Easton',
+    email: undefined,
+    phone_number: '12345555555',
+    tags: 'ethical, non-mono',
+    id: 5,
+  }
+
+  // updateContact(testUpdateContact);
+
+  async function updateContact(contactObject) {
+    const id = contactObject.id
+    const response = await fetch(`/api/contacts/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(contactObject)
+    });
+
+    if (response.status === 201) {
+      alert("Contact updated successfully");
+    } else {
+      const text = await response.text();
+      throw new Error(`Error updating contact" ${text}`);
+    }
+  }
 
   async function deleteContact(id) {
     const response = await fetch(`/api/contacts/${id}`, {
