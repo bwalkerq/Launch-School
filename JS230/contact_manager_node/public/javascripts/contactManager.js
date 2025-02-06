@@ -18,8 +18,11 @@ document.addEventListener("DOMContentLoaded", ev =>{
   }
 
   async function initialize() {
-    const contactList = await getContacts();
-    // contactList.each(contact => contact.tag.split(','))
+    let contactList = await getContacts();
+    contactList.forEach(contact => {
+      contact.tags = contact.tags ? contact.tags.split(',') : [];
+    })
+    console.log(contactList); // Check the output here
     renderContacts(contactList);
   }
   initialize();
