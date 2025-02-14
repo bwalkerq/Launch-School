@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", ev =>{
 
   let contactTemplate = Handlebars.compile(document.querySelector('#contacts').innerHTML);
   const contactsDisplay = document.querySelector('#contacts-display')
+  const contactInfoForm = document.querySelector('#contact-information');
+  fetchAndRenderContacts();
 
 
   async function getContacts() {
