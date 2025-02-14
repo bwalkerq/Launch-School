@@ -27,20 +27,21 @@ document.addEventListener("DOMContentLoaded", _ =>{
         "Content-Type": "application/json"
       }
     });
-    return await response.json();
+    let contactList = await response.json();
+    contactList.forEach(contact => {
+      contact.tags = contact.tags ? contact.tags.split(',') : [];
+    });
+    return contactList;
   }
 
   function renderContacts(list) {
     contactsDisplay.innerHTML = contactTemplate({contacts: list});
   }
 
-  async function initialize() {
-    let contactList = await getContacts();
-    contactList.forEach(contact => {
-      contact.tags = contact.tags ? contact.tags.split(',') : [];
-    })
-    console.log(contactList); // Check the output here
-    renderContacts(contactList);
+  function fetchAndRenderContacts() {
+    fetchContacts().then((response) => {
+      renderContacts(response)
+    });
   }
 
   async function addContact(contactObject) {
@@ -52,12 +53,13 @@ document.addEventListener("DOMContentLoaded", _ =>{
       body: JSON.stringify(contactObject)
     });
 
-    if (response.status === 200) {
+    if (response.status === 201) {
       alert("Contact added successfully");
     } else {
       const text = await response.text();
       throw new Error(`Error adding contact" ${text}`);
     }
+    fetchAndRenderContacts();
   }
 
   async function updateContact(contactObject) {
@@ -86,6 +88,7 @@ document.addEventListener("DOMContentLoaded", _ =>{
 
     if (response.status === 204) {
       alert("Contact deleted successfully");
+      fetchAndRenderContacts();
     } else if (response.status === 400) {
       alert('Contact not found');
     } else {
