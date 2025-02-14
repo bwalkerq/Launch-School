@@ -15,7 +15,7 @@
 </head>
   <header class="bs-header">
     <div class="container1">
-      <a href="#home">
+      <a href="#">
         <h1>Contact Manager</h1>
       </a>
       <p>Using a bunch of tech</p>
@@ -24,6 +24,7 @@
 <body>
   <fieldset>
     <a href="#contacts/new" class="btn btn-lg" id="add-contact"> Add contact</a>
+    <label for="search"></label>
     <input type="text" name="search" id="search" placeholder="search">
   </fieldset>
 <fieldset>
@@ -45,7 +46,7 @@
     <input type="submit" value="Submit">
 <!--    list items will be added to the dom when I select a tag-->
     <label for="selected-tags"></label>
-    <input name="selected-tags" id="selected-tags" hidden></input>
+    <input name="selected-tags" id="selected-tags" hidden>
   </form>
 </fieldset>
   <div id="contacts-display"></div>

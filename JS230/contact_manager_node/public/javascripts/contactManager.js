@@ -43,13 +43,6 @@ document.addEventListener("DOMContentLoaded", ev =>{
     renderContacts(contactList);
   }
 
-  // test contact
-  let testContact = {
-    full_name: 'Dossie Easton',
-    email: 'dossie@cnm.com',
-    phone_number: 'asdf',
-    tags: 'ethical, non-mono'
-  }
   async function addContact(contactObject) {
     const response = await fetch('/api/contacts' , {
       method: 'POST',
