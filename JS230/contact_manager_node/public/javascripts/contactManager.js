@@ -5,8 +5,23 @@ document.addEventListener("DOMContentLoaded", ev =>{
   const contactInfoForm = document.querySelector('#contact-information');
   fetchAndRenderContacts();
 
+  // test contact
+  let testContact = {
+    full_name: 'Dossie Easton',
+    email: 'dossie@cnm.com',
+    phone_number: 'asdf',
+    tags: 'ethics, relationships'
+  }
 
-  async function getContacts() {
+  let testUpdateContact = {
+    full_name: 'Dossie Easton',
+    email: undefined,
+    phone_number: '12345555555',
+    tags: 'ethics, relationships',
+    id: 5,
+  }
+
+  async function fetchContacts() {
     const response = await fetch('/api/contacts', {
       headers: {
         "Content-Type": "application/json"
@@ -27,7 +42,6 @@ document.addEventListener("DOMContentLoaded", ev =>{
     console.log(contactList); // Check the output here
     renderContacts(contactList);
   }
-  initialize();
 
   // test contact
   let testContact = {
@@ -52,17 +66,6 @@ document.addEventListener("DOMContentLoaded", ev =>{
       throw new Error(`Error adding contact" ${text}`);
     }
   }
-  // addContact(testContact);
-
-  let testUpdateContact = {
-    full_name: 'Dossie Easton',
-    email: undefined,
-    phone_number: '12345555555',
-    tags: 'ethical, non-mono',
-    id: 5,
-  }
-
-  // updateContact(testUpdateContact);
 
   async function updateContact(contactObject) {
     const id = contactObject.id
@@ -81,6 +84,7 @@ document.addEventListener("DOMContentLoaded", ev =>{
       throw new Error(`Error updating contact" ${text}`);
     }
   }
+  // updateContact(testUpdateContact);
 
   async function deleteContact(id) {
     const response = await fetch(`/api/contacts/${id}`, {
