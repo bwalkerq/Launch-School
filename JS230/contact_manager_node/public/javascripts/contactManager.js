@@ -97,5 +97,29 @@ document.addEventListener("DOMContentLoaded", _ =>{
     }
   }
 
-  // deleteContact(4)
+  function deleteContactOnClick(event) {
+    if (event.target.matches('.delete-link')) {
+      deleteContact(event.target.parentElement.dataset.id).then();
+    }
+  }
+
+  /* event listener for creating a contact by clicking submit
+  * create a formdata
+  * use the formdata to create an object that can be passed to the create contact method
+  * */
+  document.querySelector('#contact-information').addEventListener('submit', evt => {
+    evt.preventDefault();
+    let contactFormData = new FormData(contactInfoForm);
+    let contactObject = {
+      full_name: contactFormData.get('full-name'),
+      email: contactFormData.get('email'),
+      phone_number: contactFormData.get('phone'),
+      tags: contactFormData.getAll('tags').join(','),
+    }
+
+    console.log(contactObject)
+    addContact(contactObject).then();
+  })
+
+  contactsDisplay.addEventListener('click', deleteContactOnClick)
 })
