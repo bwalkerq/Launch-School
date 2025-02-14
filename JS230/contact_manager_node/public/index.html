@@ -36,11 +36,13 @@
     <label for="phone">Phone:</label>
       <input type="text" name="phone" id="phone" placeholder="phone">
     <label for="tags">Tags:</label>
-    <select name="tags" id="tags">
+    <select name="tags" id="tags" multiple>
       <option value="soccer">soccer</option>
       <option value="xfit">xfit</option>
       <option value="climbing">climbing</option>
+      <option value="dance">dance</option>
     </select>
+    <input type="submit" value="Submit">
 <!--    list items will be added to the dom when I select a tag-->
     <label for="selected-tags"></label>
     <input name="selected-tags" id="selected-tags" hidden></input>
