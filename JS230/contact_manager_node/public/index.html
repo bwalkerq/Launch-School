@@ -51,8 +51,8 @@
 
 <script id="contacts" type="text/x-handlebars">
   {{#each contacts}}
-    <fieldset>
-      <h3>{{full_name}} id:{{id}}</h3>
+    <fieldset data-id="{{id}}">
+      <h3>{{full_name}}</h3>
     <dl>
       <dt>Phone Number:</dt>
       <dd>{{phone_number}}</dd>
@@ -66,8 +66,8 @@
         {{/each}}
     </dd>
     </dl>
-      <a href="#contacts/edit/{{id}}" class="btn btn-outline">Edit</a>
-      <a href="#contacts/delete/{{id}}">Delete</a>
+      <a href="#contacts/edit/{{id}}" class="btn">Edit</a>
+      <a href="#contacts/delete/{{id}}" class="delete-link">Delete</a>
     </fieldset>
     {{/each}}
 </script>
