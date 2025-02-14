@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", ev =>{
+document.addEventListener("DOMContentLoaded", _ =>{
 
   const contactTemplate = Handlebars.compile(document.querySelector('#contacts').innerHTML);
   const contactsDisplay = document.querySelector('#contacts-display')
