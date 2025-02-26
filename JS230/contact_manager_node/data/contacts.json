@@ -14,24 +14,24 @@
     "tags": "work,friend"
   },
   {
-    "id": 3,
-    "full_name": "Pete Hanson",
-    "email": "ph@example.com",
-    "phone_number": "54321098761",
-    "tags": null
+    "full_name": "jo",
+    "phone_number": "1234",
+    "email": "jo@jojo",
+    "tags": "xfit,dance",
+    "id": 3
   },
   {
-    "full_name": "Dossie Easton",
-    "phone_number": "12345555555",
-    "email": "dossie@cnm.com",
-    "tags": "ethical, non-mono",
+    "full_name": "jo2",
+    "phone_number": "1234",
+    "email": "jo@jojo",
+    "tags": "soccer,climbing",
+    "id": 4
+  },
+  {
+    "full_name": "jo3",
+    "phone_number": "1234",
+    "email": "3jo@jojo",
+    "tags": "xfit",
     "id": 5
-  },
-  {
-    "full_name": "Dossie Easton",
-    "phone_number": "asdf",
-    "email": "dossie@cnm.com",
-    "tags": "ethical, non-mono",
-    "id": 6
   }
 ]

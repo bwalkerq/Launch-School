@@ -1,3 +1,8 @@
+class RequestManager {
+
+}
+
+
 document.addEventListener("DOMContentLoaded", _ =>{
 
   const contactTemplate = Handlebars.compile(document.querySelector('#contacts').innerHTML);
