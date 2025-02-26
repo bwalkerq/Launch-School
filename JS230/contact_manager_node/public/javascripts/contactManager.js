@@ -97,16 +97,14 @@ document.addEventListener("DOMContentLoaded", _ =>{
     }
   }
 
-  function deleteContactOnClick(event) {
+  function processClickAction(event) {
     if (event.target.matches('.delete-link')) {
       deleteContact(event.target.parentElement.dataset.id).then();
+    } else if (event.target.matches('.edit-link')) {  //add the class to the edit buttons
+
     }
   }
 
-  /* event listener for creating a contact by clicking submit
-  * create a formdata
-  * use the formdata to create an object that can be passed to the create contact method
-  * */
   document.querySelector('#contact-information').addEventListener('submit', evt => {
     evt.preventDefault();
     let contactFormData = new FormData(contactInfoForm);
@@ -121,5 +119,11 @@ document.addEventListener("DOMContentLoaded", _ =>{
     addContact(contactObject).then();
   })
 
-  contactsDisplay.addEventListener('click', deleteContactOnClick)
+  contactsDisplay.addEventListener('click', processClickAction)
+
+  const addContactAnchor = document.querySelector('#add-contact')
+  addContactAnchor.addEventListener('click', evt => {
+    document.querySelector('#new-contact').style.display = 'block';
+    document.querySelector('#contacts-display').style.display = 'none';
+  })
 })
