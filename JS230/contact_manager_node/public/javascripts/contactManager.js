@@ -1,8 +1,3 @@
-class RequestManager {
-
-}
-
-
 document.addEventListener("DOMContentLoaded", _ =>{
 
   const contactTemplate = Handlebars.compile(document.querySelector('#contacts').innerHTML);
@@ -120,7 +115,6 @@ document.addEventListener("DOMContentLoaded", _ =>{
       tags: contactFormData.getAll('tags').join(','),
     }
 
-    console.log(contactObject)
     addContact(contactObject).then();
   })
 

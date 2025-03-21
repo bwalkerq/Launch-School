@@ -1,9 +1,8 @@
-class RequestManager {
+/**/
+export class APIRequestManager {
   async fetchContacts() {
     const response = await fetch('/api/contacts', {
-      headers: {
-        "Content-Type": "application/json"
-      }
+      headers: {"Content-Type": "application/json"}
     });
     let contactList = await response.json();
     contactList.forEach(contact => {
@@ -15,9 +14,7 @@ class RequestManager {
   async addContact(contactObject) {
     let response = await fetch('/api/contacts' , {
       method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: {"Content-Type": "application/json"},
       body: JSON.stringify(contactObject)
     });
 
@@ -25,6 +22,8 @@ class RequestManager {
       const text = await response.text();
       throw new Error(`Error adding contact" ${text}`);
     }
+
+    return response.json()
   }
 
   async updateContact(contactObject) {
@@ -51,11 +50,29 @@ class RequestManager {
       method: 'DELETE',
     });
 
-    if (response.status === 400) {
+    if (response.status === 200) {
+      alert("success")
+    }
+    else if (response.status === 400) {
       alert('Contact not found');
     } else {
       const text = await response.text();
       throw new Error(`Error deleting contact" ${text}`);
     }
+  }
+
+  async fetchSingleContact(id) {
+    let response = await fetch(`/api/contacts/${id}`,{
+      method: 'GET',
+      headers: {"Content-Type": "application/json"},
+    });
+
+    if (response.status !== 200) {
+      const text = await response.text();
+      throw new Error(`Error updating contact" ${text}`);
+    }
+
+    response = await response.json();
+    return response;
   }
 }

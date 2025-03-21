@@ -11,7 +11,7 @@
   <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <!--  <link rel="stylesheet" href="/stylesheets/contactManager.css">-->
   <script src="/javascripts/handlebars.js"></script>
-  <script src="/javascripts/contactManager.js"></script>
+  <script src="/javascripts/app.js" type="module"></script>
 </head>
   <header class="bs-header">
     <div class="container1">
@@ -30,7 +30,7 @@
   </fieldset>
 </div>
 <div class="container">
-  <div id="new-contact" style= "display: none" class="slide-up">
+  <div id="new-contact" style= "display: block" class="slide-up">
     <fieldset>
       <form name="contact-information" id="contact-information">
         <h2 id="contact-information-title"> New Contact:</h2>
@@ -76,7 +76,7 @@
         {{/each}}
     </dd>
     </dl>
-      <a href="#contacts/edit/{{id}}" class="btn">Edit</a>
+      <a href="#contacts/edit/{{id}}" class="edit-link">Edit</a>
       <a href="#contacts/delete/{{id}}" class="delete-link">Delete</a>
     </fieldset>
     {{/each}}
