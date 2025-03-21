@@ -19,26 +19,5 @@
     "email": "jo@jojo",
     "tags": "xfit,dance",
     "id": 3
-  },
-  {
-    "full_name": "jo2",
-    "phone_number": "1234",
-    "email": "jo@jojo",
-    "tags": "soccer,climbing",
-    "id": 4
-  },
-  {
-    "full_name": "jo3",
-    "phone_number": "1234",
-    "email": "3jo@jojo",
-    "tags": "xfit",
-    "id": 5
-  },
-  {
-    "full_name": "jo4",
-    "phone_number": "1234",
-    "email": "43jo@jojo",
-    "tags": "soccer,xfit,climbing,dance",
-    "id": 6
   }
 ]

@@ -50,7 +50,7 @@ export class APIRequestManager {
       method: 'DELETE',
     });
 
-    if (response.status === 200) {
+    if (response.status === 204) {
       alert("success")
     }
     else if (response.status === 400) {

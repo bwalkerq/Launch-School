@@ -19,7 +19,7 @@ class Application {
 
   async addContact(contactObject) {
     let response = await this.api.addContact(contactObject);
-    this.interface.resetAddContactForm()
+    // this.interface.resetAddContactForm()
     this.fetchAndRenderContacts();
   }
 
