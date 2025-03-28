@@ -12,7 +12,7 @@ export class UserInterface {
   addEventListeners() {
     document.querySelector('#contact-information')
       .addEventListener('submit', evt => this.onNewContactSubmit(evt));
-    this.contactsDisplay.addEventListener('click', evt => this.handleClickAction(evt));
+    document.addEventListener('click', evt => this.handleClickAction(evt));
     document.querySelector('#add-contact').addEventListener('click', evt => this.onEditClick(evt));
   }
 
@@ -50,16 +50,17 @@ export class UserInterface {
       /* This is a good example use of dataset */
     } else if (event.target.matches('.edit-link')) {
       this.onEditClick(event)
-    } else if (event.target.matches('.edit-link')) {
+    } else if (event.target.matches('.cancel-button')) {
+      this.closeContactInfoForm()
     }
   }
 
-  showContactInfoForm() {
+  openContactInfoForm() {
     document.querySelector('#contacts-display').style.display = 'none';
     document.querySelector('#new-contact').style.display = 'block';
   }
 
-  hideContactInfoForm() {
+  closeContactInfoForm() {
     document.querySelector('#new-contact').style.display = 'none';
     document.querySelector('#contacts-display').style.display = 'block';
 
@@ -69,11 +70,7 @@ export class UserInterface {
     /* the add-contact takes on a new title
     * the current information is populated */
     this.contactInfoTitle.textContent = "Edit contact:";
-    this.showContactInfoForm();
-  }
-
-  onCancelClick(event) {
-
+    this.openContactInfoForm();
   }
 }
 
