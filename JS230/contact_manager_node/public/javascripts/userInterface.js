@@ -13,11 +13,16 @@ export class UserInterface {
     document.querySelector('#contact-information')
       .addEventListener('submit', evt => this.onNewContactSubmit(evt));
     document.addEventListener('click', evt => this.handleClickAction(evt));
-    document.querySelector('#add-contact').addEventListener('click', evt => this.onEditClick(evt));
+    document.querySelector('#add-contact').addEventListener('click', evt => this.onAddClick(evt));
   }
 
   setupHandlebars() {
     return Handlebars.compile(document.querySelector('#contacts').innerHTML);
+  }
+
+  onAddClick(evt) {
+    this.contactInfoTitle.textContent = "Add contact:";
+    this.openContactInfoForm()
   }
 
   onNewContactSubmit(ev) {
