@@ -5,13 +5,15 @@ export class UserInterface {
     this.contactsDisplay = document.querySelector('#contacts-display');
     this.contactTemplate = this.setupHandlebars();
     this.contactInfoForm = document.querySelector('#contact-information');
+    this.contactInfoTitle = document.querySelector('#contact-information-title');
     this.addEventListeners();
   }
 
   addEventListeners() {
     document.querySelector('#contact-information')
-      .addEventListener('submit', evt => this.onNewContactSubmit(evt))
-    this.contactsDisplay.addEventListener('click', evt => this.handleClickAction(evt))
+      .addEventListener('submit', evt => this.onNewContactSubmit(evt));
+    this.contactsDisplay.addEventListener('click', evt => this.handleClickAction(evt));
+    document.querySelector('#add-contact').addEventListener('click', evt => this.onEditClick(evt));
   }
 
   setupHandlebars() {
@@ -45,17 +47,35 @@ export class UserInterface {
   handleClickAction(event) {
     if (event.target.matches('.delete-link')) {
       this.app.deleteContact(event.target.parentElement.dataset.id);
-    } else if (event.target.matches('.edit-link')) {  //add the class to the edit buttons
-
+      /* This is a good example use of dataset */
+    } else if (event.target.matches('.edit-link')) {
+      this.onEditClick(event)
+    } else if (event.target.matches('.edit-link')) {
     }
   }
 
+  showContactInfoForm() {
+    document.querySelector('#contacts-display').style.display = 'none';
+    document.querySelector('#new-contact').style.display = 'block';
+  }
+
+  hideContactInfoForm() {
+    document.querySelector('#new-contact').style.display = 'none';
+    document.querySelector('#contacts-display').style.display = 'block';
+
+  }
+
+  onEditClick(event) {
+    /* the add-contact takes on a new title
+    * the current information is populated */
+    this.contactInfoTitle.textContent = "Edit contact:";
+    this.showContactInfoForm();
+  }
+
+  onCancelClick(event) {
+
+  }
 }
 
 
 
-const addContactAnchor = document.querySelector('#add-contact')
-addContactAnchor.addEventListener('click', evt => {
-  document.querySelector('#new-contact').style.display = 'block';
-  document.querySelector('#contacts-display').style.display = 'none';
-})

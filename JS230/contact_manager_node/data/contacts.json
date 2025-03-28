@@ -19,5 +19,12 @@
     "email": "jo@jojo",
     "tags": "xfit,dance",
     "id": 3
+  },
+  {
+    "full_name": "baba",
+    "phone_number": "ba",
+    "email": "ba",
+    "tags": "climbing,dance",
+    "id": 4
   }
 ]
