@@ -11,6 +11,7 @@ export class APIRequestManager {
     return contactList;
   }
 
+  // given a contact object without an id, creates a new contact in the database
   async addContact(contactObject) {
     let response = await fetch('/api/contacts' , {
       method: 'POST',
@@ -26,6 +27,7 @@ export class APIRequestManager {
     return response.json()
   }
 
+  // given a contact object with an id, updates the information for that id
   async updateContact(contactObject) {
     const id = contactObject.id
     let response = await fetch(`/api/contacts/${id}`, {
@@ -45,6 +47,7 @@ export class APIRequestManager {
     return response
   }
 
+  // Given an id, deletes the contact
   async deleteContact(id) {
     const response = await fetch(`/api/contacts/${id}`, {
       method: 'DELETE',
@@ -61,6 +64,7 @@ export class APIRequestManager {
     }
   }
 
+  // Given an id, returns a contact object
   async fetchSingleContact(id) {
     let response = await fetch(`/api/contacts/${id}`,{
       method: 'GET',
