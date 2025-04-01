@@ -4,7 +4,7 @@
     "full_name": "Naveed Fida",
     "email": "nf@example.com",
     "phone_number": "12345678901",
-    "tags": "work,friend"
+    "tags": "xfit"
   },
   {
     "id": 2,
@@ -17,7 +17,7 @@
     "full_name": "jo",
     "phone_number": "1234",
     "email": "jo@jojo",
-    "tags": "xfit,dance",
+    "tags": "",
     "id": 3
   },
   {

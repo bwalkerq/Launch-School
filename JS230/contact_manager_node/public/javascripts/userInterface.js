@@ -6,12 +6,13 @@ export class UserInterface {
     this.contactTemplate = this.setupHandlebars();
     this.contactInfoForm = document.querySelector('#contact-information');
     this.contactInfoTitle = document.querySelector('#contact-information-title');
+    this.currentAction = null;
+    this.editingContactId = null;
     this.addEventListeners();
   }
 
   addEventListeners() {
-    document.querySelector('#contact-information')
-      .addEventListener('submit', evt => this.onNewContactSubmit(evt));
+    this.contactInfoForm.addEventListener('submit', evt => this.onSubmit(evt));
     document.addEventListener('click', evt => this.handleClickAction(evt));
     document.querySelector('#add-contact').addEventListener('click', evt => this.onAddClick(evt));
   }
@@ -20,41 +21,25 @@ export class UserInterface {
     return Handlebars.compile(document.querySelector('#contacts').innerHTML);
   }
 
-  onAddClick(evt) {
-    this.contactInfoTitle.textContent = "Add contact:";
-    this.openContactInfoForm()
-  }
-
-  onNewContactSubmit(ev) {
-    ev.preventDefault();
-    const contactFormData = new FormData(this.contactInfoForm);
-    const contactObject = this.createContactObject(contactFormData);
-    this.app.addContact(contactObject);
-  }
-
-  resetAddContactForm() {
-    this.contactInfoForm.reset();
-  }
-
-  createContactObject(contactFormData) {
-    return {
-      full_name: contactFormData.get('full-name'),
-      email: contactFormData.get('email'),
-      phone_number: contactFormData.get('phone'),
-      tags: contactFormData.getAll('tags').join(','),
-    };
-  }
-
    renderContacts(list) {
     this.contactsDisplay.innerHTML = this.contactTemplate({contacts: list});
   }
 
+  onAddClick(evt) {
+    this.currentAction = 'add';
+    this.contactInfoTitle.textContent = "Add contact:";
+    this.openContactInfoForm()
+  }
+
   handleClickAction(event) {
     if (event.target.matches('.delete-link')) {
-      this.app.deleteContact(event.target.parentElement.dataset.id);
+      this.editingContactId = event.target.parentElement.dataset.id;
+      this.app.deleteContact(this.editingContactId);
       /* This is a good example use of dataset */
     } else if (event.target.matches('.edit-link')) {
-      this.onEditClick(event)
+      this.editingContactId = event.target.parentElement.dataset.id;
+    console.log(this.editingContactId, "handleClickAction")
+      this.onEditLinkClick(this.editingContactId);
     } else if (event.target.matches('.cancel-button')) {
       this.closeContactInfoForm()
     }
@@ -68,15 +53,48 @@ export class UserInterface {
   closeContactInfoForm() {
     document.querySelector('#new-contact').style.display = 'none';
     document.querySelector('#contacts-display').style.display = 'block';
-
   }
 
-  onEditClick(event) {
+  async onEditLinkClick(id) {
     /* the add-contact takes on a new title
+    show the modal
     * the current information is populated */
+    this.currentAction = 'edit';
     this.contactInfoTitle.textContent = "Edit contact:";
     this.openContactInfoForm();
+    let contactObject = await this.app.fetchContact(id);
+    this.contactInfoForm.querySelector('#full-name').value = contactObject.full_name;
+    this.contactInfoForm.querySelector('#email').value = contactObject.email;
+    this.contactInfoForm.querySelector('#phone').value = contactObject.phone_number;
   }
+
+  onSubmit(ev) {
+    ev.preventDefault();
+    console.log(this.editingContactId, "onSubmit targetedID")
+    const contactFormData = new FormData(this.contactInfoForm);
+    const contactObject = this.createContactObject(contactFormData);
+
+    if (this.currentAction === 'add') {
+      this.app.addContact(contactObject);
+    } else if (this.currentAction === 'edit') {
+      console.log(this.editingContactId)
+      this.app.updateContact(this.editingContactId, contactObject);
+    }
+  }
+
+  resetContactInfoForm() {
+    this.contactInfoForm.reset();
+  }
+
+  createContactObject(contactFormData) {
+    return {
+      full_name: contactFormData.get('full-name'),
+      email: contactFormData.get('email'),
+      phone_number: contactFormData.get('phone'),
+      tags: contactFormData.getAll('tags').join(','),
+    };
+  }
+
 }
 
 

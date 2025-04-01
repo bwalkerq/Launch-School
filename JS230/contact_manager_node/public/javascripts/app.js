@@ -27,6 +27,16 @@ class Application {
     let response = await this.api.deleteContact(id);
     this.fetchAndRenderContacts();
   }
+
+  async fetchContact(id) {
+    let contactObject = await this.api.fetchSingleContact(id)
+    return contactObject;
+  }
+
+  async updateContact(id, contactObject) {
+    contactObject.id = id;
+    await this.api.updateContact(contactObject);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', e => {
