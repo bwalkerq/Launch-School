@@ -39,7 +39,6 @@ export class UserInterface {
       /* This is a good example use of dataset */
     } else if (event.target.matches('.edit-link')) {
       this.editingContactId = event.target.parentElement.dataset.id;
-    console.log(this.editingContactId, "handleClickAction")
       this.onEditLinkClick(this.editingContactId);
     } else if (event.target.matches('.cancel-button')) {
       this.closeContactInfoForm()
@@ -57,9 +56,6 @@ export class UserInterface {
   }
 
   async onEditLinkClick(id) {
-    /* the add-contact takes on a new title
-    show the modal
-    * the current information is populated */
     this.currentAction = 'edit';
     this.contactInfoTitle.textContent = "Edit contact:";
     this.openContactInfoForm();
@@ -71,14 +67,12 @@ export class UserInterface {
 
   onSubmit(ev) {
     ev.preventDefault();
-    console.log(this.editingContactId, "onSubmit targetedID")
     const contactFormData = new FormData(this.contactInfoForm);
     const contactObject = this.createContactObject(contactFormData);
 
     if (this.currentAction === 'add') {
       this.app.addContact(contactObject);
     } else if (this.currentAction === 'edit') {
-      console.log(this.editingContactId)
       this.app.updateContact(this.editingContactId, contactObject);
     }
   }
