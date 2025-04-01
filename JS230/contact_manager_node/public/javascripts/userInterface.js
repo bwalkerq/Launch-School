@@ -26,6 +26,7 @@ export class UserInterface {
   }
 
   onAddClick(evt) {
+    this.resetContactInfoForm();
     this.currentAction = 'add';
     this.contactInfoTitle.textContent = "Add contact:";
     this.openContactInfoForm()
