@@ -48,11 +48,13 @@ export class UserInterface {
 
   openContactInfoForm() {
     document.querySelector('#contacts-display').style.display = 'none';
+    document.querySelector('#search-header').style.display = 'none';
     document.querySelector('#new-contact').style.display = 'block';
   }
 
   closeContactInfoForm() {
     document.querySelector('#new-contact').style.display = 'none';
+    document.querySelector('#search-header').style.display = 'block';
     document.querySelector('#contacts-display').style.display = 'block';
   }
 
