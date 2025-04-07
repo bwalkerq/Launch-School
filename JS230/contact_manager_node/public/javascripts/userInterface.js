@@ -9,6 +9,7 @@ export class UserInterface {
     this.currentAction = null;
     this.editingContactId = null;
     this.addEventListeners();
+    this.fillTagsOptions();
   }
 
   addEventListeners() {
@@ -21,7 +22,7 @@ export class UserInterface {
     return Handlebars.compile(document.querySelector('#contacts').innerHTML);
   }
 
-   renderContacts(list) {
+  renderContacts(list) {
     this.contactsDisplay.innerHTML = this.contactTemplate({contacts: list});
   }
 
@@ -88,6 +89,14 @@ export class UserInterface {
       phone_number: contactFormData.get('phone'),
       tags: contactFormData.getAll('tags').join(','),
     };
+  }
+
+  async fillTagsOptions() {
+    const tagSet = await this.app.createTagsSet();
+    tagSet.forEach(tag => {
+      const newOption = new Option(tag, tag);
+      this.contactInfoForm.querySelector('#tags').add(newOption);
+    })
   }
 
 }
