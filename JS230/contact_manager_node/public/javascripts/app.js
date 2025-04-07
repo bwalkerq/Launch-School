@@ -54,6 +54,6 @@ class Application {
   }
 }
 
-document.addEventListener('DOMContentLoaded', e => {
+document.addEventListener('DOMContentLoaded', _ => {
   const app = new Application();
 })

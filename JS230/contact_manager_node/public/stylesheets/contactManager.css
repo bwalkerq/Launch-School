@@ -1,3 +1,12 @@
+#search-header {
+    display: inline-block;
+}
+
+#search {
+    min-width: 650px;
+    width: 100%;
+}
+
 /* Basic styling for the form */
 #contact-information {
     max-width: 600px; /* Set a max width for the form */

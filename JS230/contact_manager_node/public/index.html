@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,13 +22,14 @@
     </div>
   </header>
 <body>
+
 <div id="search-header">
-  <fieldset>
-    <a href="#contacts/new" class="btn btn-lg" id="add-contact">Add contact</a>
-    <label for="search"></label>
-    <input type="text" name="search" id="search" placeholder="search">
-  </fieldset>
+  <button id="add-contact">Add contact</button>
+  <button id="add-tag">Add tag</button>
+  <label for="search"></label>
+  <input type="text" name="search" id="search" placeholder="search">
 </div>
+
 <div class="container">
   <div id="new-contact" style= "display: none" class="slide-up">
     <fieldset>
