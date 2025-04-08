@@ -3,8 +3,7 @@
 }
 
 #search {
-    min-width: 650px;
-    width: 100%;
+    min-width: 450px;
 }
 
 /* Basic styling for the form */
@@ -16,7 +15,7 @@
 }
 
 /* Center the title */
-#contact-information-title {
+#contact-information-title, #new-tag-header {
     text-align: center; /* Center the text */
     width: 100%; /* Make sure it takes full width */
     margin-bottom: 20px; /* Add space below the title */
