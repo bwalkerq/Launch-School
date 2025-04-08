@@ -6,6 +6,9 @@ export class UserInterface {
     this.contactTemplate = this.setupHandlebars();
     this.contactInfoForm = document.querySelector('#contact-information');
     this.contactInfoTitle = document.querySelector('#contact-information-title');
+    this.newContact = document.querySelector('#new-contact');
+    this.searchHeader = document.querySelector('#search-header');
+    this.newTag = document.querySelector('#new-tag')
     this.currentAction = null;
     this.editingContactId = null;
     this.addEventListeners();
@@ -16,6 +19,7 @@ export class UserInterface {
     this.contactInfoForm.addEventListener('submit', evt => this.onSubmit(evt));
     document.addEventListener('click', evt => this.handleClickAction(evt));
     document.querySelector('#add-contact').addEventListener('click', evt => this.onAddClick(evt));
+    document.querySelector('#add-tag').addEventListener('click', evt => this.onAddTagClick(evt));
   }
 
   setupHandlebars() {
@@ -33,6 +37,10 @@ export class UserInterface {
     this.openContactInfoForm()
   }
 
+  onAddTagClick(evt) {
+    this.openNewTagForm()
+  }
+
   handleClickAction(event) {
     if (event.target.matches('.delete-link')) {
       this.editingContactId = event.target.parentElement.dataset.id;
@@ -40,22 +48,37 @@ export class UserInterface {
       /* This is a good example use of dataset */
     } else if (event.target.matches('.edit-link')) {
       this.editingContactId = event.target.parentElement.dataset.id;
-      this.onEditLinkClick(this.editingContactId);
+      this.onEditLinkClick(this.editingContactId).then();
     } else if (event.target.matches('.cancel-button')) {
-      this.closeContactInfoForm()
+      this.closeContactInfoForm();
+    } else if (event.target.matches('#cancel-new-tag')){
+      this.closeNewTagForm();
     }
   }
 
   openContactInfoForm() {
-    document.querySelector('#contacts-display').style.display = 'none';
-    document.querySelector('#search-header').style.display = 'none';
-    document.querySelector('#new-contact').style.display = 'block';
+    this.searchHeader.style.display = 'none';
+    this.contactsDisplay.style.display = 'none';
+    this.newContact.style.display = 'block';
   }
 
   closeContactInfoForm() {
-    document.querySelector('#new-contact').style.display = 'none';
-    document.querySelector('#search-header').style.display = 'block';
-    document.querySelector('#contacts-display').style.display = 'block';
+    this.searchHeader.style.display = 'block';
+    this.contactsDisplay.style.display = 'block';
+    this.newContact.style.display = 'none';
+  }
+
+  openNewTagForm() {
+    this.searchHeader.style.display = 'none';
+    this.contactsDisplay.style.display = 'none';
+    this.newTag.style.display = 'block';
+  }
+
+  closeNewTagForm() {
+    this.searchHeader.style.display = 'block';
+    this.contactsDisplay.style.display = 'block';
+    this.newTag.style.display = 'none';
+
   }
 
   async onEditLinkClick(id) {
