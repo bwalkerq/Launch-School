@@ -8,18 +8,19 @@ export class UserInterface {
     this.contactInfoTitle = document.querySelector('#contact-information-title');
     this.newContact = document.querySelector('#new-contact');
     this.searchHeader = document.querySelector('#search-header');
-    this.newTag = document.querySelector('#new-tag')
+    this.newTagDiv = document.querySelector('#new-tag-div')
     this.currentAction = null;
     this.editingContactId = null;
     this.addEventListeners();
-    this.fillTagsOptions();
   }
 
   addEventListeners() {
-    this.contactInfoForm.addEventListener('submit', evt => this.onSubmit(evt));
+    this.contactInfoForm.addEventListener('submit', evt => this.onContactSubmit(evt));
     document.addEventListener('click', evt => this.handleClickAction(evt));
+    // this.contactsDisplay.addEventListener('click', evt => this.handleClickAction(evt));
     document.querySelector('#add-contact').addEventListener('click', evt => this.onAddClick(evt));
     document.querySelector('#add-tag').addEventListener('click', evt => this.onAddTagClick(evt));
+    this.newTagDiv.addEventListener('submit', evt => this.onTagSubmit(evt));
   }
 
   setupHandlebars() {
@@ -34,6 +35,7 @@ export class UserInterface {
     this.resetContactInfoForm();
     this.currentAction = 'add';
     this.contactInfoTitle.textContent = "Add contact:";
+    this.fillTagsOptions();
     this.openContactInfoForm()
   }
 
@@ -53,6 +55,8 @@ export class UserInterface {
       this.closeContactInfoForm();
     } else if (event.target.matches('#cancel-new-tag')){
       this.closeNewTagForm();
+    } else {
+      console.log('else happened in handleClickAction')
     }
   }
 
@@ -71,27 +75,30 @@ export class UserInterface {
   openNewTagForm() {
     this.searchHeader.style.display = 'none';
     this.contactsDisplay.style.display = 'none';
-    this.newTag.style.display = 'block';
+    this.newTagDiv.style.display = 'block';
   }
 
   closeNewTagForm() {
     this.searchHeader.style.display = 'block';
     this.contactsDisplay.style.display = 'block';
-    this.newTag.style.display = 'none';
+    this.newTagDiv.style.display = 'none';
 
   }
 
   async onEditLinkClick(id) {
     this.currentAction = 'edit';
     this.contactInfoTitle.textContent = "Edit contact:";
-    this.openContactInfoForm();
+    this.fillTagsOptions();
     let contactObject = await this.app.fetchContact(id);
     this.contactInfoForm.querySelector('#full-name').value = contactObject.full_name;
     this.contactInfoForm.querySelector('#email').value = contactObject.email;
     this.contactInfoForm.querySelector('#phone').value = contactObject.phone_number;
+    this.contactInfoForm.querySelector('#tags').value = contactObject.phone_number;
+
+    this.openContactInfoForm();
   }
 
-  onSubmit(ev) {
+  onContactSubmit(ev) {
     ev.preventDefault();
     const contactFormData = new FormData(this.contactInfoForm);
     const contactObject = this.createContactObject(contactFormData);
@@ -105,6 +112,7 @@ export class UserInterface {
 
   resetContactInfoForm() {
     this.contactInfoForm.reset();
+    this.contactInfoForm.querySelector('#tags').innerHTML = '';
   }
 
   createContactObject(contactFormData) {
@@ -116,11 +124,20 @@ export class UserInterface {
     };
   }
 
+  onTagSubmit(ev) {
+    ev.preventDefault();
+    const newTag = document.querySelector('#new-tag-input').value;
+    this.app.addTag(newTag);
+    console.log(this.app.tags)
+    this.closeNewTagForm();
+  }
+
   async fillTagsOptions() {
-    const tagSet = await this.app.createTagsSet();
-    tagSet.forEach(tag => {
+    const tagSelect = this.contactInfoForm.querySelector('#tags');
+    let tags = this.app.tags
+    tags.forEach(tag => {
       const newOption = new Option(tag, tag);
-      this.contactInfoForm.querySelector('#tags').add(newOption);
+      tagSelect.add(newOption);
     })
   }
 

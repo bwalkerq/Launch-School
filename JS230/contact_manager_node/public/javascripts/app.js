@@ -17,7 +17,6 @@ class Application {
     });
   }
 
-  // intended to be called by the UI, returns the tag set
   async createTagsSet() {
     let contactsArray = await this.api.fetchContacts();
     let tagsArray = [];
@@ -29,7 +28,6 @@ class Application {
     for (const tagsArrayElement of tagsArray) {
       this.tags.add(tagsArrayElement);
     }
-    return this.tags;
   }
 
   async addContact(contactObject) {
@@ -51,6 +49,10 @@ class Application {
   async updateContact(id, contactObject) {
     contactObject.id = id;
     await this.api.updateContact(contactObject);
+  }
+
+  addTag(tag) {
+    this.tags.add(tag);
   }
 }
 

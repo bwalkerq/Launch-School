@@ -4,12 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Contact Manager</title>
   <link rel="stylesheet" type="text/css" href="/stylesheets/contactManager.css">
 
   <script src="https://livejs.com/live.js" type="text/javascript"></script>
   <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-<!--  <link rel="stylesheet" href="/stylesheets/contactManager.css">-->
   <script src="/javascripts/handlebars.js"></script>
   <script src="/javascripts/app.js" type="module"></script>
 </head>
@@ -31,7 +30,7 @@
 </div>
 
 <div class="container">
-  <div id="new-tag" style="display: none">
+  <div id="new-tag-div" style="display: none">
     <h2 id="new-tag-header">New tag</h2>
     <form id="new-tag-form">
       <label for="new-tag-input">Tag Name</label><input type="text" name="tag" id="new-tag-input">
@@ -45,6 +44,7 @@
   <div id="new-contact" style= "display: none" class="slide-up">
     <fieldset>
       <form name="contact-information" id="contact-information">
+          <input type="button" name="cancel" class="cancel-button" value="Cancel">
         <h2 id="contact-information-title"></h2>
 
         <div class="left-column">
@@ -63,11 +63,7 @@
 
         <div style="width: 100%; margin-top: 20px;">
           <input type="submit" value="Submit">
-          <input type="button" name="cancel" class="cancel-button" value="Cancel">
         </div>
-        <!--    list items will be added to the dom when I select a tag-->
-<!--        <label for="selected-tags"></label>-->
-<!--        <input name="selected-tags" id="selected-tags" hidden>-->
       </form>
     </fieldset>
   </div>
