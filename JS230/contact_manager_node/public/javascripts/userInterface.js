@@ -31,7 +31,7 @@ export class UserInterface {
     this.contactsDisplay.innerHTML = this.contactTemplate({contacts: list});
   }
 
-  onAddClick(evt) {
+  async onAddClick(_) {
     this.resetContactInfoForm();
     this.currentAction = 'add';
     this.contactInfoTitle.textContent = "Add contact:";
@@ -39,7 +39,7 @@ export class UserInterface {
     this.openContactInfoForm()
   }
 
-  onAddTagClick(evt) {
+  onAddTagClick(_) {
     this.openNewTagForm()
   }
 
