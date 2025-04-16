@@ -3,11 +3,11 @@ import {UserInterface} from "./userInterface.js";
 
 class Application {
 
-  constructor() {
+  async constructor() {
     this.api = new APIRequestManager();
     this.interface = new UserInterface(this);
     this.tags = new Set();
-    this.createTagsSet();
+    await this.createTagsSet();
     this.fetchAndRenderContacts();
   }
 
