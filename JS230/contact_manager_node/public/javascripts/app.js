@@ -1,5 +1,5 @@
-import { APIRequestManager } from "./APIRequestManager.js";
-import { UserInterface } from "./userInterface.js";
+import {APIRequestManager} from "./APIRequestManager.js";
+import {UserInterface} from "./userInterface.js";
 
 class Application {
 
@@ -42,8 +42,7 @@ class Application {
   }
 
   async fetchContact(id) {
-    let contactObject = await this.api.fetchSingleContact(id)
-    return contactObject;
+    return await this.api.fetchSingleContact(id);
   }
 
   async updateContact(id, contactObject) {
