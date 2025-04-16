@@ -35,7 +35,7 @@ export class UserInterface {
     this.resetContactInfoForm();
     this.currentAction = 'add';
     this.contactInfoTitle.textContent = "Add contact:";
-    this.fillTagsOptions();
+    await this.fillTagsOptions();
     this.openContactInfoForm()
   }
 
@@ -88,12 +88,12 @@ export class UserInterface {
   async onEditLinkClick(id) {
     this.currentAction = 'edit';
     this.contactInfoTitle.textContent = "Edit contact:";
-    this.fillTagsOptions();
+    await this.fillTagsOptions();
     let contactObject = await this.app.fetchContact(id);
     this.contactInfoForm.querySelector('#full-name').value = contactObject.full_name;
     this.contactInfoForm.querySelector('#email').value = contactObject.email;
     this.contactInfoForm.querySelector('#phone').value = contactObject.phone_number;
-    this.contactInfoForm.querySelector('#tags').value = contactObject.phone_number;
+    this.contactInfoForm.querySelector('#tags')
 
     this.openContactInfoForm();
   }
