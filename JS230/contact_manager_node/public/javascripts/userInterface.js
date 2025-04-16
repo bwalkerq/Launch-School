@@ -18,6 +18,7 @@ export class UserInterface {
     this.contactInfoForm.addEventListener('submit', evt => this.onContactSubmit(evt));
     document.addEventListener('click', evt => this.handleClickAction(evt));
     // this.contactsDisplay.addEventListener('click', evt => this.handleClickAction(evt));
+    // this is the other place that I could put the handle click action event to make it more specific.
     document.querySelector('#add-contact').addEventListener('click', evt => this.onAddClick(evt));
     document.querySelector('#add-tag').addEventListener('click', evt => this.onAddTagClick(evt));
     this.newTagDiv.addEventListener('submit', evt => this.onTagSubmit(evt));
@@ -128,7 +129,15 @@ export class UserInterface {
     ev.preventDefault();
     const newTag = document.querySelector('#new-tag-input').value;
     this.app.addTag(newTag);
-    console.log(this.app.tags)
+    // this is where I would put some logic to convert the set to an array to sort, and convert back to a set.
+    /* example
+    const mySet = new Set([5, 3, 8, 1, 2]);
+
+    // Convert Set to Array, sort it, and then create a new Set
+    const sortedSet = new Set([...mySet].sort((a, b) => a - b));
+
+    console.log(sortedSet); // Output: Set { 1, 2, 3, 5, 8 }
+    */
     this.closeNewTagForm();
   }
 
