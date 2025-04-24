@@ -3,11 +3,11 @@ import {UserInterface} from "./userInterface.js";
 
 class Application {
 
-  async constructor() {
+  constructor() {
     this.api = new APIRequestManager();
     this.interface = new UserInterface(this);
     this.tags = new Set();
-    await this.createTagsSet();
+    this.createTagsSet().then(r => r);
     this.fetchAndRenderContacts();
   }
 
@@ -52,6 +52,10 @@ class Application {
 
   addTag(tag) {
     this.tags.add(tag);
+  }
+
+  onSearchInput(input) {
+    console.log('onSearchInput fires')
   }
 }
 

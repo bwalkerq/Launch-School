@@ -15,13 +15,20 @@ export class UserInterface {
   }
 
   addEventListeners() {
-    this.contactInfoForm.addEventListener('submit', evt => this.onContactSubmit(evt));
-    document.addEventListener('click', evt => this.handleClickAction(evt));
+    this.contactInfoForm.addEventListener('submit',
+        evt => this.onContactSubmit(evt));
+    document.addEventListener('click',
+        evt => this.handleClickAction(evt));
     // this.contactsDisplay.addEventListener('click', evt => this.handleClickAction(evt));
     // this is the other place that I could put the handle click action event to make it more specific.
-    document.querySelector('#add-contact').addEventListener('click', evt => this.onAddClick(evt));
-    document.querySelector('#add-tag').addEventListener('click', evt => this.onAddTagClick(evt));
-    this.newTagDiv.addEventListener('submit', evt => this.onTagSubmit(evt));
+    document.querySelector('#add-contact').addEventListener('click',
+        evt => this.onAddClick(evt));
+    document.querySelector('#add-tag').addEventListener('click',
+        evt => this.onAddTagClick(evt));
+    this.newTagDiv.addEventListener('submit',
+        evt => this.onTagSubmit(evt));
+    this.searchHeader.querySelector('#search')
+      .addEventListener('input', evt => this.app.onSearchInput())
   }
 
   setupHandlebars() {
