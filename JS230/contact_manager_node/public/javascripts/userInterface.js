@@ -28,7 +28,7 @@ export class UserInterface {
     this.newTagDiv.addEventListener('submit',
         evt => this.onTagSubmit(evt));
     this.searchHeader.querySelector('#search')
-      .addEventListener('input', evt => this.app.onSearchInput())
+      .addEventListener('input', evt  => this.app.onSearchInput(evt.srcElement.value))
   }
 
   setupHandlebars() {
