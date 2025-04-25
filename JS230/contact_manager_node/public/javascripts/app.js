@@ -57,7 +57,20 @@ class Application {
   }
 
   onSearchInput(input) {
-    console.log('onSearchInput fires')
+    // If input is empty, return all contacts
+    if (input === '') {
+      this.interface.renderContacts(this.contacts);
+      return;
+    }
+
+    const regex = new RegExp(input, "i");
+
+    let filteredContacts = this.contacts.filter(contact => {
+      if (contact.full_name.match(regex)) {return true}
+      return contact.tags.some(tag => tag.match(regex));
+    })
+
+    this.interface.renderContacts(filteredContacts);
   }
 }
 

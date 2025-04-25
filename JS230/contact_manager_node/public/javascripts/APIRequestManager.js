@@ -1,4 +1,3 @@
-/**/
 export class APIRequestManager {
   async fetchContacts() {
     const response = await fetch('/api/contacts', {
