@@ -7,13 +7,15 @@ class Application {
     this.api = new APIRequestManager();
     this.interface = new UserInterface(this);
     this.tags = new Set();
-    this.createTagsSet().then(r => r);
+    this.contacts = [];
+    this.createTagsSet().then();
     this.fetchAndRenderContacts();
   }
 
   fetchAndRenderContacts() {
     this.api.fetchContacts().then((response) => {
-      this.interface.renderContacts(response)
+      this.contacts = response;
+      this.interface.renderContacts(this.contacts);
     });
   }
 
