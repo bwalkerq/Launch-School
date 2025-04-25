@@ -63,8 +63,10 @@ class Application {
       return;
     }
 
+    // makes a case-insensitive regex with the input
     const regex = new RegExp(input, "i");
 
+    // stores the contacts that matches the input on name or any tags,
     let filteredContacts = this.contacts.filter(contact => {
       if (contact.full_name.match(regex)) {return true}
       return contact.tags.some(tag => tag.match(regex));
