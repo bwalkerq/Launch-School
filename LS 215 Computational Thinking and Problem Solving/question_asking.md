@@ -59,10 +59,10 @@ AJ:
 - note that in order to filter out the empty elements from sparse arrays, have to write 
 a sort of guard clause
 
-Super awesome
+Super awesome! Same as Ruby's `.tally`
 ```js
 let array = [1,1,2,3,4,2,3,4,5,6,5,6,5,6]
-let countsObj = array.reduce((obj, cv) => {
+let countsObj = array.reduce((obj, cv) => { // cv stands for current value
   obj[cv] = obj[cv] || 0;
   obj[cv] += 1;
   return obj;
