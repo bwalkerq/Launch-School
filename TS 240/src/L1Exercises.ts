@@ -35,4 +35,56 @@ function convertToNumbers(arr: string[]): number[] {
     return arr.map(Number);
 }
 
-console.log(convertToNumbers(numbersInStringFormat)); // [10, 20, 30, 40]
+// console.log(convertToNumbers(numbersInStringFormat)); // [10, 20, 30, 40]
+
+// A20 - refactor this to use literal types:
+function calculateDraft(operation: string, a: number, b: number) {
+    switch (operation) {
+        case "add":
+            return a + b;
+        case "subtract":
+            return a - b;
+        case "multiply":
+            return a * b;
+        case "divide":
+            return a / b;
+        default:
+            throw new Error("Invalid operation");
+    }
+}
+type Operation = 'add' | 'subtract' | 'multiply' | 'divide';
+function calculate(operation: Operation, a: number, b: number) {
+    switch (operation) {
+        case "add":
+            return a + b;
+        case "subtract":
+            return a - b;
+        case "multiply":
+            return a * b;
+        case "divide":
+            return a / b;
+        default:
+            throw new Error("Invalid operation");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
