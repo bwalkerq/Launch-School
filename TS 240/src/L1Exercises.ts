@@ -15,11 +15,24 @@ function displayInfo(
     return `${name}, ${age ? age : "unknown age"}, from ${country}`;
 }
 
-console.log(displayInfo("Alice", 30));
+// console.log(displayInfo("Alice", 30));
 // Alice, 30, from USA
-console.log(displayInfo("Bob", undefined, "Canada"));
+// console.log(displayInfo("Bob", undefined, "Canada"));
 // Bob, unknown age, from Canada
 /* this doesn't throw an error for passing `undefined` explicitly to the optional parameter, since passing no
 * argument assigns `undefined` to that parameter anyway. I.e. the type of the parameter here is `number | undefined` */
-console.log(displayInfo("Charlie", 25, "UK"));
+// console.log(displayInfo("Charlie", 25, "UK"));
 // Charlie, 25, from UK
+
+
+// A16
+const numbersInStringFormat = ["10", "20", "30", "40"];
+function convertToNumbers(arr: string[]): number[] {
+    // return arr.map(el => {
+    //     return Number(el);
+    // })
+//     better version
+    return arr.map(Number);
+}
+
+console.log(convertToNumbers(numbersInStringFormat)); // [10, 20, 30, 40]
