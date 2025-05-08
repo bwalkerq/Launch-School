@@ -69,6 +69,18 @@ function calculate(operation: Operation, a: number, b: number) {
 }
 
 
+// A22
+function concatenate(a, b) {
+    return a + b;
+}
+
+const result = concatenate("Hello", "World");
+const numericResult = concatenate(1, 2);
+
+console.log(result);
+console.log(numericResult);
+
+// This is fine as is, though we may want to refactor into two explicitly-typed functions to avoid ambiguity.
 
 
 
