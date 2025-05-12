@@ -83,6 +83,31 @@ console.log(numericResult);
 // This is fine as is, though we may want to refactor into two explicitly-typed functions to avoid ambiguity.
 
 
+// L2 A6
+const book: Book = {
+    title: "The Great Gatsby",
+    author: {
+        firstName: "F. Scott",
+        lastName: "Fitzgerald",
+    },
+    publicationDate: 1925,
+    genres: ["Tragedy", "Realism"],
+};
+// Please create a TypeScript interface that can accurately describe the shape of this book object.
+interface Book {
+    title: string;
+    author: Author;
+    publicationDate: number;
+    genres: string[];
+}
+
+interface Author {
+    firstName: string;
+    lastName: string;
+}
+
+
+
 
 
 
