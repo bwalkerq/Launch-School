@@ -70,15 +70,15 @@ function calculate(operation: Operation, a: number, b: number) {
 
 
 // A22
-function concatenate(a, b) {
-    return a + b;
-}
-
-const result = concatenate("Hello", "World");
-const numericResult = concatenate(1, 2);
-
-console.log(result);
-console.log(numericResult);
+// function concatenate(a, b) {
+//     return a + b;
+// }
+//
+// const result = concatenate("Hello", "World");
+// const numericResult = concatenate(1, 2);
+//
+// console.log(result);
+// console.log(numericResult);
 
 // This is fine as is, though we may want to refactor into two explicitly-typed functions to avoid ambiguity.
 
@@ -106,10 +106,31 @@ interface Author {
     lastName: string;
 }
 
+// L2 A10
+interface UserInfo {
+    name: string;
+    email?: string;
+    age?: number;
+}
+/*Implement a function displayUserInfo that takes a UserInfo object and returns a formatted string containing the user's
+ information. For optional properties, display a default value (use "N/A" for email and "unknown" for age)
+  if they are not provided.*/
 
+function displayUserInfo(userInfo: UserInfo): string {
+    return `${userInfo.name} is ${userInfo.age || 'unknown'} can be reached at ${userInfo.email || 'N/A'}`
+}
 
+// Their solution more verbose, potentially clearer:
+/*
+* function displayUserInfo(userInfo: UserInfo): string {
+  const email = userInfo.email ? userInfo.email : "N/A";
+  const age = userInfo.age ? userInfo.age : "unknown";
 
+  return `Name: ${userInfo.name}, Email: ${email}, Age: ${age}`;
+}
+* */
 
+// console.log(displayUserInfo({name: 'benjamin', age: 30}))
 
 
 
