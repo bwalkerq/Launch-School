@@ -183,6 +183,21 @@ class Car implements Movable {
 new Car(30).move();
 
 
+// L3 A4
+
+// Write a function called combine that takes two parameters and can either concatenate
+// strings or add numbers based on the types of the input parameters.
+type StringOrNumber = string | number;
+
+function combine(a: StringOrNumber, b: StringOrNumber): StringOrNumber {
+    if (typeof a === "string" && typeof b === 'string') {
+        return a.concat(b);
+    } else if (typeof a === "number" && typeof b === 'number') {
+        return a + b;
+    } else {
+        throw new Error('nope; gotta have two strings or two numbers')
+    }
+}
 
 
 
