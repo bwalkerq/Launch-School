@@ -149,6 +149,59 @@ function movePoint(point: Point, dx: number, dy: number): Point {
 // )
 
 
+// L2 A16
+class Person {
+    age?: number;
+    name: string;
+
+    constructor(name: string, age?: number) {
+    // constructor(age?: number, name: string) {
+// note that a required parameter can't follow an optional parameter
+        this.name = name;
+        this.age = age;
+    }
+}
+
+interface Movable {
+    speed: number;
+    move(): void;
+}
+
+// Please create a Car class that implements the Movable interface. Ensure the move method outputs a message to the console.
+class Car implements Movable {
+    speed: number;
+
+    constructor(speed: number) {
+        this.speed = speed;
+    }
+
+    move() {
+        console.log(`I'm a car and I'm moving at ${this.speed}mph!`)
+    }
+}
+
+new Car(30).move();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
