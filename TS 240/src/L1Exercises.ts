@@ -225,7 +225,14 @@ const added: number = combine(5, 10); // Type 'string | number' is not assignabl
 
 
 
-
+/* Please write a TypeScript function called pair similar to the identity function above, it should accept two
+parameters of the same type and returns an array of that type.
+*/
+function pair<Type>(arg1: Type, arg2: Type): Type[] {
+    return [arg1, arg2];
+}
+const pairOfNumbers = pair(1, 2); // returns [1, 2]
+const pairOfStrings = pair("hello", "world"); // returns ["hello", "world"]
 
 
 
