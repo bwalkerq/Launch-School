@@ -267,29 +267,82 @@ if (isCar(myCar)) {       // Check if `myCar` is of type `Car`
 
 
 //  For dogs, it should return "name is a age year(s) old dog."; for birds, it should return "name is a bird with a wingspan cm wingspan."
-type Animal = Dog | Bird;
-type Dog = {
-    kind: 'dog',
-    name: string,
-    age: number,
-}
+// type Animal = Dog | Bird;
+// type Dog = {
+//     kind: 'dog',
+//     name: string,
+//     age: number,
+// }
+//
+// type Bird = {
+//     kind: 'bird',
+//     name: string,
+//     wingspan: number,
+// }
+//
+// function describeAnimal(animal: Animal): string {
+//     switch (animal.kind) {
+//         case "bird":
+//             return `${animal.name} is a bird with a ${animal.wingspan} cm wingspan.`;
+//         case 'dog':
+//             return `${animal.name} is an ${animal.age} year(s) old dog`;
+//         default:
+//             throw new Error("Unknown animal species");
+//     }
+// }
 
-type Bird = {
-    kind: 'bird',
-    name: string,
-    wingspan: number,
-}
+
+// L4 A12
+type Elephant = {
+    kind: "elephant";
+    weight: number;
+};
+
+type Tiger = {
+    kind: "tiger";
+    speed: number;
+};
+
+type Peacock = {
+    kind: "peacock";
+    featherLength: number;
+};
+
+type Animal = Elephant | Tiger | Peacock;
+
+/* Write a function describeAnimal that takes an Animal as an argument and returns a string describing that animal's
+characteristic feature. For example, if the animal is an elephant, the function should return "An elephant weighs
+[weight] kg.". Include an exhaustiveness check in your function to handle potential future additions to the Animal type.
+*/
 
 function describeAnimal(animal: Animal): string {
     switch (animal.kind) {
-        case "bird":
-            return `${animal.name} is a bird with a ${animal.wingspan} cm wingspan.`;
-        case 'dog':
-            return `${animal.name} is an ${animal.age} year(s) old dog`;
+        case "elephant":
+            return `an elephant weighs ${animal.weight} kg`
+        case "peacock":
+            return `a peacock has feathers that are ${animal.featherLength} cm`
+        case "tiger":
+            return `a tiger can run at a speed of ${animal.speed} m/s`
         default:
-            throw new Error("Unknown animal species");
+            const _exhaustiveCheck: never = animal;
+            // throw new Error(`the animal ${animal} isn't accounted for in describeAnimal`)
+            return `Unknown animal: ${JSON.stringify(_exhaustiveCheck)}`;
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
