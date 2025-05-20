@@ -168,17 +168,17 @@ interface Movable {
 }
 
 // Please create a Car class that implements the Movable interface. Ensure the move method outputs a message to the console.
-class Car implements Movable {
-    speed: number;
-
-    constructor(speed: number) {
-        this.speed = speed;
-    }
-
-    move() {
-        console.log(`I'm a car and I'm moving at ${this.speed}mph!`)
-    }
-}
+// class Car implements Movable {
+//     speed: number;
+//
+//     constructor(speed: number) {
+//         this.speed = speed;
+//     }
+//
+//     move() {
+//         console.log(`I'm a car and I'm moving at ${this.speed}mph!`)
+//     }
+// }
 
 // new Car(30).move();
 
@@ -235,7 +235,35 @@ const pairOfNumbers = pair(1, 2); // returns [1, 2]
 const pairOfStrings = pair("hello", "world"); // returns ["hello", "world"]
 
 
+// L4 A6
+type Vehicle = { make: string; model: string; year: number };
+type Motorcycle = Vehicle & { type: "motorcycle" };
+type Car = Vehicle & { type: "car"; doors: number };
 
+function isCar(vehicle: Vehicle | Car | Motorcycle): vehicle is Car {
+    // return 'type' in vehicle && vehicle.type === 'car';
+    // their solution more succinct
+    return 'doors' in vehicle;
+}
+
+// Usage
+function makeCar(): Vehicle | Motorcycle | Car {
+    return {
+        make: "Toyota",
+        model: "Camry",
+        year: 2021,
+        type: "car",
+        doors: 4,
+    };
+}
+
+let myCar = makeCar();
+
+// console.log(myCar.doors); // Error: Property 'doors' does not exist on type 'Vehicle | Motorcycle | Car'
+
+if (isCar(myCar)) {       // Check if `myCar` is of type `Car`
+    console.log(myCar.doors);
+}
 
 
 
