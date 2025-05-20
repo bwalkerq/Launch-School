@@ -261,9 +261,9 @@ let myCar = makeCar();
 
 // console.log(myCar.doors); // Error: Property 'doors' does not exist on type 'Vehicle | Motorcycle | Car'
 
-if (isCar(myCar)) {       // Check if `myCar` is of type `Car`
-    console.log(myCar.doors);
-}
+// if (isCar(myCar)) {       // Check if `myCar` is of type `Car`
+//     console.log(myCar.doors);
+// }
 
 
 //  For dogs, it should return "name is a age year(s) old dog."; for birds, it should return "name is a bird with a wingspan cm wingspan."
@@ -332,7 +332,21 @@ function describeAnimal(animal: Animal): string {
 }
 
 
+// A14 - uses of Any
+function processInput(input: any) {
+    console.log(input)
+    if (Array.isArray(input)) {
+        console.log(input.length)
+    } else if (typeof input === 'string') {
+        console.log(input.toUpperCase())
+    } else {
+        console.log(input.toFixed(2))
+    }
+}
 
+processInput("hello"); // Outputs: HELLO
+processInput(42); // Outputs: 42.00
+processInput([1, 2, 3]); // Outputs: 3
 
 
 
