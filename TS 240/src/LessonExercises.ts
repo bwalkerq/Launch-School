@@ -266,6 +266,30 @@ if (isCar(myCar)) {       // Check if `myCar` is of type `Car`
 }
 
 
+//  For dogs, it should return "name is a age year(s) old dog."; for birds, it should return "name is a bird with a wingspan cm wingspan."
+type Animal = Dog | Bird;
+type Dog = {
+    kind: 'dog',
+    name: string,
+    age: number,
+}
+
+type Bird = {
+    kind: 'bird',
+    name: string,
+    wingspan: number,
+}
+
+function describeAnimal(animal: Animal): string {
+    switch (animal.kind) {
+        case "bird":
+            return `${animal.name} is a bird with a ${animal.wingspan} cm wingspan.`;
+        case 'dog':
+            return `${animal.name} is an ${animal.age} year(s) old dog`;
+        default:
+            throw new Error("Unknown animal species");
+    }
+}
 
 
 
