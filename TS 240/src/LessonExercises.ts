@@ -344,12 +344,43 @@ function processInput(input: any) {
     }
 }
 
-processInput("hello"); // Outputs: HELLO
-processInput(42); // Outputs: 42.00
-processInput([1, 2, 3]); // Outputs: 3
+// processInput("hello"); // Outputs: HELLO
+// processInput(42); // Outputs: 42.00
+// processInput([1, 2, 3]); // Outputs: 3
 
 
+// A16 Type Unsoundness
+// create a function isNumber to make the following examples work
 
+function isNumber(arg:any): boolean {
+    return typeof arg === 'number';
+}
+
+// example 1
+// let x: any = "Launch School";
+// const y: number = x;
+// console.log(y);
+
+// example 2
+let x: any = "Launch School";
+const y: number = x as number;
+
+// write function safeGet that prevents the unsoundness of retrieving beyond the end of an array
+// function safeGet(array: string[] | number[], index: number): string | number | undefined {
+function safeGet<T>(array: T[], index: number){
+    if (index > array.length || index < 0) {
+        return undefined;
+    } else {
+        return array[index];
+    }
+}
+
+// const names: string[] = ["John", "Jane"];
+// const thirdName = safeGet(names, 2); // Should return undefined
+
+// const numbers: number[] = [1, 2, 3];
+// const number = safeGet(numbers, 1); // Should return 2
+// console.log(thirdName, number)
 
 
 
