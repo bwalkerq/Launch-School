@@ -308,28 +308,28 @@ type Peacock = {
     featherLength: number;
 };
 
-type Animal = Elephant | Tiger | Peacock;
+// type Animal = Elephant | Tiger | Peacock;
 
 /* Write a function describeAnimal that takes an Animal as an argument and returns a string describing that animal's
 characteristic feature. For example, if the animal is an elephant, the function should return "An elephant weighs
 [weight] kg.". Include an exhaustiveness check in your function to handle potential future additions to the Animal type.
 */
 
-function describeAnimal(animal: Animal): string {
-    switch (animal.kind) {
-        case "elephant":
-            return `an elephant weighs ${animal.weight} kg`
-        case "peacock":
-            return `a peacock has feathers that are ${animal.featherLength} cm`
-        case "tiger":
-            return `a tiger can run at a speed of ${animal.speed} m/s`
-        default:
-            const _exhaustiveCheck: never = animal;
-            // throw new Error(`the animal ${animal} isn't accounted for in describeAnimal`)
-            return `Unknown animal: ${JSON.stringify(_exhaustiveCheck)}`;
-
-    }
-}
+// function describeAnimal(animal: Animal): string {
+//     switch (animal.kind) {
+//         case "elephant":
+//             return `an elephant weighs ${animal.weight} kg`
+//         case "peacock":
+//             return `a peacock has feathers that are ${animal.featherLength} cm`
+//         case "tiger":
+//             return `a tiger can run at a speed of ${animal.speed} m/s`
+//         default:
+//             const _exhaustiveCheck: never = animal;
+//             // throw new Error(`the animal ${animal} isn't accounted for in describeAnimal`)
+//             return `Unknown animal: ${JSON.stringify(_exhaustiveCheck)}`;
+//
+//     }
+// }
 
 
 // A14 - uses of Any
@@ -400,11 +400,28 @@ function processData(data: unknown): string {
 }
 
 // Usage
-console.log(processData("Alice")); // Should print: "Hello, Alice"
-console.log(processData(25)); // Should print: "Age: 25"
-console.log(processData(true)); // Should throw an error: "Invalid data"
+// console.log(processData("Alice")); // Should print: "Hello, Alice"
+// console.log(processData(25)); // Should print: "Age: 25"
+// console.log(processData(true)); // Should throw an error: "Invalid data"
 
 
+// Lesson 5 A4
+interface Animal {
+    name: string,
+    makeSound(): string,
+}
+
+interface Dog extends Animal {
+    fetch(): string
+}
+
+const myDog = {
+    name: "Rex",
+    makeSound(): string {return `sound`},
+    fetch():string {return `${this.name} fetches a stick.`;}
+};
+
+console.log(myDog.fetch());
 
 
 
