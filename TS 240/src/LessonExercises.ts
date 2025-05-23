@@ -489,7 +489,7 @@ interface customObj {
     [key: string]: unknown,
 }
 
-function getProperty(obj: customObj, key: string) {
+// function getProperty(obj: customObj, key: string) {
     // if (typeof obj[key] === 'string') {
     //     return obj[key];
     // } else if (typeof obj[key] === 'number') {
@@ -497,7 +497,7 @@ function getProperty(obj: customObj, key: string) {
     // } else {
     //
     // }
-}
+// }
 
 const obj = {
     name: "John",
@@ -507,10 +507,27 @@ const obj = {
 // const x2 = getProperty(obj, "name");
 // const y2 = getProperty(obj, "age");
 
+// function getAnimalProp(animal: Animal, key: string): unknown {
+//     return animal[key]; // Element implicitly has an 'any' type because expression of type 'string' can't be used to index type 'Animal'.
+//     // No index signature with a parameter of type 'string' was found on type 'Animal'
+// }
+//
+// interface Student {
+//     name: string;
+//     age: number;
+// }
+//
+// let key: keyof Student = "grade";
 
+// my solution
+// function getProperty<T extends {key: keyof T}>(obj:T, key: keyof T):unknown {
+//     return obj[key];
+// }
 
-
-
+// Their solution:
+function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
+    return obj[key];
+}
 
 
 
