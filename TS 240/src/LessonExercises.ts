@@ -421,8 +421,39 @@ const myDog = {
     fetch():string {return `${this.name} fetches a stick.`;}
 };
 
-console.log(myDog.fetch());
+// console.log(myDog.fetch());
 
+
+// A6
+type Product = {
+    name: string;
+    price: number;
+};
+
+type Shipping = {
+    weight: number;
+    shippingCost: number;
+};
+
+// type ShippableProduct = Product & Shipping;
+
+// interface Product {
+//     name: string;
+//     price: number;
+// }
+//
+// interface Shipping {
+//     weight: number;
+//     shippingCost: number;
+// }
+
+interface ShippableProduct extends Product, Shipping {}
+const item: ShippableProduct = {
+    name: "Table",
+    price: 100,
+    weight: 20,
+    shippingCost: 30,
+};
 
 
 
