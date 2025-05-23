@@ -456,7 +456,32 @@ const item: ShippableProduct = {
 };
 
 
+// A12
+type CustomArray = {
+    [index: number]: string | number;
+};
 
+const customArray: CustomArray = ["apple", 42, "banana"];
+/* The CustomArray type uses an index signature, which can describe both objects and arrays. Write a function
+processCustomArray that takes a CustomArray as an argument and return an array containing only the string elements
+ (in uppercase) if the passed argument is truly an array. If the argument is not recognized as an array, return an empty array.
+*/
+
+function processCustomArray(arr: CustomArray) {
+    if (Array.isArray(arr)) {
+        let stringArray: string[] = [];
+        for (const arrElement of arr) {
+            if (typeof arrElement === 'string') {
+                stringArray.push(arrElement.toUpperCase())
+            }
+        }
+        return stringArray;
+    } else {
+        return [];
+    }
+}
+
+console.log(processCustomArray(customArray));
 
 
 
