@@ -481,11 +481,31 @@ function processCustomArray(arr: CustomArray) {
     }
 }
 
-console.log(processCustomArray(customArray));
+// console.log(processCustomArray(customArray));
 
 
+// A14
+interface customObj {
+    [key: string]: unknown,
+}
 
+function getProperty(obj: customObj, key: string) {
+    // if (typeof obj[key] === 'string') {
+    //     return obj[key];
+    // } else if (typeof obj[key] === 'number') {
+    //     return obj[key];
+    // } else {
+    //
+    // }
+}
 
+const obj = {
+    name: "John",
+    age: 30,
+};
+
+// const x2 = getProperty(obj, "name");
+// const y2 = getProperty(obj, "age");
 
 
 
