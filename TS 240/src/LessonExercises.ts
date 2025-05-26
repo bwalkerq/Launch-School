@@ -530,6 +530,37 @@ function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
 }
 
 
+// Lesson 6 A2
+interface Shape {
+    color: string;
+}
+
+interface Rectangle extends Shape{
+    length: number;
+    width: number;
+}
+
+interface Circle extends Shape{
+    radius: number;
+}
+
+function displayShapeInfo(shape:Shape): string {
+    return `this shape is ${shape.color}`
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
