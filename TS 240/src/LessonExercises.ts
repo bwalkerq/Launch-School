@@ -614,13 +614,22 @@ function safeSqrt(x: number): number {
         }
     }
 }
+//
+// console.log(
+//     [100, -7,].map(safeSqrt)
+// )
 
-console.log(
-    [100, -7,].map(safeSqrt)
 
-)
-
-
+// A12
+async function getData(url: string): Promise<void> {
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+}
+/* Remember:
+* fetch takes a string and returns a string (json object)
+* json takes a string json object and returns a PROMISE that is JS object
+* so note that this log would actually log a promise, not just the object.*/
 
 
 
