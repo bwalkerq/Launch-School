@@ -621,16 +621,29 @@ function safeSqrt(x: number): number {
 
 
 // A12
-async function getData(url: string): Promise<void> {
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log(data);
-}
+// async function getData(url: string): Promise<void> {
+//     const response = await fetch(url);
+//     const data = await response.json();
+//     console.log(data);
+// }
 /* Remember:
 * fetch takes a string and returns a string (json object)
 * json takes a string json object and returns a PROMISE that is JS object
 * so note that this log would actually log a promise, not just the object.*/
 
+// A14
+async function getData(url: string): Promise<void | string> {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            console.error(`The following error occurred: ${error.message}`)
+        }
+        console.log('we cannot handle that type of error');
+    }
+}
 
 
 
