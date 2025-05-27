@@ -549,10 +549,49 @@ function displayShapeInfo(shape:Shape): string {
 }
 
 
+// A7
+type NameOptions = {
+    firstName?: string;
+    lastName?: string;
+    title?: string;
+};
+
+function formatName(options: NameOptions): string {
+    const title = options.title ? `${options.title} ` : '';
+    const first = options.firstName ?? "John";
+    const last = options.lastName ?? 'Doe';
+
+    return `${title}${first} ${last}`;
+}
+
+const formattedName = formatName({
+    firstName: "Jane",
+    lastName: "Smith",
+    title: "Dr.",
+});
+
+// console.log(formattedName); // "Dr. Jane Smith"
+// console.log(formatName({})); // John Doe
 
 
+function formatNameAgain({
+                             firstName = 'John',
+                             lastName = 'Doe',
+                             title
+                         }: NameOptions): string {
+    title = title ? `${title} ` : '';
 
+    return `${title}${firstName} ${lastName}`;
+}
 
+const formattedNameAgain = formatName({
+    firstName: "Jane",
+    lastName: "Smith",
+    title: "Dr.",
+});
+
+console.log(formattedNameAgain); // "Dr. Jane Smith"
+console.log(formatNameAgain({})); // "John Doe"
 
 
 
