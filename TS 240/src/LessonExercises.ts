@@ -646,9 +646,20 @@ async function getData(url: string): Promise<void | string> {
 }
 
 
+// A18
+function addNumbers(a: number, b: number): number {
+    return a + b;
+}
 
+type AddNumbersParams = Parameters<typeof addNumbers>;
+type AddNumbersReturnType = ReturnType<typeof addNumbers>;
 
+// type AddNumbersFunction = (args: AddNumbersParams) => AddNumbersReturnType;
+/*This is incorrect because Parameters<T> returns a tuple type.
+* in this case the return is [number, number]
+* so the args need to be spread in order to correctly define the function type */
 
+type AddNumbersFunction = (...args: AddNumbersParams) => AddNumbersReturnType;
 
 
 
