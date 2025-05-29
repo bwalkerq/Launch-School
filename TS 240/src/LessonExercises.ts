@@ -425,15 +425,15 @@ const myDog = {
 
 
 // A6
-type Product = {
-    name: string;
-    price: number;
-};
-
-type Shipping = {
-    weight: number;
-    shippingCost: number;
-};
+// type Product = {
+//     name: string;
+//     price: number;
+// };
+//
+// type Shipping = {
+//     weight: number;
+//     shippingCost: number;
+// };
 
 // type ShippableProduct = Product & Shipping;
 
@@ -447,13 +447,13 @@ type Shipping = {
 //     shippingCost: number;
 // }
 
-interface ShippableProduct extends Product, Shipping {}
-const item: ShippableProduct = {
-    name: "Table",
-    price: 100,
-    weight: 20,
-    shippingCost: 30,
-};
+// interface ShippableProduct extends Product, Shipping {}
+// const item: ShippableProduct = {
+//     name: "Table",
+//     price: 100,
+//     weight: 20,
+//     shippingCost: 30,
+// };
 
 
 // A12
@@ -662,9 +662,57 @@ type AddNumbersReturnType = ReturnType<typeof addNumbers>;
 type AddNumbersFunction = (...args: AddNumbersParams) => AddNumbersReturnType;
 
 
+// A20
+interface Product {
+    id: number;
+    name: string;
+    price: number;
+    description: string;
+}
 
+const products: Product[] = [
+    {
+        // Let's just simply assume product id is same as the index of the product in the products array
+        id: 0,
+        name: "Sample Product",
+        price: 49.99,
+        description: "A sample product for demonstration",
+    },
+];
 
+type UpdateableProductFields = Partial<Omit<Product, "id">>;
 
+function updateProduct(
+    productId: number,
+    updatedValues: UpdateableProductFields
+): void {
+    // if (products[productId]) {
+    //     products[productId] = {...products[productId], ...updatedValues}
+    const product = products.find((product) => product.id === productId);
+
+    if (product) {
+        products[productId] = {
+            ...product,
+            ...updatedValues
+        };
+    } else {
+        console.log('product not found')
+    }
+
+    // Your implementation here:
+    // Find product to update by productId
+    // If found, apply partial update with using object spreading
+    // Else log out "Product not found"
+}
+
+updateProduct(0, {
+    name: "Updated Product Name",
+    price: 99.99,
+});
+
+console.log(products)
+
+/* I rewrote the solution to match theirs since .find is more robust way to target products in an array*/
 
 
 
