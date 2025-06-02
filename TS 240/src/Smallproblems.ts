@@ -90,7 +90,7 @@ class PeoplePerson {
 
 }
 const person = new PeoplePerson("Alice", 30);
-console.log(person.describe());
+// console.log(person.describe());
 // Expected Output:
 // Alice is 30 years old.
 
@@ -106,18 +106,188 @@ console.log(person.describe());
 //     }
 // }
 
+function wrapInArray(arg: string | number): Array<string | number> {
+    return [arg];
+}
+
+
+function printId(arg: string | number): string {
+    if (typeof arg === 'string') {
+        return "your id is a string"
+    } else {
+        return "your id is a number"
+    }
+}
+
+
+function firstElement<T>(arr: T[]):T | undefined {
+    if (arr.length > 0) {
+        return arr[0]
+    } else {
+        return undefined;
+    }
+}
+
+
+interface KeyValuePair <K, V>{
+    key: K,
+    value: V,
+}
+
+let kv:KeyValuePair<string, number> = {
+    key: 'hello',
+    value: 4
+}
+
+type ValidType = 'string' | 'number' | 'boolean' | 'object' | 'function' | 'undefined' | 'symbol' | 'bigint'
+
+function filterByType<T>(arr: unknown[], targetType: ValidType): T[] {
+    return arr.filter(element => {
+        return typeof element === targetType;
+    })
+}
+
+// console.log(
+// filterByType<string>(["hello", "world", 42, true], "string")
+// )
+
+// Small 4
+function printLength(arg: string | string[]):void {
+    if (Array.isArray(arg)) {
+        console.log(`Array count: ${arg.length}`)
+        return;
+    }
+    console.log(`string length: ${arg.length}`)
+}
+
+function isString(arg:unknown): arg is string {
+    return typeof arg === 'string';
+}
+
+function isStringArray(arr: unknown[]): arr is string[] {
+    return arr.every(el => {
+        return isString(el);
+    });
+}
+
+// console.log(
+//     isStringArray([1, 2, 3]),
+//     isStringArray(["test", "string"])
+// )
 
 
 
+function shorty(input: string | undefined): void {
+    if (input && input !== '') {
+        console.log('input is defined and not empty');
+        return;
+    }
+}
+
+interface Circle {
+    kind: 'circle',
+    radius: number
+}
+
+interface Square {
+    kind: 'square',
+    sideLength: number
+}
+
+type Shape = Circle | Square
+
+function getArea(shape: Shape): number {
+    switch (shape.kind) {
+        case 'circle':
+            return shape.radius ** 2 * Math.PI;
+        case "square":
+            return shape.sideLength ** 2;
+        default:
+            return assertNever(shape as never)
+    }
+}
+
+function assertNever(arg: never): never {
+    throw new Error('this is not a shape')
+}
+
+getArea({ kind: "circle", radius: 10 })
+getArea({ kind: "square", sideLength: 10 })
 
 
+function logUnknown(arg: unknown): void {
+    if (typeof arg === "string") {
+        console.log(arg)
+    }
+}
+
+interface Person {
+    name: string,
+    age: number
+}
+
+interface Employee extends Person {
+    employeeId: number
+}
+
+let sal: Employee = {
+    name: 'sal',
+    age: 10,
+    employeeId: 1
+}
 
 
+interface Dog2 {
+    bark(): void
+}
+
+interface Cat2 {
+    meow(): void
+}
+
+type Pet2 = Dog2 & Cat2
+
+let pet2: Pet2 = {
+    bark: ()=> {
+        console.log('bark')
+    },
+    meow() {
+        console.log('meow')
+    }
+}
+
+interface StringMap {
+    [key: string]: string
+}
+
+let dictionary: StringMap = {
+    this: 'that',
+    those: 'these'
+}
+
+interface UserData {
+    name: string;
+    age: number;
+    email: string;
+}
+type PropNames = keyof UserData
+
+function logProp (user: UserData, key: PropNames): void {
+    console.log(user[key])
+}
+
+const sample: UserData = {
+    name: 'sample',
+    email: 'sam@ple.com',
+    age: 8
+}
+
+logProp(sample, 'email')
 
 
-
-
-
+function getProperty<T>(arg: T, prop: keyof T) {
+    return arg[prop];
+}
 
 
 

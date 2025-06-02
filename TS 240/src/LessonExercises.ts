@@ -150,17 +150,17 @@ function movePoint(point: Point, dx: number, dy: number): Point {
 
 
 // L2 A16
-class Person {
-    age?: number;
-    name: string;
-
-    constructor(name: string, age?: number) {
-    // constructor(age?: number, name: string) {
-// note that a required parameter can't follow an optional parameter
-        this.name = name;
-        this.age = age;
-    }
-}
+// class Person {
+//     age?: number;
+//     name: string;
+//
+//     constructor(name: string, age?: number) {
+//     // constructor(age?: number, name: string) {
+// // note that a required parameter can't follow an optional parameter
+//         this.name = name;
+//         this.age = age;
+//     }
+// }
 
 interface Movable {
     speed: number;
@@ -531,22 +531,22 @@ function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
 
 
 // Lesson 6 A2
-interface Shape {
-    color: string;
-}
-
-interface Rectangle extends Shape{
-    length: number;
-    width: number;
-}
-
-interface Circle extends Shape{
-    radius: number;
-}
-
-function displayShapeInfo(shape:Shape): string {
-    return `this shape is ${shape.color}`
-}
+// interface Shape {
+//     color: string;
+// }
+//
+// interface Rectangle extends Shape{
+//     length: number;
+//     width: number;
+// }
+//
+// interface Circle extends Shape{
+//     radius: number;
+// }
+//
+// function displayShapeInfo(shape:Shape): string {
+//     return `this shape is ${shape.color}`
+// }
 
 
 // A7
