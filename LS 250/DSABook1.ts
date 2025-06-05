@@ -39,8 +39,51 @@ function findPair(arr: number[]):number[] | null {
     return output ? output : null;
 }
 
-console.log(findPair([2, 3, 9, 7])); // Output: [3, 7]
-console.log(findPair([10, 6, -1, 2])); // null
-console.log(findPair([1, 2, 5, 6])); // null
-console.log(findPair([1, 3, 6, 10, 4, 5])); // [6, 4]
-console.log(findPair([4, -5, 3, 15, 5])); // [-5, 15]
+// console.log(findPair([2, 3, 9, 7])); // Output: [3, 7]
+// console.log(findPair([10, 6, -1, 2])); // null
+// console.log(findPair([1, 2, 5, 6])); // null
+// console.log(findPair([1, 3, 6, 10, 4, 5])); // [6, 4]
+// console.log(findPair([4, -5, 3, 15, 5])); // [-5, 15]
+
+
+function test(n) {
+    let matrix = [];
+    for (let i = 0; i < n; i++) {
+        matrix[i] = [];
+        for (let j = 0; j < n; j++) {
+            matrix[i][j] = i + j;
+        }
+    }
+    return matrix;
+}
+
+console.log(test(6))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
