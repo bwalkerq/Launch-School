@@ -57,8 +57,87 @@ function test(n) {
     return matrix;
 }
 
-console.log(test(6))
+// console.log(test(6))
 
+
+// Finding a Majority Element
+// Given an array of numbers, return its majority element.
+
+// The majority element is the value in the array that appears
+// as at least half of the elements in the array.
+
+// It is guaranteed that only one majority element exists in the array.
+
+// Test Cases:
+
+console.log(findMajority([6, 4, 4, 6, 4]) === 4);
+console.log(findMajority([4, 5, 2, 5, 5, 5, 1]) === 5);
+console.log(findMajority([1, 2, 1, 2, 2, 1, 2]) === 2);
+console.log(findMajority([1, 2, 3, 1, 4, 4, 1, 1]) === 1);
+console.log(findMajority([5, 5, 5]) === 5);
+
+// All test cases should log true
+
+/*P: given an array of numbers, return the one that appears the most often
+* in: array of numbers, not ordered
+* out: the number that occurs most frequently
+* E: BAE
+* D: array iteration
+* A:
+* tally, then count and return
+* for each element
+*   if it exists in the object, tally up, if not create it set count to 1
+*
+* Then, for each key find the highest value
+* return the key that has the highest value
+*
+* */
+interface CountObj {
+    [key: number]: number
+}
+
+function findMajorityInitialSolution(arr: number[]): number {
+    let countsObj: CountObj = arr.reduce((obj, cv) => { // cv stands for current value
+        obj[cv] = obj[cv] || 0;
+        obj[cv] += 1;
+        return obj;
+    }, {} as CountObj); // note this starting object
+
+    let highest = 0;
+    let majorityKey: number | null = null
+
+    for (let countsObjKey in countsObj) {
+        const cv: number = countsObj[countsObjKey];
+        if (cv > highest) {
+            highest = cv;
+            majorityKey = Number(countsObjKey);
+        }
+    }
+
+    return majorityKey
+}
+// TC: N+N? so just N? SC: N for the object.
+// My solution has a linear time complexity, just like their solution. But their solution uses Map() and it's niiiice.
+
+function findMajority(arr: number[]): number | null {
+    let counts = new Map<number, number>();
+    let majorityCount = Math.ceil(arr.length / 2);
+
+    for (const number of arr) {
+        if (counts.has(number)) {
+            counts.set(number, counts.get(number) + 1 )
+        } else {
+            counts.set(number, 1)
+        }
+
+        if (counts.get(number) >= majorityCount) {
+            return number;
+        }
+    }
+    return null;
+}
+
+// overall a much better, clearer solution.
 
 
 
