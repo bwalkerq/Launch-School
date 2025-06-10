@@ -160,15 +160,81 @@ function findPair(nums: number[], target: number): [number, number] | null {
 }
 
 // Test cases
-const nums1 = [1, 3, 6, 7, 8, 12];
-const target1 = 14;
-console.log(findPair(nums1, target1)); // Output: [6, 8]
+// const nums1 = [1, 3, 6, 7, 8, 12];
+// const target1 = 14;
+// console.log(findPair(nums1, target1)); // Output: [6, 8]
+//
+// const nums2 = [2, 6, 8, 10];
+// const target2 = 17;
+// console.log(findPair(nums2, target2)); // null
 
-const nums2 = [2, 6, 8, 10];
-const target2 = 17;
-console.log(findPair(nums2, target2)); // null
 
+// Practice: Reverse Consonants
+// Given a string `str`, reverse all the consonants in the string and return it.
+// Consonants are all alphabetic characters except for the vowels `'a'`, `'e'`, `'i'`,
+// `'o'`, and `'u'`, which can appear in both lower and upper cases.
+// The consonants can appear more than once in the string.
 
+console.log(reverseConsonants("") === "");
+console.log(reverseConsonants("s") === "s");
+console.log(reverseConsonants("HELLO" ) === "LELHO");
+console.log(reverseConsonants("leetcode")  == "deectole");
+console.log(reverseConsonants("example")  == "elapmxe");
+console.log(reverseConsonants("Consonants")  == "sotnonasnC");
+
+// All test cases should log true
+
+/*P: given a string, reverse the order of the consonants only, while the vowels remain in place, and return the new string
+* E: BAE
+* D: pointers. start and end
+* A:
+* while the start and end have not met in the middle
+*   if start is a consonant
+*       if the end is a consonant
+*           swap the letters
+*           increment the start
+*       else
+*           decrement the end
+*   else
+*       increment the start
+* */
+function reverseConsonants(str: string): string {
+    const arr = str.split('');
+    const isConsonant = (char) => /[^aeiou]/i.test(char)
+    let start = 0
+    let end = str.length - 1;
+
+    while (start < end) {
+        while (!isConsonant(arr[start])) {
+            start++;
+        }
+        while (!isConsonant(arr[end])) {
+            end--;
+        }
+        [arr[start], arr[end]] = [arr[end], arr[start]];
+        start++;
+        end--;
+
+        // if (arr[start].match(/[^aeiou]/i)) {
+        //     if (arr[end].match(/[^aeiou]/i)) {
+        //         let temp = arr[start];
+        //         arr.splice(start, 1, str[end]);
+        //         arr.splice(end, 1, temp);
+        //         start++;
+        //         end--
+        //     } else {
+        //         end--;
+        //     }
+        // } else {
+        //     start++;
+        // }
+    }
+    return arr.join('')
+}
+
+// the main thing I relearned was to use destructuring [a,b] = [b,a] for replacement, rather than splice, which is heavy.
+// and to use .test rather than .match.
+// test is called on a regex and takes a string, whereas .match does the converse.
 
 
 
