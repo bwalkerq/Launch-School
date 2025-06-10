@@ -25,19 +25,19 @@
 *
 * */
 
-function findPair(arr: number[]):number[] | null {
-    let output:number[] | null;
-    arr.forEach((el, index, array) => {
-        const arr2 = array.slice(index + 1)
-        arr2.forEach(otherEl => {
-            if (el + otherEl === 10) {
-                output = [el, otherEl];
-            }
-        })
-    })
-
-    return output ? output : null;
-}
+// function findPair(arr: number[]):number[] | null {
+//     let output:number[] | null;
+//     arr.forEach((el, index, array) => {
+//         const arr2 = array.slice(index + 1)
+//         arr2.forEach(otherEl => {
+//             if (el + otherEl === 10) {
+//                 output = [el, otherEl];
+//             }
+//         })
+//     })
+//
+//     return output ? output : null;
+// }
 
 // console.log(findPair([2, 3, 9, 7])); // Output: [3, 7]
 // console.log(findPair([10, 6, -1, 2])); // null
@@ -70,11 +70,11 @@ function test(n) {
 
 // Test Cases:
 
-console.log(findMajority([6, 4, 4, 6, 4]) === 4);
-console.log(findMajority([4, 5, 2, 5, 5, 5, 1]) === 5);
-console.log(findMajority([1, 2, 1, 2, 2, 1, 2]) === 2);
-console.log(findMajority([1, 2, 3, 1, 4, 4, 1, 1]) === 1);
-console.log(findMajority([5, 5, 5]) === 5);
+// console.log(findMajority([6, 4, 4, 6, 4]) === 4);
+// console.log(findMajority([4, 5, 2, 5, 5, 5, 1]) === 5);
+// console.log(findMajority([1, 2, 1, 2, 2, 1, 2]) === 2);
+// console.log(findMajority([1, 2, 3, 1, 4, 4, 1, 1]) === 1);
+// console.log(findMajority([5, 5, 5]) === 5);
 
 // All test cases should log true
 
@@ -140,6 +140,33 @@ function findMajority(arr: number[]): number | null {
 // overall a much better, clearer solution.
 
 
+// start-end pointers
+function findPair(nums: number[], target: number): [number, number] | null {
+    let start = 0;
+    let end = nums.length - 1;
+
+    while (start < end) {
+        let a = nums[start];
+        let b = nums[end];
+
+        if (a + b === target) {
+            return [a, b]
+        } else if (a + b < target) {
+            start++
+        } else {
+            end--;
+        }
+    }
+}
+
+// Test cases
+const nums1 = [1, 3, 6, 7, 8, 12];
+const target1 = 14;
+console.log(findPair(nums1, target1)); // Output: [6, 8]
+
+const nums2 = [2, 6, 8, 10];
+const target2 = 17;
+console.log(findPair(nums2, target2)); // null
 
 
 
