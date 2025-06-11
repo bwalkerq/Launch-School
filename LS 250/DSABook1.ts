@@ -268,12 +268,12 @@ function testCompressToDistinct(array, expectedLength) {
     // )
     return isSameObject && isLengthCorrect && isModifiedCorrectly;
 }
-
-console.log(testCompressToDistinct([3, 3, 5, 7, 7, 8], 4));
-console.log(testCompressToDistinct([1, 1, 2, 2, 2, 3, 4, 4, 5], 5));
-console.log(testCompressToDistinct([0], 1));
-console.log(testCompressToDistinct([-5, -3, -3, -1, 0, 0, 0, 1], 5));
-console.log(testCompressToDistinct([6, 6, 6, 6, 6, 6, 6], 1));
+//
+// console.log(testCompressToDistinct([3, 3, 5, 7, 7, 8], 4));
+// console.log(testCompressToDistinct([1, 1, 2, 2, 2, 3, 4, 4, 5], 5));
+// console.log(testCompressToDistinct([0], 1));
+// console.log(testCompressToDistinct([-5, -3, -3, -1, 0, 0, 0, 1], 5));
+// console.log(testCompressToDistinct([6, 6, 6, 6, 6, 6, 6], 1));
 
 // All tests should log true.
 
@@ -315,7 +315,7 @@ lookup time (and also not a Map, which is for key value pairs, but similar vibe 
 * The set has very nice instance methods
 In my case, I used a while loop but in every iteration I incremented the reader...which is what a for loop does!
 * */
-function compressToDistinct(nums:number[]): number {
+function compressToDistinctWithSet(nums:number[]): number {
     const seen = new Set();
     let writer = 0;
 
@@ -326,8 +326,33 @@ function compressToDistinct(nums:number[]): number {
             writer++;
         }
     }
-
     return seen.size
+}
+
+// AI said that anchor runner is preferred for its efficiency and simplicity for in-place modifications, and it has
+// a smaller space complexity, so I want to try it
+
+/*GAH! I missed a hugely important part, which is that the arrays are ALREADY SORTED
+* that makes a huge difference in this! So, my solution would be better when unsorted, because this solution wouldn't
+* even work if unsorted!
+*
+* New Algo:
+* [3, 3, 3, 5, 7, 7, 8]
+* anchor starts at 0, runner at 1
+* if the ... and I got it, I think with the <= for the nums.length
+* because it wasn't catching the last number, which was sometimes distinct*/
+
+function compressToDistinct(nums: number[]): number {
+    let anchor = 0;
+    let runner = 1;
+    while (runner <= nums.length) {
+        if (nums[runner] !== nums[anchor]) {
+            anchor++;
+            nums[anchor] = nums[runner];
+        }
+        runner++;
+    }
+    return anchor;
 }
 
 
