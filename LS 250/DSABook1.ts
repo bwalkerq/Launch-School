@@ -564,15 +564,114 @@ function minimumCount(array: number[]) {
     return Math.min(positiveCount, negativeCount);
 }
 
-console.log(minimumCount([-4, -3, -2, -1, 3, 4]) === 2);
-console.log(minimumCount([-3, 1, 2, 3, 4, 5]) === 1);
-console.log(minimumCount([-5, -4, -3, -2, -1]) === 0);
-console.log(minimumCount([1, 2, 3, 4, 5]) === 0);
-console.log(minimumCount([-2, -1, 1, 2]) === 2);
-console.log(minimumCount([-7, -5, -4, 1, 2, 6, 10]) === 3);
-console.log(minimumCount([-3, -2, -1, 0, 5, 6]) === 2);
-console.log(minimumCount([-1, 0, 1]) === 1);
-console.log(minimumCount([]) === 0);
+// console.log(minimumCount([-4, -3, -2, -1, 3, 4]) === 2);
+// console.log(minimumCount([-3, 1, 2, 3, 4, 5]) === 1);
+// console.log(minimumCount([-5, -4, -3, -2, -1]) === 0);
+// console.log(minimumCount([1, 2, 3, 4, 5]) === 0);
+// console.log(minimumCount([-2, -1, 1, 2]) === 2);
+// console.log(minimumCount([-7, -5, -4, 1, 2, 6, 10]) === 3);
+// console.log(minimumCount([-3, -2, -1, 0, 5, 6]) === 2);
+// console.log(minimumCount([-1, 0, 1]) === 1);
+// console.log(minimumCount([]) === 0);
+
+
+
+// ** LINKED LISTS **
+// walkthrough
+
+// Given the head of a linked list, remove all
+// occurrences of the value 2 from the linked list.
+
+// Input:  1 -> 2 -> 3 -> 2 -> 4 -> null
+// Output: 1 -> 3 -> 4 -> null
+
+// Input:  2 -> 3 -> 2 -> null
+// Output: 3 -> null
+
+// Input:  null
+// Output: null
+
+class ListNode {
+    val: number;
+    next: ListNode | null;
+
+    constructor(val = 0, next = null) {
+        this.val = val;
+        this.next = next;
+    }
+}
+/* P: given a linked list, remove the values that are 2, and return the list
+* E: BAE
+* D: linked lists
+* A:
+* have a current pointer and a previous pointer
+* If curr is null: break from the loop
+* If the current is 2 (the target):
+*   if the previous value is null
+*       update the head to the next node (current.next)
+*   else
+*       set the previous node's next property `prev.next` to the current + 1 `curr.next`
+* else
+*   update the previous pointer to curr
+* move the curr pointer to the next node
+*  */
+
+//first draft without dummy node
+function deleteTwosFirstDraft(head: ListNode | null): ListNode | null {
+    let prev: ListNode | null = null;
+    let curr: ListNode | null = head;
+
+    if (!head) {
+        return head;
+    }
+
+    while (curr) {
+        if (curr.val === 2) {
+            if (!prev) {
+                head = curr.next;
+            } else {
+                prev.next = curr.next
+            }
+        } else {
+            prev = curr
+        }
+        curr = curr.next;
+    }
+    return head;
+}
+// Helper function to format the linked list into a string
+function stringifyList(head: ListNode | null) {
+    let curr = head;
+    let result = "";
+    while (curr !== null) {
+        result += curr.val + " -> ";
+        curr = curr.next;
+    }
+    result += "null";
+    return result;
+}
+
+// Test case 1
+const head1 = new ListNode(1);
+head1.next = new ListNode(2);
+head1.next.next = new ListNode(3);
+head1.next.next.next = new ListNode(2);
+head1.next.next.next.next = new ListNode(4);
+
+console.log("Input: ", stringifyList(head1));
+console.log("Output:", stringifyList(deleteTwos(head1)));
+// Input:  1 -> 2 -> 3 -> 2 -> 4 -> null
+// Output: 1 -> 3 -> 4 -> null
+
+// Test case 2
+const head2 = new ListNode(2);
+head2.next = new ListNode(3);
+head2.next.next = new ListNode(2);
+
+console.log("Input: ", stringifyList(head2));
+console.log("Output:", stringifyList(deleteTwos(head2)));
+// Input:  2 -> 3 -> 2 -> null
+// Output: 3 -> null
 
 
 
