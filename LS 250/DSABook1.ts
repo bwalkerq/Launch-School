@@ -373,12 +373,12 @@ function compressToDistinct(nums: number[]): number {
 //             right = mid - 1;
 //         }
 //     }
+// }
 //
 // // Most often, if the target is not found, additional handling
 // // or returning a specific value is needed. In many cases it will
 // // be the index that `left` variable holds, which would indicate
 // // where the target *would* fit into the array.
-// }
 
 
 // Practice: Find Zero Position
@@ -397,12 +397,12 @@ function compressToDistinct(nums: number[]): number {
 // Input: nums = [-7, -5, -3, 0, 2]
 // Output: 3
 
-console.log(findZeroPosition([-7, -5, -3, 0, 2]) === 3)
+// console.log(findZeroPosition([-7, -5, -3, 0, 2]) === 3)
 
 // Example:
 // Input: nums = [3, 5, 7, 9, 11]
 // Output: 0
-console.log(findZeroPosition([3, 5, 7, 9, 11]) === 0)
+// console.log(findZeroPosition([3, 5, 7, 9, 11]) === 0)
 
 function findZeroPosition(array: number[]): number {
     let left = 0;
@@ -423,7 +423,187 @@ function findZeroPosition(array: number[]): number {
 }
 
 
-//
+// Demo: Find the Range of Threes
+// Implement a function `findRange` that takes in an array of
+// integers sorted in ascending order. The function should
+// return an array containing the starting and ending
+// positions of the number 3 within the array. If the number 3
+// is not found, return [-1, -1].
+
+// Example:
+// Input: nums = [1, 2, 3, 3, 3, 3, 3, 4, 5]
+// Output: [2, 6]
+
+// Example:
+// Input: nums = [1, 2, 5, 5, 6, 9, 10]
+// Output: [-1, -1]
+function findRangeOfThrees(nums: number[]) {
+    return [findLeftMostIndex(nums, 3), findRightMostIndex(nums, 3)];
+}
+
+function findLeftMostIndex(array: number[], target: number): number {
+    let left = 0;
+    let right = array.length - 1;
+    let leftMost = -1
+
+    while (left <= right) {
+        let mid = Math.floor((left + right) / 2);
+
+        if (array[mid] === target) {
+            leftMost = mid;
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        }
+    }
+    return leftMost;
+}
+
+function findRightMostIndex(array: number[], target: number): number {
+    let left = 0;
+    let right = array.length - 1;
+    let rightMost = -1;
+
+    while (left <= right) {
+        let mid = Math.floor((left + right) / 2);
+
+        if (array[mid] === target) {
+            rightMost = mid;
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return rightMost
+}
+
+// console.log(findRangeOfThrees([1, 2, 3, 3, 3, 3, 3, 4, 5])); // [2, 6]
+// console.log(findRangeOfThrees([1, 2, 5, 5, 6, 9, 10]));      // [-1, -1]
+// console.log(findRangeOfThrees([]));                          // [-1, -1]
+
+
+
+
+// Practice minimum count
+// Given an array `nums` sorted in ascending order, determine
+// the minimum between the count of positive integers and the
+// count of negative integers.
+
+// Please note that the number `0` is neither positive nor negative.
+
+
+// All test cases should log true.
+
+/*P: given a sorted array of numbers, count the negative and positive entries, and return the lesser of the two counts.
+* E: BAE, zero is neither pos or neg
+* D: they would probably want me to see that since this is sorted, use the binary search
+* A:
+* I wrote a return zero index function above, I could probably use that.
+* find the index of the zero, count the left and right sides, return the smaller
+* I could have done a better Alogirithm write up-- I think I copied the previous zero place function and then got
+* distracted and dove in.
+* after dealing with the case that zero exists, then we exit the while loop with the `left` populated with the position of the first positive integer
+* If I get here, left represents the index where 0 would go
+* this represents the first positive integer position
+* so the neg count is left
+* and the positive count is length - left
+*
+* */
+
+function minimumCountFirstDraft(array: number[]) {
+    let left = 0;
+    let right = array.length - 1;
+    let negativeCount;
+    let positiveCount
+
+    while (left <= right) {
+        let mid = Math.floor((left + right) / 2);
+
+        if (array[mid] === 0) {
+            console.log('mid:', mid)
+            negativeCount = mid - 1 >= 0 ? mid : 0
+            positiveCount = mid === array.length - 1 ? 0 : array.length - 1 - mid
+            return negativeCount > positiveCount ? positiveCount : negativeCount;
+        } else if (array[mid] < 0) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    negativeCount = left
+            console.log('neg count:', negativeCount)
+    positiveCount = array.length - left
+            console.log("pos count:", positiveCount)
+    return negativeCount > positiveCount ? positiveCount : negativeCount
+}
+
+// Second draft with AI
+/* I am pleased that I caught the zero conditions and AI didn't at first.
+* The main benefit from the AI solution was that I didn't have to account for zero so verbosely in the while loop;
+* instead, */
+function minimumCount(array: number[]) {
+    let left = 0;
+    let right = array.length - 1;
+
+    if (right < 0) return 0;
+
+    while (left <= right) {
+        let mid = Math.floor((left + right) / 2);
+
+        if (array[mid] < 0) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    const negativeCount = left
+    let positiveCount = array.length - left
+    positiveCount = positiveCount - (array[left] === 0 ? 1 : 0)
+
+    return Math.min(positiveCount, negativeCount);
+}
+
+console.log(minimumCount([-4, -3, -2, -1, 3, 4]) === 2);
+console.log(minimumCount([-3, 1, 2, 3, 4, 5]) === 1);
+console.log(minimumCount([-5, -4, -3, -2, -1]) === 0);
+console.log(minimumCount([1, 2, 3, 4, 5]) === 0);
+console.log(minimumCount([-2, -1, 1, 2]) === 2);
+console.log(minimumCount([-7, -5, -4, 1, 2, 6, 10]) === 3);
+console.log(minimumCount([-3, -2, -1, 0, 5, 6]) === 2);
+console.log(minimumCount([-1, 0, 1]) === 1);
+console.log(minimumCount([]) === 0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
