@@ -652,14 +652,14 @@ function stringifyList(head: ListNode | null) {
 }
 
 // Test case 1
-const head1 = new ListNode(1);
+let head1 = new ListNode(1);
 head1.next = new ListNode(2);
 head1.next.next = new ListNode(3);
 head1.next.next.next = new ListNode(2);
 head1.next.next.next.next = new ListNode(4);
 
-console.log("Input: ", stringifyList(head1));
-console.log("Output:", stringifyList(deleteTwos(head1)));
+// console.log("Input: ", stringifyList(head1));
+// console.log("Output:", stringifyList(deleteTwos(head1)));
 // Input:  1 -> 2 -> 3 -> 2 -> 4 -> null
 // Output: 1 -> 3 -> 4 -> null
 
@@ -668,8 +668,8 @@ const head2 = new ListNode(2);
 head2.next = new ListNode(3);
 head2.next.next = new ListNode(2);
 
-console.log("Input: ", stringifyList(head2));
-console.log("Output:", stringifyList(deleteTwos(head2)));
+// console.log("Input: ", stringifyList(head2));
+// console.log("Output:", stringifyList(deleteTwos(head2)));
 // Input:  2 -> 3 -> 2 -> null
 // Output: 3 -> null
 
@@ -693,6 +693,58 @@ function deleteTwos(head: ListNode | null): ListNode | null {
 }
 
 
+// Given the head of a linked list, reverse the list and return it.
+
+// Input: 1 -> 2 -> 3 -> 4 -> null
+// Output: 4 -> 3 -> 2 -> 1 -> null
+
+/* P: reverse a list, return the new head of the list (the last node)
+* E BAE
+* D: linked list
+* A:
+* initialize a next-node variable for the loop, which will hold the node to the right as I change the connection from
+* pointing right to pointing left
+* when I get to the end, return the prev node, as the current node will hold null
+* */
+
+function reverseLinkedList(head: ListNode): ListNode | null{
+    let nextNode;
+    let prev = null;
+    let curr: ListNode | null = head;
+
+    while (curr) {
+        nextNode = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = nextNode;
+    }
+    return prev;
+}
+
+
+// Helper function to print the linked list
+function printList(head: ListNode | null) {
+    let curr = head;
+    let result = "";
+    while (curr !== null) {
+        result += curr.val + " -> ";
+        curr = curr.next;
+    }
+    result += "null";
+    return result;
+}
+// Test case 1
+head1 = new ListNode(1);
+head1.next = new ListNode(2);
+head1.next.next = new ListNode(3);
+head1.next.next.next = new ListNode(4);
+
+console.log("Input: ", printList(head1));
+console.log("Output:", printList(reverseLinkedList(head1)));
+// Input:  1 -> 2 -> 3 -> 4 -> null
+// Output: 4 -> 3 -> 2 -> 1 -> null
+
+// I did this problem after reading the explanation
 
 
 
