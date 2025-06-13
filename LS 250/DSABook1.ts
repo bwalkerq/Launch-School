@@ -674,7 +674,23 @@ console.log("Output:", stringifyList(deleteTwos(head2)));
 // Output: 3 -> null
 
 
+// second draft, much easier implementation with dummy node pointing to the head node.
+function deleteTwos(head: ListNode | null): ListNode | null {
+    let dummy = new ListNode();
+    dummy.next = head;
+    let prev = dummy;
+    let curr: ListNode | null = head;
 
+    while (curr) {
+        if (curr.val === 2) {
+            prev.next = curr.next
+        } else {
+            prev = curr
+        }
+        curr = curr.next;
+    }
+    return dummy.next;
+}
 
 
 
