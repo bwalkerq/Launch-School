@@ -46,16 +46,16 @@
 // console.log(findPair([4, -5, 3, 15, 5])); // [-5, 15]
 
 
-function test(n) {
-    let matrix = [];
-    for (let i = 0; i < n; i++) {
-        matrix[i] = [];
-        for (let j = 0; j < n; j++) {
-            matrix[i][j] = i + j;
-        }
-    }
-    return matrix;
-}
+// function test(n) {
+//     let matrix = [];
+//     for (let i = 0; i < n; i++) {
+//         matrix[i] = [];
+//         for (let j = 0; j < n; j++) {
+//             matrix[i][j] = i + j;
+//         }
+//     }
+//     return matrix;
+// }
 
 // console.log(test(6))
 
@@ -96,7 +96,7 @@ interface CountObj {
     [key: number]: number
 }
 
-function findMajorityInitialSolution(arr: number[]): number {
+function findMajorityInitialSolution(arr: number[]): number | null {
     let countsObj: CountObj = arr.reduce((obj, cv) => { // cv stands for current value
         obj[cv] = obj[cv] || 0;
         obj[cv] += 1;
@@ -119,29 +119,29 @@ function findMajorityInitialSolution(arr: number[]): number {
 // TC: N+N? so just N? SC: N for the object.
 // My solution has a linear time complexity, just like their solution. But their solution uses Map() and it's niiiice.
 
-function findMajority(arr: number[]): number | null {
-    let counts = new Map<number, number>();
-    let majorityCount = Math.ceil(arr.length / 2);
-
-    for (const number of arr) {
-        if (counts.has(number)) {
-            counts.set(number, counts.get(number) + 1 )
-        } else {
-            counts.set(number, 1)
-        }
-
-        if (counts.get(number) >= majorityCount) {
-            return number;
-        }
-    }
-    return null;
-}
+// function findMajority(arr: number[]): number | null {
+//     let counts = new Map<number, number>();
+//     let majorityCount = Math.ceil(arr.length / 2);
+//
+//     for (const number of arr) {
+//         if (counts.has(number)) {
+//             counts.set(number, counts.get(number) + 1 )
+//         } else {
+//             counts.set(number, 1)
+//         }
+//
+//         if (counts.get(number) >= majorityCount) {
+//             return number;
+//         }
+//     }
+//     return null;
+// }
 
 // overall a much better, clearer solution.
 
 
 // start-end pointers
-function findPair(nums: number[], target: number): [number, number] | null {
+function findPair(nums: number[], target: number): [number, number] | undefined {
     let start = 0;
     let end = nums.length - 1;
 
@@ -200,7 +200,7 @@ function findPair(nums: number[], target: number): [number, number] | null {
 * */
 function reverseConsonants(str: string): string {
     const arr = str.split('');
-    const isConsonant = (char) => /[^aeiou]/i.test(char)
+    const isConsonant = (char:string) => /[^aeiou]/i.test(char)
     let start = 0
     let end = str.length - 1;
 
@@ -255,19 +255,19 @@ function reverseConsonants(str: string): string {
 
 // You should name the function `compressToDistinct` for the tests to work correctly.
 
-function testCompressToDistinct(array, expectedLength) {
-    const originalReference = array;
-    const resultLength = compressToDistinct(array);
-    const isSameObject = originalReference === array;
-    const isLengthCorrect = resultLength === expectedLength;
-    const isModifiedCorrectly = array.slice(0, expectedLength).every((val, idx, arr) => idx === 0 || val > arr[idx - 1]);
-
-    // console.log(
-    // isSameObject, isLengthCorrect, isModifiedCorrectly
-    //
-    // )
-    return isSameObject && isLengthCorrect && isModifiedCorrectly;
-}
+// function testCompressToDistinct(array, expectedLength) {
+//     const originalReference = array;
+//     const resultLength = compressToDistinct(array);
+//     const isSameObject = originalReference === array;
+//     const isLengthCorrect = resultLength === expectedLength;
+//     const isModifiedCorrectly = array.slice(0, expectedLength).every((val, idx, arr) => idx === 0 || val > arr[idx - 1]);
+//
+//     // console.log(
+//     // isSameObject, isLengthCorrect, isModifiedCorrectly
+//     //
+//     // )
+//     return isSameObject && isLengthCorrect && isModifiedCorrectly;
+// }
 //
 // console.log(testCompressToDistinct([3, 3, 5, 7, 7, 8], 4));
 // console.log(testCompressToDistinct([1, 1, 2, 2, 2, 3, 4, 4, 5], 5));
