@@ -135,8 +135,100 @@ let list3 = createLinkedList([1]);
 let list4 = createLinkedList([1, 2, 3, 4]);
 let list5 = createLinkedList([]);
 
-printLinkedList(removeEverySecondNode(list1)); // Expected: 1 -> 3 -> 5 -> null
-printLinkedList(removeEverySecondNode(list2)); // Expected: 1 -> null
-printLinkedList(removeEverySecondNode(list3)); // Expected: 1 -> null
-printLinkedList(removeEverySecondNode(list4)); // Expected: 1 -> 3 -> null
-printLinkedList(removeEverySecondNode(list5)); // Expected: null
+// printLinkedList(removeEverySecondNode(list1)); // Expected: 1 -> 3 -> 5 -> null
+// printLinkedList(removeEverySecondNode(list2)); // Expected: 1 -> null
+// printLinkedList(removeEverySecondNode(list3)); // Expected: 1 -> null
+// printLinkedList(removeEverySecondNode(list4)); // Expected: 1 -> 3 -> null
+// printLinkedList(removeEverySecondNode(list5)); // Expected: null
+
+
+
+// Stack implementation
+// class ListNode {
+//   constructor(val = 0, next = null) {
+//     this.val = val;
+//     this.next = next;
+//   }
+// }
+
+class Stack {
+  constructor() {
+    this.top = null;
+  }
+  peek() {
+    return this.top ? this.top.val : null;
+    // Returns the value of the top most element without removing it.
+    // If the stack is empty, it returns `null`.
+  }
+
+  push(value) {
+    this.top = new ListNode(value, this.top);
+  }
+
+  pop() {
+    // If the stack is empty, it returns `null`.
+    if (!this.top) return null;
+    // Removes the item from the stack and returns it
+    let popped = this.top;
+    this.top = this.top.next;
+    return popped.val;
+  }
+}
+
+const myStack = new Stack();
+// myStack.push(1);
+// console.log('Top element:', myStack.peek());  // logs 'Top element: 1'
+// myStack.push(2);
+// console.log('Top element:', myStack.peek());  // logs 'Top element: 2'
+// myStack.push(3);
+// console.log('Top element:', myStack.peek());  // logs 'Top element: 3'
+// myStack.pop();
+// console.log('Top element after pop:', myStack.peek());  // logs 'Top element after pop: 2'
+// myStack.pop();
+// console.log('Top element after pop:', myStack.peek());  // logs 'Top element after pop: 1'
+// myStack.pop();
+// console.log('Peek on empty stack:', myStack.peek());    // logs 'Peek on empty stack: null'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
