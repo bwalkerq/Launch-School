@@ -238,22 +238,100 @@ class Queue {
 }
 
 const myQueue = new Queue();
-myQueue.enqueue(1);
-console.log('Front element:', myQueue.peek());  // logs 'Front element: 1'
-myQueue.enqueue(2);
-console.log('Front element:', myQueue.peek());  // logs 'Front element: 1'
-myQueue.enqueue(3);
-console.log('Front element:', myQueue.peek());  // logs 'Front element: 1'
-myQueue.dequeue();
-console.log('Front element after dequeue:', myQueue.peek());  // logs 'Front element after dequeue: 2'
-myQueue.dequeue();
-console.log('Front element after dequeue:', myQueue.peek());  // logs 'Front element after dequeue: 3'
-myQueue.dequeue();
-console.log('Peek on empty queue:', myQueue.peek());  // logs 'Peek on empty queue: null'
-console.log('`back` on empty queue:', myQueue.back);  // logs '`back` on empty queue: null'
+// myQueue.enqueue(1);
+// console.log('Front element:', myQueue.peek());  // logs 'Front element: 1'
+// myQueue.enqueue(2);
+// console.log('Front element:', myQueue.peek());  // logs 'Front element: 1'
+// myQueue.enqueue(3);
+// console.log('Front element:', myQueue.peek());  // logs 'Front element: 1'
+// myQueue.dequeue();
+// console.log('Front element after dequeue:', myQueue.peek());  // logs 'Front element after dequeue: 2'
+// myQueue.dequeue();
+// console.log('Front element after dequeue:', myQueue.peek());  // logs 'Front element after dequeue: 3'
+// myQueue.dequeue();
+// console.log('Peek on empty queue:', myQueue.peek());  // logs 'Peek on empty queue: null'
+// console.log('`back` on empty queue:', myQueue.back);  // logs '`back` on empty queue: null'
 
 
+// Write a function `areMatched` that takes a string as an argument
+// and returns true if all types of brackets (parentheses (),
+// square brackets [], and curly braces {}) in the string are
+// properly matched. For the brackets to be considered
+// matched, every opening bracket must have a corresponding
+// closing bracket of the same type, and the brackets must be
+// correctly nested.
 
+/* P: given a string with a bunch of brackets, return true if matched, else false
+* E: BAE, though note that there can be multiple groupings of correct brackets within
+* larger bracket matches e.g. {[]()} is correctly matched
+* MM: my first thought was a queue because I could keep track of the first and last,
+* and match them, but that gets busted by the example above.
+*
+* I think I want to feed in each element, and remove it when it's match is given.
+* so feed in ( and then if the next element is an open bracket, feed that too,
+* but if not, it must be ) or else return false.
+* I need some way to map ( to ), etc. I could do a simple object.
+* D: an array as a stack, for sure. I think I would have tried to implement the
+* NodeList stack if the problem description didn't suggest using an array as a
+* stack or queue.
+* A:
+* build a new Map() with the opening brackets as keys, and their closing partners as values
+* for each element in the string (use a for loop for function return capability)
+* if the Map has the element,
+*   add it to the stack
+* else,
+*   if it matches it's partner
+*   i.e. (if map.get(the last element) === the new element)
+*     remove the last el from the stack, and don't add the new element
+*   else
+*     return false
+* return true */
+
+/* Note: my original solution worked for the given cases, but then I went hard
+* with the new o4 mini AI model, which is SICK, and I just edited over everything.
+* This new solution from AI has several things that I didn't have, like a separate
+* Set for the openings; mine had just the map with the openings and closings. It
+* had my switch them around, for very clear reading of the code.
+* it also caught the parity check at the top, which I missed (and which still makes
+* me think of the chessboard with Doug.)
+* it also had me check for the stack being empty within the iteration, which would
+* be the case when I get to closing char after all the opening chars have been
+* accounted for.
+* Also had me check for the length being zero at the end, to account for the case
+* where some opening have been left over.
+* Damn that was spicy. */
+
+function areMatched(string) {
+  if (string.length % 2 === 1) return false;
+
+  const opening = new Set(['(','{','['])
+  const closingToOpening = new Map([
+    [')', '('],
+    [']', '['],
+    ['}', '{']
+  ]);
+  const stack = [];
+
+  for (const char of string) {
+    if (opening.has(char)) {
+      stack.push(char);
+    } else {
+      if (stack.length === 0 || stack[stack.length - 1] !== closingToOpening.get(char)) {
+        return false;
+      }
+      stack.pop();
+    }
+  }
+
+  return stack.length === 0; // this checks that all brackets have been matched.
+}
+
+console.log(areMatched("()"));              // Output: true
+console.log(areMatched("([()]{})"));        // Output: true
+console.log(areMatched("([((}]({}))"));     // Output: false
+console.log(areMatched("{{[[(())]]}}"));    // Output: true
+console.log(areMatched(""));                // Output: true
+console.log(areMatched("([)]"));            // Output: false
 
 
 
