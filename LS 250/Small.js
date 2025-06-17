@@ -189,7 +189,7 @@ console.log(twoSumLessThanTarget([7, 4, 15, 11, 21, 9], 24) === 22);
 *   runner to anchor + 1, redo iteration
 * return returnSum */
 
-function twoSumLessThanTarget(nums, target) {
+function twoSumLessThanTargetFirstDraft(nums, target) {
   let anchor = 0;
   let highestSum = -1;
 
@@ -206,7 +206,39 @@ function twoSumLessThanTarget(nums, target) {
   return highestSum;
 }
 
+/*works fine, improve by sorting first and then have the two pointers move toward one another
+* then the time complexity isn't n^2, but nlogn.
+* also add an early exit for hitting target - 1, which is the highest possible
+* return value.
+* sort the array
+* while left is less than right
+*   if the sum is k-1, return
+*   if the sum is greater than best, and less than target
+*     replace best
+*     increment left
+*   else
+*     decrement right
+* */
 
+function twoSumLessThanTarget(nums, target) {
+  nums = nums.sort((a,b) => a - b)
+  let left = 0;
+  let right = nums.length - 1;
+  let best = -1;
+
+  while (left < right) {
+    const currentSum = nums[left] + nums[right];
+    if (currentSum === target -1) return currentSum;
+
+    if (currentSum > best && currentSum < target) {
+      best = currentSum;
+      left++;
+    } else {
+      right--;
+    }
+  }
+  return best;
+}
 
 
 
