@@ -348,20 +348,20 @@ return count;
 }
 // remember that Sets use SIZE not length; length is for Arrays!
 
-console.log(countPairs([1, 2, 3, 4, 5], 6) === 4);
-// Pairs: (2, 5), (3, 4), (3, 5), (4, 5)
-
-console.log(countPairs([1, 2, 3, 4, 5], 8) === 1);
-// Pair: (4, 5)
-
-console.log(countPairs([1, 3, 5, 7], 6) === 4);
-// Pairs: (1, 7), (3, 5), (3, 7), (5, 7)
-
-console.log(countPairs([1, 2, 3, 4], 5) === 2);
-// Pairs: (2, 4), (3, 4)
-
-console.log(countPairs([1, 2, 3, 4, 5], 10) === 0);
-// No pairs
+// console.log(countPairs([1, 2, 3, 4, 5], 6) === 4);
+// // Pairs: (2, 5), (3, 4), (3, 5), (4, 5)
+//
+// console.log(countPairs([1, 2, 3, 4, 5], 8) === 1);
+// // Pair: (4, 5)
+//
+// console.log(countPairs([1, 3, 5, 7], 6) === 4);
+// // Pairs: (1, 7), (3, 5), (3, 7), (5, 7)
+//
+// console.log(countPairs([1, 2, 3, 4], 5) === 2);
+// // Pairs: (2, 4), (3, 4)
+//
+// console.log(countPairs([1, 2, 3, 4, 5], 10) === 0);
+// // No pairs
 
 /* 16 min, but would have been much faster, sub 10, had I not chosen to solve
 * a harder problem, that when duplicate entries are introduced to the input array.
@@ -417,9 +417,100 @@ function countPairs(nums, target) {
 * sum to increment the counter. Dang! */
 
 
+/* P: given an array of numbers, return true if a number is 3x another number
+* in the array, else return false
+* in: ordered array of numbers
+* out: boolean, true if a number is 3x another number
+*
+* E: BAE.
+* the spicy bit is that my normal left and right can't work without doubling back.
+* if the right is more than 3x left, tempted to move right back or left forward, but
+* in both cases we could overstep a potential match
+* so maybe we have to check the two on the left before decrementing the right?
+* [4, 5, 7, 9, 13, 15, 17]
+* 4*3 is less than 17 and 15
+* decrement right
+* 4*3
+* ok nevermind! I took the hint, it's anchor runner!
+*
+* D: two pointers, anchor runner
+* A:
+* anchor = 0
+* runner = 1
+* while anchor < length
+*   if 3xanchor === runner, return true!
+*   else if 3xanchor > runner
+*     increment runner
+*   else (meaning 3xanchor < runner)
+*     increment anchor
+*     runner = anchor + 1
+* return false
+* */
 
+function checkTripleMatchFirstDraft(nums) {
+  let anchor = 0;
+  let runner = 1;
 
+  while (anchor < nums.length) { // this would need length - 1 since anchor shouldn't go past the second to last spot
+    const target = 3 * nums[anchor];
+    const current = nums[runner];
+    if (target === current) return true;
+    if (target > current) {
+      runner++;
+    } else {
+      anchor++;
+      runner = anchor + 1;  // turns out this is unnecessary
+    }
+  }
+  return false;
+}
 
+/* 21 min
+* I struggled with my mind stuck on start end pointers for many minutes, but
+* then I took the hint and tried anchor runner. I got it pretty fast.
+* BUT I got a solution that is suboptimal. I looked at the second hint, and have
+* to think more about this...
+* it said: consider the moment when the runner stop moving; from that point onwards
+* determine how long the anchor continues to move.
+* [4, 5, 7, 9, 13, 15, 17]
+* so, move the runner till it's greater than 3xanchor
+* then move the anchor until 3xanchor is greater than the runner
+* A:
+* same anchor runner starting positions
+* while anchor < length
+*   same early return if current == target
+*   if target > current
+*     increment runner
+*   else
+*     increment anchor
+* */
+function checkTripleMatch(nums) {
+  let anchor = 0;
+  let runner = 1;
+
+  while (runner < nums.length) {
+
+    const target = 3 * nums[anchor];
+    const current = nums[runner];
+    if (target === current) return true;
+    if (target > current) {
+      runner++;
+    } else {
+      anchor++;
+    }
+  }
+  return false;
+}
+
+console.log(checkTripleMatch([1, 3, 9, 28]) === true);
+console.log(checkTripleMatch([1, 2, 4, 10, 11, 12]) === true);
+console.log(checkTripleMatch([0, 5, 7, 55]) === false);
+console.log(checkTripleMatch([4, 5, 7, 9, 13, 15, 17]) === true);
+console.log(checkTripleMatch([2, 6, 13, 54]) === true);
+console.log(checkTripleMatch([1, 5, 17, 51]) === true);
+console.log(checkTripleMatch([1, 2, 4, 8]) === false);
+
+// All test cases should log true.
 
 
 
