@@ -74,11 +74,11 @@ function reverseWord(str) {
   return chars.join('');
 }
 
-console.log(findAverages([1, 2, 3, 4, 5, 6], 3)); // [ 2, 3, 4, 5 ]
-console.log(findAverages([1, 2, 3, 4, 5], 2));    // [1.5, 2.5, 3.5, 4.5]
-console.log(findAverages([10, 20, 30, 40, 50], 4)); // [ 25, 35 ]
-console.log(findAverages([5, 5, 5, 5, 5], 1));      // [ 5, 5, 5, 5, 5 ]
-console.log(findAverages([1, 3, 2, 6, -1, 4, 1, 8, 2], 5)); // [2.2, 2.8, 2.4, 3.6, 2.8]
+// console.log(findAverages([1, 2, 3, 4, 5, 6], 3)); // [ 2, 3, 4, 5 ]
+// console.log(findAverages([1, 2, 3, 4, 5], 2));    // [1.5, 2.5, 3.5, 4.5]
+// console.log(findAverages([10, 20, 30, 40, 50], 4)); // [ 25, 35 ]
+// console.log(findAverages([5, 5, 5, 5, 5], 1));      // [ 5, 5, 5, 5, 5 ]
+// console.log(findAverages([1, 3, 2, 6, -1, 4, 1, 8, 2], 5)); // [2.2, 2.8, 2.4, 3.6, 2.8]
 
 /* P: given an array of integers, and k an integer, return an array filled with
 * the average value of each subarray of size k.
@@ -164,9 +164,47 @@ for (let i = 1; i <= arr.length - k; i++) {
 
 
 
+console.log(twoSumLessThanTarget([3, 1, 4], 5) === 4);
+console.log(twoSumLessThanTarget([8, 2, 4, 9, 5, 10, 1, 7], 16) === 15);
+console.log(twoSumLessThanTarget([5, 8, 3, 2, 1], 6) === 5);
+console.log(twoSumLessThanTarget([6, 8, 10, 12], 5) === -1);
+console.log(twoSumLessThanTarget([1, 2, 3, 4, 5], 100) === 9);
+console.log(twoSumLessThanTarget([10, 20, 30, 40, 50], 40) === 30);
+console.log(twoSumLessThanTarget([7, 4, 15, 11, 21, 9], 24) === 22);
+// All test cases should log true
 
+/* P: given an array of numbers and a target, return the sum of two distinct
+* numbers from the array that is less than the target.
+* the two numbers can be from anywhere in the array
+* E: BAE
+* D: two pointers, anchor runner
+* A:
+* anchor at 0
+* runner at 1
+* returnSum = -1
+* runner iterate to each spot through the end of the array
+*   if the sum is higher than returnSum and less than the target
+*     replace returnSum
+*   increment anchor
+*   runner to anchor + 1, redo iteration
+* return returnSum */
 
+function twoSumLessThanTarget(nums, target) {
+  let anchor = 0;
+  let highestSum = -1;
 
+  while (anchor < nums.length) {
+    for (let runner = anchor + 1; runner < nums.length; runner++) {
+      const currentSum = nums[anchor] + nums[runner]
+      if (currentSum > highestSum && currentSum < target) {
+        highestSum = currentSum;
+      }
+    }
+    anchor++;
+  }
+
+  return highestSum;
+}
 
 
 
