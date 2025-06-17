@@ -25,10 +25,10 @@
 * return the string
 * */
 
-console.log(reverseWords("Hello World") === "olleH dlroW");
-console.log(reverseWords("JavaScript is fun") === "tpircSavaJ si nuf");
-console.log(reverseWords("Coding in the sun") === "gnidoC ni eht nus");
-console.log(reverseWords("Launch School") === "hcnuaL loohcS");
+// console.log(reverseWords("Hello World") === "olleH dlroW");
+// console.log(reverseWords("JavaScript is fun") === "tpircSavaJ si nuf");
+// console.log(reverseWords("Coding in the sun") === "gnidoC ni eht nus");
+// console.log(reverseWords("Launch School") === "hcnuaL loohcS");
 
 function reverseWordsFirstDraft(str) {
   let writer = 0;
@@ -73,6 +73,125 @@ function reverseWord(str) {
 
   return chars.join('');
 }
+
+console.log(findAverages([1, 2, 3, 4, 5, 6], 3)); // [ 2, 3, 4, 5 ]
+console.log(findAverages([1, 2, 3, 4, 5], 2));    // [1.5, 2.5, 3.5, 4.5]
+console.log(findAverages([10, 20, 30, 40, 50], 4)); // [ 25, 35 ]
+console.log(findAverages([5, 5, 5, 5, 5], 1));      // [ 5, 5, 5, 5, 5 ]
+console.log(findAverages([1, 3, 2, 6, -1, 4, 1, 8, 2], 5)); // [2.2, 2.8, 2.4, 3.6, 2.8]
+
+/* P: given an array of integers, and k an integer, return an array filled with
+* the average value of each subarray of size k.
+* E: BAE
+* D: two pointers, anchor runner, where anchor represents the start of each subarray
+* A:
+* anchor at 0
+* runner at 0
+* array to hold averages
+* while anchor <= length - k
+*   set runner to anchor position
+*   for k times:
+*     runner starts at anchor, add value to sum
+*     runner increments
+*   push average to the averages array
+*   increment anchor
+* return the averages array
+*  */
+
+function findAverages(arr, k) {
+  let anchor = 0;
+  let runner = 0;
+  const averages = [];
+
+  while (anchor <= arr.length - k) {
+    runner = anchor;
+    let sum = 0;
+    for (let i = 0; i < k; i++) {
+      sum += arr[runner];
+      runner++;
+    }
+    averages.push(sum / k)
+    anchor++;
+  }
+  return averages;
+}
+
+// my solution works. The mini (AI) solution is crazy, and very efficient.
+// it makes the averages array the right size to avoid the repeated push expansion
+/* but the thing that both mini and LSbot suggest is to remove the for loop in the middle
+* because it's not as efficient is calculating a window, and then sliding the window
+* one space, and adding the new value and subtracting the old value. changes from n*k to just n
+* complexity. So that's cool
+* here's an example:
+* // Start with calculating the sum of the first window
+let windowSum = 0;
+for (let i = 0; i < k; i++) {
+  windowSum += arr[i];
+}
+averages.push(windowSum / k);
+
+// For subsequent windows, adjust the sum by removing the element leaving the window
+// and adding the element entering the window
+for (let i = 1; i <= arr.length - k; i++) {
+  windowSum = windowSum - arr[i - 1] + arr[i + k - 1];
+  averages.push(windowSum / k);
+}
+* */
+
+// the mini solution:
+// function findAverages(arr, k) {
+//   const n = arr.length;
+//   if (k > n || k <= 0) return [];      // edge‐cases
+//
+//   const averages = new Array(n - k + 1);
+//   let windowSum = 0;
+//
+//   // 1) Sum up the first k elements
+//   for (let i = 0; i < k; i++) {
+//     windowSum += arr[i];
+//   }
+//   averages[0] = windowSum / k;
+//
+//   // 2) Slide the window: remove arr[i-k], add arr[i]
+//   for (let i = k; i < n; i++) {
+//     windowSum += arr[i]     // add the new right element
+//                - arr[i - k]; // remove the old left element
+//     averages[i - k + 1] = windowSum / k;
+//   }
+//
+//   return averages;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
