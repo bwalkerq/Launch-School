@@ -164,13 +164,13 @@ for (let i = 1; i <= arr.length - k; i++) {
 
 
 
-console.log(twoSumLessThanTarget([3, 1, 4], 5) === 4);
-console.log(twoSumLessThanTarget([8, 2, 4, 9, 5, 10, 1, 7], 16) === 15);
-console.log(twoSumLessThanTarget([5, 8, 3, 2, 1], 6) === 5);
-console.log(twoSumLessThanTarget([6, 8, 10, 12], 5) === -1);
-console.log(twoSumLessThanTarget([1, 2, 3, 4, 5], 100) === 9);
-console.log(twoSumLessThanTarget([10, 20, 30, 40, 50], 40) === 30);
-console.log(twoSumLessThanTarget([7, 4, 15, 11, 21, 9], 24) === 22);
+// console.log(twoSumLessThanTarget([3, 1, 4], 5) === 4);
+// console.log(twoSumLessThanTarget([8, 2, 4, 9, 5, 10, 1, 7], 16) === 15);
+// console.log(twoSumLessThanTarget([5, 8, 3, 2, 1], 6) === 5);
+// console.log(twoSumLessThanTarget([6, 8, 10, 12], 5) === -1);
+// console.log(twoSumLessThanTarget([1, 2, 3, 4, 5], 100) === 9);
+// console.log(twoSumLessThanTarget([10, 20, 30, 40, 50], 40) === 30);
+// console.log(twoSumLessThanTarget([7, 4, 15, 11, 21, 9], 24) === 22);
 // All test cases should log true
 
 /* P: given an array of numbers and a target, return the sum of two distinct
@@ -240,7 +240,79 @@ function twoSumLessThanTarget(nums, target) {
   return best;
 }
 
+// Treats!
+/* P: given two number arrays, an appetite array and a treats array, how many treats do I have that are
+* at least as big as the appetite? Return the number of times (satisfied pets, lol)
+* E: BAE - the location of the treat/pet in the array doesn't matter
+* [2, 3, 4], [2, 3, 3]
+* [2, 3, 4], [1, 2, 3]
+* D: sort the arrays
+* two pointers, one in each array
+* A:
+* sort the arrays
+* start pet and treat at their respective 0's
+* let matched counter = 0
+*
+* while pet < length AND treat < length
+* if the pet <= treat
+*   matched ++
+*   increment both
+* else if pet > treat
+*   increment treat
+*
+* */
 
+function assignTreatsFirstDraft(pets, treats) {
+  pets = pets.sort((a,b) => a - b);
+  treats = treats.sort((a,b) => a - b);
+  let count = 0;
+  let petPointer = 0;
+  let treatPointer = 0;
+
+  while (petPointer < pets.length && treatPointer < treats.length) {
+    if (pets[petPointer] <= treats[treatPointer]) {
+      count++;
+      petPointer++;
+      treatPointer++;
+    } else {
+      treatPointer++;
+    }
+  }
+  return count;
+}
+
+/* my solution was solid, minimal feedback from LS. AI suggested that I write 
+* something more ideomatic, which is great.
+* only need i instead of petpointer
+* use a for loop */
+
+function assignTreats(pets, treats) {
+  pets = pets.sort((a,b) => a - b);
+  treats = treats.sort((a,b) => a - b);
+  let count = 0;
+  let i = 0;
+
+  for (const treat of treats) {
+    if (i >= pets.length) break;
+    if (pets[i] <= treat) {
+      count++;
+      i++;
+    }
+  }
+
+  return count;
+}
+
+
+console.log(assignTreats([3, 4, 2], [1, 2, 3]) === 2);
+console.log(assignTreats([1, 5], [5, 5, 6]) === 2);
+console.log(assignTreats([1, 2, 3], [3]) === 1);
+console.log(assignTreats([2], [1, 2, 1, 1]) === 1);
+console.log(assignTreats([4, 3, 1], [2, 1, 3]) === 2);
+console.log(assignTreats([1,2,3], [1,2,3]) === 3);
+console.log(assignTreats([4, 5, 6], [1,2,3]) === 0);
+
+// All test cases should log true.
 
 
 
