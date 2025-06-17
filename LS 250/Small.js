@@ -303,16 +303,118 @@ function assignTreats(pets, treats) {
   return count;
 }
 
-
-console.log(assignTreats([3, 4, 2], [1, 2, 3]) === 2);
-console.log(assignTreats([1, 5], [5, 5, 6]) === 2);
-console.log(assignTreats([1, 2, 3], [3]) === 1);
-console.log(assignTreats([2], [1, 2, 1, 1]) === 1);
-console.log(assignTreats([4, 3, 1], [2, 1, 3]) === 2);
-console.log(assignTreats([1,2,3], [1,2,3]) === 3);
-console.log(assignTreats([4, 5, 6], [1,2,3]) === 0);
-
+// console.log(assignTreats([3, 4, 2], [1, 2, 3]) === 2);
+// console.log(assignTreats([1, 5], [5, 5, 6]) === 2);
+// console.log(assignTreats([1, 2, 3], [3]) === 1);
+// console.log(assignTreats([2], [1, 2, 1, 1]) === 1);
+// console.log(assignTreats([4, 3, 1], [2, 1, 3]) === 2);
+// console.log(assignTreats([1,2,3], [1,2,3]) === 3);
+// console.log(assignTreats([4, 5, 6], [1,2,3]) === 0);
 // All test cases should log true.
+
+
+// Count Pairs
+/* P: given a sorted array of numbers and a target, return the
+* count of pairs whose sum exceeds the target
+* input: sorted array of numbers, target integer
+* output: an integer, the count of pairs whose sum exceeds the target
+* note that I think this will be n^2 time.
+* E: BAE
+* but will there ever be duplicate entries? that would be more spicy...
+* D: two pointers, two loops, have to loop through all the remaining
+* anchor runner
+* A:
+* optional create a Set of the input array so no duplicate counts
+* for i loop through the length...
+*   for j from i+1 to end...
+*     if i+j is greater than target
+*       increment count
+*
+* return count
+* */
+
+function countPairsFirstDraft(nums, target) {
+  let distinctNums = [...new Set(nums)]
+  let count = 0;
+
+  for (let i = 0; i < distinctNums.length; i++) {
+    for (let j = i + 1; j < distinctNums.length; j++) {
+      if (distinctNums[i] + distinctNums[j] > target) {
+        count++;
+      }
+    }
+  }
+return count;
+}
+// remember that Sets use SIZE not length; length is for Arrays!
+
+console.log(countPairs([1, 2, 3, 4, 5], 6) === 4);
+// Pairs: (2, 5), (3, 4), (3, 5), (4, 5)
+
+console.log(countPairs([1, 2, 3, 4, 5], 8) === 1);
+// Pair: (4, 5)
+
+console.log(countPairs([1, 3, 5, 7], 6) === 4);
+// Pairs: (1, 7), (3, 5), (3, 7), (5, 7)
+
+console.log(countPairs([1, 2, 3, 4], 5) === 2);
+// Pairs: (2, 4), (3, 4)
+
+console.log(countPairs([1, 2, 3, 4, 5], 10) === 0);
+// No pairs
+
+/* 16 min, but would have been much faster, sub 10, had I not chosen to solve
+* a harder problem, that when duplicate entries are introduced to the input array.
+*
+* The take away for that is that a Set does remove duplicates, but then has
+* totally different methods than arrays, e.g. has() and size() and it DOESN'T have map(),
+* filter(), length(), or even indexing.
+*
+* a common way to remove the duplicates and then get an array again (for convenience
+* is to spread
+* const noDuplicates = [...new Set(arrayWithDuplicates)];
+*
+
+* Dang! Not that effecient. I thought for sure it would need n^2 time, but there's
+* a two pointer way that doesn't have the two iterations. I'll try first:
+*
+* A:
+* start left and right in the array
+* while the left is < right
+*   if left + right > target
+*     increment count
+*     decrememnt right
+*   else if left + right <= target
+*     increment left
+ */
+
+function countPairs(nums, target) {
+  let distinctNums = [...new Set(nums)]
+  let count = 0;
+  let left = 0;
+  let right = distinctNums.length - 1;
+
+  while (left < right) {
+    if (distinctNums[left] + distinctNums[right] > target) {
+      count += right - left;  // this optimization totally eluded me
+      right--;
+    } else {
+      left++;
+    }
+  }
+
+  return count;
+}
+
+/* This is faster big O. O(N)
+* but it's extra spicy that every time we increment the count, we do it by
+* right - left because once two numbers make a sum that exceeds the target, we
+* know that every other number to the right of the left pointer will make a sum
+* with the right pointer that is also larger. so we can add right (the number of
+* elements to the left of the right pointer) - left (the number of elements that
+* are smaller that the left pointer) which represents the number of elements
+* that are larger than the left pointer and therefor big enough to make a big-enough
+* sum to increment the counter. Dang! */
 
 
 
