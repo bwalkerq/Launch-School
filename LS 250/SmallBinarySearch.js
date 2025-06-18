@@ -254,12 +254,12 @@ function findRightMost(array, target) {
   return rightMost;
 }
 
-console.log(isTargetFrequent([1, 2, 3, 3, 3, 3, 4], 3) === true);
-console.log(isTargetFrequent([1, 1, 1, 1, 2, 3, 4], 1) === true);
-console.log(isTargetFrequent([1, 2, 3, 4, 5], 2) === false );
-console.log(isTargetFrequent([1, 1, 3, 4, 5], 2) === false );
-console.log(isTargetFrequent([2, 2, 2, 3, 3, 3, 4], 3) === false);
-console.log(isTargetFrequent([4, 4, 4, 4, 4, 4, 4], 4) === true);
+// console.log(isTargetFrequent([1, 2, 3, 3, 3, 3, 4], 3) === true);
+// console.log(isTargetFrequent([1, 1, 1, 1, 2, 3, 4], 1) === true);
+// console.log(isTargetFrequent([1, 2, 3, 4, 5], 2) === false );
+// console.log(isTargetFrequent([1, 1, 3, 4, 5], 2) === false );
+// console.log(isTargetFrequent([2, 2, 2, 3, 3, 3, 4], 3) === false);
+// console.log(isTargetFrequent([4, 4, 4, 4, 4, 4, 4], 4) === true);
 // All test cases should log true.
 
 /* the mini solution was siiiick; first off, it generalized the leftmost/rightmost
@@ -308,7 +308,61 @@ function binaryFindBookend(array, target, findLeftMost = true) {
   return bookend;
 }
 
+/* Square root problem!
+* P: given an integer, return true if it's a perfect square, else false
+* don't use built in Math root stuff (i.e. use binary search?)
+* E: so basic.
+* D: I would only think Binary because it's in the problem set
+* MM: let's think about factors, since that's what makes squares unique and interesting
+* for 9: 1,3,9
+* 16: 1,16,2,8,4
+* so there's always an odd number of factors
+* A:
+* so maybe, chopping in half repeatedly. since that's what binary is
+* start with the middle of the space between 1 and n
+* right = n
+* mid = right/2
+* if mid * mid === n
+*   return true
+* else if mid * mid < n
+*   move right, so left = mid
+* else
+*   move search left, so here, right = mid
+*
+* return false
+* */
 
+function isSquareInteger(n) {
+  let left = 0;
+  let right = n;
+
+  while (left <= right) {
+    let mid = Math.floor((right + left) /2)
+
+    if ((mid * mid) === n) {
+      return true;
+    } else if ((mid * mid) < n) {
+      left = mid + 1;
+    } else {
+      right = mid - 1
+    }
+  }
+  return false;
+}
+
+console.log(isSquareInteger(1) === true);
+console.log(isSquareInteger(4) === true);
+console.log(isSquareInteger(16) === true);
+console.log(isSquareInteger(14) === false);
+console.log(isSquareInteger(25) === true);
+console.log(isSquareInteger(26) === false);
+
+// All test cases should log true.
+
+/* 20 min, but 7 were just thinking!
+* no notes on my solution.
+* The take away is that we don't NEED a collection, but rather, a range of
+* numbers in order to do the binary search*/
 
 
 
