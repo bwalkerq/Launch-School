@@ -8,7 +8,7 @@ adjList.set(1, [2]);
 adjList.set(2, [1, 3]);
 adjList.set(3, [2]);
 
-dfs(adjList, 1); // 1, 2, 3
+// dfs(adjList, 1); // 1, 2, 3
 
 // given this solution, my task is to create the version using a stack
 function dfsRecursive(adjList, source, visited = new Set()) {
@@ -63,18 +63,18 @@ function dfs(adjList, source) {
 *
 * */
 const adjList2 = new Map();
-adjList.set(1, [2, 3]);
-adjList.set(2, [1, 4]);
-adjList.set(3, [1, 4, 5]);
-adjList.set(4, [2, 3]);
-adjList.set(5, [3, 6]);
-adjList.set(6, [5]);
+adjList2.set(1, [2, 3]);
+adjList2.set(2, [1, 4]);
+adjList2.set(3, [1, 4, 5]);
+adjList2.set(4, [2, 3]);
+adjList2.set(5, [3, 6]);
+adjList2.set(6, [5]);
 
 function bfs(adjList, source) {
   let queue = [source];
   let visited = new Set([source]);
 
-  while (queue.length > 0) {
+  while (queue.length !== 0) {
     let current = queue.shift();
     console.log(current);
 
@@ -87,7 +87,6 @@ function bfs(adjList, source) {
     }
   }
 }
-
 
 console.log(bfs(adjList2, 1)); // 1, 2, 3, 4, 5, 6 or 1, 3, 2, 5, 4, 6
 
