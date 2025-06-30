@@ -1,43 +1,3 @@
-/*
-Lesson 2:
-Rooms
-Longest Substring Without Duplicates
-
-Lesson 3:
-Shortest Subarray with Target Sum - O(NlogN)
-Find Truck Capacity
-
-Lesson 4:
-Remove the 2nd Element From the End of a List
-Reorder Linked List
-
-Binary Tree
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Write a function `longestSubstringLength` that finds the
 // length of the longest substring without duplicates in a
@@ -89,6 +49,19 @@ while left < length - 1, right < length - 1, (left < right)?
 
 return greatest length
 */
+
+/* Notes from Philip:
+* good job messing with the inputs to try to catch the edge cases
+* Is my overall approach efficient, but don't get stuck trying to make the
+* most efficient before I actually get to the algorithm, some of those efficnencies I can
+* add in as I go.
+* If I get really stuck, there are two options:
+*   what would my brute force implementation be
+*   try to introspect what I'm doing "by eye" when I look at a test case (a
+*     harder one) and determine how I am confirming the given output--that can
+*     inform my algorithm creation.
+*
+* */
 
 function longestSubstringLengthFD(string) {
   if (string.length < 2) return string.length;
