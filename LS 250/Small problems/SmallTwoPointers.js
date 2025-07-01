@@ -366,7 +366,7 @@ return count;
 /* 16 min, but would have been much faster, sub 10, had I not chosen to solve
 * a harder problem, that when duplicate entries are introduced to the input array.
 *
-* The take away for that is that a Set does remove duplicates, but then has
+* The takeaway for that is that a Set does remove duplicates, but then has
 * totally different methods than arrays, e.g. has() and size() and it DOESN'T have map(),
 * filter(), length(), or even indexing.
 *
@@ -375,7 +375,7 @@ return count;
 * const noDuplicates = [...new Set(arrayWithDuplicates)];
 *
 
-* Dang! Not that effecient. I thought for sure it would need n^2 time, but there's
+* Dang! Not that efficient. I thought for sure it would need n^2 time, but there's
 * a two pointer way that doesn't have the two iterations. I'll try first:
 *
 * A:
@@ -383,7 +383,7 @@ return count;
 * while the left is < right
 *   if left + right > target
 *     increment count
-*     decrememnt right
+*     decrement right
 *   else if left + right <= target
 *     increment left
  */
