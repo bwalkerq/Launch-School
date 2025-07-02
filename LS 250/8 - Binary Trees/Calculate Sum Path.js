@@ -59,7 +59,6 @@ function calculatePathSum(root) {
     if (node === null) return;
     if (node.left === null && node.right === null) {
       nums.push(string + node.val)
-      return;
     } else {
       string += String(node.val);
       helper(node.left, string);
