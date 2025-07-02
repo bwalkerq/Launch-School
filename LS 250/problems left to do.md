@@ -25,3 +25,5 @@
   - revisit the algo while coding if I need to change it
 - Code:
   - remember to build in opportunities to check that the code is working
+
+# I passed CORE!
