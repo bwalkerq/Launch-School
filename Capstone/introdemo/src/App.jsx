@@ -8,6 +8,8 @@ const Hello = (props) => {
     </div>
   )
 }
+const test = "this is a branch test"
+console.log(test);
 
 const App = () => {
 
