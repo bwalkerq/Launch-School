@@ -1,5 +1,5 @@
 // Persons.js
-import Person from './Person'
+import Person from './Person.jsx'
 
 const Persons = ({ persons }) => (
   <>

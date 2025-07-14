@@ -2,7 +2,7 @@
 import { useState } from 'react'
 
 import Filter from "./components/Filter.jsx";
-import PersonForm from './components/PersonForm'
+import PersonForm from './components/PersonForm.jsx'
 import Persons    from './components/Persons.jsx'
 
 const App = () => {
@@ -58,6 +58,7 @@ const App = () => {
         onNumberChange={setNewNumber}
         onSubmit={addPerson}
       />
+      {/**/}
 
       <Persons persons={personsToShow} />
     </div>
