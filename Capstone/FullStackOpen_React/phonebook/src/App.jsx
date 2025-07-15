@@ -1,10 +1,9 @@
 // App.js
 import { useState, useEffect } from 'react'
-
 import Filter from "./components/Filter.jsx";
 import PersonForm from './components/PersonForm.jsx'
 import Persons    from './components/Persons.jsx'
-import axios from "axios";
+import contactService from './services/contacts'
 
 
 const App = () => {
@@ -14,9 +13,9 @@ const App = () => {
   const [filter, setFilter]         = useState('')
 
   useEffect(() => {
-    axios.get('http://localhost:3001/persons')
-      .then(response => {
-        setPersons(response.data)
+    contactService.getAll()
+      .then(data => {
+        setPersons(data)
       })
       .catch(error => {
         console.log(error)
@@ -34,12 +33,19 @@ const App = () => {
     const nameObject = {
       name:   newName,
       number: newNumber,
-      id:     persons.length + 1
     }
 
-    setPersons(persons.concat(nameObject))
+    contactService.create(nameObject).then(response => {
+      setPersons(persons.concat(response))
+    })
     setNewName('')
     setNewNumber('')
+  }
+
+  const deletePerson = id => {
+    contactService.delete(id).then(() => {
+      setPersons(persons.filter(p => p.id !== id))
+    })
   }
 
   const personsToShow =
@@ -67,7 +73,7 @@ const App = () => {
       />
       {/**/}
 
-      <Persons persons={personsToShow} />
+      <Persons persons={personsToShow} onDelete={deletePerson}/>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 // Person.js
-const Person = ({ name, number }) => (
+const Person = ({ name, number, onDelete }) => (
   <p>
-    {name} {number}
+    {name} {number} <button onClick={onDelete}>delete</button>
   </p>
 )
 

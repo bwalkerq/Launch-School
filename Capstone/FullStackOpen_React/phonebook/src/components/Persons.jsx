@@ -1,7 +1,7 @@
 // Persons.js
 import Person from './Person.jsx'
 
-const Persons = ({ persons }) => (
+const Persons = ({ persons, onDelete }) => (
   <>
     <h2>Numbers</h2>
     {persons.map(person => (
@@ -9,6 +9,7 @@ const Persons = ({ persons }) => (
         key={person.id}
         name={person.name}
         number={person.number}
+        onDelete={() => onDelete(person.id)}
       />
     ))}
   </>
