@@ -1,8 +1,6 @@
 const express = require('express')
 const app = express()
 
-app.use(express.json())
-
 let notes = [
   {
     id: "1",
@@ -20,6 +18,10 @@ let notes = [
     important: true
   }
 ]
+
+app.use(express.json())
+const cors = require('cors')
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.send('<h1>Hello World!</h1>')
