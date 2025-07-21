@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+app.use(express.static('dist'))
+
 // Middleware to parse JSON body
 app.use(express.json());
 const requestLogger = (request, response, next) => {
@@ -77,13 +79,12 @@ app.delete('/api/persons/:id', (req, res) => {
   res.status(204).end();
 });
 
+
 // middleware for wrong path
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: 'unknown endpoint' })
 }
-
 app.use(unknownEndpoint)
-
 
 // Start the server
 app.listen(PORT, () => {
