@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import Filter from "./components/Filter.jsx";
 import PersonForm from './components/PersonForm.jsx'
 import Persons    from './components/Persons.jsx'
-import contactService from './services/contacts'
+import contactService from './services/contacts.js'
 
 
 const App = () => {
