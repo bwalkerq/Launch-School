@@ -1,5 +1,10 @@
+require('dotenv').config()
+
 const express = require('express');
+const Person = require('./models/person');
 const app = express();
+
+
 const PORT = process.env.PORT || 3001;
 
 app.use(express.static('dist'))
@@ -38,8 +43,13 @@ app.get('/info', (req, res) => {
 });
 
 // Route to get all persons
-app.get('/api/persons', (req, res) => {
-  res.json(phonebook);
+app.get('/api/persons', async (req, res) => {
+  try {
+    const persons = await Person.find({});
+    res.json(persons);
+  } catch (error) {
+    res.status(500).json({error: 'Failed to fetch persons from the database'});
+  }
 });
 
 // Route to get a single person by ID
