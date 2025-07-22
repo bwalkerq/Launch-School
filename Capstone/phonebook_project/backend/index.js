@@ -25,14 +25,6 @@ morgan.token('body', (req) => JSON.stringify(req.body));
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'));
 
 
-// Phonebook data
-let phonebook = [
-  {id: "1", name: "Arto Hellas", number: "040-123456"},
-  {id: "2", name: "Ada Lovelace", number: "39-44-5323523"},
-  {id: "3", name: "Dan Abramov", number: "12-43-234345"},
-  {id: "4", name: "Mary Poppendieck", number: "39-23-6423122"},
-];
-
 // Route to show the length of the frontend and the current time
 app.get('/info', (req, res) => {
   const info = `
@@ -53,40 +45,46 @@ app.get('/api/persons', async (req, res) => {
 });
 
 // Route to get a single person by ID
-app.get('/api/persons/:id', (req, res) => {
-  const id = req.params.id;
-  const person = phonebook.find(p => p.id === id);
-  if (!person) {
-    return res.status(404).json({error: 'Person not found'});
+app.get('/api/persons/:id', async (req, res) => {
+  try {
+    const person = await Person.findById(req.params.id);
+    if (!person) {
+      return res.status(404).json({error: 'Person not found'});
+    }
+    res.json(person);
+  } catch (error) {
+    res.status(400).json({error: 'Malformatted ID'});
   }
-  res.json(person);
 });
 
 // Route to add a new person
-app.post('/api/persons', (req, res) => {
+app.post('/api/persons', async (req, res) => {
   const {name, number} = req.body;
 
   if (!name || !number) {
     return res.status(400).json({error: 'Name and number are required'});
   }
 
-  const id = Math.random().toString(36).substr(2, 10); // Generate a new ID using Math.random
-  const newPerson = {id, name, number};
-  phonebook.push(newPerson);
-  res.status(201).json(newPerson);
+  try {
+    const newPerson = new Person({name, number});
+    const savedPerson = await newPerson.save();
+    res.status(201).json(savedPerson);
+  } catch (error) {
+    res.status(500).json({error: 'Failed to save person to the database'});
+  }
 });
 
 // Route to delete a person by ID
-app.delete('/api/persons/:id', (req, res) => {
-  const id = req.params.id;
-  const initialLength = phonebook.length;
-  phonebook = phonebook.filter(p => p.id !== id);
-
-  if (phonebook.length === initialLength) {
-    return res.status(404).json({error: 'Person not found'});
+app.delete('/api/persons/:id', async (req, res) => {
+  try {
+    const result = await Person.findByIdAndRemove(req.params.id);
+    if (!result) {
+      return res.status(404).json({error: 'Person not found'});
+    }
+    res.status(204).end();
+  } catch (error) {
+    res.status(400).json({error: 'Malformatted ID'});
   }
-
-  res.status(204).end();
 });
 
 
