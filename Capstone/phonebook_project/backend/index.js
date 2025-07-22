@@ -28,7 +28,7 @@ let phonebook = [
   {id: "4", name: "Mary Poppendieck", number: "39-23-6423122"},
 ];
 
-// Route to show the length of the phonebook_frontend and the current time
+// Route to show the length of the frontend and the current time
 app.get('/info', (req, res) => {
   const info = `
     <p>Phonebook has info for ${phonebook.length} people</p>
