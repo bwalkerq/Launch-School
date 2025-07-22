@@ -77,7 +77,7 @@ app.post('/api/persons', async (req, res) => {
 // Route to delete a person by ID
 app.delete('/api/persons/:id', async (req, res) => {
   try {
-    const result = await Person.findByIdAndRemove(req.params.id);
+    const result = await Person.findByIdAndDelete(req.params.id);
     if (!result) {
       return res.status(404).json({error: 'Person not found'});
     }
