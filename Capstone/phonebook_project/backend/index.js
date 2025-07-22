@@ -66,10 +66,20 @@ app.post('/api/persons', async (req, res) => {
   }
 
   try {
+    // Check if the person already exists
+    const existingPerson = await Person.findOne({ name });
+    if (existingPerson) {
+      return res.status(409).json({ error: 'Name must be unique' });
+    }
+
+    // Save the new person
     const newPerson = new Person({name, number});
     const savedPerson = await newPerson.save();
     res.status(201).json(savedPerson);
   } catch (error) {
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({error: error.message});
+    }
     res.status(500).json({error: 'Failed to save person to the database'});
   }
 });
