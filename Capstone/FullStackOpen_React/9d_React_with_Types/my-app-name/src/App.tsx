@@ -1,30 +1,31 @@
 const App = () => {
   const courseName = "Half Stack application development";
-  const courseParts = [
+  const courseParts: CoursePart[] = [
     {
       name: "Fundamentals",
       exerciseCount: 10,
       description: "This is an awesome course part",
-      kind: "basic"
+      kind: "basic",
     },
     {
       name: "Using props to pass data",
       exerciseCount: 7,
       groupProjectCount: 3,
-      kind: "group"
+      kind: "group",
     },
     {
       name: "Basics of type Narrowing",
       exerciseCount: 7,
       description: "How to go from unknown to string",
-      kind: "basic"
+      kind: "basic",
     },
     {
       name: "Deeper type usage",
       exerciseCount: 14,
       description: "Confusing description",
-      backgroundMaterial: "https://type-level-typescript.com/template-literal-types",
-      kind: "background"
+      backgroundMaterial:
+        "https://type-level-typescript.com/template-literal-types",
+      kind: "background",
     },
     {
       name: "TypeScript in frontend",
@@ -37,21 +38,30 @@ const App = () => {
       exerciseCount: 21,
       description: "Typing the backend",
       requirements: ["nodejs", "jest"],
-      kind: "special"
-    }
+      kind: "special",
+    },
   ];
 
-  const totalExercises = courseParts.reduce((sum, part) => sum + part.exerciseCount, 0);
+  const totalExercises = courseParts.reduce(
+    (sum, part) => sum + part.exerciseCount,
+    0
+  );
 
   interface CourseNameProps {
     courseName: string;
   }
 
-  const Header = (props: CourseNameProps) => {
-    return (
-      <h1>{props.courseName}</h1>
-    );
+  const Header = ({ courseName }: CourseNameProps) => {
+    return <h1>{courseName}</h1>;
+  };
+
+  interface TotalExercisesProps {
+    totalExercises: number;
   }
+
+  const Total = ({ totalExercises }: TotalExercisesProps) => {
+    return <p>Number of exercises {totalExercises}</p>;
+  };
 
   interface CoursePartBase {
     name: string;
@@ -60,18 +70,18 @@ const App = () => {
 
   interface CoursePartBasic extends CoursePartBase {
     description: string;
-    kind: "basic"
+    kind: "basic";
   }
 
   interface CoursePartGroup extends CoursePartBase {
     groupProjectCount: number;
-    kind: "group"
+    kind: "group";
   }
 
   interface CoursePartBackground extends CoursePartBase {
     description: string;
     backgroundMaterial: string;
-    kind: "background"
+    kind: "background";
   }
 
   interface CoursePartSpecial extends CoursePartBase {
@@ -79,7 +89,12 @@ const App = () => {
     requirements: string[];
     kind: "special";
   }
-  type CoursePart = CoursePartBasic | CoursePartGroup | CoursePartBackground | CoursePartSpecial;
+
+  type CoursePart =
+    | CoursePartBasic
+    | CoursePartGroup
+    | CoursePartBackground
+    | CoursePartSpecial;
 
   const Content = ({ courseParts }: { courseParts: CoursePart[] }) => {
     return (
@@ -141,21 +156,10 @@ const App = () => {
           </div>
         );
       default:
-        return null; // This case handles any unexpected `kind` values (shouldn't happen with type safety)
+        return null;
     }
   };
 
-  interface TotalExercisesProps {
-    totalExercises: number;
-  }
-
-  const Total = (props: TotalExercisesProps) => {
-    return (
-      <p>
-        Number of exercises {props.totalExercises}
-      </p>
-    )
-  }
   return (
     <div>
       <Header courseName={courseName} />
