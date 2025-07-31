@@ -1,24 +1,34 @@
-# This is a sample Python script.
+first = 'Benji'
+last = 'Walker'
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+# print(first + ' ' + last)
+# print(f'{first} {last}')
 
+# print('5' + '10')
+# print(int('5') + int('10'))
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+balance = 1000
+balance *= 1.10
+# print(balance)
 
+# obj = 'ABcd'        #assignment
+# obj.upper()         #none
+# obj = obj.lower()   #re
+# print(len(obj))     #none
+# obj = list(obj)
+#                     # re to a list
+# obj.pop()
+#                     # mutate
+# obj[2] = 'X'
+#                     # mutate
+# obj.sort()
+#                     # mutate
+# set(obj)
+#                     # none
+# obj = tuple(obj)
+#                     # re
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def say():
+    print('Hello')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
-
-max = '0'
-for number in ['10', '2', '34', '6', '25']:
-    print('max=', max, 'number=', number)
-    if int(number) > int(max):
-        max = number
-
-print('max value is', max)
+say()
