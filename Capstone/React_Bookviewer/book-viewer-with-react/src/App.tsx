@@ -1,29 +1,31 @@
-import { useState, useEffect } from 'react'
+import {useEffect, useState} from 'react'
 import './assets/book_viewer.css'
 import axios from 'axios'
 import TOC from "./components/TOC.tsx";
 import ChapterContent from "./components/ChapterContent.tsx";
+import Sidebar from "./components/Sidebar.tsx";
 
 const baseUrl = '/api'
 
 function App() {
   const [chapterTitles, setChapterTitles] = useState<Array<string>>([])
   const [currentChapter, setCurrentChapter] = useState<string>('')
+  const [currentTitle, setCurrentTitle] = useState<string>('')
   const [chapterSelected, setChapterSelected] = useState<boolean>(false)
 
   const onSelect = async (chapterTitle: string) => {
     setChapterSelected(true);
+    setCurrentTitle(chapterTitle);
     try {
-      const response = await axios.get(`${baseUrl}/{chapterTitle}`, {
-        params: {title: chapterTitle},
-      });
-      const chapterText = response.data.text;
+      const formattedTitle = chapterTitle.toLowerCase().replace(/\s+/g, '-');
+      const response = await axios.get(`${baseUrl}/${formattedTitle}`);
+      const chapterText = response.data;
       setCurrentChapter(chapterText);
+
     } catch (error) {
       console.error('Error fetching chapter text:', error);
     }
   };
-
 
   useEffect(() => {
     const fetchChapterTitles = async () => {
@@ -67,14 +69,7 @@ function App() {
             <h1>The Adventures of Sherlock Holmes</h1>
             <h2>by Sir Arthur Doyle</h2>
           </div>
-
-          <div className="content">
-            <h2 className="content-subhead">Table of Contents</h2>
-
-            <div className="pure-menu">
-              <TOC chapterTitles onSelect></TOC>
-            </div>
-          </div>
+          {chapterSelected ? <ChapterContent text={currentChapter} currentTitle={currentTitle}></ChapterContent> : <TOC chapterTitles={chapterTitles} onSelect={onSelect}></TOC>}
         </div>
       </div>
     </>
