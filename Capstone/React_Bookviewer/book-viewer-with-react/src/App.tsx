@@ -52,7 +52,13 @@ function App() {
             <h1>The Adventures of Sherlock Holmes</h1>
             <h2>by Sir Arthur Doyle</h2>
           </div>
-          {chapterSelected ? <ChapterContent text={currentChapter} currentTitle={currentTitle}></ChapterContent> : <TOC chapterTitles={chapterTitles} onSelect={onSelect}></TOC>}
+          {
+            chapterSelected ? (
+              <ChapterContent text={currentChapter} currentTitle={currentTitle} />
+            ) : (
+              <TOC chapterTitles={chapterTitles} onSelect={onSelect} />
+            )
+          }
         </div>
       </div>
     </>
