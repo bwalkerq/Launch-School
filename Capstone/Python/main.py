@@ -1,5 +1,4 @@
 from nis import match
-from symbol import and_expr
 
 first = 'Benji'
 last = 'Walker'
@@ -81,10 +80,16 @@ def number_range(num):
     else:
         print(f'{num} is between 0 and_expr 50')
 
-number_range(0)     # 0 is between 0 and 50
-number_range(25)    # 25 is between 0 and 50
-number_range(50)    # 50 is between 0 and 50
-number_range(75)    # 75 is between 51 and 100
-number_range(100)   # 100 is between 51 and 100
-number_range(101)   # 101 is greater than 100
-number_range(-1)    # -1 is less than 0
+# number_range(0)     # 0 is between 0 and 50
+# number_range(25)    # 25 is between 0 and 50
+# number_range(50)    # 50 is between 0 and 50
+# number_range(75)    # 75 is between 51 and 100
+# number_range(100)   # 100 is between 51 and 100
+# number_range(101)   # 101 is greater than 100
+# number_range(-1)    # -1 is less than 0
+
+stuff = ('hello', 'world', 'bye', 'now')
+myList=list(stuff)
+myList[2]='baby'
+stuff=tuple(myList)
+print(stuff)
