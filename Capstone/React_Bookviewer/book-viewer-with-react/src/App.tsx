@@ -45,24 +45,7 @@ function App() {
   return (
     <>
       <div id="layout">
-        <a href="#menu" id="menuLink" className="menu-link">
-          <span></span>
-        </a>
-
-        <div id="menu">
-          <div className="pure-menu">
-            <a className="pure-menu-heading" href="/React_Bookviewer/book-viewer-with-react/public">Table of
-              Contents</a>
-
-            <ul className="pure-menu-list">
-              <li className="pure-menu-item">
-                <a href="#" className="pure-menu-link">Chapter 1</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {chapterSelected ? <ChapterContent text={currentChapter}></ChapterContent> : <TOC chapterTitles={chapterTitles} onSelect={onSelect}></TOC>}
+       <Sidebar chapterTitles={chapterTitles} onSelect={onSelect}></Sidebar>
 
         <div id="main">
           <div className="header">
