@@ -88,8 +88,48 @@ def number_range(num):
 # number_range(101)   # 101 is greater than 100
 # number_range(-1)    # -1 is less than 0
 
-stuff = ('hello', 'world', 'bye', 'now')
-myList=list(stuff)
-myList[2]='baby'
-stuff=tuple(myList)
-print(stuff)
+# stuff = ('hello', 'world', 'bye', 'now')
+# myList=list(stuff)
+# myList[2]='baby'
+# stuff=tuple(myList)
+# print(stuff)
+
+pi = 3.141592
+str_pi = str(pi)
+# print(str_pi)
+
+
+range(7)            # 0 - 6
+range(1, 6)         # 1 - 5
+range(3, 15, 4)     # 3,7,11
+range(3, 8, -1)     # ? nothing?, no. [] an empty array
+range(8, 3, -1)     # 8 - 4 descending
+
+print(list(range(3, 17, 4))) # because ranges are "lazy lists"
+
+# this is a set declaration (not a dict)
+names = { 'Chris', 'Clare', 'Karis', 'Karl',
+          'Max', 'Nick', 'Victor' }
+print(names)
+# sets are unordered, so printing this will likely not output the same order
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
