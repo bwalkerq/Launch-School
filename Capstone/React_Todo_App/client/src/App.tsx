@@ -8,7 +8,11 @@ const baseUrl = 'http://localhost:3000/api';
 function App() {
 
   const [todos, setTodos] = useState<Todo[]>([])
-  // const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+
+  const toggleModal = () => {
+    setShowModal((prev) => !prev);
+  };
 
   useEffect(() => {
     const fetchTodos = async () => {

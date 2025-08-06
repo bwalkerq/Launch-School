@@ -34,7 +34,7 @@ const TodoRow: React.FC<TodoRowProps> = ({ todo, onDelete }) => {
         <img
           src="../../public/images/trash.png"
           alt="Delete"
-          onClick={() => onDelete && onDelete(todo.id)}
+          onClick={() => onDelete && onDelete(Number(todo.id))}
           style={{ cursor: 'pointer' }}
         />
       </td>

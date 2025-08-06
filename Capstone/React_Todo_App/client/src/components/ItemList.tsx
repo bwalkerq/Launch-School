@@ -1,7 +1,7 @@
 import TodoRow from "./TodoRow.tsx";
 import type {ItemListProps} from "../types.ts";
 
-const ItemList = ({ todos, onClick, onDelete}: ItemListProps, ) => {
+const ItemList = ({todos, onClick, onDelete, onCreate}: ItemListProps, ) => {
   return (
     <>
       <div id='content'></div>
