@@ -1,17 +1,17 @@
-// import Todo from '../types';
-//
-// const MainProps = {
-//   todos: Todo[]
-// }
+import TodoRow from "./TodoRow.tsx";
 
 interface Todo {
   'id': number,
   'title': string,
-  'day'?: string,
-  'month'?: string,
-  'year'?: string,
+  'day': string,
+  'month': string,
+  'year': string,
   'completed': boolean,
-  'description'?: string
+  'description': string
+}
+
+const handleDelete = () => {
+
 }
 
 const ItemList = ({ todos }: {todos: Todo[]}) => {
@@ -36,24 +36,9 @@ const ItemList = ({ todos }: {todos: Todo[]}) => {
           </label>
           <table cellSpacing="0">
             <tbody>
-            {todos.map(todo => {
-                return (
-                  <tr data-id={todo.id} key={todo.id}>
-                    <td className="list_item">
-                      {todo.completed
-                        ?
-                        <input type="checkbox" name="item_{{id}}" id="" checked/>
-                        :
-                        <input type="checkbox" name="item_{{id}}"/> //remember to add back in the id property
-                      }
-                      <span className="check"></span>
-                      <label className="edit-link" htmlFor="item_{{id}}">{todo.title} - </label>
-                    </td>
-                    <td className="delete"><img src="../../public/images/trash.png" alt="Delete"/></td>
-                  </tr>
-                )
-              }
-            )}
+            {todos.map(todo => (
+              <TodoRow key={todo.id} todo={todo} onDelete={handleDelete} />
+            ))}
             </tbody>
           </table>
         </main>
