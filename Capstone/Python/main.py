@@ -105,13 +105,39 @@ range(3, 15, 4)     # 3,7,11
 range(3, 8, -1)     # ? nothing?, no. [] an empty array
 range(8, 3, -1)     # 8 - 4 descending
 
-print(list(range(3, 17, 4))) # because ranges are "lazy lists"
+# print(list(range(3, 17, 4))) # because ranges are "lazy lists"
 
 # this is a set declaration (not a dict)
 names = { 'Chris', 'Clare', 'Karis', 'Karl',
           'Max', 'Nick', 'Victor' }
-print(names)
+# print(names)
 # sets are unordered, so printing this will likely not output the same order
+
+
+seq = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# print(seq[::-1])
+
+my_dict = {
+    'a': 'abc',
+    37: 'def',
+    (5, 6, 7): 'ghi',
+    frozenset([1, 2]): 'jkl',
+}
+# print(my_dict[37])
+# print(my_dict.get(37))
+# print(my_dict.get('a'))                 # abc
+# print(my_dict.get('nothing'))           # None
+# print(my_dict.get('nothing', 'N/A'))    # N/A -- second arg is the default return value if there is no nothing key
+# print(my_dict.get('nothing', 100))      # 100
+# my_dict['violin']='may'
+# print(my_dict)
+
+print(max([5,4,6,7,8]))
+print(5 in ([5,4,6,7,8]))
+print('abc' in my_dict)
+
+
+
 
 
 
