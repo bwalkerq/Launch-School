@@ -458,7 +458,7 @@ require([
     //
     // HTML-Template specific jQuery-Functions
     //
-    // Change Main Version
+    // Change ItemList Version
     $('#versions li.version a').on('click', function(e) {
         e.preventDefault();
 
