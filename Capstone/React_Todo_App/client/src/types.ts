@@ -1,12 +1,21 @@
-export default interface Todo {
+export interface Todo {
   'id': number,
   'title': string,
-  'day'?: string,
-  'month'?: string,
-  'year'?: string,
+  'day': string,
+  'month': string,
+  'year': string,
   'completed': boolean,
-  'description'?: string
+  'description': string
 }
 
-// I can't figure this out right now, so I'm just copying this to the places that I need
-// too many errors about must be imported using type-only...
+export interface TodoRowProps {
+  todo: Todo;
+  onDelete: (id: number) => void;
+  onClick: (id: number) => void;
+}
+
+export type ItemListProps = {
+  todos: Todo[];
+  onClick: (id: number) => void;
+  onDelete: (id: number) => void;
+};

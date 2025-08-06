@@ -1,16 +1,9 @@
-import { useState, useEffect } from 'react'
+import {useEffect, useState} from 'react'
 import ItemList from "./components/ItemList.tsx";
 import axios from 'axios';
+import type {Todo} from "./types.ts";
 
-interface Todo {
-  'id': number,
-  'title': string,
-  'day'?: string,
-  'month'?: string,
-  'year'?: string,
-  'completed': boolean,
-  'description'?: string
-}
+const baseUrl = 'http://localhost:3000/api';
 
 function App() {
 
@@ -20,9 +13,9 @@ function App() {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const response = await axios.get('api/todos');
+        const response = await axios.get<Todo[]>(`${baseUrl}/todos`);
         console.log('Response data:', response.data); // Logs fetched data
-        setTodos(response.data);
+        setTodos(response.data.map(todo => ({ ...todo, day: todo.day || '' })));
       } catch (error) {
         console.error('Error fetching todos:', error);
       }
@@ -37,7 +30,7 @@ function App() {
 
   return (
     <>
-      <ItemList todos={todos}></ItemList>
+      <ItemList todos={todos} onDelete={handleDelete} onClick={handleRowClick} ></ItemList>
       <input type="checkbox" id="sidebar_toggle"/>
       <div id='sidebar'>
       </div>

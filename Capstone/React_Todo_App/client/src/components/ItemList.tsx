@@ -1,20 +1,7 @@
 import TodoRow from "./TodoRow.tsx";
+import type {ItemListProps} from "../types.ts";
 
-interface Todo {
-  'id': number,
-  'title': string,
-  'day': string,
-  'month': string,
-  'year': string,
-  'completed': boolean,
-  'description': string
-}
-
-const handleDelete = () => {
-
-}
-
-const ItemList = ({ todos }: {todos: Todo[]}) => {
+const ItemList = ({ todos, onClick, onDelete}: ItemListProps, ) => {
   return (
     <>
       <div id='content'></div>
@@ -37,7 +24,7 @@ const ItemList = ({ todos }: {todos: Todo[]}) => {
           <table cellSpacing="0">
             <tbody>
             {todos.map(todo => (
-              <TodoRow key={todo.id} todo={todo} onDelete={handleDelete} />
+              <TodoRow key={todo.id} todo={todo} onDelete={onDelete} onClick={onClick}/>
             ))}
             </tbody>
           </table>

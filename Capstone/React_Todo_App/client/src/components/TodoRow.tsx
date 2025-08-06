@@ -1,20 +1,5 @@
 import React from 'react';
-
-interface Todo {
-  id: number;
-  title: string;
-  day: string;
-  month: string;
-  year: string;
-  completed: boolean;
-  description: string;
-}
-
-interface TodoRowProps {
-  todo: Todo;
-  onDelete?: (id: number) => void; // Optional delete handler
-}
-
+import type {TodoRowProps} from "../types.ts";
 
 const TodoRow: React.FC<TodoRowProps> = ({ todo, onDelete }) => {
 
