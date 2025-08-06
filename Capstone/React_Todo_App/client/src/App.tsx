@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Main from "./components/Main";
+import ItemList from "./components/ItemList.tsx";
 import axios from 'axios';
 
 interface Todo {
@@ -15,7 +15,7 @@ interface Todo {
 function App() {
 
   const [todos, setTodos] = useState<Todo[]>([])
-  const [showModal, setshowModal] = useState(false)
+  // const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -37,7 +37,8 @@ function App() {
 
   return (
     <>
-      <Main todos={todos}></Main>
+      <ItemList todos={todos}></ItemList>
+      <input type="checkbox" id="sidebar_toggle"/>
       <div id='sidebar'>
       </div>
     </>
