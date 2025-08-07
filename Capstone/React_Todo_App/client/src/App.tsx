@@ -8,17 +8,16 @@ const baseUrl = 'http://localhost:3000/api/todos';
 function App() {
 
   const [todos, setTodos] = useState<Todo[]>([])
-  const [showModal, setShowModal] = useState(false)
+  const [isModalVisible, setIsModalVisible] = useState(false)
 
   const toggleModal = () => {
-    setShowModal((prev) => !prev);
+    setIsModalVisible((prev) => !prev);
   };
 
   useEffect(() => {
     const fetchTodos = async () => {
       try {
         const response = await axios.get<Todo[]>(`${baseUrl}`);
-        console.log('Response data:', response.data); // Logs fetched data
         setTodos(response.data.map(todo => ({ ...todo, day: todo.day || '' })));
       } catch (error) {
         console.error('Error fetching todos:', error);
@@ -62,8 +61,10 @@ function App() {
       <ItemList 
         todos={todos}
         onCreate={onCreate}
-        onDelete={onDelete} 
-        onClick={handleRowClick} 
+        onDelete={onDelete}
+        onClick={handleRowClick}
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
       ></ItemList>
       <input type="checkbox" id="sidebar_toggle"/>
       <div id='sidebar'>

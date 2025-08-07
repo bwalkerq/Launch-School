@@ -1,13 +1,15 @@
 import TodoRow from "./TodoRow.tsx";
 import type {ItemListProps} from "../types.ts";
+import Modal from "./Modal.tsx";
 
-const ItemList = ({todos, onClick, onDelete, onCreate}: ItemListProps, ) => {
+const ItemList = ({todos, onClick, onDelete, isModalVisible, toggleModal}: ItemListProps, ) => {
   return (
     <>
+      <Modal isModalVisible={isModalVisible} toggleModal={toggleModal}></Modal>
       <div id='content'></div>
       <div id="items">
         <header>
-          <label htmlFor="sidebar_toggle">
+          <label htmlFor="sidebar_toggle" >
             <img src="../../public/images/hamburger.png" alt="Toggle Sidebar"/>
           </label>
           <dl>
@@ -17,7 +19,7 @@ const ItemList = ({todos, onClick, onDelete, onCreate}: ItemListProps, ) => {
           </dl>
         </header>
         <main>
-          <label id="add_new_label" htmlFor="new_item">
+          <label id="add_new_label" htmlFor="new_item" onClick={toggleModal}>
             <img src="../../public/images/plus.png" alt="Add Todo Item"/>
             <h2>Add new to do</h2>
           </label>
