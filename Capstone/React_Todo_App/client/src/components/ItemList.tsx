@@ -2,10 +2,10 @@ import TodoRow from "./TodoRow.tsx";
 import type {ItemListProps} from "../types.ts";
 import Modal from "./Modal.tsx";
 
-const ItemList = ({todos, onClick, onDelete, isModalVisible, toggleModal}: ItemListProps, ) => {
+const ItemList = ({todos, onClick, onDelete, isModalVisible, toggleModal, onCreate}: ItemListProps, ) => {
   return (
     <>
-      <Modal isModalVisible={isModalVisible} toggleModal={toggleModal}></Modal>
+      <Modal isModalVisible={isModalVisible} toggleModal={toggleModal} onCreate={onCreate}></Modal>
       <div id='content'></div>
       <div id="items">
         <header>

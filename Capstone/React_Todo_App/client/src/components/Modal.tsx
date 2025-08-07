@@ -1,6 +1,6 @@
 import type {ModalProps} from "../types.ts";
 
-const Modal = ({toggleModal, isModalVisible}: ModalProps) => {
+const Modal = ({toggleModal, isModalVisible, onCreate}: ModalProps) => {
   return (
     <>
       <div className="modal"
@@ -12,7 +12,29 @@ const Modal = ({toggleModal, isModalVisible}: ModalProps) => {
            id="form_modal"
            style={{display: isModalVisible ? 'block' : 'none'}}
       >
-        <form id="todo_form" action="" method="post">
+        <form
+          id="todo_form"
+          action=""
+          method="post"
+          onSubmit={async (e) => {
+            e.preventDefault();
+            if (onCreate) {
+              const form = e.target as HTMLFormElement;
+              const newTodo = {
+                title: (form.querySelector("#title") as HTMLInputElement).value,
+                day: (form.querySelector("#due_day") as HTMLSelectElement).value,
+                month: (form.querySelector("#due_month") as HTMLSelectElement).value,
+                year: (form.querySelector("#due_year") as HTMLSelectElement).value,
+                completed: false,
+                description: (form.querySelector("#description") as HTMLTextAreaElement).value,
+              };
+              await onCreate(newTodo);
+              if (toggleModal) {
+                toggleModal();
+              }
+            }
+          }}
+        >
           <fieldset>
             <ul>
               <li>
@@ -55,7 +77,8 @@ const Modal = ({toggleModal, isModalVisible}: ModalProps) => {
                     <option value="29">29</option>
                     <option value="30">30</option>
                     <option value="31">31</option>
-                  </select> /
+                  </select>{" "}
+                  /
                   <select id="due_month" name="month">
                     <option value="">Month</option>
                     <option value="01">January</option>
@@ -70,7 +93,8 @@ const Modal = ({toggleModal, isModalVisible}: ModalProps) => {
                     <option value="10">October</option>
                     <option value="11">November</option>
                     <option value="12">December</option>
-                  </select> /
+                  </select>{" "}
+                  /
                   <select id="due_year" name="year">
                     <option value="">Select Year</option>
                     <option value="2025">2025</option>
@@ -81,11 +105,19 @@ const Modal = ({toggleModal, isModalVisible}: ModalProps) => {
               </li>
               <li>
                 <label htmlFor="description">Description</label>
-                <textarea cols={50} name="description" id="description" rows={7} placeholder="Description"></textarea>
+                <textarea
+                  cols={50}
+                  name="description"
+                  id="description"
+                  rows={7}
+                  placeholder="Description"
+                ></textarea>
               </li>
               <li>
                 <input type="submit" value="Save"/>
-                <button type="button" id="mark_as_complete" name="complete">Mark As Complete</button>
+                <button type="button" id="mark_as_complete" name="complete">
+                  Mark As Complete
+                </button>
               </li>
             </ul>
           </fieldset>
