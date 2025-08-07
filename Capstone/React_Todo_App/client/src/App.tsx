@@ -3,7 +3,7 @@ import ItemList from "./components/ItemList.tsx";
 import axios from 'axios';
 import type {Todo} from "./types.ts";
 
-const baseUrl = 'http://localhost:3000/api';
+const baseUrl = 'http://localhost:3000/api/todos';
 
 function App() {
 
@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const response = await axios.get<Todo[]>(`${baseUrl}/todos`);
+        const response = await axios.get<Todo[]>(`${baseUrl}`);
         console.log('Response data:', response.data); // Logs fetched data
         setTodos(response.data.map(todo => ({ ...todo, day: todo.day || '' })));
       } catch (error) {
@@ -28,13 +28,43 @@ function App() {
     fetchTodos();
   }, []);
 
+  const onCreate = async (newTodo: Omit<Todo, 'id'>) => {
+    try {
+      const response = await axios.post<Todo>(`${baseUrl}`, newTodo);
+      console.log("success creating: ", response.data);
+      setTodos((prevTodos) => [...prevTodos, response.data]); // Add the new todo to state
+    } catch (error) {
+      console.error("error creating: ", error);
+    }
+  };
+  
+  const onDelete = async (id: number) => {
+    try {
+      const response = await axios.delete(`${baseUrl}/${id}`);
+      console.log("success deleting: ", response.status);
+      setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id)); // Remove deleted todo from state
+    } catch (error) {
+      console.error("error deleting: ", error);
+    }
+  };
+
+  const handleRowClick = (id: number) => {
+    console.log(id)
+  }
+
+
   useEffect(() => {
     console.log(todos);
   }, [todos]); // This runs whenever `todos` is updated
 
   return (
     <>
-      <ItemList todos={todos} onDelete={handleDelete} onClick={handleRowClick} ></ItemList>
+      <ItemList 
+        todos={todos}
+        onCreate={onCreate}
+        onDelete={onDelete} 
+        onClick={handleRowClick} 
+      ></ItemList>
       <input type="checkbox" id="sidebar_toggle"/>
       <div id='sidebar'>
       </div>
