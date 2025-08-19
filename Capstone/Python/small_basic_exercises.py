@@ -1,6 +1,7 @@
 ## loops
 # for num in range(0, 11, 2):
 #     print(num)
+from http.cookiejar import offset_from_tz_string
 
 # for i in range(10,0,-1):
 #     print(i)
@@ -44,9 +45,43 @@
 #         break
 
 ## Conditionals
+# falsy values
+# None -- the nothing
+# false - the boolean false
+# 0 -- the numerical false
+# '' -- the string false
+# followed by all the collection falses
+    # []
+    # {}
+    # ()
+    # set()
+    # frozenset()
+    # range(0)
 
+# import random
+# random_number = random.randint(0, 1)
+# if random_number:
+#     print('yes', random_number)
+# else:
+#     print('no')
+#
+# # ternary version:
+# print('yes' if random_number else 'no')
+#
 
-
+# animal = 'horse'
+#
+# match animal:
+#     case 'duck':
+#         print('quack')
+#     case 'squirrel':
+#         print('nook nook')
+#     case 'horse':
+#         print('neigh')
+#     case 'bird':
+#         print('tweet tweet')
+#     case _:
+#         print('*cricket*')
 
 
 
