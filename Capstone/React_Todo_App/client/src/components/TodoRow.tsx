@@ -1,12 +1,12 @@
 import React from 'react';
 import type {TodoRowProps} from "../types.ts";
 
-const TodoRow: React.FC<TodoRowProps> = ({ todo, onDelete }) => {
+const TodoRow: React.FC<TodoRowProps> = ({ todo, onDelete, onClick }) => {
 
   const dueDate = (todo.month && todo.year) ? `${todo.month}/${todo.year}` : 'No Due Date'
 
   return (
-    <tr data-id={todo.id} key={todo.id}>
+    <tr data-id={todo.id} key={todo.id} >
       <td className="list_item">
         {todo.completed ? (
           <input
@@ -26,6 +26,10 @@ const TodoRow: React.FC<TodoRowProps> = ({ todo, onDelete }) => {
         <label
           className="edit-link"
           htmlFor={`item_${todo.id}`}
+          onClick={ (event) => {
+            event.stopPropagation();
+            onClick(todo.id)
+          }}
         >
           {todo.title} - {dueDate}
         </label>

@@ -11,6 +11,7 @@ function App() {
   const [isModalVisible, setIsModalVisible] = useState(false)
 
   const toggleModal = () => {
+    console.log('modal visible?:', isModalVisible)
     setIsModalVisible((prev) => !prev);
   };
 
@@ -47,10 +48,25 @@ function App() {
     }
   };
 
-  const handleRowClick = (id: number) => {
-    console.log(id)
+  function setSelectedTodo(selectedTodo: Todo) {
+    const form = document.querySelector('#todoForm') as HTMLFormElement;
+    if (form) {
+      (form.querySelector('#title') as HTMLInputElement).value = selectedTodo.title;
+      (form.querySelector('#due_day') as HTMLInputElement).value = selectedTodo.day;
+      (form.querySelector('#due_month') as HTMLInputElement).value = selectedTodo.month;
+      (form.querySelector('#due_year') as HTMLInputElement).value = selectedTodo.year;
+      (form.querySelector('#description') as HTMLTextAreaElement).value = selectedTodo.description;
+    }
   }
 
+  const onClick = (id: number) => {
+    const selectedTodo = todos.find(todo => todo.id === id);
+    if (selectedTodo) {
+      toggleModal();
+      // Set the selected todo to a new state for displaying in the modal
+      setSelectedTodo(selectedTodo);
+    }
+  }
 
   useEffect(() => {
     console.log(todos);
@@ -62,7 +78,7 @@ function App() {
         todos={todos}
         onCreate={onCreate}
         onDelete={onDelete}
-        onClick={handleRowClick}
+        onClick={onClick}
         isModalVisible={isModalVisible}
         toggleModal={toggleModal}
       ></ItemList>
