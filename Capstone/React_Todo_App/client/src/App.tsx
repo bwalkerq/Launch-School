@@ -9,6 +9,7 @@ function App() {
 
   const [todos, setTodos] = useState<Todo[]>([])
   const [isModalVisible, setIsModalVisible] = useState(false)
+  const [selectedTodo, setSelectedTodo] = useState<Todo>()
 
   const toggleModal = () => {
     console.log('modal visible?:', isModalVisible)
@@ -48,8 +49,9 @@ function App() {
     }
   };
 
-  function setSelectedTodo(selectedTodo: Todo) {
-    const form = document.querySelector('#todoForm') as HTMLFormElement;
+  function populateSelectedTodo(selectedTodo: Todo) {
+    const form = document.querySelector('#todo_form') as HTMLFormElement;
+      console.log('got here', selectedTodo, form)
     if (form) {
       (form.querySelector('#title') as HTMLInputElement).value = selectedTodo.title;
       (form.querySelector('#due_day') as HTMLInputElement).value = selectedTodo.day;
@@ -60,11 +62,11 @@ function App() {
   }
 
   const onClick = (id: number) => {
-    const selectedTodo = todos.find(todo => todo.id === id);
+    setSelectedTodo(todos.find(todo => todo.id === id));
     if (selectedTodo) {
       toggleModal();
       // Set the selected todo to a new state for displaying in the modal
-      setSelectedTodo(selectedTodo);
+      populateSelectedTodo(selectedTodo);
     }
   }
 
