@@ -83,7 +83,10 @@ from http.cookiejar import offset_from_tz_string
 #     case _:
 #         print('*cricket*')
 
-
+# def multiply(a,b):
+#     return a * b
+#
+# print(multiply(12, 4)      )# 48
 
 
 
