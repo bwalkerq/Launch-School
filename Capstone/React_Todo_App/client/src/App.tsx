@@ -12,7 +12,6 @@ function App() {
   const [selectedTodo, setSelectedTodo] = useState<Todo>()
 
   const toggleModal = () => {
-    console.log('modal visible?:', isModalVisible)
     setIsModalVisible((prev) => !prev);
   };
 
@@ -51,7 +50,6 @@ function App() {
 
   function populateSelectedTodo(selectedTodo: Todo) {
     const form = document.querySelector('#todo_form') as HTMLFormElement;
-      console.log('got here', selectedTodo, form)
     if (form) {
       (form.querySelector('#title') as HTMLInputElement).value = selectedTodo.title;
       (form.querySelector('#due_day') as HTMLInputElement).value = selectedTodo.day;
@@ -70,6 +68,25 @@ function App() {
     }
   }
 
+  const onToggle = async (id: number) => {
+    try {
+      const todoToUpdate = todos.find((todo) => todo.id === id);
+      if (todoToUpdate) {
+        const response = await axios.put(`${baseUrl}/${id}`, {
+          completed: !todoToUpdate.completed,
+        });
+        setTodos((prevTodos) =>
+          prevTodos.map((todo) =>
+            todo.id === id ? {...todo, completed: !todo.completed} : todo
+          )
+        );
+        console.log("success updating: ", response.status);
+      }
+    } catch (error) {
+      console.error("error updating: ", error);
+    }
+  };
+
   useEffect(() => {
     console.log(todos);
   }, [todos]); // This runs whenever `todos` is updated
@@ -81,6 +98,7 @@ function App() {
         onCreate={onCreate}
         onDelete={onDelete}
         onClick={onClick}
+        onToggle={onToggle}
         isModalVisible={isModalVisible}
         toggleModal={toggleModal}
       ></ItemList>

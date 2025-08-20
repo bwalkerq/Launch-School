@@ -2,7 +2,7 @@ import TodoRow from "./TodoRow.tsx";
 import type {ItemListProps} from "../types.ts";
 import Modal from "./Modal.tsx";
 
-const ItemList = ({todos, onClick, onDelete, isModalVisible, toggleModal, onCreate}: ItemListProps, ) => {
+const ItemList = ({todos, onClick, onDelete, isModalVisible, toggleModal, onCreate, onToggle}: ItemListProps, ) => {
   return (
     <>
       <Modal isModalVisible={isModalVisible} toggleModal={toggleModal} onCreate={onCreate}></Modal>
@@ -26,7 +26,7 @@ const ItemList = ({todos, onClick, onDelete, isModalVisible, toggleModal, onCrea
           <table cellSpacing="0">
             <tbody>
             {todos.map(todo => (
-              <TodoRow key={todo.id} todo={todo} onDelete={onDelete} onClick={onClick}/>
+              <TodoRow key={todo.id} todo={todo} onDelete={onDelete} onClick={onClick} onToggle={onToggle}/>
             ))}
             </tbody>
           </table>

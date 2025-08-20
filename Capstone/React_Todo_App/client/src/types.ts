@@ -12,6 +12,7 @@ export interface TodoRowProps {
   todo: Todo;
   onDelete: (id: number) => void;
   onClick: (id: number) => void;
+  onToggle: (id: number) => void;
 }
 
 export type ItemListProps = {
@@ -21,6 +22,7 @@ export type ItemListProps = {
   onCreate: (newTodo: Omit<Todo, "id">) => Promise<void>,
   isModalVisible: boolean,
   toggleModal: () => void
+  onToggle: (id: number) => void,
 };
 
 export interface ModalProps {
