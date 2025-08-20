@@ -20,7 +20,7 @@ function App() {
     const fetchTodos = async () => {
       try {
         const response = await axios.get<Todo[]>(`${baseUrl}`);
-        setTodos(response.data);
+        setTodos(response.data)
       } catch (error) {
         console.error('Error fetching todos:', error);
       }
@@ -70,7 +70,7 @@ const onClick = (id: number) => {
   // the take away is that the set function with usestate is async, so it will not update the state immediately
 };
 
-  const onToggle = async (id: number) => {
+  const onTodoToggle = async (id: number) => {
     try {
       const todoToUpdate = todos.find((todo) => todo.id === id);
       if (todoToUpdate) {
@@ -93,16 +93,21 @@ const onClick = (id: number) => {
     console.log(todos);
   }, [todos]); // This runs whenever `todos` is updated
 
+  const sortedTodos = [...todos].sort((a, b) => {
+    return (a.completed === b.completed) ? 0 : a.completed ? 1 : -1;
+  });
+
   return (
     <>
-      <Modal isModalVisible={isModalVisible} toggleModal={toggleModal} onCreate={onCreate}></Modal>
+      <Modal
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+        onCreate={onCreate}></Modal>
       <ItemList 
-        todos={todos}
-        onCreate={onCreate}
+        todos={sortedTodos}
         onDelete={onDelete}
         onClick={onClick}
-        onToggle={onToggle}
-        isModalVisible={isModalVisible}
+        onToggle={onTodoToggle}
         toggleModal={toggleModal}
       ></ItemList>
       <input type="checkbox" id="sidebar_toggle"/>
