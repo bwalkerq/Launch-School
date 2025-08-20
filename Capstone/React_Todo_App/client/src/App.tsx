@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import ItemList from "./components/ItemList.tsx";
+import Modal from "./components/Modal.tsx";
 import axios from 'axios';
 import type {Todo} from "./types.ts";
 
@@ -9,7 +10,7 @@ function App() {
 
   const [todos, setTodos] = useState<Todo[]>([])
   const [isModalVisible, setIsModalVisible] = useState(false)
-  const [selectedTodo, setSelectedTodo] = useState<Todo>()
+  const [selectedTodo, setSelectedTodo] = useState<Todo>(todos[0])
 
   const toggleModal = () => {
     setIsModalVisible((prev) => !prev);
@@ -19,7 +20,7 @@ function App() {
     const fetchTodos = async () => {
       try {
         const response = await axios.get<Todo[]>(`${baseUrl}`);
-        setTodos(response.data.map(todo => ({ ...todo, day: todo.day || '' })));
+        setTodos(response.data);
       } catch (error) {
         console.error('Error fetching todos:', error);
       }
@@ -59,14 +60,15 @@ function App() {
     }
   }
 
-  const onClick = (id: number) => {
-    setSelectedTodo(todos.find(todo => todo.id === id));
-    if (selectedTodo) {
-      toggleModal();
-      // Set the selected todo to a new state for displaying in the modal
-      populateSelectedTodo(selectedTodo);
-    }
-  }
+const onClick = (id: number) => {
+  const nextSelected = todos.find(todo => todo.id === id);
+  if (!nextSelected) return;
+
+  setSelectedTodo(nextSelected);
+  toggleModal();
+  populateSelectedTodo(nextSelected); // use the local value, not state
+  // the take away is that the set function with usestate is async, so it will not update the state immediately
+};
 
   const onToggle = async (id: number) => {
     try {
@@ -93,6 +95,7 @@ function App() {
 
   return (
     <>
+      <Modal isModalVisible={isModalVisible} toggleModal={toggleModal} onCreate={onCreate}></Modal>
       <ItemList 
         todos={todos}
         onCreate={onCreate}

@@ -19,8 +19,6 @@ export type ItemListProps = {
   todos: Todo[],
   onClick: (id: number) => void,
   onDelete: (id: number) => void,
-  onCreate: (newTodo: Omit<Todo, "id">) => Promise<void>,
-  isModalVisible: boolean,
   toggleModal: () => void
   onToggle: (id: number) => void,
 };
