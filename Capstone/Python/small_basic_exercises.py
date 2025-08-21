@@ -88,14 +88,34 @@ from http.cookiejar import offset_from_tz_string
 #
 # print(multiply(12, 4)      )# 48
 
+# def compare_by_length(a,b):
+#     if len(a) < len(b):
+#         return -1
+#     elif len(a) > len(b):
+#         return 1
+#     else:
+#         return 0
+#
+# compare_by_length('patience', 'perseverance') # -1
+# compare_by_length('strength', 'dignity')      #  1
+# compare_by_length('humor', 'grace')           #  0
 
+that = 'Captain Ruby'.split(' ')
+that[1] = 'Python'
+that = ' '.join(that)
+print(that)
 
+first_8 = 'Captain Ruby'[:8]
+new_str = first_8 + 'Python'
+print(new_str)      # Captain Python
 
+all_words = 'Captain Ruby'.split(' ')
+first_word = all_words[0]
+new_str = first_word + ' Python'
+print(new_str)      # Captain Python
 
-
-
-
-
+new_str = 'Captain Ruby'.replace('Ruby', 'Python')
+print(new_str)      # Captain Python
 
 
 
