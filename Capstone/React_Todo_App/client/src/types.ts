@@ -24,7 +24,7 @@ export type ItemListProps = {
 };
 
 export interface ModalProps {
-  isModalVisible: boolean | undefined,
-  toggleModal: (() => void) | undefined
+  isModalVisible: boolean,
+  toggleModal: (() => void),
   onCreate: (newTodo: Omit<Todo, "id">) => Promise<void>,
 }

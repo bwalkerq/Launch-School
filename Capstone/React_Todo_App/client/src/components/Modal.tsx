@@ -1,6 +1,22 @@
+import { useEffect, useCallback } from "react";
 import type {ModalProps} from "../types.ts";
 
-const Modal = ({toggleModal, isModalVisible, onCreate}: ModalProps) => {
+const Modal = ({ toggleModal, isModalVisible, onCreate }: ModalProps) => {
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    if (event.key === "Escape" && isModalVisible) {
+      event.preventDefault();
+      toggleModal();
+    }
+  }, [isModalVisible, toggleModal]);
+
+  useEffect(() => {
+    if (!isModalVisible) return;
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isModalVisible, handleKeyDown]);
+
   return (
     <>
       <div className="modal"
@@ -10,6 +26,7 @@ const Modal = ({toggleModal, isModalVisible, onCreate}: ModalProps) => {
       />
       <div className="modal"
            id="form_modal"
+           onClick={(e) => e.stopPropagation()}
            style={{display: isModalVisible ? 'block' : 'none'}}
       >
         <form
