@@ -62,9 +62,9 @@ class LinkedListTest(unittest.TestCase):
     def test_access_head_element(self):
         lst = SimpleLinkedList()
         lst.push(1)
-        self.assertIsInstance(lst.head, Element)
-        self.assertEqual(1, lst.head.datum)
-        self.assertTrue(lst.head.is_tail())
+        self.assertIsInstance(lst._head, Element)
+        self.assertEqual(1, lst._head.datum)
+        self.assertTrue(lst._head.is_tail())
 
     # @unittest.skip
     def test_items_are_stacked(self):
@@ -72,8 +72,8 @@ class LinkedListTest(unittest.TestCase):
         lst.push(1)
         lst.push(2)
         self.assertEqual(2, lst.size)
-        self.assertEqual(2, lst.head.datum)
-        self.assertEqual(1, lst.head.next.datum)
+        self.assertEqual(2, lst._head.datum)
+        self.assertEqual(1, lst._head.next.datum)
 
     # @unittest.skip
     def test_push_10_items(self):
@@ -117,14 +117,14 @@ class LinkedListTest(unittest.TestCase):
         lst = SimpleLinkedList.from_list([1, 2])
         self.assertEqual(2, lst.size)
         self.assertEqual(1, lst.peek())
-        self.assertEqual(2, lst.head.next.datum)
+        self.assertEqual(2, lst._head.next.datum)
 
     # @unittest.skip
     def test_from_a_10_items(self):
         lst = SimpleLinkedList.from_list(list(range(1, 11)))
         self.assertEqual(10, lst.size)
         self.assertEqual(1, lst.peek())
-        self.assertEqual(10, lst.head.next.next.next.next.next.next.next.next.next.datum)
+        self.assertEqual(10, lst._head.next.next.next.next.next.next.next.next.next.datum)
 
     # @unittest.skip
     def test_to_a_empty_list(self):
@@ -143,16 +143,16 @@ class LinkedListTest(unittest.TestCase):
         lst = SimpleLinkedList.from_list([1, 2])
         self.assertEqual([1, 2], lst.to_list())
         self.assertEqual(2, lst.size)
-        self.assertEqual(1, lst.head.datum)
-        self.assertEqual(2, lst.head.next.datum)
+        self.assertEqual(1, lst._head.datum)
+        self.assertEqual(2, lst._head.next.datum)
 
     # @unittest.skip
     def test_reverse_2_element_list(self):
         lst = SimpleLinkedList.from_list([1, 2])
         lst_r = lst.reverse()
         self.assertEqual(2, lst_r.peek())
-        self.assertEqual(1, lst_r.head.next.datum)
-        self.assertTrue(lst_r.head.next.is_tail())
+        self.assertEqual(1, lst_r._head.next.datum)
+        self.assertTrue(lst_r._head.next.is_tail())
 
     # @unittest.skip
     def test_reverse_10_element_list(self):
