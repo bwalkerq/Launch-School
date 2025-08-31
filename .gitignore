@@ -1,6 +1,11 @@
+# IntelliJ
+*.iml
+.idea/
+.idea/**
+# Python venvs
+**/.venv/
+**/.venv1/
+
 .DS_Store
 WIHM.md
 node_modules
-.idea/
-
-*.iml
