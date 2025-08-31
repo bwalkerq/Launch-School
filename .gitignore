@@ -1,4 +1,6 @@
 .DS_Store
 WIHM.md
 node_modules
-.idea
+.idea/
+
+*.iml
