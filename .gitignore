@@ -2,10 +2,44 @@
 *.iml
 .idea/
 .idea/**
+
 # Python venvs
 **/.venv/
 **/.venv1/
 
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Build outputs
+dist/
+build/
+.out
+
+# IDE
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Environment files
+.env*
+!.env.example
+
+# Other
 WIHM.md
-node_modules
