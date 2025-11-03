@@ -83,11 +83,6 @@ const mockTraces: Record<string, OTLPTrace> = {
   },
 };
 
-// Get trace by ID
-function getTraceData(traceId: string): OTLPTrace | null {
-  return mockTraces[traceId] || null;
-}
-
 // Search traces by criteria
 function searchTraces(criteria: {
   status?: string;
@@ -155,7 +150,7 @@ const server = new McpServer({
 // ============================================================================
 
 // I think the best use case for resources is when we have telemetry data streaming, and we want
-//
+// a potential running SSE or pull-based setup, so that, for example, the most recent errors are cached and ready for retrieval.
 
 // ============================================================================
 // TOOLS: For actively searching/querying traces
